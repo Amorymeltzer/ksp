@@ -239,11 +239,12 @@ while (<$file>) {
 	$tmp2 =~ s/Srf(Landed|Splashed)/\@$1\@/g;
 	$tmp2 =~ s/(InSpace|Flying)(Low|High)/\@$1$2\@/g;
 	@pieces = (split /@/, $tmp2);
-	push @test, shift @pieces;
-	push @spob, shift @pieces;
-	push @where, shift @pieces;
-	push @biome, shift @pieces // 'Global'; # global biomes
       }
+      # Ensure arrays are the same length
+      push @test, $pieces[0];
+      push @spob, $pieces[1];
+      push @where, $pieces[2];
+      push @biome, $pieces[3] // 'Global'; # global biomes
     } elsif ($tmp1 =~ m/^title/) {
       @title = (@title,$tmp2);
     } elsif ($tmp1 =~ m/^dsc/) {
@@ -272,8 +273,12 @@ close $file or die $!;
 # Build the matrix
 foreach (0..scalar @test -1) {
   if ($biome[$_]) {
+    #print "$biome[$_]\t";
     if (($test[$_] !~ m/recovery/i) && ($biome[$_] !~ m/ksc|runway|launchpad/i)) {
+      #print "$test[$_]\t$biome[$_]\n";
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_]];
+      #print "$test[$_],$spob[$_],$where[$_],$biome[$_]\t$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_]\n";
+      #print "asd\t$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]}[9]\n";
     }
   }
 }
