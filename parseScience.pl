@@ -13,10 +13,10 @@ use diagnostics;
 use Getopt::Std;
 use Excel::Writer::XLSX;
 
-
 # Parse commandline options
 my %opts = ();
 getopts('ashH', \%opts);
+
 # $opts{a}, $opts{s} elsewhere for convenience
 if ( $opts{h} || $opts{H}) {
   usage(); exit;
@@ -29,37 +29,53 @@ my $outfile = 'scienceToDo.xlsx';
 my %dataMatrix;			# Hold errything
 my %reco;			# Separate hash for craft recovery
 my %sbvData;			# Hold sbv values from END DATA
+
 # Access reverse-engineered caps for recovery missions.  SubOrbited and
 # Orbited are messed up - the default values from Kerbin are inverted
 # elsewhere. ;;;;;; ##### FIXME TODO
-my %recoCaps = ( Flew => 6, FlewBy => 7.2, SubOrbited => 9.6, Orbited => 12,
-		 Surfaced => 18 );
+my %recoCaps = (
+		Flew => 6,
+		FlewBy => 7.2,
+		SubOrbited => 9.6,
+		Orbited => 12,
+		Surfaced => 18
+	       );
 my %workVars;		       # Hash of arras to hold worksheets, current row
 my %sciData;		       # Hold data on science per spob
 
 # ScienceDefs.cfg variables
-my (@testdef,			# Basic test names
+my (
+    @testdef,			# Basic test names
     @sitmask,			# Where test is valid
     @biomask,			# Where biomes for test matter
     @atmo,			# Check if atmosphere required or not
     @dataScale,			# dataScale, same as dsc in persistent.sfs
-    @scienceCap);		# Base experiment cap, multiplied by sbv
+    @scienceCap			# Base experiment cap, multiplied by sbv
+   );
+
 # persistent.sfs variables
-my (@title,			# Long, displayed name
+my (
+    @title,			# Long, displayed name
     @dsc,			# Data scale
     @scv,			# Percent left to research
     @sbv,			# Base balue multiplier to reach cap
     @sci,			# Science researched so far
-    @cap);			# Max science
+    @cap			# Max science
+   );
+
 # Store details from split id
 my @pieces;
-my (@test,			# Which test
+my (
+    @test,			# Which test
     @spob,			# Which planet/moon
     @where,			# What activity
-    @biome);			# What biome
+    @biome			# What biome
+   );
 
 my @planets = qw (Kerbin Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
 		  Jool Laythe Vall Tylo Bop Pol Eeloo);
+my $planetCount = scalar @planets - 1; # Use this a lot throughout
+
 # Different spobs, different biomes
 my @kerBiomes = qw (Water Shores Grasslands Highlands Mountains Deserts
 		    Badlands Tundra IceCaps);
@@ -76,11 +92,10 @@ my $recoTicker = '0';
 my $eolTicker = '0';
 my $recoRow = '1';
 
-
 # Construct sbv hash
 while (<DATA>) {
   chomp;
-  my @sbvs = split ' ';
+  my @sbvs = split;
   $sbvData{$sbvs[0].$sbvs[1]} = $sbvs[2];
 }
 
@@ -132,12 +147,12 @@ close $defs or die $!;
 
 
 # Iterate and decide on conditions, build matrix, gogogo
-foreach my $i (0..scalar @testdef -1) {
+foreach my $i (0..scalar @testdef - 1) {
   # Array of binary values, only need to do once per test
   my @sits = split //,$sitmask[$i];
   my @bins = split //,$biomask[$i];
 
-  foreach my $planet (0..scalar @planets -1) {
+  foreach my $planet (0..$planetCount) {
 
     # Build list of potential situations
     my @situations = qw (Landed Splashed FlyingLow
@@ -149,7 +164,7 @@ foreach my $i (0..scalar @testdef -1) {
     # Have to somehow deal with eva report while flying over
     my @biomes = arrayBuild ($planets[$planet]);
 
-    for (my $var = scalar @sits -1;$var>=0;$var--) {
+    for (my $var = scalar @sits - 1;$var>=0;$var--) {
       my $vara = abs $var-5;
       if ($sits[$vara] == 0) {
 	splice @situations, $var, 1;
@@ -159,7 +174,7 @@ foreach my $i (0..scalar @testdef -1) {
       }
     }
 
-    foreach my $sit (0..scalar @situations -1) {
+    foreach my $sit (0..scalar @situations - 1) {
       # No surface
       #  next if (($situations[$sit] =~ m/^Landed$/) && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
       next if (($situations[$sit] eq 'Landed') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/xsm));
@@ -171,7 +186,7 @@ foreach my $i (0..scalar @testdef -1) {
 	next if $atmo[$i] == 1;
       }
 
-      foreach my $bin (0..scalar @{$biomes[$sit]} -1) { # Dereference array
+      foreach my $bin (0..scalar @{$biomes[$sit]} - 1) { # Dereference array
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
 	# Only three spobs have biomes (so far)
@@ -186,14 +201,14 @@ foreach my $i (0..scalar @testdef -1) {
 
 
 # Build recovery hash
-foreach my $planet (0..scalar @planets -1) {
+foreach my $planet (0..$planetCount) {
   my @situations = qw (FlewBy SubOrbited Orbited Surfaced);
   # Kerbin is special of course
   if ($planets[$planet] eq 'Kerbin') {
     $situations[0] = 'Flew';
     pop @situations;
   }
-  foreach my $sit (0..scalar @situations -1) {
+  foreach my $sit (0..scalar @situations - 1) {
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
@@ -271,7 +286,7 @@ close $file or die $!;
 
 
 # Build the matrix
-foreach (0..scalar @test -1) {
+foreach (0..scalar @test - 1) {
   if ($biome[$_]) {
     #print "$biome[$_]\t";
     if (($test[$_] !~ m/recovery/i) && ($biome[$_] !~ m/ksc|runway|launchpad/i)) {
@@ -304,7 +319,7 @@ $recovery->write( 0, 0, \@header, $bold );
 $header[1] = 'Condition';
 $header[2] = 'Biome';
 
-foreach my $planet (0..scalar @planets -1) {
+foreach my $planet (0..$planetCount) {
   # Interpolate via " instead of '
   $workVars{$planets[$planet]} = [$workbook->add_worksheet( "$planets[$planet]" ), 1];
   $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
@@ -338,7 +353,7 @@ foreach my $key (sort recoSort keys %reco) {
 $recovery->set_column( 0, 0, 9.17 );
 $recovery->set_column( 1, 1, 6.5 );
 $recovery->set_column( 2, 2, 9 );
-foreach my $planet (0..scalar @planets -1) {
+foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
   $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
   $workVars{$planets[$planet]}[0]->set_column( 2, 2, 8.5 );
@@ -387,7 +402,6 @@ sub arrayBuild
     return @tmpArray;
   }
 
-
 ## Custom sort order, don't really understand this, adapted from:
 ## http://stackoverflow.com/a/8171591/2521092
 
@@ -396,14 +410,18 @@ sub arrayBuild
 # Sort by Kerbol System order instead of alphabetical, matches worksheets
 sub recoSort
   {
+    my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
+
     my @recoOrder = @planets;
     my %reco_order_map = map { $recoOrder[$_] => $_ } 0 .. $#recoOrder;
-    my $rord = join '|', @recoOrder;
+    my $rord = join q{|}, @recoOrder;
     my @condOrder = qw (Flew SubOrbited Orbited Surfaced);
     my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
-    my $cord = join '|', @condOrder;
-    my ($x,$y) = map /^($rord)/, $a, $b;
-    my ($v,$w) = map /($cord)/, $a, $b;
+    my $cord = join q{|}, @condOrder;
+
+    my ($x,$y) = map {/^($rord)/} @input;
+    my ($v,$w) = map {/($cord)/} @input;
+
     if ($opts{s}) {
       $reco{$b}[8] <=> $reco{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } else {
@@ -415,9 +433,10 @@ sub recoSort
 # alphabetically by biome
 sub sitSort
   {
+    my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
     my @sitOrder = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);
     my %sit_order_map = map { $sitOrder[$_] => $_ } 0..$#sitOrder;
-    my $sord = join '|', @sitOrder;
+    my $sord = join q{|}, @sitOrder;
 
     # Test
     my ($v,$w) = ($a,$b);
@@ -428,7 +447,7 @@ sub sitSort
     $t =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
     $u =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
 
-    my ($x,$y) = map /($sord)/, $a, $b;
+    my ($x,$y) = map {/($sord)/} @input;
 
     if ($opts{s}) {
       $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
@@ -441,7 +460,7 @@ sub sitSort
 # Alphabetical averages
 sub average1
   {
-    foreach my $planet (0..scalar @planets -1) {
+    foreach my $planet (0..$planetCount) {
       my $avg = $sciData{$planets[$planet]}/$workVars{$planets[$planet]}[1];
       printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sciData{$planets[$planet]};
     }
@@ -466,7 +485,6 @@ sub average2
     }
     return;
   }
-
 
 
 
