@@ -284,12 +284,8 @@ close $file or die $!;
 # Build the matrix
 foreach (0..scalar @test - 1) {
   if ($biome[$_]) {
-    #print "$biome[$_]\t";
     if (($test[$_] !~ m/recovery/i) && ($biome[$_] !~ m/ksc|runway|launchpad/i)) {
-      #print "$test[$_]\t$biome[$_]\n";
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_]];
-      #print "$test[$_],$spob[$_],$where[$_],$biome[$_]\t$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_]\n";
-      #print "asd\t$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]}[9]\n";
     }
   }
 }
