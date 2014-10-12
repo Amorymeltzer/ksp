@@ -5,7 +5,6 @@
 # Leftover science in red, candidates for manual cleanup in green
 ## Option for average for spob, test??
 
-
 use strict;
 use warnings;
 use diagnostics;
@@ -18,7 +17,7 @@ my %opts = ();
 getopts('ashH', \%opts);
 
 # $opts{a}, $opts{s} elsewhere for convenience
-if ( $opts{h} || $opts{H}) {
+if ($opts{h} || $opts{H}) {
   usage(); exit;
 }
 
@@ -176,8 +175,7 @@ foreach my $i (0..scalar @testdef - 1) {
 
     foreach my $sit (0..scalar @situations - 1) {
       # No surface
-      #  next if (($situations[$sit] =~ m/^Landed$/) && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
-      next if (($situations[$sit] eq 'Landed') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/xsm));
+      next if (($situations[$sit] eq 'Landed') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
       # Water
       next if (($situations[$sit] eq 'Splashed') && ($planets[$planet] !~ m/^Kerbin$|^Eve$|^Laythe$/));
       # Atmosphere
@@ -189,11 +187,9 @@ foreach my $i (0..scalar @testdef - 1) {
       foreach my $bin (0..scalar @{$biomes[$sit]} - 1) { # Dereference array
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
-	# Only three spobs have biomes (so far)
+	# Only three spobs have biomes as of 0.25
 	my $sbVal = $sbvData{$planets[$planet].$situations[$sit]};
-	#$biomes[$sit][$bin] = "Global" unless $planets[$planet] =~ m/Kerbin|Mun|Minmus/;
 	$dataMatrix{$testdef[$i].$planets[$planet].$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$planets[$planet],$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$sbVal*$scienceCap[$i],$sbVal*$scienceCap[$i]-0];
-	#last unless $planets[$planet] =~ m/Kerbin|Mun|Minmus/;
       }
     }
   }
@@ -434,6 +430,7 @@ sub recoSort
 sub sitSort
   {
     my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
+
     my @sitOrder = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);
     my %sit_order_map = map { $sitOrder[$_] => $_ } 0..$#sitOrder;
     my $sord = join q{|}, @sitOrder;
@@ -485,7 +482,6 @@ sub average2
     }
     return;
   }
-
 
 
 
