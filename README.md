@@ -10,10 +10,16 @@ Returns a list of all science points remaining and obtained so far, helpfully co
 - Both need *ScienceDefs.cfg* and *persistent.sfs* to be in the same directory as the script.
 
 **Running**
-Simply run the script.  An .xlsx file named `scienceToDo.xlsx` shoud appear.  Use the `-a` flag to report an average per planet/moon, and the `-s` flag to sort each worksheet by science left.  Using both will also sort the averages table.
+Simply run the script and an .xlsx file named `scienceToDo.xlsx` shoud appear.
+```
+Usage: parseScience.pl [-alhH]
+      -a Display data on science left for each planet
+      -s Sort by science left, including output from the -a flag
+      -n Turn off formatted printing (i.e., colors and bolding)
+      -h or H Print this message
+	  ```
 
 **Todo**
 - Option to csv output (default?)
 - Use external files
-- Option coloring
 - Average per test?

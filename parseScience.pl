@@ -14,7 +14,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('ashH', \%opts);
+getopts('asnhH', \%opts);
 
 # $opts{a}, $opts{s} used elsewhere for convenience
 if ($opts{h} || $opts{H}) {
@@ -296,13 +296,17 @@ foreach (0..scalar @test - 1) {
 my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left];
 # Create new workbook
 my $workbook = Excel::Writer::XLSX->new( "$outfile" );
-# Bold for headers
+# Bold for headers, red for science left, green for stupidly small values
 my $bold = $workbook->add_format();
-$bold->set_bold();
 my $bgRed = $workbook->add_format();
-$bgRed->set_bg_color( 'red' );
 my $bgGreen = $workbook->add_format();
-$bgGreen->set_bg_color( 'Green' );
+
+# Turn off color if so desired
+if (!$opts{n}) {
+  $bold->set_bold();
+  $bgRed->set_bg_color( 'red' );
+  $bgGreen->set_bg_color( 'green' );
+}
 
 # Generate each worksheet with proper header
 my $recovery = $workbook->add_worksheet( 'Recovery' );
@@ -491,6 +495,7 @@ sub usage
 Usage: $0 [-alhH]
       -a Display data on science left for each planet
       -s Sort by science left, including output from the -a flag
+      -n Turn off formatted printing (i.e., colors and bolding)
       -h or H Print this message
 USAGE
     return;
