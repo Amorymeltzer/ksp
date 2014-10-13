@@ -16,7 +16,6 @@ use Excel::Writer::XLSX;
 my %opts = ();
 getopts('asnhH', \%opts);
 
-# $opts{a}, $opts{s} used elsewhere for convenience
 if ($opts{h} || $opts{H}) {
   usage(); exit;
 }
@@ -492,7 +491,7 @@ sub average2
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-alhH]
+Usage: $0 [-asnhH]
       -a Display data on science left for each planet
       -s Sort by science left, including output from the -a flag
       -n Turn off formatted printing (i.e., colors and bolding)
