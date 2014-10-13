@@ -20,7 +20,6 @@ if ($opts{h} || $opts{H}) {
   usage(); exit;
 }
 
-print "$ARGV[0]\n" if $ARGV[0];
 #####
 # Change these to match the location of your KSP install and save folder
 my $path = '/Applications/KSP_osx';
