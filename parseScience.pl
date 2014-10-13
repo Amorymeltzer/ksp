@@ -12,11 +12,11 @@ use diagnostics;
 use Getopt::Std;
 use Excel::Writer::XLSX;
 
-# Parse commandline options
+# Parse command line options
 my %opts = ();
 getopts('ashH', \%opts);
 
-# $opts{a}, $opts{s} elsewhere for convenience
+# $opts{a}, $opts{s} used elsewhere for convenience
 if ($opts{h} || $opts{H}) {
   usage(); exit;
 }
