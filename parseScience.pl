@@ -20,8 +20,15 @@ if ($opts{h} || $opts{H}) {
   usage(); exit;
 }
 
-my $pers = 'persistent.sfs';
-my $scidef = 'ScienceDefs.cfg';
+print "$ARGV[0]\n" if $ARGV[0];
+#####
+# Change these to match the location of your KSP install and save folder
+my $path = '/Applications/KSP_osx';
+my $uname = 'McJohn';
+#####
+
+my $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
+my $pers = "$path/saves/$uname/persistent.sfs";
 my $outfile = 'scienceToDo.xlsx';
 
 my %dataMatrix;			# Hold errything
