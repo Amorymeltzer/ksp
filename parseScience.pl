@@ -345,6 +345,7 @@ foreach my $planet (0..$planetCount) {
 }
 
 
+# Subroutine some of this ;;;;;; ##### FIXME TODO
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
@@ -355,8 +356,13 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   $workVars{$planet}[1]++;
 
   # Build data hash for use elsewhere
-  $sciData{$planet} += $dataMatrix{$key}[8] if ($opts{a});
-  $testData{$dataMatrix{$key}[0]} += $dataMatrix{$key}[8] if ($opts{t});
+  #  $sciData{$planet} += $dataMatrix{$key}[8] if ($opts{a});
+  $sciData{$planet}[0] += $dataMatrix{$key}[8] if ($opts{a});
+  $sciData{$planet}[1]++ if ($opts{a});
+  #  $testData{$dataMatrix{$key}[0]} += $dataMatrix{$key}[8] if ($opts{t});
+  # test
+  $testData{$dataMatrix{$key}[0]}[0] += $dataMatrix{$key}[8] if ($opts{t});
+  $testData{$dataMatrix{$key}[0]}[1]++ if ($opts{t});
 }
 
 
@@ -368,9 +374,15 @@ foreach my $key (sort recoSort keys %reco) {
   $workVars{$recov}[1]++;
 
   # Build data hash for use elsewhere
-  $sciData{$recov} += $reco{$key}[8] if ($opts{a});
-  $testData{$recov} += $reco{$key}[8] if ($opts{t});
+  #  $sciData{$recov} += $reco{$key}[8] if ($opts{a});
+  $sciData{$recov}[0] += $reco{$key}[8] if ($opts{a});
+  $sciData{$recov}[1]++ if ($opts{a});
+  #  $testData{$recov} += $reco{$key}[8] if ($opts{t});
+  # test
+  $testData{$recov}[0] += $reco{$key}[8] if ($opts{t});
+  $testData{$recov}[1]++ if ($opts{t});
 }
+
 
 # Widths, manually determined
 $workVars{$recov}[0]->set_column( 0, 0, 9.17 );
@@ -383,15 +395,29 @@ foreach my $planet (0..$planetCount) {
 }
 
 
-if ($opts{a}) {
-  print "Average science left:\n\n";
-  print "Spob\tAvg/exp\tTotal\n";
+#  if ($opts{a}) {
+# Ensure the -t flag supersedes -a if both are given
+if ($opts{a} || $opts{t}) {
+  my $string = "Average science left:\n\n";
+  my %tmpHash;
+
+  if ($opts{t}) {
+    $string .= "Test\tAvg/exp\tTotal\n";
+    %tmpHash = %testData;
+  } elsif ($opts{a}) {
+    $string .= "Spob\tAvg/exp\tTotal\n";
+    %tmpHash = %sciData;
+  }
+  print "$string";
+
   if ($opts{s}) {
     #  average2();
-    average2(\%sciData);
+    #  average2(\%sciData);
+    average2(\%tmpHash);
   } else {
     #  average1();
-    average1(\%sciData);
+    #  average1(\%sciData);
+    average1(\%tmpHash);
   }
 }
 
@@ -506,7 +532,7 @@ sub average1
       my $avg = $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1];
       printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sortHash{$planets[$planet]};
     }
-    my $avg = $sortHash{$recov}/$recoRow;
+    my $avg = $sortHash{$recov}/$workVars{$recov}[1];
     printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sortHash{$recov};
     return;
   }
@@ -531,21 +557,27 @@ sub average2
   {
     my $hashRef = shift;
     my %sortHash = %{$hashRef};
-    foreach my $key (sort {$sortHash{$b} <=> $sortHash{$a} || $a cmp $b} keys %sortHash) {
+
+    #  foreach my $key (sort {$sortHash{$b} <=> $sortHash{$a} || $a cmp $b} keys %sortHash) {
+    foreach my $key (sort {$sortHash{$b}[0] <=> $sortHash{$a}[0] || $a cmp $b} keys %sortHash) {
       my $denom;
       #print "$key\n";
+      #print "$sortHash{$key}[0]\n";
+      #print "@{$workVars{$key}}\n";
       #if ($key !~ m/$recov/) {
-	# Should be - 1, just keeping to make testing/validation easier
-	#  $denom = $workVars{$key}[1] - 1;
-	$denom = $workVars{$key}[1];
+      # Should be - 1, just keeping to make testing/validation easier
+      #  $denom = $workVars{$key}[1] - 1;
+      #  $denom = $workVars{$key}[1];
+      $denom = $sortHash{$key}[1] + 1;
       #} else {
-	# See above
-	#  $denom = $recoRow - 1;
-	#  $denom = $recoRow;
-	#$denom = $workVars{$recov}[1];
+      # See above
+      #  $denom = $recoRow - 1;
+      #  $denom = $recoRow;
+      #$denom = $workVars{$recov}[1];
       #}
-      my $avg = $sortHash{$key}/$denom;
-      printf "%s\t%.0f\t%.0f\n", $key, $avg, $sortHash{$key};
+      #my $avg = $sortHash{$key}/$denom;
+      my $avg = $sortHash{$key}[0]/$denom;
+      printf "%s\t%.0f\t%.0f\n", $key, $avg, $sortHash{$key}[0];
     }
     return;
   }
@@ -561,7 +593,7 @@ sub usage
 Usage: $0 [-astnhH -u <savefile_name>]
       -a Display average science left for each planet
       -s Sort output by science left, including averages from from the -a flag
-      -t Display average science left for each experiment type.  Superseded by -a
+      -t Display average science left for each experiment type.
       -n Turn off formatted printing (i.e., colors and bolding)
       -u Enter the username of your KSP save folder; Otherwise, whatever local
          files are present will be used.
