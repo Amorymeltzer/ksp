@@ -15,7 +15,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('asnu:hH', \%opts);
+getopts('asntu:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage(); exit;
@@ -58,6 +58,7 @@ my %recoCaps = (
 	       );
 my %workVars;		       # Hash of arras to hold worksheets, current row
 my %sciData;		       # Hold data on science per spob
+my %testData;		       # Hold data on science per test
 
 # ScienceDefs.cfg variables
 my (
@@ -351,6 +352,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   $workVars{$planet}[1]++;
   # Build data hash for use elsewhere
   $sciData{$planet} += $dataMatrix{$key}[8] if ($opts{a});
+  $testData{$dataMatrix{$key}[0]} += $dataMatrix{$key}[8] if ($opts{t});
 }
 
 
@@ -361,7 +363,8 @@ foreach my $key (sort recoSort keys %reco) {
   $recovery->write( $recoRow, 4, $reco{$key}[4], $bgGreen ) if (($reco{$key}[4] < 0.001) && ($reco{$key}[4] > 0));
   $recoRow++;
   # Build data hash for use elsewhere
-  $sciData{'Reco'} += $reco{$key}[8] if ($opts{a});
+  $sciData{'Recov'} += $reco{$key}[8] if ($opts{a});
+  $testData{'Recov'} += $reco{$key}[8] if ($opts{t});
 }
 
 # Widths, emperically determined
@@ -515,6 +518,7 @@ Usage: $0 [-asnhH -u <savefile_name>]
       -a Display data on science left for each planet
       -s Sort by science left, including output from the -a flag
       -n Turn off formatted printing (i.e., colors and bolding)
+      -t 
       -u Enter the username of your KSP save folder; Otherwise, whatever local
          files are present will be used.
       -h or H Print this message
