@@ -2,10 +2,10 @@ Perl scripts to help with Kerbal Space Program.
 
 
 #### parseScience.pl ####
-Returns a list of all science points remaining and obtained so far, helpfully colored.
+Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon.
 
 **Requires:**
-- Perl
+- Perl (Duh.)
 - Excel::Writer::XLSX ([CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
 
 **Running**
@@ -22,5 +22,5 @@ Usage: parseScience.pl [-asnhH]
 ```
 
 **Todo**
-- Option to csv output (default?)
+- Option csv output (default?)
 - Average per test?
