@@ -32,7 +32,7 @@ if ($opts{u}) {
   $pers = "$path/saves/$opts{u}/persistent.sfs";
 }
 
-# Test for existance
+# Test files for existance
 if (! -e $scidef) {
   print "No ScienceDefs.cfg file found at $scidef\n";
   exit;
@@ -483,7 +483,7 @@ sub average1
       my $avg = $sciData{$planets[$planet]}/$workVars{$planets[$planet]}[1];
       printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sciData{$planets[$planet]};
     }
-    my $recov = 'Reco';
+    my $recov = 'Recov';
     my $avg = $sciData{$recov}/$recoRow;
     printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sciData{$recov};
     return;
@@ -494,7 +494,7 @@ sub average2
   {
     foreach my $key (sort {$sciData{$b} <=> $sciData{$a} || $a cmp $b} keys %sciData) {
       my $denom;
-      if ($key !~ m/Reco/) {
+      if ($key !~ m/Recov/) {
 	$denom = $workVars{$key}[1];
       } else {
 	$denom = $recoRow;
@@ -514,11 +514,11 @@ sub average2
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-asnhH -u <savefile_name>]
-      -a Display data on science left for each planet
+Usage: $0 [-asnthH -u <savefile_name>]
+      -a Display average science left for each planet
       -s Sort by science left, including output from the -a flag
       -n Turn off formatted printing (i.e., colors and bolding)
-      -t 
+      -t Display average science left for each experiment type.  Superseded by -a
       -u Enter the username of your KSP save folder; Otherwise, whatever local
          files are present will be used.
       -h or H Print this message
