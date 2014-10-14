@@ -30,7 +30,16 @@ if ($opts{u}) {
   $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
   $pers = "$path/saves/$opts{u}/persistent.sfs";
 }
+
 # Test for existance
+if (! -e $scidef) {
+  print "No ScienceDefs.cfg file found at $scidef\n";
+  exit;
+}
+if (! -e $pers) {
+  print "No persistent.sfs file found at $pers\n";
+  exit;
+}
 
 my %dataMatrix;			# Hold errything
 my %reco;			# Separate hash for craft recovery
