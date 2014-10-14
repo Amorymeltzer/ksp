@@ -107,7 +107,6 @@ my @minBiomes = qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
 my $ticker = '0';
 my $recoTicker = '0';
 my $eolTicker = '0';
-my $recoRow = '1';
 
 my $recov = 'Recov';
 
@@ -333,8 +332,6 @@ if (!$opts{n}) {
 # Generate each worksheet with proper header
 # I feel like I should be able to unify these guys, lose some variable
 # ;;;;;; ##### FIXME TODO
-# my $recovery = $workbook->add_worksheet( 'Recovery' );
-# $recovery->write( 0, 0, \@header, $bold );
 $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
 $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
 
@@ -356,6 +353,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   $workVars{$planet}[0]->write( $workVars{$planet}[1], 8, $dataMatrix{$key}[8], $bgRed ) if $dataMatrix{$key}[8] > 0;
   $workVars{$planet}[0]->write( $workVars{$planet}[1], 4, $dataMatrix{$key}[4], $bgGreen ) if (($dataMatrix{$key}[4] < 0.001) && ($dataMatrix{$key}[4] >0));
   $workVars{$planet}[1]++;
+
   # Build data hash for use elsewhere
   $sciData{$planet} += $dataMatrix{$key}[8] if ($opts{a});
   $testData{$dataMatrix{$key}[0]} += $dataMatrix{$key}[8] if ($opts{t});
@@ -364,15 +362,9 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
 foreach my $key (sort recoSort keys %reco) {
   my $tref = \@{$reco{$key}};
-  # $recovery->write_row( $recoRow, 0, $tref );
-  # $recovery->write( $recoRow, 8, $reco{$key}[8], $bgRed ) if $reco{$key}[8] > 0;
-  # $recovery->write( $recoRow, 4, $reco{$key}[4], $bgGreen ) if (($reco{$key}[4] < 0.001) && ($reco{$key}[4] > 0));
-
   $workVars{$recov}[0]->write_row( $workVars{$recov}[1], 0, $tref );
   $workVars{$recov}[0]->write( $workVars{$recov}[1], 8, $reco{$key}[8], $bgRed ) if $reco{$key}[8] > 0;
   $workVars{$recov}[0]->write( $workVars{$recov}[1], 4, $reco{$key}[4], $bgGreen ) if (($reco{$key}[4] < 0.001) && ($reco{$key}[4] > 0));
-
-  #  $recoRow++;
   $workVars{$recov}[1]++;
 
   # Build data hash for use elsewhere
@@ -380,11 +372,7 @@ foreach my $key (sort recoSort keys %reco) {
   $testData{$recov} += $reco{$key}[8] if ($opts{t});
 }
 
-# Widths, emperically determined
-# $recovery->set_column( 0, 0, 9.17 );
-# $recovery->set_column( 1, 1, 6.5 );
-# $recovery->set_column( 2, 2, 9 );
-
+# Widths, manually determined
 $workVars{$recov}[0]->set_column( 0, 0, 9.17 );
 $workVars{$recov}[0]->set_column( 1, 1, 6.5 );
 $workVars{$recov}[0]->set_column( 2, 2, 9 );
