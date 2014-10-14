@@ -14,21 +14,23 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('asnhH', \%opts);
+getopts('asnu:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage(); exit;
 }
 
-#####
-# Change these to match the location of your KSP install and save folder
-my $path = '/Applications/KSP_osx';
-my $uname = 'McJohn';
-#####
-
-my $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
-my $pers = "$path/saves/$uname/persistent.sfs";
+my $scidef = 'ScienceDefs.cfg';
+my $pers = 'persistent.sfs';
 my $outfile = 'scienceToDo.xlsx';
+
+# Change this to match the location of your KSP install
+if ($opts{u}) {
+  my $path = '/Applications/KSP_osx';
+  $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
+  $pers = "$path/saves/$opts{u}/persistent.sfs";
+}
+# Test for existance
 
 my %dataMatrix;			# Hold errything
 my %reco;			# Separate hash for craft recovery
@@ -497,10 +499,12 @@ sub average2
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-asnhH]
+Usage: $0 [-asnhH -u <savefile_name>]
       -a Display data on science left for each planet
       -s Sort by science left, including output from the -a flag
       -n Turn off formatted printing (i.e., colors and bolding)
+      -u Enter the username of your KSP save folder; Otherwise, whatever local
+         files are present will be used.
       -h or H Print this message
 USAGE
     return;
