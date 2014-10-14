@@ -15,7 +15,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('asntu:hH', \%opts);
+getopts('astnu:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage(); exit;
@@ -108,6 +108,8 @@ my $ticker = '0';
 my $recoTicker = '0';
 my $eolTicker = '0';
 my $recoRow = '1';
+
+my $recov = 'Recov';
 
 # Construct sbv hash
 while (<DATA>) {
@@ -329,6 +331,8 @@ if (!$opts{n}) {
 }
 
 # Generate each worksheet with proper header
+# I feel like I should be able to unify these guys, lose some variable
+# ;;;;;; ##### FIXME TODO
 my $recovery = $workbook->add_worksheet( 'Recovery' );
 $recovery->write( 0, 0, \@header, $bold );
 
@@ -363,8 +367,8 @@ foreach my $key (sort recoSort keys %reco) {
   $recovery->write( $recoRow, 4, $reco{$key}[4], $bgGreen ) if (($reco{$key}[4] < 0.001) && ($reco{$key}[4] > 0));
   $recoRow++;
   # Build data hash for use elsewhere
-  $sciData{'Recov'} += $reco{$key}[8] if ($opts{a});
-  $testData{'Recov'} += $reco{$key}[8] if ($opts{t});
+  $sciData{$recov} += $reco{$key}[8] if ($opts{a});
+  $testData{$recov} += $reco{$key}[8] if ($opts{t});
 }
 
 # Widths, emperically determined
@@ -382,9 +386,11 @@ if ($opts{a}) {
   print "Average science left:\n\n";
   print "Spob\tAvg/exp\tTotal\n";
   if ($opts{s}) {
-    average2();
+    #  average2();
+    average2(\%sciData);
   } else {
-    average1();
+    #  average1();
+    average1(\%sciData);
   }
 }
 
@@ -476,35 +482,70 @@ sub sitSort
   }
 
 
-# Alphabetical averages
+# Alphabeticalish averages
+# sub average1
+#   {
+#     foreach my $planet (0..$planetCount) {
+#       my $avg = $sciData{$planets[$planet]}/$workVars{$planets[$planet]}[1];
+#       printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sciData{$planets[$planet]};
+#     }
+#     my $avg = $sciData{$recov}/$recoRow;
+#     printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sciData{$recov};
+#     return;
+#   }
+
+
 sub average1
   {
+    my $hashRef = shift;
+    my %sortHash = %{$hashRef};
     foreach my $planet (0..$planetCount) {
-      my $avg = $sciData{$planets[$planet]}/$workVars{$planets[$planet]}[1];
-      printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sciData{$planets[$planet]};
+      #  my $avg =
+      #  $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1] - 1;
+      my $avg = $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1];
+      printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sortHash{$planets[$planet]};
     }
-    my $recov = 'Recov';
-    my $avg = $sciData{$recov}/$recoRow;
-    printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sciData{$recov};
+    my $avg = $sortHash{$recov}/$recoRow;
+    printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sortHash{$recov};
     return;
   }
 
 # Averages sorted by total remaining science
+# sub average2
+#   {
+#     foreach my $key (sort {$sciData{$b} <=> $sciData{$a} || $a cmp $b} keys %sciData) {
+#       my $denom;
+#       if ($key !~ m/Recov/) {
+#	$denom = $workVars{$key}[1];
+#       } else {
+#	$denom = $recoRow;
+#       }
+#       my $avg = $sciData{$key}/$denom;
+#       printf "%s\t%.0f\t%.0f\n", $key, $avg, $sciData{$key};
+#     }
+#     return;
+#   }
+
 sub average2
   {
-    foreach my $key (sort {$sciData{$b} <=> $sciData{$a} || $a cmp $b} keys %sciData) {
+    my $hashRef = shift;
+    my %sortHash = %{$hashRef};
+    foreach my $key (sort {$sortHash{$b} <=> $sortHash{$a} || $a cmp $b} keys %sortHash) {
       my $denom;
-      if ($key !~ m/Recov/) {
+      if ($key !~ m/$recov/) {
+	# Should be - 1, just keeping to make testing/validation easier
+	#  $denom = $workVars{$key}[1] - 1;
 	$denom = $workVars{$key}[1];
       } else {
+	# See above
+	#  $denom = $recoRow - 1;
 	$denom = $recoRow;
       }
-      my $avg = $sciData{$key}/$denom;
-      printf "%s\t%.0f\t%.0f\n", $key, $avg, $sciData{$key};
+      my $avg = $sortHash{$key}/$denom;
+      printf "%s\t%.0f\t%.0f\n", $key, $avg, $sortHash{$key};
     }
     return;
   }
-
 
 
 #### Usage statement ####
@@ -514,11 +555,11 @@ sub average2
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-asnthH -u <savefile_name>]
+Usage: $0 [-astnhH -u <savefile_name>]
       -a Display average science left for each planet
-      -s Sort by science left, including output from the -a flag
-      -n Turn off formatted printing (i.e., colors and bolding)
+      -s Sort output by science left, including averages from from the -a flag
       -t Display average science left for each experiment type.  Superseded by -a
+      -n Turn off formatted printing (i.e., colors and bolding)
       -u Enter the username of your KSP save folder; Otherwise, whatever local
          files are present will be used.
       -h or H Print this message
