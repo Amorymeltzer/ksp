@@ -3,7 +3,8 @@
 # Parse a KSP persistent.sfs file, snag science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
-## Option for average for spob, test??
+## Option for average for test??
+## Output to csv?  Create print subroutine I guess
 
 use strict;
 use warnings;
@@ -173,10 +174,11 @@ foreach my $i (0..scalar @testdef - 1) {
     my @situations = qw (Landed Splashed FlyingLow
 			 FlyingHigh InSpaceLow InSpaceHigh);
 
-    # Build an array of arrays, nullify alongside with @situations
-    # Don't forget the KSC/Runway/Launchpad biomes
-    # But only for landed
+    # Build an array of arrays, nullify alongside @situations
+    # Don't forget the KSC/Runway/Launchpad biomes, but only for landed?
     # Have to somehow deal with eva report while flying over
+    # ;;;;;; ##### FIXME TODO
+    # Only three spobs have biomes as of 0.25
     my @biomes = arrayBuild ($planets[$planet]);
 
     for (my $var = scalar @sits - 1;$var>=0;$var--) {
@@ -203,7 +205,6 @@ foreach my $i (0..scalar @testdef - 1) {
       foreach my $bin (0..scalar @{$biomes[$sit]} - 1) { # Dereference array
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
-	# Only three spobs have biomes as of 0.25
 	my $sbVal = $sbvData{$planets[$planet].$situations[$sit]};
 	$dataMatrix{$testdef[$i].$planets[$planet].$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$planets[$planet],$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$sbVal*$scienceCap[$i],$sbVal*$scienceCap[$i]-0];
       }
@@ -291,6 +292,7 @@ while (<$file>) {
       $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1]];
     }
 
+    # Not sure what do?  ;;;;;; ##### FIXME TODO
     next;
   }
 }
@@ -305,6 +307,7 @@ foreach (0..scalar @test - 1) {
     }
   }
 }
+
 
 ###
 ### Begin the printing process!
