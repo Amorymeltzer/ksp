@@ -333,8 +333,10 @@ if (!$opts{n}) {
 # Generate each worksheet with proper header
 # I feel like I should be able to unify these guys, lose some variable
 # ;;;;;; ##### FIXME TODO
-my $recovery = $workbook->add_worksheet( 'Recovery' );
-$recovery->write( 0, 0, \@header, $bold );
+# my $recovery = $workbook->add_worksheet( 'Recovery' );
+# $recovery->write( 0, 0, \@header, $bold );
+$workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
+$workVars{$recov}[0]->write( 0, 0, \@header, $bold );
 
 $header[1] = 'Condition';
 $header[2] = 'Biome';
@@ -362,19 +364,30 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
 foreach my $key (sort recoSort keys %reco) {
   my $tref = \@{$reco{$key}};
-  $recovery->write_row( $recoRow, 0, $tref );
-  $recovery->write( $recoRow, 8, $reco{$key}[8], $bgRed ) if $reco{$key}[8] > 0;
-  $recovery->write( $recoRow, 4, $reco{$key}[4], $bgGreen ) if (($reco{$key}[4] < 0.001) && ($reco{$key}[4] > 0));
-  $recoRow++;
+  # $recovery->write_row( $recoRow, 0, $tref );
+  # $recovery->write( $recoRow, 8, $reco{$key}[8], $bgRed ) if $reco{$key}[8] > 0;
+  # $recovery->write( $recoRow, 4, $reco{$key}[4], $bgGreen ) if (($reco{$key}[4] < 0.001) && ($reco{$key}[4] > 0));
+
+  $workVars{$recov}[0]->write_row( $workVars{$recov}[1], 0, $tref );
+  $workVars{$recov}[0]->write( $workVars{$recov}[1], 8, $reco{$key}[8], $bgRed ) if $reco{$key}[8] > 0;
+  $workVars{$recov}[0]->write( $workVars{$recov}[1], 4, $reco{$key}[4], $bgGreen ) if (($reco{$key}[4] < 0.001) && ($reco{$key}[4] > 0));
+
+  #  $recoRow++;
+  $workVars{$recov}[1]++;
+
   # Build data hash for use elsewhere
   $sciData{$recov} += $reco{$key}[8] if ($opts{a});
   $testData{$recov} += $reco{$key}[8] if ($opts{t});
 }
 
 # Widths, emperically determined
-$recovery->set_column( 0, 0, 9.17 );
-$recovery->set_column( 1, 1, 6.5 );
-$recovery->set_column( 2, 2, 9 );
+# $recovery->set_column( 0, 0, 9.17 );
+# $recovery->set_column( 1, 1, 6.5 );
+# $recovery->set_column( 2, 2, 9 );
+
+$workVars{$recov}[0]->set_column( 0, 0, 9.17 );
+$workVars{$recov}[0]->set_column( 1, 1, 6.5 );
+$workVars{$recov}[0]->set_column( 2, 2, 9 );
 foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
   $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
@@ -532,15 +545,17 @@ sub average2
     my %sortHash = %{$hashRef};
     foreach my $key (sort {$sortHash{$b} <=> $sortHash{$a} || $a cmp $b} keys %sortHash) {
       my $denom;
-      if ($key !~ m/$recov/) {
+      #print "$key\n";
+      #if ($key !~ m/$recov/) {
 	# Should be - 1, just keeping to make testing/validation easier
 	#  $denom = $workVars{$key}[1] - 1;
 	$denom = $workVars{$key}[1];
-      } else {
+      #} else {
 	# See above
 	#  $denom = $recoRow - 1;
-	$denom = $recoRow;
-      }
+	#  $denom = $recoRow;
+	#$denom = $workVars{$recov}[1];
+      #}
       my $avg = $sortHash{$key}/$denom;
       printf "%s\t%.0f\t%.0f\n", $key, $avg, $sortHash{$key};
     }
