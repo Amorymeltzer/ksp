@@ -57,7 +57,7 @@ my %recoCaps = (
 		Surfaced => 18
 	       );
 my %workVars;		       # Hash of arras to hold worksheets, current row
-my %sciData;		       # Hold data on science per spob
+my %spobData;		       # Hold data on science per spob
 my %testData;		       # Hold data on science per test
 
 # ScienceDefs.cfg variables
@@ -112,6 +112,7 @@ my $eolTicker = '0';
 my $recov = 'Recov';
 my $recovery = 'recovery';
 
+### Begin!
 # Construct sbv hash
 while (<DATA>) {
   chomp;
@@ -337,6 +338,7 @@ if (!$opts{n}) {
 }
 
 # Generate each worksheet with proper header
+# Subroutine these ;;;;;; ##### FIXME TODO
 $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
 $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
 
@@ -350,46 +352,38 @@ foreach my $planet (0..$planetCount) {
 }
 
 
-# Subroutine some of this ;;;;;; ##### FIXME TODO
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
   my $tref = \@{$dataMatrix{$key}};
-  $workVars{$planet}[0]->write_row( $workVars{$planet}[1], 0, $tref );
-  $workVars{$planet}[0]->write( $workVars{$planet}[1], 8, $dataMatrix{$key}[8], $bgRed ) if $dataMatrix{$key}[8] > 0;
-  $workVars{$planet}[0]->write( $workVars{$planet}[1], 4, $dataMatrix{$key}[4], $bgGreen ) if (($dataMatrix{$key}[4] < 0.001) && ($dataMatrix{$key}[4] >0));
-  $workVars{$planet}[1]++;
+  writeToExcel($planet,$tref,$key,\%dataMatrix);
 
-  # Build data hash for use elsewhere
-  $sciData{$planet}[0] += $dataMatrix{$key}[8] if ($opts{a});
-  $sciData{$planet}[1]++ if ($opts{a});
-
-  $testData{$dataMatrix{$key}[0]}[0] += $dataMatrix{$key}[8] if ($opts{t});
-  $testData{$dataMatrix{$key}[0]}[1]++ if ($opts{t});
+  if ($opts{t}) {
+    buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
+  } elsif ($opts{a}) {
+    buildScienceData($key,$planet,\%spobData,\%dataMatrix);
+  }
 }
-
 
 foreach my $key (sort recoSort keys %reco) {
   my $tref = \@{$reco{$key}};
-  $workVars{$recov}[0]->write_row( $workVars{$recov}[1], 0, $tref );
-  $workVars{$recov}[0]->write( $workVars{$recov}[1], 8, $reco{$key}[8], $bgRed ) if $reco{$key}[8] > 0;
-  $workVars{$recov}[0]->write( $workVars{$recov}[1], 4, $reco{$key}[4], $bgGreen ) if (($reco{$key}[4] < 0.001) && ($reco{$key}[4] > 0));
-  $workVars{$recov}[1]++;
+  writeToExcel($recov,$tref,$key,\%reco);
 
-  # Build data hash for use elsewhere
-  $sciData{$recov}[0] += $reco{$key}[8] if ($opts{a});
-  $sciData{$recov}[1]++ if ($opts{a});
-
-  # Neater spacing in test averages output
-  $testData{$recovery}[0] += $reco{$key}[8] if ($opts{t});
-  $testData{$recovery}[1]++ if ($opts{t});
+  if ($opts{t}) {
+    # Neater spacing in test averages output
+    buildScienceData($key,$recovery,\%testData,\%reco);
+  } elsif ($opts{a}) {
+    buildScienceData($key,$recov,\%spobData,\%reco);
+  }
 }
 
 
 # Widths, manually determined
+# Subroutine these ;;;;;; ##### FIXME TODO
 $workVars{$recov}[0]->set_column( 0, 0, 9.17 );
 $workVars{$recov}[0]->set_column( 1, 1, 6.5 );
 $workVars{$recov}[0]->set_column( 2, 2, 9 );
+
 foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
   $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
@@ -408,7 +402,7 @@ if ($opts{a} || $opts{t}) {
     $tmpArrayRef = \@testdef if !$opts{s};
   } elsif ($opts{a}) {
     $string .= "Spob\tAvg/exp\tTotal\n";
-    $tmpHashRef = \%sciData;
+    $tmpHashRef = \%spobData;
     $tmpArrayRef = \@planets if !$opts{s};
   }
   print "$string";
@@ -449,15 +443,14 @@ sub arrayBuild
     } else {
       @tmpArray = ([qw (Global)])x6;
     }
+
     return @tmpArray;
   }
 
-## Custom sort order, don't really understand this, adapted from:
+## Custom sort order, adapted from:
 ## http://stackoverflow.com/a/8171591/2521092
-
-# Custom recovery sorting so Kerbin and moons come first, then Kerbol, then
-# proper sorting of conditions
-# Sort by Kerbol System order instead of alphabetical, matches worksheets
+# Kerbin and moons come first, then Kerbol, then proper sorting of conditions,
+# matches worksheets
 sub recoSort
   {
     my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
@@ -508,6 +501,41 @@ sub sitSort
   }
 
 
+sub writeToExcel
+  {
+    my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
+    my %hash = %{$hashRef};
+
+    $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, $hash{$matrixKey}[8], $bgRed ) if $hash{$matrixKey}[8] > 0;
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, $hash{$matrixKey}[4], $bgGreen ) if (($hash{$matrixKey}[4] < 0.001) && ($hash{$matrixKey}[4] >0));
+    $workVars{$sheetName}[1]++;
+
+    return;
+  }
+
+# Build data hashes for averages
+sub buildScienceData
+  {
+    # my $key = shift;
+    # my $dataRef = shift;
+
+    # # So.  Much.  Dereferencing.
+    # ${$dataRef}{${$key}[0]}[0] += ${$key}[8];
+    # ${$dataRef}{${$key}[0]}[1]++;
+
+    my $key = shift;
+    my $ind = shift;
+    my $dataRef = shift;
+    my $hashRef = shift;
+
+    ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
+    ${$dataRef}{$ind}[1]++;
+
+    return;
+  }
+
+
 # Alphabeticalish averages
 sub average1
   {
@@ -518,8 +546,7 @@ sub average1
     my @sortArray = @{$arrayRef};
 
     if ($opts{t}) {
-      # Neater spacing in test averages output
-      push @sortArray, $recovery;
+      push @sortArray, $recovery; # Neater spacing in test averages output
       @sortArray = sort @sortArray;
     }
 
@@ -543,6 +570,7 @@ sub average2
     foreach my $key (sort {$sortHash{$b}[0] <=> $sortHash{$a}[0] || $a cmp $b} keys %sortHash) {
       printAverageTable($key,\%sortHash);
     }
+
     return;
   }
 
@@ -553,9 +581,7 @@ sub printAverageTable
     my $ind = $placeHolder[0];
     my %hash = %{$placeHolder[1]};
 
-    # Neater spacing in test averages output
-    my $indL = substr $ind, 0, 14;
-
+    my $indL = substr $ind, 0, 14; # Neater spacing in test averages output
     my $avg = $hash{$ind}[0]/($hash{$ind}[1] + 1);
     printf "%s\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0];
 
