@@ -405,11 +405,11 @@ if ($opts{a} || $opts{t}) {
   if ($opts{t}) {
     $string .= "Test\t\tAvg/exp\tTotal\n";
     $tmpHashRef = \%testData;
-    $tmpArrayRef = \@testdef;
+    $tmpArrayRef = \@testdef if !$opts{s};
   } elsif ($opts{a}) {
     $string .= "Spob\tAvg/exp\tTotal\n";
     $tmpHashRef = \%sciData;
-    $tmpArrayRef = \@planets;
+    $tmpArrayRef = \@planets if !$opts{s};
   }
   print "$string";
 
@@ -518,23 +518,17 @@ sub average1
     my @sortArray = @{$arrayRef};
 
     if ($opts{t}) {
-      #  push @sortArray, 'recovery';
-      #  push @sortArray, $recov.'ery';
       # Neater spacing in test averages output
       push @sortArray, $recovery;
       @sortArray = sort @sortArray;
     }
 
     foreach my $index (0..scalar @sortArray - 1) {
-      # Neater spacing in test averages output
-      my $ind = substr $sortArray[$index], 0, 14;
-      my $avg = $sortHash{$sortArray[$index]}[0]/($sortHash{$sortArray[$index]}[1] + 1);
-      printf "%s\t%.0f\t%.0f\n", $ind, $avg, $sortHash{$sortArray[$index]}[0];
+      printAverageTable($sortArray[$index],\%sortHash);
     }
 
     if (!$opts{t}) {
-      my $avg = $sortHash{$recov}[0]/$sortHash{$recov}[1];
-      printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sortHash{$recov}[0];
+      printAverageTable($recov,\%sortHash);
     }
 
     return;
@@ -546,16 +540,27 @@ sub average2
     my $hashRef = shift;
     my %sortHash = %{$hashRef};
 
-    #  foreach my $key (sort {$sortHash{$b} <=> $sortHash{$a} || $a cmp $b} keys %sortHash) {
     foreach my $key (sort {$sortHash{$b}[0] <=> $sortHash{$a}[0] || $a cmp $b} keys %sortHash) {
-      my $denom;
-      $denom = $sortHash{$key}[1] + 1;
-      my $avg = $sortHash{$key}[0]/$denom;
-      printf "%s\t%.0f\t%.0f\n", $key, $avg, $sortHash{$key}[0];
+      printAverageTable($key,\%sortHash);
     }
     return;
   }
 
+# Joint subroutine to handle printing of the averages table
+sub printAverageTable
+  {
+    my @placeHolder = @_;
+    my $ind = $placeHolder[0];
+    my %hash = %{$placeHolder[1]};
+
+    # Neater spacing in test averages output
+    my $indL = substr $ind, 0, 14;
+
+    my $avg = $hash{$ind}[0]/($hash{$ind}[1] + 1);
+    printf "%s\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0];
+
+    return;
+  }
 
 #### Usage statement ####
 # Use POD or whatever?
