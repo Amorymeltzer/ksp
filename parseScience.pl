@@ -33,10 +33,10 @@ if ($opts{u}) {
 }
 
 # Test files for existance
-if (! -e $scidef) {
-  print "No ScienceDefs.cfg file found at $scidef\n";
-  exit;
-}
+# if (! -e $scidef) {
+#   print "No ScienceDefs.cfg file found at $scidef\n";
+#   exit;
+# }
 if (! -e $pers) {
   print "No persistent.sfs file found at $pers\n";
   exit;
@@ -399,25 +399,29 @@ foreach my $planet (0..$planetCount) {
 # Ensure the -t flag supersedes -a if both are given
 if ($opts{a} || $opts{t}) {
   my $string = "Average science left:\n\n";
-  my %tmpHash;
+  my ($tmpHashRef,$tmpArrayRef);
 
   if ($opts{t}) {
     $string .= "Test\tAvg/exp\tTotal\n";
-    %tmpHash = %testData;
+    $tmpHashRef = \%testData;
+    $tmpArrayRef = \@testdef;
   } elsif ($opts{a}) {
     $string .= "Spob\tAvg/exp\tTotal\n";
-    %tmpHash = %sciData;
+    $tmpHashRef = \%sciData;
+    $tmpArrayRef = \@planets;
   }
   print "$string";
 
   if ($opts{s}) {
     #  average2();
     #  average2(\%sciData);
-    average2(\%tmpHash);
+    #  average2(\%tmpHash);
+    average2($tmpHashRef);
   } else {
     #  average1();
     #  average1(\%sciData);
-    average1(\%tmpHash);
+    #  average1(\%tmpHash);
+    average1($tmpHashRef,$tmpArrayRef);
   }
 }
 
@@ -525,15 +529,40 @@ sub sitSort
 sub average1
   {
     my $hashRef = shift;
+    my $arrayRef = shift;
+
     my %sortHash = %{$hashRef};
-    foreach my $planet (0..$planetCount) {
-      #  my $avg =
-      #  $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1] - 1;
-      my $avg = $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1];
-      printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sortHash{$planets[$planet]};
+    my @sortArray = @{$arrayRef};
+
+    if ($opts{t}) {
+      #  push @sortArray, 'recovery';
+      push @sortArray, $recov;
+      @sortArray = sort @sortArray;
     }
-    my $avg = $sortHash{$recov}/$workVars{$recov}[1];
-    printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sortHash{$recov};
+
+    foreach my $index (0..scalar @sortArray - 1) {
+      my $ind = $sortArray[$index];
+      my $inda = substr $ind, 0, 15;
+      my $avg = $sortHash{$sortArray[$index]}[0]/($sortHash{$sortArray[$index]}[1] + 1);
+      printf "%s\t%.0f\t%.0f\n", $sortArray[$index], $avg, $sortHash{$sortArray[$index]}[0];
+    }
+
+    if (!$opts{t}) {
+      my $avg = $sortHash{$recov}[0]/$sortHash{$recov}[1];
+      printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sortHash{$recov}[0];
+    }
+
+
+
+    # foreach my $planet (0..$planetCount) {
+    #   #  my $avg =
+    #   #  $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1] - 1;
+    #   my $avg = $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1];
+    #   printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sortHash{$planets[$planet]};
+    # }
+    # my $avg = $sortHash{$recov}/$workVars{$recov}[1];
+    # printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sortHash{$recov};
+
     return;
   }
 
