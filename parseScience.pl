@@ -108,7 +108,9 @@ my $ticker = '0';
 my $recoTicker = '0';
 my $eolTicker = '0';
 
+# Sometimes I use one versus the other, mainly for spacing in averages table
 my $recov = 'Recov';
+my $recovery = 'recovery';
 
 # Construct sbv hash
 while (<DATA>) {
@@ -227,7 +229,7 @@ foreach my $planet (0..$planetCount) {
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
-    $reco{$planets[$planet].$situations[$sit]} = ['recovery',$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$sbVal*$recoCaps{$situations[$sit]},$sbVal*$recoCaps{$situations[$sit]}-0];
+    $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$sbVal*$recoCaps{$situations[$sit]},$sbVal*$recoCaps{$situations[$sit]}-0];
   }
 }
 
@@ -259,7 +261,7 @@ while (<$file>) {
     if ($tmp1 eq 'id') {
       $eolTicker = 0;
       # Replace recovery data here, why not?
-      if ($tmp2 =~ m/^recovery/) {
+      if ($tmp2 =~ m/^$recovery/) {
 	$recoTicker = 1;
 	$tmp2 =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
 	@pieces = (split /@/, $tmp2);
@@ -304,7 +306,7 @@ close $file or die $!;
 # Build the matrix
 foreach (0..scalar @test - 1) {
   if ($biome[$_]) {
-    if (($test[$_] !~ m/recovery/i) && ($biome[$_] !~ m/ksc|runway|launchpad/i)) {
+    if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/ksc|runway|launchpad/i)) {
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_]];
     }
   }
@@ -379,8 +381,10 @@ foreach my $key (sort recoSort keys %reco) {
   $sciData{$recov}[1]++ if ($opts{a});
   #  $testData{$recov} += $reco{$key}[8] if ($opts{t});
   # test
-  $testData{$recov}[0] += $reco{$key}[8] if ($opts{t});
-  $testData{$recov}[1]++ if ($opts{t});
+  #  $testData{$recov}[0] += $reco{$key}[8] if ($opts{t});
+  # Neater spacing in test averages output
+  $testData{$recovery}[0] += $reco{$key}[8] if ($opts{t});
+  $testData{$recovery}[1]++ if ($opts{t});
 }
 
 
@@ -536,15 +540,17 @@ sub average1
 
     if ($opts{t}) {
       #  push @sortArray, 'recovery';
-      push @sortArray, $recov;
+      #  push @sortArray, $recov.'ery';
+      # Neater spacing in test averages output
+      push @sortArray, $recovery;
       @sortArray = sort @sortArray;
     }
 
     foreach my $index (0..scalar @sortArray - 1) {
-      my $ind = $sortArray[$index];
-      my $inda = substr $ind, 0, 15;
+      # Neater spacing in test averages output
+      my $ind = substr $sortArray[$index], 0, 15;
       my $avg = $sortHash{$sortArray[$index]}[0]/($sortHash{$sortArray[$index]}[1] + 1);
-      printf "%s\t%.0f\t%.0f\n", $sortArray[$index], $avg, $sortHash{$sortArray[$index]}[0];
+      printf "%s\t%.0f\t%.0f\n", $ind, $avg, $sortHash{$sortArray[$index]}[0];
     }
 
     if (!$opts{t}) {
