@@ -3,7 +3,7 @@
 # Parse a KSP persistent.sfs file, snag science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
-## Option for average for test??
+## Deal with KSC/LaunchPad/Runway "biomes"
 ## Output to csv?  Create print subroutine I guess
 
 use strict;
@@ -15,7 +15,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('astnu:hH', \%opts);
+getopts('atsnu:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage(); exit;
@@ -517,13 +517,6 @@ sub writeToExcel
 # Build data hashes for averages
 sub buildScienceData
   {
-    # my $key = shift;
-    # my $dataRef = shift;
-
-    # # So.  Much.  Dereferencing.
-    # ${$dataRef}{${$key}[0]}[0] += ${$key}[8];
-    # ${$dataRef}{${$key}[0]}[1]++;
-
     my $key = shift;
     my $ind = shift;
     my $dataRef = shift;
@@ -574,7 +567,7 @@ sub average2
     return;
   }
 
-# Joint subroutine to handle printing of the averages table
+# Handle printing of the averages table
 sub printAverageTable
   {
     my @placeHolder = @_;
@@ -582,7 +575,7 @@ sub printAverageTable
     my %hash = %{$placeHolder[1]};
 
     my $indL = substr $ind, 0, 14; # Neater spacing in test averages output
-    my $avg = $hash{$ind}[0]/($hash{$ind}[1] + 1);
+    my $avg = $hash{$ind}[0]/($hash{$ind}[1]);
     printf "%s\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0];
 
     return;
@@ -595,10 +588,10 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-astnhH -u <savefile_name>]
+Usage: $0 [-atsnhH -u <savefile_name>]
       -a Display average science left for each planet
-      -s Sort output by science left, including averages from from the -a flag
       -t Display average science left for each experiment type.
+      -s Sort output by science left, including averages from the -a and -t flags
       -n Turn off formatted printing (i.e., colors and bolding)
       -u Enter the username of your KSP save folder; Otherwise, whatever local
          files are present will be used.
