@@ -33,10 +33,10 @@ if ($opts{u}) {
 }
 
 # Test files for existance
-# if (! -e $scidef) {
-#   print "No ScienceDefs.cfg file found at $scidef\n";
-#   exit;
-# }
+if (! -e $scidef) {
+  print "No ScienceDefs.cfg file found at $scidef\n";
+  exit;
+}
 if (! -e $pers) {
   print "No persistent.sfs file found at $pers\n";
   exit;
@@ -119,8 +119,7 @@ while (<DATA>) {
   $sbvData{$sbvs[0].$sbvs[1]} = $sbvs[2];
 }
 
-# Read in science defs, somehow parse info to build prebuild datamatrix
-# for each experiment, via looping?
+# Read in science defs to build prebuild datamatrix for each experiment
 open my $defs, '<', "$scidef" or die $!;
 while (<$defs>) {
   chomp;
@@ -131,7 +130,7 @@ while (<$defs>) {
     next;
   }
 
-  # Note when we close out of a loop, nothing valuable after this
+  # Note when we close out of a loop, nothing valuable after that
   elsif (m/RESULTS/) {
     $ticker = 0;
     next;
@@ -145,6 +144,7 @@ while (<$defs>) {
     my ($tmp1,$tmp2) = split /=/;
     $tmp1 =~ s/\s+//g;		# Clean spaces
     $tmp2 =~ s/\s+//g;		# Also fix default spacing in ScienceDefs.cfg
+
     if ($tmp1 eq 'id') {
       @testdef = (@testdef,$tmp2);
     } elsif ($tmp1 eq 'situationMask') {
@@ -220,11 +220,13 @@ foreach my $i (0..scalar @testdef - 1) {
 # Build recovery hash
 foreach my $planet (0..$planetCount) {
   my @situations = qw (FlewBy SubOrbited Orbited Surfaced);
+
   # Kerbin is special of course
   if ($planets[$planet] eq 'Kerbin') {
     $situations[0] = 'Flew';
     pop @situations;
   }
+
   foreach my $sit (0..scalar @situations - 1) {
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
@@ -258,8 +260,10 @@ while (<$file>) {
     $tmp1 =~ s/\s+//g;		# Clean spaces
     $tmp2 =~ s/\s+//g;
     $tmp2 =~ s/Sun/Kerbol/g;
+
     if ($tmp1 eq 'id') {
       $eolTicker = 0;
+
       # Replace recovery data here, why not?
       if ($tmp2 =~ m/^$recovery/) {
 	$recoTicker = 1;
@@ -272,6 +276,7 @@ while (<$file>) {
 	$tmp2 =~ s/(InSpace|Flying)(Low|High)/\@$1$2\@/g;
 	@pieces = (split /@/, $tmp2);
       }
+
       # Ensure arrays are the same length
       push @test, $pieces[0];
       push @spob, $pieces[1];
@@ -324,7 +329,7 @@ my $bold = $workbook->add_format();
 my $bgRed = $workbook->add_format();
 my $bgGreen = $workbook->add_format();
 
-# Turn off color if so desired
+# Turn off formatting if so desired
 if (!$opts{n}) {
   $bold->set_bold();
   $bgRed->set_bg_color( 'red' );
@@ -332,8 +337,6 @@ if (!$opts{n}) {
 }
 
 # Generate each worksheet with proper header
-# I feel like I should be able to unify these guys, lose some variable
-# ;;;;;; ##### FIXME TODO
 $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
 $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
 
@@ -358,11 +361,9 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   $workVars{$planet}[1]++;
 
   # Build data hash for use elsewhere
-  #  $sciData{$planet} += $dataMatrix{$key}[8] if ($opts{a});
   $sciData{$planet}[0] += $dataMatrix{$key}[8] if ($opts{a});
   $sciData{$planet}[1]++ if ($opts{a});
-  #  $testData{$dataMatrix{$key}[0]} += $dataMatrix{$key}[8] if ($opts{t});
-  # test
+
   $testData{$dataMatrix{$key}[0]}[0] += $dataMatrix{$key}[8] if ($opts{t});
   $testData{$dataMatrix{$key}[0]}[1]++ if ($opts{t});
 }
@@ -376,12 +377,9 @@ foreach my $key (sort recoSort keys %reco) {
   $workVars{$recov}[1]++;
 
   # Build data hash for use elsewhere
-  #  $sciData{$recov} += $reco{$key}[8] if ($opts{a});
   $sciData{$recov}[0] += $reco{$key}[8] if ($opts{a});
   $sciData{$recov}[1]++ if ($opts{a});
-  #  $testData{$recov} += $reco{$key}[8] if ($opts{t});
-  # test
-  #  $testData{$recov}[0] += $reco{$key}[8] if ($opts{t});
+
   # Neater spacing in test averages output
   $testData{$recovery}[0] += $reco{$key}[8] if ($opts{t});
   $testData{$recovery}[1]++ if ($opts{t});
@@ -399,14 +397,13 @@ foreach my $planet (0..$planetCount) {
 }
 
 
-#  if ($opts{a}) {
 # Ensure the -t flag supersedes -a if both are given
 if ($opts{a} || $opts{t}) {
   my $string = "Average science left:\n\n";
   my ($tmpHashRef,$tmpArrayRef);
 
   if ($opts{t}) {
-    $string .= "Test\tAvg/exp\tTotal\n";
+    $string .= "Test\t\tAvg/exp\tTotal\n";
     $tmpHashRef = \%testData;
     $tmpArrayRef = \@testdef;
   } elsif ($opts{a}) {
@@ -417,14 +414,8 @@ if ($opts{a} || $opts{t}) {
   print "$string";
 
   if ($opts{s}) {
-    #  average2();
-    #  average2(\%sciData);
-    #  average2(\%tmpHash);
     average2($tmpHashRef);
   } else {
-    #  average1();
-    #  average1(\%sciData);
-    #  average1(\%tmpHash);
     average1($tmpHashRef,$tmpArrayRef);
   }
 }
@@ -518,18 +509,6 @@ sub sitSort
 
 
 # Alphabeticalish averages
-# sub average1
-#   {
-#     foreach my $planet (0..$planetCount) {
-#       my $avg = $sciData{$planets[$planet]}/$workVars{$planets[$planet]}[1];
-#       printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sciData{$planets[$planet]};
-#     }
-#     my $avg = $sciData{$recov}/$recoRow;
-#     printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sciData{$recov};
-#     return;
-#   }
-
-
 sub average1
   {
     my $hashRef = shift;
@@ -548,7 +527,7 @@ sub average1
 
     foreach my $index (0..scalar @sortArray - 1) {
       # Neater spacing in test averages output
-      my $ind = substr $sortArray[$index], 0, 15;
+      my $ind = substr $sortArray[$index], 0, 14;
       my $avg = $sortHash{$sortArray[$index]}[0]/($sortHash{$sortArray[$index]}[1] + 1);
       printf "%s\t%.0f\t%.0f\n", $ind, $avg, $sortHash{$sortArray[$index]}[0];
     }
@@ -558,36 +537,10 @@ sub average1
       printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sortHash{$recov}[0];
     }
 
-
-
-    # foreach my $planet (0..$planetCount) {
-    #   #  my $avg =
-    #   #  $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1] - 1;
-    #   my $avg = $sortHash{$planets[$planet]}/$workVars{$planets[$planet]}[1];
-    #   printf "%s\t%.0f\t%.0f\n", $planets[$planet], $avg, $sortHash{$planets[$planet]};
-    # }
-    # my $avg = $sortHash{$recov}/$workVars{$recov}[1];
-    # printf "%s\t%.0f\t%.0f\n", $recov, $avg, $sortHash{$recov};
-
     return;
   }
 
 # Averages sorted by total remaining science
-# sub average2
-#   {
-#     foreach my $key (sort {$sciData{$b} <=> $sciData{$a} || $a cmp $b} keys %sciData) {
-#       my $denom;
-#       if ($key !~ m/Recov/) {
-#	$denom = $workVars{$key}[1];
-#       } else {
-#	$denom = $recoRow;
-#       }
-#       my $avg = $sciData{$key}/$denom;
-#       printf "%s\t%.0f\t%.0f\n", $key, $avg, $sciData{$key};
-#     }
-#     return;
-#   }
-
 sub average2
   {
     my $hashRef = shift;
@@ -596,21 +549,7 @@ sub average2
     #  foreach my $key (sort {$sortHash{$b} <=> $sortHash{$a} || $a cmp $b} keys %sortHash) {
     foreach my $key (sort {$sortHash{$b}[0] <=> $sortHash{$a}[0] || $a cmp $b} keys %sortHash) {
       my $denom;
-      #print "$key\n";
-      #print "$sortHash{$key}[0]\n";
-      #print "@{$workVars{$key}}\n";
-      #if ($key !~ m/$recov/) {
-      # Should be - 1, just keeping to make testing/validation easier
-      #  $denom = $workVars{$key}[1] - 1;
-      #  $denom = $workVars{$key}[1];
       $denom = $sortHash{$key}[1] + 1;
-      #} else {
-      # See above
-      #  $denom = $recoRow - 1;
-      #  $denom = $recoRow;
-      #$denom = $workVars{$recov}[1];
-      #}
-      #my $avg = $sortHash{$key}/$denom;
       my $avg = $sortHash{$key}[0]/$denom;
       printf "%s\t%.0f\t%.0f\n", $key, $avg, $sortHash{$key}[0];
     }
