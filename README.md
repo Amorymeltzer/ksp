@@ -23,5 +23,5 @@ Usage: parseScience.pl [-atsnhH -u <savefile_name>]
 ```
 
 **Todo**
-- Incorporate the KSC/LaunchPad/Runway/etc. "biomes"
 - Option csv output (default?) or just averages
+- Incorporate the KSC/LaunchPad/Runway/etc. "biomes"

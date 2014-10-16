@@ -180,8 +180,8 @@ foreach my $i (0..scalar @testdef - 1) {
 			 FlyingHigh InSpaceLow InSpaceHigh);
 
     # Build an array of arrays, nullify alongside @situations
-    # Don't forget the KSC/Runway/Launchpad biomes, but only for landed?
-    # Have to somehow deal with eva report while flying over
+    # Don't forget the KSC/Runway/Launchpad/etc. biomes, but only for landed?
+    # Have to somehow deal with eva report while flying over, goo?
     # ;;;;;; ##### FIXME TODO
     # Only three spobs have biomes as of 0.25
     my @biomes = arrayBuild ($planets[$planet]);
