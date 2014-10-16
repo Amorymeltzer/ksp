@@ -44,7 +44,7 @@ if (! -e $pers) {
 
 my %dataMatrix;			# Hold errything
 my %reco;			# Separate hash for craft recovery
-my %sbvData;			# Hold sbv values from END DATA
+my %sbvData;			# Hold sbv values from END data
 
 # Access reverse-engineered caps for recovery missions.  SubOrbited and
 # Orbited are messed up - the default values from Kerbin are inverted
