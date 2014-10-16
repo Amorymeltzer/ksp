@@ -25,3 +25,7 @@ Usage: parseScience.pl [-atsnhH -u <savefile_name>]
 **Todo**
 - Option csv output (default?) or just averages
 - Incorporate the KSC/LaunchPad/Runway/etc. "biomes"
+
+
+#### deltaVScience.pl ####
+**Roughly** estimate (sclaed) science points per delta-V per planet/moon.  Uses averages table output from parseScience.pl (-a or -as).  Very rough.
