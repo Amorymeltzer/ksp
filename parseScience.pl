@@ -3,7 +3,7 @@
 # Parse a KSP persistent.sfs file, snag science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
-## Deal with KSC/LaunchPad/Runway "biomes"
+## Ignores KSC/LaunchPad/Runway/etc. "biomes"
 ## Output to csv?  Create print subroutine I guess
 
 use strict;
