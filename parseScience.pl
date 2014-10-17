@@ -5,6 +5,8 @@
 # Leftover science in red, candidates for manual cleanup in green
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes"
 ## Output to csv?  Create print subroutine I guess
+## One csv or multiple?
+## Actually use hash references instead of assigning another hash?
 
 use strict;
 use warnings;
@@ -15,7 +17,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('atsnu:hH', \%opts);
+getopts('atsnu1c:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage(); exit;
@@ -23,7 +25,11 @@ if ($opts{h} || $opts{H}) {
 
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
-my $outfile = 'scienceToDo.xlsx';
+#  my $outfile = 'scienceToDo.xlsx';
+
+# Ternary ?: ($a = $test ? $b : $c;)
+# a is b if test, c if not
+my $outfile = $opts{1} ? 'scienceToDo.csv' : 'scienceToDo.xlsx';
 
 # Change this to match the location of your KSP install
 if ($opts{u}) {
@@ -325,6 +331,7 @@ foreach (0..scalar @test - 1) {
 my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left];
 # Create new workbook
 my $workbook = Excel::Writer::XLSX->new( "$outfile" );
+#my $workbook = Excel::Writer::XLSX->new( "tmp" );
 # Bold for headers, red for science left, green for stupidly small values
 my $bold = $workbook->add_format();
 my $bgRed = $workbook->add_format();
@@ -357,6 +364,8 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
   my $tref = \@{$dataMatrix{$key}};
   writeToExcel($planet,$tref,$key,\%dataMatrix);
+
+  #printOptions($planet,$tref,$key,\%dataMatrix);
 
   if ($opts{t}) {
     buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
@@ -497,6 +506,22 @@ sub sitSort
       $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     } else {
       $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
+    }
+  }
+
+
+# Handle sorting of print to one csv, multiple (named) csvs, or to
+# excel.  Should call writeToExcel?  Or just incorporate it as an option?
+# Probably that
+sub printOptions
+  {
+    my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
+    my %hash = %{$hashRef};
+
+    if ($opts{1}) {
+      open my $csv, '>', "$outfile" or die $!;
+      print $csv "@{$rowRef}\n";
+      close $csv or die $!;
     }
   }
 
