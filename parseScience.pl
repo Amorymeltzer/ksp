@@ -513,17 +513,17 @@ sub sitSort
 # Handle sorting of print to one csv, multiple (named) csvs, or to
 # excel.  Should call writeToExcel?  Or just incorporate it as an option?
 # Probably that
-sub printOptions
-  {
-    my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
-    my %hash = %{$hashRef};
+# sub printOptions
+#   {
+#     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
+#     my %hash = %{$hashRef};
 
-    if ($opts{1}) {
-      open my $csv, '>', "$outfile" or die $!;
-      print $csv "@{$rowRef}\n";
-      close $csv or die $!;
-    }
-  }
+#     if ($opts{1}) {
+#       open my $csv, '>>', "$outfile" or die $!;
+#       print $csv "@{$rowRef}\n";
+#       close $csv or die $!;
+#     }
+#   }
 
 
 sub writeToExcel
