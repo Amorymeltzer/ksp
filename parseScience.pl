@@ -529,11 +529,10 @@ sub sitSort
 sub writeToExcel
   {
     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
-    my %hash = %{$hashRef};
 
     $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
-    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, $hash{$matrixKey}[8], $bgRed ) if $hash{$matrixKey}[8] > 0;
-    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, $hash{$matrixKey}[4], $bgGreen ) if (($hash{$matrixKey}[4] < 0.001) && ($hash{$matrixKey}[4] >0));
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[8] > 0;
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] >0));
     $workVars{$sheetName}[1]++;
 
     return;
