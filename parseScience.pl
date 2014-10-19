@@ -17,7 +17,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('atsnu1c:hH', \%opts);
+getopts('atsn1cu:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage(); exit;
