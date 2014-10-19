@@ -3,7 +3,7 @@
 # Parse a KSP persistent.sfs file, snag science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
-## Ignores KSC/LaunchPad/Runway/etc. "biomes"
+## Ignores KSC/LaunchPad/Runway/etc. "biomes" and asteroids
 ## Output to csv?  Create print subroutine I guess
 ## One csv or multiple?
 ## Actually use hash references instead of assigning another hash?

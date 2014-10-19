@@ -24,7 +24,7 @@ Usage: parseScience.pl [-atsnhH -u <savefile_name>]
 
 **Todo**
 - Option csv output (default?) or just averages
-- Incorporate the KSC/LaunchPad/Runway/etc. "biomes"
+- Incorporate the KSC/LaunchPad/Runway/etc. "biomes" and asteroids
 
 
 #### deltaVScience.pl ####
