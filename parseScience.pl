@@ -362,8 +362,7 @@ foreach my $planet (0..$planetCount) {
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
-  my $tref = \@{$dataMatrix{$key}};
-  writeToExcel($planet,$tref,$key,\%dataMatrix);
+  writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix);
 
   #printOptions($planet,$tref,$key,\%dataMatrix);
 
@@ -375,8 +374,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 }
 
 foreach my $key (sort recoSort keys %reco) {
-  my $tref = \@{$reco{$key}};
-  writeToExcel($recov,$tref,$key,\%reco);
+  writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
 
   if ($opts{t}) {
     # Neater spacing in test averages output
@@ -559,20 +557,17 @@ sub average1
     my $hashRef = shift;
     my $arrayRef = shift;
 
-    my %sortHash = %{$hashRef};
-    my @sortArray = @{$arrayRef};
-
     if ($opts{t}) {
-      push @sortArray, $recovery; # Neater spacing in test averages output
-      @sortArray = sort @sortArray;
+      push @{$arrayRef}, $recovery; # Neater spacing in test averages output
+      @{$arrayRef} = sort @{$arrayRef};
     }
 
-    foreach my $index (0..scalar @sortArray - 1) {
-      printAverageTable($sortArray[$index],\%sortHash);
+    foreach my $index (0..scalar @{$arrayRef} - 1) {
+      printAverageTable(${$arrayRef}[$index],$hashRef);
     }
 
     if (!$opts{t}) {
-      printAverageTable($recov,\%sortHash);
+      printAverageTable($recov,$hashRef);
     }
 
     return;
@@ -582,10 +577,9 @@ sub average1
 sub average2
   {
     my $hashRef = shift;
-    my %sortHash = %{$hashRef};
 
-    foreach my $key (sort {$sortHash{$b}[0] <=> $sortHash{$a}[0] || $a cmp $b} keys %sortHash) {
-      printAverageTable($key,\%sortHash);
+    foreach my $key (sort {${$hashRef}{$b}[0] <=> ${$hashRef}{$a}[0] || $a cmp $b} keys %{$hashRef}) {
+       printAverageTable($key,$hashRef);
     }
 
     return;
