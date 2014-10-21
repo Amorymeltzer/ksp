@@ -248,7 +248,7 @@ while (<$file>) {
   chomp;
 
   # Find all the science loops
-  if (m/^\t\tScience/) {
+  if (m/^\t\tScience$/) {
     $ticker = 1;
     next;
   }
