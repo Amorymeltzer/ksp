@@ -1,21 +1,21 @@
 Average science left:
 
-Spob	Avg/exp	Total
-Laythe	187	8040
-Eve	116	5008
-Eeloo	225	4266
-Recov	65	4199
-Duna	105	3684
-Jool	145	3624
-Tylo	183	3480
-Bop	174	3312
-Pol	174	3312
-Vall	174	3312
-Minmus	27	2983
-Moho	150	2844
-Gilly	142	2694
-Dres	125	2376
-Ike	125	2376
-Mun	13	2330
-Kerbol	88	969
-Kerbin	1	341
+Spob	Avg/exp	Total	Completion
+Laythe	187	8040	0
+Eve	116	5008	0
+Eeloo	225	4266	0
+Recov	65	4199	5
+Duna	105	3684	0
+Jool	145	3624	0
+Tylo	183	3480	0
+Bop	174	3312	0
+Pol	174	3312	0
+Vall	174	3312	0
+Minmus	27	2983	68
+Moho	150	2844	0
+Gilly	142	2694	0
+Dres	125	2376	0
+Ike	125	2376	0
+Mun	13	2330	81
+Kerbol	88	969	48
+Kerbin	1	341	85
