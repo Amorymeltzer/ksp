@@ -6,7 +6,7 @@
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes" and asteroids
 ## Output to csv?  Create print subroutine I guess
 ## One csv or multiple?
-## Percent accomplished?
+## Sort by percent accomplished
 
 use strict;
 use warnings;
@@ -404,11 +404,11 @@ if ($opts{a} || $opts{t}) {
   my ($tmpHashRef,$tmpArrayRef);
 
   if ($opts{t}) {
-    $string .= "Test\t\tAvg/exp\tTotal\n";
+    $string .= "Test\t\tAvg/exp\tTotal\tCompletion\n";
     $tmpHashRef = \%testData;
     $tmpArrayRef = \@testdef if !$opts{s};
   } elsif ($opts{a}) {
-    $string .= "Spob\tAvg/exp\tTotal\n";
+    $string .= "Spob\tAvg/exp\tTotal\tCompletion\n";
     $tmpHashRef = \%spobData;
     $tmpArrayRef = \@planets if !$opts{s};
   }
@@ -546,6 +546,7 @@ sub buildScienceData
 
     ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
     ${$dataRef}{$ind}[1]++;
+    ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[7];
 
     return;
   }
@@ -594,7 +595,10 @@ sub printAverageTable
 
     my $indL = substr $ind, 0, 14; # Neater spacing in test averages output
     my $avg = $hash{$ind}[0]/($hash{$ind}[1]);
-    printf "%s\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0];
+    my $remains = $hash{$ind}[2] - $hash{$ind}[0];
+    my $per = 100*$remains/$hash{$ind}[2];
+
+    printf "%s\t%.0f\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0], $per;
 
     return;
   }
