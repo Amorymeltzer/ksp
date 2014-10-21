@@ -29,4 +29,4 @@ Usage: parseScience.pl [-atsnhH -u <savefile_name>]
 
 
 #### deltaVScience.pl ####
-**Roughly** estimate (sclaed) science points per delta-V per planet/moon.  Uses averages table output from parseScience.pl (-a or -as).  Very rough.
+**Roughly** estimate science points per delta-V needed per planet/moon.  Uses averages table output from parseScience.pl (-a or -as).  Very rough.
