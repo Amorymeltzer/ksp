@@ -17,7 +17,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('atsn1cu:hH', \%opts);
+getopts('atspn1cu:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage(); exit;
@@ -414,7 +414,9 @@ if ($opts{a} || $opts{t}) {
   }
   print "$string";
 
-  if ($opts{s}) {
+  if ($opts{p}) {
+    average3($tmpHashRef);
+  } elsif ($opts{s}) {
     average2($tmpHashRef);
   } else {
     average1($tmpHashRef,$tmpArrayRef);
@@ -580,7 +582,19 @@ sub average2
     my $hashRef = shift;
 
     foreach my $key (sort {${$hashRef}{$b}[0] <=> ${$hashRef}{$a}[0] || $a cmp $b} keys %{$hashRef}) {
-       printAverageTable($key,$hashRef);
+      printAverageTable($key,$hashRef);
+    }
+
+    return;
+  }
+
+# Averages sorted by percent accomplished
+sub average3
+  {
+    my $hashRef = shift;
+
+    foreach my $key (sort {((${$hashRef}{$b}[2]-${$hashRef}{$b}[0])/${$hashRef}{$b}[2]) <=> ((${$hashRef}{$a}[2]-${$hashRef}{$a}[0])/${$hashRef}{$a}[2]) || $a cmp $b} keys %{$hashRef}) {
+      printAverageTable($key,$hashRef);
     }
 
     return;
@@ -614,6 +628,7 @@ Usage: $0 [-atsnhH -u <savefile_name>]
       -a Display average science left for each planet
       -t Display average science left for each experiment type.
       -s Sort output by science left, including averages from the -a and -t flags
+      -p Sort output by percent science accomplished
       -n Turn off formatted printing (i.e., colors and bolding)
       -u Enter the username of your KSP save folder; Otherwise, whatever local
          files are present will be used.
