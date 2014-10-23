@@ -399,19 +399,24 @@ foreach my $planet (0..$planetCount) {
 
 
 # Ensure the -t flag supersedes -a if both are given
-if ($opts{a} || $opts{t}) {
+if ($opts{a} || $opts{t} || $opts{p}) {
   my $string = "Average science left:\n\n";
   my ($tmpHashRef,$tmpArrayRef);
 
-  if ($opts{t}) {
-    $string .= "Test\t\tAvg/exp\tTotal\tCompletion\n";
+  if ($opts{p}) {
+    $string .= 'Spob';
+    $tmpHashRef = \%testData;
+    $tmpArrayRef = \@testdef if !$opts{s};
+  } elsif ($opts{t}) {
+    $string .= "Test\t";
     $tmpHashRef = \%testData;
     $tmpArrayRef = \@testdef if !$opts{s};
   } elsif ($opts{a}) {
-    $string .= "Spob\tAvg/exp\tTotal\tCompletion\n";
+    $string .= 'Spob';
     $tmpHashRef = \%spobData;
     $tmpArrayRef = \@planets if !$opts{s};
   }
+  $string .= "\tAvg/exp\tTotal\tCompletion\n";
   print "$string";
 
   if ($opts{p}) {
