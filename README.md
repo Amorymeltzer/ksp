@@ -13,15 +13,15 @@ Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  
 
 ```
 Usage: parseScience.pl [-atsnhH -u <savefile_name>]
-      -a Display data on science left for each planet
-	  -t Display average science left for each experiment type.
-      -s Sort output by science left, including averages from the -a and -t flags
-	  -p Sort output by percent science accomplished.  Supersedes -s, only
-	     applies to output from -a or -t flags.
-      -n Turn off formatted printing (i.e., colors and bolding)
-	  -u Enter the username of your KSP save folder; Otherwise, whatever local
-         files are present will be used.
-      -h or H Print this message
+      -a Display average science left for each planet.
+      -t Display average science left for each experiment type.
+      -s Sort output by science left, including averages from -a and -t flags.
+      -p Sort output by percent science accomplished, including averages from
+         the -a and -t flags.  Supersedes the -s flag.
+      -n Turn off formatted printing (i.e., colors and bolding).
+      -u Enter the username of your KSP save folder; otherwise, whatever files
+         are present in the local directory will be used.
+      -h or H Print this message.
 ```
 
 **Todo**

@@ -6,7 +6,6 @@
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes" and asteroids
 ## Output to csv?  Create print subroutine I guess
 ## One csv or multiple?
-## Percent accomplished in XLSX?
 ## Cleanup data/test hashes, the order of the data is unintuitive
 
 use strict;
@@ -218,7 +217,8 @@ foreach my $i (0..scalar @testdef - 1) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
 	my $sbVal = $sbvData{$planets[$planet].$situations[$sit]};
-	$dataMatrix{$testdef[$i].$planets[$planet].$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$planets[$planet],$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$sbVal*$scienceCap[$i],$sbVal*$scienceCap[$i],'0'];
+	my $cleft = $sbVal*$scienceCap[$i];
+	$dataMatrix{$testdef[$i].$planets[$planet].$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$planets[$planet],$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$cleft,$cleft,'0'];
       }
     }
   }
@@ -239,7 +239,8 @@ foreach my $planet (0..$planetCount) {
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
-    $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$sbVal*$recoCaps{$situations[$sit]},$sbVal*$recoCaps{$situations[$sit]},'0'];
+    my $cleft = $sbVal*$recoCaps{$situations[$sit]};
+    $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
 
@@ -306,7 +307,8 @@ while (<$file>) {
     }
 
     if (($recoTicker == 1) && ($eolTicker == 1)) {
-      $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$sci[-1]/$cap[-1]];
+      my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
+      $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
     }
 
     # Not sure what do?  ;;;;;; ##### FIXME TODO
@@ -320,7 +322,8 @@ close $file or die $!;
 foreach (0..scalar @test - 1) {
   if ($biome[$_]) {
     if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/ksc|runway|launchpad/i)) {
-      $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$sci[$_]/$cap[$_]];
+      my $cleft = sprintf '%.2f', 100*$sci[$_]/$cap[$_];
+      $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
     }
   }
 }
@@ -632,15 +635,15 @@ sub usage
   {
     print <<USAGE;
 Usage: $0 [-atsnhH -u <savefile_name>]
-      -a Display average science left for each planet
-      -t Display average science left for each experiment type
-      -s Sort output by science left, including averages from the -a and -t flags
-      -p Sort output by percent science accomplished.  Supersedes -s, only
-         applies to output from -a or -t flags
-      -n Turn off formatted printing (i.e., colors and bolding)
-      -u Enter the username of your KSP save folder; Otherwise, whatever local
-         files are present will be used
-      -h or H Print this message
+      -a Display average science left for each planet.
+      -t Display average science left for each experiment type.
+      -s Sort output by science left, including averages from -a and -t flags.
+      -p Sort output by percent science accomplished, including averages from
+         the -a and -t flags.  Supersedes the -s flag.
+      -n Turn off formatted printing (i.e., colors and bolding).
+      -u Enter the username of your KSP save folder; otherwise, whatever files
+         are present in the local directory will be used.
+      -h or H Print this message.
 USAGE
     return;
   }
