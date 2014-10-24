@@ -16,7 +16,7 @@ Usage: parseScience.pl [-atsnhH -u <savefile_name>]
       -a Display data on science left for each planet
 	  -t Display average science left for each experiment type.
       -s Sort output by science left, including averages from the -a and -t flags
-	  -p Sort output by percent science accomplished
+	  -p Sort output by percent science accomplished.  Supersedes -s, only applies to output from -a or -t flags.
       -n Turn off formatted printing (i.e., colors and bolding)
 	  -u Enter the username of your KSP save folder; Otherwise, whatever local
          files are present will be used.
@@ -26,7 +26,7 @@ Usage: parseScience.pl [-atsnhH -u <savefile_name>]
 **Todo**
 - Option csv output (default?) or just averages
 - Incorporate the KSC/LaunchPad/Runway/etc. "biomes" and asteroids
-- Percent accomplished
+- Percent accomplished in XLSX?
 
 
 #### deltaVScience.pl ####

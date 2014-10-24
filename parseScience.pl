@@ -6,7 +6,7 @@
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes" and asteroids
 ## Output to csv?  Create print subroutine I guess
 ## One csv or multiple?
-## Sort by percent accomplished
+## Percent accomplished in XLSX?
 
 use strict;
 use warnings;
@@ -399,15 +399,11 @@ foreach my $planet (0..$planetCount) {
 
 
 # Ensure the -t flag supersedes -a if both are given
-if ($opts{a} || $opts{t} || $opts{p}) {
+if ($opts{a} || $opts{t}) {
   my $string = "Average science left:\n\n";
   my ($tmpHashRef,$tmpArrayRef);
 
-  if ($opts{p}) {
-    $string .= 'Spob';
-    $tmpHashRef = \%testData;
-    $tmpArrayRef = \@testdef if !$opts{s};
-  } elsif ($opts{t}) {
+  if ($opts{t}) {
     $string .= "Test\t";
     $tmpHashRef = \%testData;
     $tmpArrayRef = \@testdef if !$opts{s};
@@ -633,7 +629,7 @@ Usage: $0 [-atsnhH -u <savefile_name>]
       -a Display average science left for each planet
       -t Display average science left for each experiment type.
       -s Sort output by science left, including averages from the -a and -t flags
-      -p Sort output by percent science accomplished
+      -p Sort output by percent science accomplished.  Supersedes -s, only applies to output from -a or -t flags.
       -n Turn off formatted printing (i.e., colors and bolding)
       -u Enter the username of your KSP save folder; Otherwise, whatever local
          files are present will be used.
