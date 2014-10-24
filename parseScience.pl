@@ -7,6 +7,7 @@
 ## Output to csv?  Create print subroutine I guess
 ## One csv or multiple?
 ## Percent accomplished in XLSX?
+## Cleanup data/test hashes, the order of the data is unintuitive
 
 use strict;
 use warnings;
@@ -217,7 +218,7 @@ foreach my $i (0..scalar @testdef - 1) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
 	my $sbVal = $sbvData{$planets[$planet].$situations[$sit]};
-	$dataMatrix{$testdef[$i].$planets[$planet].$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$planets[$planet],$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$sbVal*$scienceCap[$i],$sbVal*$scienceCap[$i]-0];
+	$dataMatrix{$testdef[$i].$planets[$planet].$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$planets[$planet],$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$sbVal*$scienceCap[$i],$sbVal*$scienceCap[$i],'0'];
       }
     }
   }
@@ -238,7 +239,7 @@ foreach my $planet (0..$planetCount) {
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
-    $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$sbVal*$recoCaps{$situations[$sit]},$sbVal*$recoCaps{$situations[$sit]}-0];
+    $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$sbVal*$recoCaps{$situations[$sit]},$sbVal*$recoCaps{$situations[$sit]},'0'];
   }
 }
 
@@ -305,7 +306,7 @@ while (<$file>) {
     }
 
     if (($recoTicker == 1) && ($eolTicker == 1)) {
-      $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1]];
+      $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$sci[-1]/$cap[-1]];
     }
 
     # Not sure what do?  ;;;;;; ##### FIXME TODO
@@ -319,7 +320,7 @@ close $file or die $!;
 foreach (0..scalar @test - 1) {
   if ($biome[$_]) {
     if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/ksc|runway|launchpad/i)) {
-      $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_]];
+      $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$sci[$_]/$cap[$_]];
     }
   }
 }
@@ -328,7 +329,7 @@ foreach (0..scalar @test - 1) {
 ###
 ### Begin the printing process!
 ###
-my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left];
+my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left Perc.Accom];
 # Create new workbook
 my $workbook = Excel::Writer::XLSX->new( "$outfile" );
 #my $workbook = Excel::Writer::XLSX->new( "tmp" );
@@ -475,7 +476,10 @@ sub recoSort
     my ($x,$y) = map {/^($rord)/} @input;
     my ($v,$w) = map {/($cord)/} @input;
 
-    if ($opts{s}) {
+    if ($opts{p}) {
+      $reco{$b}[9] <=> $reco{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
+          }
+    elsif ($opts{s}) {
       $reco{$b}[8] <=> $reco{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } else {
       $reco_order_map{$x} <=> $reco_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
@@ -503,7 +507,9 @@ sub sitSort
 
     my ($x,$y) = map {/($sord)/} @input;
 
-    if ($opts{s}) {
+    if ($opts{p}) {
+      $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
+    } elsif ($opts{s}) {
       $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     } else {
       $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
