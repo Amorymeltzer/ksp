@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # parseScience.pl by Amory Meltzer
-# Parse a KSP persistent.sfs file, snag science information
+# Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes" and asteroids
@@ -97,7 +97,7 @@ my (
 
 my @planets = qw (Kerbin Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
 		  Jool Laythe Vall Tylo Bop Pol Eeloo);
-my $planetCount = scalar @planets - 1; # Use this a lot throughout
+my $planetCount = scalar @planets - 1; # Use this a bunch
 
 # Different spobs, different biomes
 my @kerBiomes = qw (Water Shores Grasslands Highlands Mountains Deserts
@@ -208,12 +208,12 @@ foreach my $i (0..scalar @testdef - 1) {
       # Water
       next if (($situations[$sit] eq 'Splashed') && ($planets[$planet] !~ m/^Kerbin$|^Eve$|^Laythe$/));
       # Atmosphere
-      if ($planets[$planet] !~ m/^Kerbin$|^Eve$|^Duna$|^Jool$|^Laythe$/) {
+      if ($planets[$planet] !~ m/^Kerbin|^Eve|^Duna|^Jool|^Laythe/) {
 	next if $situations[$sit] =~ m/^FlyingLow$|^FlyingHigh$/;
 	next if $atmo[$i] == 1;
       }
 
-      foreach my $bin (0..scalar @{$biomes[$sit]} - 1) { # Dereference array
+      foreach my $bin (0..scalar @{$biomes[$sit]} - 1) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
 	my $sbVal = $sbvData{$planets[$planet].$situations[$sit]};
@@ -237,7 +237,7 @@ foreach my $planet (0..$planetCount) {
 
   foreach my $sit (0..scalar @situations - 1) {
     # No surface
-    next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
+    next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
     my $cleft = $sbVal*$recoCaps{$situations[$sit]};
     $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
