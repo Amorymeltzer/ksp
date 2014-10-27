@@ -320,8 +320,9 @@ close $file or die $!;
 
 # Build the matrix
 foreach (0..scalar @test - 1) {
+  next if $test[$_] =~ m/^SCANsat|^asteroid/;
   if ($biome[$_]) {
-    if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/ksc|runway|launchpad/i)) {
+    if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^ksc|^runway|^launchpad|^VAB/i)) {
       my $cleft = sprintf '%.2f', 100*$sci[$_]/$cap[$_];
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
     }
