@@ -26,8 +26,7 @@ Usage: parseScience.pl [-atsnhH -u <savefile_name>]
 
 **Todo**
 - Option csv output (default?) or just averages
-- Incorporate the KSC/LaunchPad/Runway/etc. "biomes" and asteroids
-- Percent accomplished in XLSX?
+- Incorporate the KSC/LaunchPad/Runway/etc. "biomes", asteroids, SCANsat
 
 
 #### deltaVScience.pl ####
