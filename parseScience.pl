@@ -62,7 +62,7 @@ my %recoCaps = (
 		Orbited => 12,
 		Surfaced => 18
 	       );
-my %workVars;		       # Hash of arras to hold worksheets, current row
+my %workVars;		       # Hash of arrays to hold worksheets, current row
 my %spobData;		       # Hold data on science per spob
 my %testData;		       # Hold data on science per test
 
