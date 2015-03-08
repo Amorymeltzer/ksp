@@ -3,6 +3,7 @@
 # Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
+## Fix for 0.90 beta
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes", asteroids, SCANsat
 ## Output to csv?  Create print subroutine I guess
 ## One csv or multiple?
