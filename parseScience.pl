@@ -129,6 +129,13 @@ my @bopBiomes = qw (Poles Slopes Peaks Valley Rodges);
 my @polBiomes = qw (Poles Lowlands Midlands Highlands);
 my @eelBiomes = qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
 		    Craters);
+my @mohBiomes = qw (NorthPole NorthernSinkholeRidge NorthernSinkhole Highlands
+		    Midlands MinorCraters CentralLowlands WesternLowlands
+		    SouthWesternLowlands SouthEasternLowlands Canyon
+		    SouthPole);
+my @eveBiomes = qw (Poles ExplodiumSea Lowlands Midlands Highlands Peaks
+		    ImpactEjecta);
+my @gilBiomes = qw (Lowlands Midlands Highlands);
 
 # Am I in a science or recovery loop, or did I leave a recovery loop?
 my $ticker = '0';
