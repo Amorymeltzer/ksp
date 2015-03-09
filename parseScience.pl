@@ -5,9 +5,16 @@
 # Leftover science in red, candidates for manual cleanup in green
 ## Fix for 0.90 beta
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes", asteroids, SCANsat
+## Option to pull KSC stuff in/out of Kerbin
 ## Output to csv?  Create print subroutine I guess
 ## One csv or multiple?
 ## Cleanup data/test hashes, the order of the data is unintuitive
+## Can you do srfsplashed in every biome on other planets?
+
+### Add support for:
+## KSC biomes
+## Asteroids
+## SCANsat
 
 use strict;
 use warnings;
