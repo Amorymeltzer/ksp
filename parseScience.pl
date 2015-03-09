@@ -109,6 +109,19 @@ my @munBiomes = qw (FarsideCrater HighlandCraters Highlands MidlandCraters
 		    EastCrater EastFarsideCrater);
 my @minBiomes = qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
 		    Lowlands Midlands Poles Slopes);
+my @dunBiomes = qw (Poles Highlands Midlands Lowlands Craters);
+my @ikeBiomes = qw (PolarLowlands Midlands Lowlands EasternMountainRidge
+		    WesternMountainRidge CentralMountainRidge
+		    SouthEasternMountainRange SouthPole);
+my @dreBiomes = qw (Poles Highlands Midlands Lowlands Ridges ImpactEjecta
+		    ImpactCraters Canyons);
+my @layBiomes = qw (Poles Shores Dunes TheSagenSea);
+my @valBiomes = qw (Poles Highlands Midlands Lowlands);
+my @tylBiomes = qw (Highlands Midlands Lowlands Mara MajorCrater);
+my @bopBiomes = qw (Poles Slopes Peaks Valley Rodges);
+my @polBiomes = qw (Poles Lowlands Midlands Highlands);
+my @eelBiomes = qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
+		    Craters);
 
 # Am I in a science or recovery loop, or did I leave a recovery loop?
 my $ticker = '0';
