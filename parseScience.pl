@@ -58,6 +58,9 @@ if (! -e $pers) {
 
 my %dataMatrix;			# Hold errything
 my %reco;			# Separate hash for craft recovery
+##### WIP
+my %scan;			# Separate hash for SCANsat
+##### WIP
 my %sbvData;			# Hold sbv values from END data
 
 # Access reverse-engineered caps for recovery missions.  SubOrbited and
@@ -275,6 +278,23 @@ foreach my $planet (0..$planetCount) {
     $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
+
+##### WIP
+# Build SCANsat hash
+foreach my $planet (0..$planetCount) {
+  my @situations = qw (AltimetryLoRes BiomeAnomaly AltimetryHiRes);
+
+  foreach my $sit (0..scalar @situations - 1) {
+    # No surface
+    next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
+
+    # All SCANsat sbv values are 1
+    my $sbVal = 1;
+    my $cleft = $sbVal*$recoCaps{$situations[$sit]};
+    $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
+  }
+}
+##### WIP
 
 
 open my $file, '<', "$pers" or die $!;
