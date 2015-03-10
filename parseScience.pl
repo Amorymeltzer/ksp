@@ -293,7 +293,8 @@ foreach my $planet (0..$planetCount) {
     # it's somewhat less logical.  This will suffice for now
     # FIXME TODO
     my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
-    my $cleft = $sbVal*$recoCaps{$situations[$sit]};
+    # All SCANsat caps are 20, saves a variable
+    my $cleft = $sbVal*20;
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
