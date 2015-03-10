@@ -474,6 +474,8 @@ sub binary
   }
 
 # Create array of arrays for spob-specific @biomes
+# More efficiently pass first three letters for array assignment
+# FIXME TODO
 sub arrayBuild
   {
     my $plane = shift;
@@ -495,6 +497,7 @@ sub arrayBuild
 ## http://stackoverflow.com/a/8171591/2521092
 # Kerbin and moons come first, then Kerbol, then proper sorting of conditions,
 # matches worksheets
+# Incorporate KSC FIXME TODO
 sub recoSort
   {
     my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
