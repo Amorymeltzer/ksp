@@ -285,8 +285,8 @@ foreach my $planet (0..$planetCount) {
   my @situations = qw (AltimetryLoRes BiomeAnomaly AltimetryHiRes);
 
   foreach my $sit (0..scalar @situations - 1) {
-    # No surface
-    next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
+    # No surface?  Do scanning
+    next if ($planets[$planet] =~ m/^Kerbol|^Jool/);
 
     # All SCANsat sbv values are 1
     my $sbVal = 1;
