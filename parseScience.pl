@@ -288,8 +288,8 @@ foreach my $planet (0..$planetCount) {
     # No surface?  Do scanning
     next if ($planets[$planet] =~ m/^Kerbol|^Jool/);
 
-    # All SCANsat sbv values are 1
-    my $sbVal = 1;
+    # SCANsat sbv values correspond to InSpaceHigh values
+    my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
     my $cleft = $sbVal*$recoCaps{$situations[$sit]};
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
