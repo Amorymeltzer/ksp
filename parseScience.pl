@@ -289,6 +289,9 @@ foreach my $planet (0..$planetCount) {
     next if ($planets[$planet] =~ m/^Kerbol|^Jool/);
 
     # SCANsat sbv values correspond to InSpaceHigh values
+    # NOPE!!!  This apparently changed in a recent update to SCANsat, so now
+    # it's somewhat less logical.  This will suffice for now
+    # FIXME TODO
     my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
     my $cleft = $sbVal*$recoCaps{$situations[$sit]};
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
