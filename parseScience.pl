@@ -447,7 +447,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   }
 }
 # Recovery
-foreach my $key (sort recoSort keys %reco) {
+foreach my $key (sort specialSort keys %reco) {
   writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
 
   if ($opts{t}) {
@@ -458,7 +458,7 @@ foreach my $key (sort recoSort keys %reco) {
   }
 }
 # SCANsat
-foreach my $key (sort recoSort keys %scan) {
+foreach my $key (sort specialSort keys %scan) {
   writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
 
   if ($opts{t}) {
@@ -553,14 +553,15 @@ sub arrayBuild
 # Kerbin and moons come first, then Kerbol, then proper sorting of conditions,
 # matches worksheets
 # Incorporate KSC FIXME TODO
-sub recoSort
+sub specialSort
   {
     my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
 
     my @recoOrder = @planets;
     my %reco_order_map = map { $recoOrder[$_] => $_ } 0 .. $#recoOrder;
     my $rord = join q{|}, @recoOrder;
-    my @condOrder = qw (Flew SubOrbited Orbited Surfaced);
+    #  my @condOrder = qw (Flew SubOrbited Orbited Surfaced);
+    my @condOrder = qw (Flew SubOrbited Orbited Surfaced AltimetryLoRes BiomeAnomaly AltimetryHiRes);
     my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
     my $cord = join q{|}, @condOrder;
 
