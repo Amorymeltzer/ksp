@@ -501,7 +501,7 @@ if ($opts{a} || $opts{t}) {
     $tmpHashRef = \%spobData;
     $tmpArrayRef = \@planets if !$opts{s};
   }
-  $string .= "\tAvg/exp\tTotal\tCompletion\n";
+  $string .= "\tAvg/exp\tTotal\tCompleted\n";
   print "$string";
 
   if ($opts{p}) {
@@ -557,8 +557,6 @@ sub specialSort
   {
     my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
 
-    
-    
     my @specOrder = @planets;
     my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
     my $sord = join q{|}, @specOrder;
