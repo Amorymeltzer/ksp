@@ -71,9 +71,15 @@ my %recoCaps = (
 		Orbited => 12,
 		Surfaced => 18
 	       );
-my %workVars;		       # Hash of arrays to hold worksheets, current row
-my %spobData;		       # Hold data on science per spob
-my %testData;		       # Hold data on science per test
+# All SCANsat caps are 20
+my %scanCaps = (
+		AltimetryLoRes => 20,
+		BiomeAnomaly => 20,
+		AltimetryHiRes => 10
+	       );
+my %workVars;		      # Hash of arrays to hold worksheets, current row
+my %spobData;		      # Hold data on science per spob
+my %testData;		      # Hold data on science per test
 
 # ScienceDefs.cfg variables
 my (
@@ -289,8 +295,7 @@ foreach my $planet (0..$planetCount) {
     # it's somewhat less logical.  This will suffice for now
     # FIXME TODO
     my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
-    # All SCANsat caps are 20, saves a variable
-    my $cleft = $sbVal*20;
+    my $cleft = $sbVal*$scanCaps{$situations[$sit]};
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
@@ -368,8 +373,7 @@ while (<$file>) {
     if (($recoTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
-    }
-    elsif (($scanTicker == 1) && ($eolTicker == 1)) {
+    } elsif (($scanTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
     }
@@ -551,8 +555,7 @@ sub recoSort
 
     if ($opts{p}) {
       $reco{$b}[9] <=> $reco{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
-          }
-    elsif ($opts{s}) {
+    } elsif ($opts{s}) {
       $reco{$b}[8] <=> $reco{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } else {
       $reco_order_map{$x} <=> $reco_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
