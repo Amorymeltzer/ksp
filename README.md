@@ -5,6 +5,7 @@ Perl scripts to help with Kerbal Space Program.
 Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon.
 
 **Requires:**
+- KSP v0.90 Beta
 - Perl (Duh.)
 - Excel::Writer::XLSX ([CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
 
