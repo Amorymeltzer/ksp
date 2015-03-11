@@ -364,9 +364,14 @@ while (<$file>) {
       $eolTicker = 1;
     }
 
+    # Build hash holding recovery for SCANsat data
     if (($recoTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
+    }
+    elsif (($scanTicker == 1) && ($eolTicker == 1)) {
+      my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
+      $scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
     }
 
     # Not sure what do?  ;;;;;; ##### FIXME TODO
