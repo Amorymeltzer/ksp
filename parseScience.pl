@@ -461,7 +461,7 @@ foreach my $key (sort recoSort keys %reco) {
 }
 # SCANsat
 foreach my $key (sort recoSort keys %scan) {
-  writeToExcel($recov,\@{$scan{$key}},$key,\%scan);
+  writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
 
   if ($opts{t}) {
     # Neater spacing in test averages output
