@@ -557,15 +557,16 @@ sub specialSort
   {
     my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
 
-    my @recoOrder = @planets;
-    my %reco_order_map = map { $recoOrder[$_] => $_ } 0 .. $#recoOrder;
-    my $rord = join q{|}, @recoOrder;
-    #  my @condOrder = qw (Flew SubOrbited Orbited Surfaced);
+    
+    
+    my @specOrder = @planets;
+    my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
+    my $sord = join q{|}, @specOrder;
     my @condOrder = qw (Flew SubOrbited Orbited Surfaced AltimetryLoRes BiomeAnomaly AltimetryHiRes);
     my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
     my $cord = join q{|}, @condOrder;
 
-    my ($x,$y) = map {/^($rord)/} @input;
+    my ($x,$y) = map {/^($sord)/} @input;
     my ($v,$w) = map {/($cord)/} @input;
 
     if ($opts{p}) {
@@ -573,7 +574,7 @@ sub specialSort
     } elsif ($opts{s}) {
       $reco{$b}[8] <=> $reco{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } else {
-      $reco_order_map{$x} <=> $reco_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
+      $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
     }
   }
 
