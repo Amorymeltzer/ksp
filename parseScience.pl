@@ -434,6 +434,7 @@ foreach my $planet (0..$planetCount) {
 }
 
 
+# Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
@@ -447,7 +448,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
     buildScienceData($key,$planet,\%spobData,\%dataMatrix);
   }
 }
-
+# Recovery
 foreach my $key (sort recoSort keys %reco) {
   writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
 
@@ -456,6 +457,17 @@ foreach my $key (sort recoSort keys %reco) {
     buildScienceData($key,$recovery,\%testData,\%reco);
   } elsif ($opts{a}) {
     buildScienceData($key,$recov,\%spobData,\%reco);
+  }
+}
+# SCANsat
+foreach my $key (sort recoSort keys %scan) {
+  writeToExcel($recov,\@{$scan{$key}},$key,\%scan);
+
+  if ($opts{t}) {
+    # Neater spacing in test averages output
+    buildScienceData($key,$scansat,\%testData,\%scan);
+  } elsif ($opts{a}) {
+    buildScienceData($key,$scansat,\%spobData,\%scan);
   }
 }
 
