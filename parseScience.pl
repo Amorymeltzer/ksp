@@ -477,10 +477,10 @@ foreach my $key (sort recoSort keys %scan) {
 $workVars{$recov}[0]->set_column( 0, 0, 9.17 );
 $workVars{$recov}[0]->set_column( 1, 1, 6.5 );
 $workVars{$recov}[0]->set_column( 2, 2, 9 );
-
+# Widths, manually determined
 $workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
-$workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
-$workVars{$scansat}[0]->set_column( 2, 2, 9 );
+$workVars{$scansat}[0]->set_column( 1, 1, 11.83 );
+$workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
 
 foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
