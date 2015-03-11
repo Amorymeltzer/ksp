@@ -336,10 +336,8 @@ while (<$file>) {
 	@pieces = (split /@/, $tmp2);
       } elsif ($tmp2 =~ m/^$scansat/) {
 	$scanTicker = 1;
-	print "$tmp2\n";
 	$tmp2 =~ s/InSpaceHighsurface$//g;
 	$tmp2 =~ s/^$scansat(.*)\@(.*)/$scansat\@$2\@$1/g;
-	print "$tmp2\n";
 	@pieces = (split /@/, $tmp2);
       } else {
 	($recoTicker,$scanTicker) = (0,0);
@@ -461,7 +459,6 @@ foreach my $key (sort recoSort keys %reco) {
 }
 # SCANsat
 foreach my $key (sort recoSort keys %scan) {
-  print "$scansat,\@{$scan{$key}},$key,\%scan\n";
   writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
 
   if ($opts{t}) {
