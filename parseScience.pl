@@ -58,9 +58,7 @@ if (! -e $pers) {
 
 my %dataMatrix;			# Hold errything
 my %reco;			# Separate hash for craft recovery
-##### WIP
 my %scan;			# Separate hash for SCANsat
-##### WIP
 my %sbvData;			# Hold sbv values from END data
 
 # Access reverse-engineered caps for recovery missions.  SubOrbited and
@@ -150,9 +148,7 @@ my $eolTicker = '0';
 # Sometimes I use one versus the other, mainly for spacing in averages table
 my $recov = 'Recov';
 my $recovery = 'recovery';
-##### WIP
 my $scansat = 'SCANsat';
-##### WIP
 
 ### Begin!
 # Construct sbv hash
@@ -280,7 +276,6 @@ foreach my $planet (0..$planetCount) {
   }
 }
 
-##### WIP
 # Build SCANsat hash
 foreach my $planet (0..$planetCount) {
   my @situations = qw (AltimetryLoRes BiomeAnomaly AltimetryHiRes);
@@ -299,7 +294,6 @@ foreach my $planet (0..$planetCount) {
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
-##### WIP
 
 
 open my $file, '<', "$pers" or die $!;
@@ -418,10 +412,8 @@ if (!$opts{n}) {
 $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
 $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
 
-##### WIP
 $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
 $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
-##### WIP
 
 $header[1] = 'Condition';
 $header[2] = 'Biome';
