@@ -144,6 +144,7 @@ my @eelBiomes = qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
 # Am I in a science or recovery loop, or did I leave a recovery loop?
 my $ticker = '0';
 my $recoTicker = '0';
+my $scanTicker = '0';
 my $eolTicker = '0';
 
 # Sometimes I use one versus the other, mainly for spacing in averages table
@@ -329,13 +330,20 @@ while (<$file>) {
     if ($tmp1 eq 'id') {
       $eolTicker = 0;
 
-      # Replace recovery data here, why not?
+      # Replace recovery and SCANsat data here, why not?
       if ($tmp2 =~ m/^$recovery/) {
 	$recoTicker = 1;
 	$tmp2 =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
 	@pieces = (split /@/, $tmp2);
+      } elsif ($tmp2 =~ m/^$scansat/) {
+	$scanTicker = 1;
+	print "$tmp2\n";
+	$tmp2 =~ s/^$scansat/$scansat\@/g;
+	$tmp2 =~ s/InSpaceHighsurface$//g;
+	print "$tmp2\n";
+	@pieces = (split /@/, $tmp2);
       } else {
-	$recoTicker = 0;
+	($recoTicker,$scanTicker) = (0,0);
 	# Watch out for srf landed/splashed, InSpaceHigh/Low, FlyingHigh/Low
 	$tmp2 =~ s/Srf(Landed|Splashed)/\@$1\@/g;
 	$tmp2 =~ s/(InSpace|Flying)(Low|High)/\@$1$2\@/g;
