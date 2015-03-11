@@ -337,8 +337,8 @@ while (<$file>) {
       } elsif ($tmp2 =~ m/^$scansat/) {
 	$scanTicker = 1;
 	print "$tmp2\n";
-	$tmp2 =~ s/^$scansat/$scansat\@/g;
 	$tmp2 =~ s/InSpaceHighsurface$//g;
+	$tmp2 =~ s/^$scansat(.*)\@(.*)/$scansat\@$2\@$1/g;
 	print "$tmp2\n";
 	@pieces = (split /@/, $tmp2);
       } else {
@@ -461,6 +461,7 @@ foreach my $key (sort recoSort keys %reco) {
 }
 # SCANsat
 foreach my $key (sort recoSort keys %scan) {
+  print "$scansat,\@{$scan{$key}},$key,\%scan\n";
   writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
 
   if ($opts{t}) {
@@ -472,16 +473,16 @@ foreach my $key (sort recoSort keys %scan) {
 }
 
 
-# Widths, manually determined
+# Recovery widths, manually determined
 # Subroutine these ;;;;;; ##### FIXME TODO
 $workVars{$recov}[0]->set_column( 0, 0, 9.17 );
 $workVars{$recov}[0]->set_column( 1, 1, 6.5 );
 $workVars{$recov}[0]->set_column( 2, 2, 9 );
-# Widths, manually determined
+# SCANsat widths, manually determined
 $workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
-$workVars{$scansat}[0]->set_column( 1, 1, 11.83 );
+$workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
 $workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
-
+# Stock science widths, manually determined
 foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
   $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
