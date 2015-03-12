@@ -459,16 +459,16 @@ foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
   }
 }
 # SCANsat
-# foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
-#   writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
+foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
+  writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
 
-#   if ($opts{t}) {
-#     # Neater spacing in test averages output
-#     buildScienceData($key,$scansat,\%testData,\%scan);
-#   } elsif ($opts{a}) {
-#     buildScienceData($key,$scansat,\%spobData,\%scan);
-#   }
-# }
+  if ($opts{t}) {
+    # Neater spacing in test averages output
+    buildScienceData($key,$scansat,\%testData,\%scan);
+  } elsif ($opts{a}) {
+    buildScienceData($key,$scansat,\%spobData,\%scan);
+  }
+}
 
 
 # Recovery widths, manually determined
@@ -571,10 +571,9 @@ sub specialSort
     my ($v,$w) = map {/($cord)/} @input;
 
     if ($opts{p}) {
-      $reco{$b}[9] <=> $reco{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
+      ${$scref}{$b}[9] <=> ${$scref}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } elsif ($opts{s}) {
-      print "$reco{$b}[8]\t${$scref}{$b}[8]\n";
-      $reco{$b}[8] <=> $reco{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
+      ${$scref}{$b}[8] <=> ${$scref}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } else {
       $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
     }
