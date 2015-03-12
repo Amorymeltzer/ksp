@@ -404,6 +404,8 @@ foreach (0..scalar @test - 1) {
 ### Begin the printing process!
 ###
 my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left Perc.Accom];
+
+## Prepare fancy-schmancy Excel workbook
 # Create new workbook
 my $workbook = Excel::Writer::XLSX->new( "$outfile" );
 #my $workbook = Excel::Writer::XLSX->new( "tmp" );
@@ -453,6 +455,7 @@ foreach my $planet (0..$planetCount) {
 }
 
 
+## Actually print everybody!
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
@@ -491,6 +494,7 @@ foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
 }
 
 
+## Sorting of different average tables
 # Ensure the -t flag supersedes -a if both are given
 if ($opts{a} || $opts{t}) {
   my $string = "Average science left:\n\n";
