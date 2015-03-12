@@ -447,7 +447,6 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   }
 }
 # Recovery
-#  foreach my $key (sort specialSort keys %reco) {
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
   writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
 
@@ -556,8 +555,7 @@ sub arrayBuild
 # Incorporate KSC FIXME TODO
 sub specialSort
   {
-    #  my $scref = @_;
-    my ($a,$b,$scref) = @_;
+    my ($a,$b,$specRef) = @_;
     my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
 
     my @specOrder = @planets;
@@ -571,9 +569,9 @@ sub specialSort
     my ($v,$w) = map {/($cord)/} @input;
 
     if ($opts{p}) {
-      ${$scref}{$b}[9] <=> ${$scref}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
+      ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } elsif ($opts{s}) {
-      ${$scref}{$b}[8] <=> ${$scref}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
+      ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } else {
       $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
     }
