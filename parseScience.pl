@@ -3,18 +3,23 @@
 # Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
-## Fix for 0.90 beta
-## Ignores KSC/LaunchPad/Runway/etc. "biomes", asteroids, SCANsat
+
+## Fix for 0.90 beta by adding in ALL BIOMES
+## Ignores KSC/LaunchPad/Runway/etc. "biomes", asteroids
 ## Option to pull KSC stuff in/out of Kerbin
 ## Output to csv?  Create print subroutine I guess
 ## One csv or multiple?
 ## Cleanup data/test hashes, the order of the data is unintuitive
-## Can you do srfsplashed in every biome on other planets?
+## Can you do srfsplashed in every biome on other planets with water?
 
 ### Add support for:
 ## KSC biomes
 ## Asteroids
-## SCANsat
+
+### FIXES TODO
+## SCANsat spacing in -t output (capitalization fix)
+## Flag SCANsat on/off, or auto-detect??
+
 
 use strict;
 use warnings;
