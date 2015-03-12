@@ -436,6 +436,22 @@ foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
 }
 
+# Recovery widths, manually determined
+# Subroutine these ;;;;;; ##### FIXME TODO
+$workVars{$recov}[0]->set_column( 0, 0, 9.17 );
+$workVars{$recov}[0]->set_column( 1, 1, 6.5 );
+$workVars{$recov}[0]->set_column( 2, 2, 9 );
+# SCANsat widths, manually determined
+$workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
+$workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
+$workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
+# Stock science widths, manually determined
+foreach my $planet (0..$planetCount) {
+  $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
+  $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
+  $workVars{$planets[$planet]}[0]->set_column( 2, 2, 8.5 );
+}
+
 
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
@@ -472,23 +488,6 @@ foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
   } elsif ($opts{a}) {
     buildScienceData($key,$scansat,\%spobData,\%scan);
   }
-}
-
-
-# Recovery widths, manually determined
-# Subroutine these ;;;;;; ##### FIXME TODO
-$workVars{$recov}[0]->set_column( 0, 0, 9.17 );
-$workVars{$recov}[0]->set_column( 1, 1, 6.5 );
-$workVars{$recov}[0]->set_column( 2, 2, 9 );
-# SCANsat widths, manually determined
-$workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
-$workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
-$workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
-# Stock science widths, manually determined
-foreach my $planet (0..$planetCount) {
-  $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
-  $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
-  $workVars{$planets[$planet]}[0]->set_column( 2, 2, 8.5 );
 }
 
 
@@ -665,7 +664,7 @@ sub average1
 
     if ($opts{t}) {
       push @{$arrayRef}, $recovery; # Neater spacing in test averages output
-      push @{$arrayRef}, $scansat; # Neater spacing in test averages output
+      push @{$arrayRef}, $scansat;  # Neater spacing in test averages output
       @{$arrayRef} = sort @{$arrayRef};
     }
 
