@@ -660,6 +660,7 @@ sub average1
 
     if ($opts{t}) {
       push @{$arrayRef}, $recovery; # Neater spacing in test averages output
+      push @{$arrayRef}, $scansat; # Neater spacing in test averages output
       @{$arrayRef} = sort @{$arrayRef};
     }
 
