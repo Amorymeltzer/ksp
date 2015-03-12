@@ -670,6 +670,7 @@ sub average1
 
     if (!$opts{t}) {
       printAverageTable($recov,$hashRef);
+      printAverageTable($scansat,$hashRef);
     }
 
     return;
