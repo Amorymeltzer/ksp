@@ -387,7 +387,7 @@ while (<$file>) {
 }
 close $file or die $!;
 
-
+open my $csv, '>>', "tmp.csv" or die $!;
 # Build the matrix
 foreach (0..scalar @test - 1) {
   next if $test[$_] =~ m/^SCANsat|^asteroid/;
@@ -395,10 +395,11 @@ foreach (0..scalar @test - 1) {
     if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB/)) {
       my $cleft = sprintf '%.2f', 100*$sci[$_]/$cap[$_];
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
+      print $csv "@{$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]}}\n";
     }
   }
 }
-
+close $csv or die $!;
 
 ###
 ### Begin the printing process!
