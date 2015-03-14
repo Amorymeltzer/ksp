@@ -376,11 +376,11 @@ while (<$file>) {
     if (($recoTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
-      print $csv "@{$reco{$pieces[1].$pieces[2]}}\n";
+      print $csv "@{$reco{$pieces[1].$pieces[2]}}\n" if $opts{1};
     } elsif (($scanTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
-      print $csv "@{$scan{$pieces[1].$pieces[2]}}\n";
+      print $csv "@{$scan{$pieces[1].$pieces[2]}}\n" if $opts{1};
     }
 
     # Not sure what do?  ;;;;;; ##### FIXME TODO
@@ -396,7 +396,7 @@ foreach (0..scalar @test - 1) {
     if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB/)) {
       my $cleft = sprintf '%.2f', 100*$sci[$_]/$cap[$_];
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
-      print $csv "@{$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]}}\n";
+      print $csv "@{$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]}}\n" if $opts{1};
     }
   }
 }
