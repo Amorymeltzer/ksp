@@ -305,7 +305,7 @@ foreach my $planet (0..$planetCount) {
   }
 }
 
-
+open my $csv, '>>', "tmp.csv" or die $!;
 open my $file, '<', "$pers" or die $!;
 while (<$file>) {
   chomp;
@@ -376,9 +376,11 @@ while (<$file>) {
     if (($recoTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
+      print $csv "@{$reco{$pieces[1].$pieces[2]}}\n";
     } elsif (($scanTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
+      print $csv "@{$scan{$pieces[1].$pieces[2]}}\n";
     }
 
     # Not sure what do?  ;;;;;; ##### FIXME TODO
@@ -387,7 +389,6 @@ while (<$file>) {
 }
 close $file or die $!;
 
-open my $csv, '>>', "tmp.csv" or die $!;
 # Build the matrix
 foreach (0..scalar @test - 1) {
   next if $test[$_] =~ m/^SCANsat|^asteroid/;
@@ -637,16 +638,10 @@ sub writeToExcel
   {
     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
 
-    if (!$opts{1}) {
       $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
       $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[8] > 0;
       $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] >0));
       $workVars{$sheetName}[1]++;
-    } else {
-      open my $csv, '>>', "tmp.csv" or die $!;
-      print $csv "@{$rowRef}\n";
-      close $csv or die $!;
-    }
     return;
   }
 
