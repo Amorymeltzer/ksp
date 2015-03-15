@@ -38,11 +38,9 @@ if ($opts{h} || $opts{H}) {
 
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
-#  my $outfile = 'scienceToDo.xlsx';
 
-# Ternary ?: ($a = $test ? $b : $c;)
-# a is b if test, c if not
-my $outfile = $opts{1} ? 'scienceToDo.csv' : 'scienceToDo.xlsx';
+my $outfile = 'scienceToDo.xlsx';
+my $csvOut = 'scienceToDo.csv';
 
 # Change this to match the location of your KSP install
 if ($opts{u}) {
@@ -453,7 +451,7 @@ foreach my $planet (0..$planetCount) {
 
 
 ## Actually print everybody!
-open my $csv, '>>', "tmp.csv" or die $!;
+open my $csv, '>>', "$csvOut" or die $!;
 
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
