@@ -452,7 +452,7 @@ foreach my $planet (0..$planetCount) {
 
 ## Actually print everybody!
 open my $csv, '>', "$csvOut" or die $!;
-
+print $csv "@header\n" if $opts{1};
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
