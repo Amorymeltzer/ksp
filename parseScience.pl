@@ -462,8 +462,6 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix);
   print $csv "@{$dataMatrix{$key}}\n" if $opts{1};
 
-  #printOptions($planet,$tref,$key,\%dataMatrix);
-
   if ($opts{t}) {
     buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
   } elsif ($opts{a}) {
@@ -617,22 +615,6 @@ sub sitSort
       $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     }
   }
-
-
-# Handle sorting of print to one csv, multiple (named) csvs, or to
-# excel.  Should call writeToExcel?  Or just incorporate it as an option?
-# Probably that
-# sub printOptions
-#   {
-#     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
-#     my %hash = %{$hashRef};
-
-#     if ($opts{1}) {
-#       open my $csv, '>>', "$outfile" or die $!;
-#       print $csv "@{$rowRef}\n";
-#       close $csv or die $!;
-#     }
-#   }
 
 
 sub writeToExcel
