@@ -451,7 +451,7 @@ foreach my $planet (0..$planetCount) {
 
 
 ## Actually print everybody!
-open my $csv, '>>', "$csvOut" or die $!;
+open my $csv, '>', "$csvOut" or die $!;
 
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
