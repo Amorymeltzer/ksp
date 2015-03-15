@@ -305,7 +305,6 @@ foreach my $planet (0..$planetCount) {
   }
 }
 
-open my $csv, '>>', "tmp.csv" or die $!;
 open my $file, '<', "$pers" or die $!;
 while (<$file>) {
   chomp;
@@ -376,11 +375,9 @@ while (<$file>) {
     if (($recoTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
-      print $csv "@{$reco{$pieces[1].$pieces[2]}}\n" if $opts{1};
     } elsif (($scanTicker == 1) && ($eolTicker == 1)) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
-      print $csv "@{$scan{$pieces[1].$pieces[2]}}\n" if $opts{1};
     }
 
     # Not sure what do?  ;;;;;; ##### FIXME TODO
@@ -396,11 +393,9 @@ foreach (0..scalar @test - 1) {
     if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB/)) {
       my $cleft = sprintf '%.2f', 100*$sci[$_]/$cap[$_];
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
-      print $csv "@{$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]}}\n" if $opts{1};
     }
   }
 }
-close $csv or die $!;
 
 ###
 ### Begin the printing process!
@@ -458,11 +453,14 @@ foreach my $planet (0..$planetCount) {
 
 
 ## Actually print everybody!
+open my $csv, '>>', "tmp.csv" or die $!;
+
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
   writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix);
+  print $csv "@{$dataMatrix{$key}}\n" if $opts{1};
 
   #printOptions($planet,$tref,$key,\%dataMatrix);
 
@@ -475,6 +473,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 # Recovery
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
   writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
+  print $csv "@{$reco{$key}}\n" if $opts{1};
 
   if ($opts{t}) {
     # Neater spacing in test averages output
@@ -486,6 +485,7 @@ foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
 # SCANsat
 foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
   writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
+  print $csv "@{$scan{$key}}\n" if $opts{1};
 
   if ($opts{t}) {
     # Neater spacing in test averages output
@@ -494,6 +494,7 @@ foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
     buildScienceData($key,$scansat,\%spobData,\%scan);
   }
 }
+close $csv or die $!;
 
 
 ## Sorting of different average tables
@@ -638,10 +639,10 @@ sub writeToExcel
   {
     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
 
-      $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
-      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[8] > 0;
-      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] >0));
-      $workVars{$sheetName}[1]++;
+    $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[8] > 0;
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] >0));
+    $workVars{$sheetName}[1]++;
     return;
   }
 
