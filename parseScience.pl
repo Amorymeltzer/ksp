@@ -34,11 +34,13 @@ if ($opts{h} || $opts{H}) {
   usage(); exit;
 }
 
-my $scidef = 'ScienceDefs.cfg';
-my $pers = 'persistent.sfs';
 
+### FILE DEFINITIONS
 my $outfile = 'scienceToDo.xlsx';
 my $csvOut = 'scienceToDo.csv';
+
+my $scidef = 'ScienceDefs.cfg';
+my $pers = 'persistent.sfs';
 
 # Change this to match the location of your KSP install
 if ($opts{u}) {
@@ -57,6 +59,7 @@ if (! -e $pers) {
   exit;
 }
 
+### GLOBAL VARIABLES
 my %dataMatrix;			# Hold errything
 my %reco;			# Separate hash for craft recovery
 my %scan;			# Separate hash for SCANsat
@@ -156,6 +159,7 @@ my $eolTicker = '0';
 my $recov = 'Recov';
 my $recovery = 'recovery';
 my $scansat = 'SCANsat';
+
 
 ### Begin!
 # Construct sbv hash
@@ -520,10 +524,7 @@ if ($opts{a} || $opts{t}) {
 }
 
 
-###
-### Subroutines ###
-###
-
+### SUBROUTINES
 # Convert string to binary, pad to six digits
 sub binary
   {
