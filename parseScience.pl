@@ -629,10 +629,7 @@ sub writeToExcel
 # Build data hashes for averages
 sub buildScienceData
   {
-    my $key = shift;
-    my $ind = shift;
-    my $dataRef = shift;
-    my $hashRef = shift;
+    my ($key,$ind,$dataRef,$hashRef) = @_;
 
     ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
     ${$dataRef}{$ind}[1]++;
