@@ -568,7 +568,7 @@ sub specialSort
     my @specOrder = @planets;
     my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
     my $sord = join q{|}, @specOrder;
-    my @condOrder = qw (Flew SubOrbited Orbited Surfaced AltimetryLoRes BiomeAnomaly AltimetryHiRes);
+    my @condOrder = qw (Flew SubOrbited Orbited Surfaced AltimetryLoRes AltimetryHiRes BiomeAnomaly);
     my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
     my $cord = join q{|}, @condOrder;
 
