@@ -30,7 +30,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('atspn1cu:hH', \%opts);
+getopts('atspncu:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage(); exit;
@@ -452,13 +452,13 @@ foreach my $planet (0..$planetCount) {
 
 ## Actually print everybody!
 open my $csv, '>', "$csvOut" or die $!;
-print $csv "@header\n" if $opts{1};
+print $csv "@header\n" if $opts{c};
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
   writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix);
-  print $csv "@{$dataMatrix{$key}}\n" if $opts{1};
+  print $csv "@{$dataMatrix{$key}}\n" if $opts{c};
 
   if ($opts{t}) {
     buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
@@ -469,7 +469,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 # Recovery
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
   writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
-  print $csv "@{$reco{$key}}\n" if $opts{1};
+  print $csv "@{$reco{$key}}\n" if $opts{c};
 
   if ($opts{t}) {
     # Neater spacing in test averages output
@@ -481,7 +481,7 @@ foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
 # SCANsat
 foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
   writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
-  print $csv "@{$scan{$key}}\n" if $opts{1};
+  print $csv "@{$scan{$key}}\n" if $opts{c};
 
   if ($opts{t}) {
     # Neater spacing in test averages output
