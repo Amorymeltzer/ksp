@@ -14,20 +14,20 @@ Return a list of science points remaining and obtained so far, helpfully colored
 Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  Use `-u` to specify a savefile and it will use the external files found in your install; otherwise, it will require local versions of `ScienceDefs.cfg` and `persistent.sfs`.
 
 ```
-Usage: parseScience.pl [-atsnhH -u <savefile_name>]
+Usage: parseScience.pl [-atsnchH -u <savefile_name>]
       -a Display average science left for each planet.
       -t Display average science left for each experiment type.
       -s Sort output by science left, including averages from -a and -t flags.
       -p Sort output by percent science accomplished, including averages from
          the -a and -t flags.  Supersedes the -s flag.
       -n Turn off formatted printing (i.e., colors and bolding).
+      -c Output data to csv file as well
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -h or H Print this message.
 ```
 
 **Todo**
-- Option csv output (default?) or just averages
 - Incorporate the KSC/LaunchPad/Runway/etc. "biomes", asteroids
 
 

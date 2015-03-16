@@ -7,8 +7,6 @@
 ## Fix for 0.90 beta by adding in ALL BIOMES
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes", asteroids
 ## Option to pull KSC stuff in/out of Kerbin
-## Output to csv?  Create print subroutine I guess
-## One csv or multiple?
 ## Cleanup data/test hashes, the order of the data is unintuitive
 ## Can you do srfsplashed in every biome on other planets with water?
 
@@ -711,13 +709,14 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-atsnhH -u <savefile_name>]
+Usage: $0 [-atsnchH -u <savefile_name>]
       -a Display average science left for each planet.
       -t Display average science left for each experiment type.
       -s Sort output by science left, including averages from -a and -t flags.
       -p Sort output by percent science accomplished, including averages from
          the -a and -t flags.  Supersedes the -s flag.
       -n Turn off formatted printing (i.e., colors and bolding).
+      -c Output data to csv file as well
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -h or H Print this message.
