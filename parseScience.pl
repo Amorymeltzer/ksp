@@ -618,7 +618,7 @@ sub writeToCSV
   {
     my $lineRef = shift;
 
-    print $csv join ',' , @{$lineRef};
+    print $csv join q{,} , @{$lineRef};
     print $csv "\n";
   }
 
