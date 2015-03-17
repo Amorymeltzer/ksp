@@ -289,7 +289,7 @@ foreach my $planet (0..$planetCount) {
 
 # Build SCANsat hash
 foreach my $planet (0..$planetCount) {
-  my @situations = qw (AltimetryLoRes BiomeAnomaly AltimetryHiRes);
+  my @situations = keys %scanCaps;
 
   foreach my $sit (0..scalar @situations - 1) {
     # No surface?  Do scanning
