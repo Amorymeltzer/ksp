@@ -1,1142 +1,1185 @@
-atmosphereAnalysis Landed Global 10 1 8 0 192 192 0
-atmosphereAnalysis FlyingLow Global 10 1 5 0 120 120 0
-atmosphereAnalysis FlyingHigh Global 10 1 5 0 120 120 0
-atmosphereAnalysis Landed Global 10 1 8 0 192 192 0
-atmosphereAnalysis FlyingLow Global 10 1 6 0 144 144 0
-atmosphereAnalysis FlyingHigh Global 10 1 6 0 144 144 0
-atmosphereAnalysis FlyingLow Global 10 1 12 0 288 288 0
-atmosphereAnalysis FlyingHigh Global 10 1 12 0 288 288 0
-atmosphereAnalysis Landed AstronautComplex 10 0.004629625 0.3 7.166667 7.2 0.0333329999999998 99.54
-atmosphereAnalysis Landed Badlands 10 1 0.3 0 7.2 7.2 0.00
-atmosphereAnalysis Landed Crawlerway 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed Deserts 10 1 0.3 0 7.2 7.2 0.00
-atmosphereAnalysis Landed FlagPole 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed Grasslands 10 1 0.3 0 7.2 7.2 0.00
-atmosphereAnalysis Landed Highlands 10 1 0.3 0 7.2 7.2 0.00
-atmosphereAnalysis Landed IceCaps 10 1 0.3 0 7.2 7.2 0.00
-atmosphereAnalysis Landed MissionControl 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed Mountains 10 1 0.3 0 7.2 7.2 0.00
-atmosphereAnalysis Landed R&D 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed R&DCentralBuilding 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed R&DSideLab 10 0.02777775 0.3 7 7.2 0.2 97.22
-atmosphereAnalysis Landed R&DSmallLab 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed SPH 10 0.004629625 0.3 7.166667 7.2 0.0333329999999998 99.54
-atmosphereAnalysis Landed SPHMainBuilding 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed Shores 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed TrackingStation 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed TrackingStationHub 10 0.0007716152 0.3 7.194444 7.2 0.00555600000000034 99.92
-atmosphereAnalysis Landed Tundra 10 1 0.3 0 7.2 7.2 0.00
-atmosphereAnalysis Landed Water 10 1 0.3 0 7.2 7.2 0.00
-atmosphereAnalysis FlyingLow Badlands 10 1 0.7 0 16.8 16.8 0.00
-atmosphereAnalysis FlyingLow Deserts 10 1 0.7 0 16.8 16.8 0.00
-atmosphereAnalysis FlyingLow Grasslands 10 1 0.7 0 16.8 16.8 0.00
-atmosphereAnalysis FlyingLow Highlands 10 1 0.7 0 16.8 16.8 0.00
-atmosphereAnalysis FlyingLow IceCaps 10 1 0.7 0 16.8 16.8 0.00
-atmosphereAnalysis FlyingLow Mountains 10 1 0.7 0 16.8 16.8 0.00
-atmosphereAnalysis FlyingLow Shores 10 1 0.7 0 16.8 16.8 0.00
-atmosphereAnalysis FlyingLow Tundra 10 1 0.7 0 16.8 16.8 0.00
-atmosphereAnalysis FlyingLow Water 10 0.1666666 0.7 14 16.8 2.8 83.33
-atmosphereAnalysis FlyingHigh Badlands 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis FlyingHigh Deserts 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis FlyingHigh Grasslands 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis FlyingHigh Highlands 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis FlyingHigh IceCaps 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis FlyingHigh Mountains 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis FlyingHigh Shores 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis FlyingHigh Tundra 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis FlyingHigh Water 10 1 0.9 0 21.6 21.6 0.00
-atmosphereAnalysis Landed Global 10 1 14 0 336 336 0
-atmosphereAnalysis FlyingLow Global 10 1 11 0 264 264 0
-atmosphereAnalysis FlyingHigh Global 10 1 11 0 264 264 0
-barometerScan Landed Global 1 1 8 0 96 96 0
-barometerScan FlyingLow Global 1 1 5 0 60 60 0
-barometerScan FlyingHigh Global 1 1 5 0 60 60 0
-barometerScan Landed Global 1 1 8 0 96 96 0
-barometerScan Splashed Global 1 1 8 0 96 96 0
-barometerScan FlyingLow Global 1 1 6 0 72 72 0
-barometerScan FlyingHigh Global 1 1 6 0 72 72 0
-barometerScan FlyingLow Global 1 1 12 0 144 144 0
-barometerScan FlyingHigh Global 1 1 12 0 144 144 0
-barometerScan Landed Administration 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed AstronautComplex 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed Badlands 1 1 0.3 0 3.6 3.6 0.00
-barometerScan Landed Crawlerway 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed Deserts 1 1 0.3 0 3.6 3.6 0.00
-barometerScan Landed FlagPole 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed Grasslands 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed Highlands 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed IceCaps 1 1 0.3 0 3.6 3.6 0.00
-barometerScan Landed MissionControl 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed Mountains 1 1 0.3 0 3.6 3.6 0.00
-barometerScan Landed R&D 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed R&DCentralBuilding 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed R&DMainBuilding 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed R&DObservatory 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed R&DSideLab 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed R&DSmallLab 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed R&DTanks 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed SPH 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed SPHMainBuilding 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed Shores 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed TrackingStation 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed TrackingStationHub 1 0 0.3 3.6 3.6 0 100.00
-barometerScan Landed Tundra 1 1 0.3 0 3.6 3.6 0.00
-barometerScan Landed Water 1 1 0.3 0 3.6 3.6 0.00
-barometerScan Splashed Badlands 1 1 0.4 0 4.8 4.8 0.00
-barometerScan Splashed Deserts 1 1 0.4 0 4.8 4.8 0.00
-barometerScan Splashed Grasslands 1 1 0.4 0 4.8 4.8 0.00
-barometerScan Splashed Highlands 1 1 0.4 0 4.8 4.8 0.00
-barometerScan Splashed IceCaps 1 1 0.4 0 4.8 4.8 0.00
-barometerScan Splashed Mountains 1 1 0.4 0 4.8 4.8 0.00
-barometerScan Splashed Shores 1 1 0.4 0 4.8 4.8 0.00
-barometerScan Splashed Tundra 1 1 0.4 0 4.8 4.8 0.00
-barometerScan Splashed Water 1 0 0.4 4.8 4.8 0 100.00
-barometerScan FlyingLow Global 1 0 0.7 8.4 8.4 0 100.00
-barometerScan FlyingHigh Global 1 8.830317E-08 0.9 10.8 10.8 0 100.00
-barometerScan Landed Global 1 1 14 0 168 168 0
-barometerScan Splashed Global 1 1 12 0 144 144 0
-barometerScan FlyingLow Global 1 1 11 0 132 132 0
-barometerScan FlyingHigh Global 1 1 11 0 132 132 0
-crewReport Landed Global 1 1 12 0 60 60 0
-crewReport InSpaceLow Global 1 1 9 0 45 45 0
-crewReport InSpaceHigh Global 1 1 9 0 45 45 0
-crewReport Landed Global 1 1 8 0 40 40 0
-crewReport InSpaceLow Global 1 1 7 0 35 35 0
-crewReport InSpaceHigh Global 1 1 7 0 35 35 0
-crewReport Landed Global 1 1 8 0 40 40 0
-crewReport FlyingLow Global 1 1 5 0 25 25 0
-crewReport FlyingHigh Global 1 1 5 0 25 25 0
-crewReport InSpaceLow Global 1 1 7 0 35 35 0
-crewReport InSpaceHigh Global 1 1 7 0 35 35 0
-crewReport Landed Global 1 1 15 0 75 75 0
-crewReport InSpaceLow Global 1 1 12 0 60 60 0
-crewReport InSpaceHigh Global 1 1 12 0 60 60 0
-crewReport Landed Global 1 1 8 0 40 40 0
-crewReport Splashed Global 1 1 8 0 40 40 0
-crewReport FlyingLow Global 1 1 6 0 30 30 0
-crewReport FlyingHigh Global 1 1 6 0 30 30 0
-crewReport InSpaceLow Global 1 1 7 0 35 35 0
-crewReport InSpaceHigh Global 1 1 7 0 35 35 0
-crewReport Landed Global 1 1 9 0 45 45 0
-crewReport InSpaceLow Global 1 1 8 0 40 40 0
-crewReport InSpaceHigh Global 1 1 8 0 40 40 0
-crewReport Landed Global 1 1 8 0 40 40 0
-crewReport InSpaceLow Global 1 1 7 0 35 35 0
-crewReport InSpaceHigh Global 1 1 7 0 35 35 0
-crewReport FlyingLow Global 1 1 12 0 60 60 0
-crewReport FlyingHigh Global 1 1 12 0 60 60 0
-crewReport InSpaceLow Global 1 1 7 0 35 35 0
-crewReport InSpaceHigh Global 1 1 7 0 35 35 0
-crewReport Landed Administration 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed AstronautComplex 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed Badlands 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed Crawlerway 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed Deserts 1 1 0.3 0 1.5 1.5 0.00
-crewReport Landed Grasslands 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed Highlands 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed IceCaps 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed MissionControl 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed Mountains 1 1 0.3 0 1.5 1.5 0.00
-crewReport Landed R&D 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed R&DSmallLab 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed SPH 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed Shores 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed TrackingStation 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed TrackingStationHub 1 0 0.3 1.5 1.5 0 100.00
-crewReport Landed Tundra 1 1 0.3 0 1.5 1.5 0.00
-crewReport Landed Water 1 0 0.3 1.5 1.5 0 100.00
-crewReport Splashed Badlands 1 1 0.4 0 2 2 0.00
-crewReport Splashed Deserts 1 1 0.4 0 2 2 0.00
-crewReport Splashed Grasslands 1 1 0.4 0 2 2 0.00
-crewReport Splashed Highlands 1 1 0.4 0 2 2 0.00
-crewReport Splashed IceCaps 1 1 0.4 0 2 2 0.00
-crewReport Splashed Mountains 1 1 0.4 0 2 2 0.00
-crewReport Splashed Shores 1 0 0.4 2 2 0 100.00
-crewReport Splashed Tundra 1 1 0.4 0 2 2 0.00
-crewReport Splashed Water 1 0 0.4 2 2 0 100.00
-crewReport FlyingLow Badlands 1 0 0.7 3.5 3.5 0 100.00
-crewReport FlyingLow Deserts 1 1 0.7 0 3.5 3.5 0.00
-crewReport FlyingLow Grasslands 1 0 0.7 3.5 3.5 0 100.00
-crewReport FlyingLow Highlands 1 0 0.7 3.5 3.5 0 100.00
-crewReport FlyingLow IceCaps 1 0 0.7 3.5 3.5 0 100.00
-crewReport FlyingLow Mountains 1 0 0.7 3.5 3.5 0 100.00
-crewReport FlyingLow Shores 1 0 0.7 3.5 3.5 0 100.00
-crewReport FlyingLow Tundra 1 0 0.7 3.5 3.5 0 100.00
-crewReport FlyingLow Water 1 0 0.7 3.5 3.5 0 100.00
-crewReport FlyingHigh Global 1 0 0.9 4.5 4.5 0 100.00
-crewReport InSpaceLow Global 1 0 1 5 5 0 100.00
-crewReport InSpaceHigh Global 1 0 1.5 7.5 7.5 0 100.00
-crewReport InSpaceLow Global 1 1 11 0 55 55 0
-crewReport InSpaceHigh Global 1 1 11 0 55 55 0
-crewReport Landed Global 1 1 14 0 70 70 0
-crewReport Splashed Global 1 1 12 0 60 60 0
-crewReport FlyingLow Global 1 1 11 0 55 55 0
-crewReport FlyingHigh Global 1 1 11 0 55 55 0
-crewReport InSpaceLow Global 1 1 9 0 45 45 0
-crewReport InSpaceHigh Global 1 1 9 0 45 45 0
-crewReport Landed Flats 1 1 5 0 25 25 0
-crewReport Landed GreatFlats 1 1 5 0 25 25 0
-crewReport Landed GreaterFlats 1 1 5 0 25 25 0
-crewReport Landed Highlands 1 1 5 0 25 25 0
-crewReport Landed LesserFlats 1 1 5 0 25 25 0
-crewReport Landed Lowlands 1 1 5 0 25 25 0
-crewReport Landed Midlands 1 1 5 0 25 25 0
-crewReport Landed Poles 1 1 5 0 25 25 0
-crewReport Landed Slopes 1 1 5 0 25 25 0
-crewReport FlyingHigh Global 1 1 1 0 5 5 0.00
-crewReport InSpaceLow Global 1 1 4 0 20 20 0
-crewReport InSpaceHigh Global 1 1 4 0 20 20 0
-crewReport Landed Global 1 1 10 0 50 50 0
-crewReport InSpaceLow Global 1 1 8 0 40 40 0
-crewReport InSpaceHigh Global 1 1 8 0 40 40 0
-crewReport Landed Canyons 1 1 4 0 20 20 0
-crewReport Landed EastCrater 1 1 4 0 20 20 0
-crewReport Landed EastFarsideCrater 1 1 4 0 20 20 0
-crewReport Landed FarsideCrater 1 1 4 0 20 20 0
-crewReport Landed HighlandCraters 1 1 4 0 20 20 0
-crewReport Landed Highlands 1 0 4 20 20 0 100.00
-crewReport Landed MidlandCraters 1 1 4 0 20 20 0
-crewReport Landed Midlands 1 0 4 20 20 0 100.00
-crewReport Landed NorthernBasin 1 1 4 0 20 20 0
-crewReport Landed NorthwestCrater 1 1 4 0 20 20 0
-crewReport Landed PolarCrater 1 1 4 0 20 20 0
-crewReport Landed PolarLowlands 1 0 4 20 20 0 100.00
-crewReport Landed Poles 1 1 4 0 20 20 0
-crewReport Landed SouthwestCrater 1 0 4 20 20 0 100.00
-crewReport Landed TwinCraters 1 1 4 0 20 20 0
-crewReport FlyingHigh Global 1 1 1 0 5 5 0.00
-crewReport InSpaceLow Global 1 0 3 15 15 0 100.00
-crewReport InSpaceHigh Global 1 0 2 10 10 0 100.00
-crewReport Landed Global 1 1 12 0 60 60 0
-crewReport InSpaceLow Global 1 1 9 0 45 45 0
-crewReport InSpaceHigh Global 1 1 9 0 45 45 0
-crewReport Landed Global 1 1 12 0 60 60 0
-crewReport InSpaceLow Global 1 1 10 0 50 50 0
-crewReport InSpaceHigh Global 1 1 10 0 50 50 0
-crewReport Landed Global 1 1 12 0 60 60 0
-crewReport InSpaceLow Global 1 1 9 0 45 45 0
-crewReport InSpaceHigh Global 1 1 9 0 45 45 0
-evaReport Landed Global 1 1 12 0 96 96 0
-evaReport InSpaceLow Global 1 1 9 0 72 72 0
-evaReport InSpaceHigh Global 1 1 9 0 72 72 0
-evaReport Landed Global 1 1 8 0 64 64 0
-evaReport InSpaceLow Global 1 1 7 0 56 56 0
-evaReport InSpaceHigh Global 1 1 7 0 56 56 0
-evaReport Landed Global 1 1 8 0 64 64 0
-evaReport FlyingLow Global 1 1 5 0 40 40 0
-evaReport FlyingHigh Global 1 1 5 0 40 40 0
-evaReport InSpaceLow Global 1 1 7 0 56 56 0
-evaReport InSpaceHigh Global 1 1 7 0 56 56 0
-evaReport Landed Global 1 1 15 0 120 120 0
-evaReport InSpaceLow Global 1 1 12 0 96 96 0
-evaReport InSpaceHigh Global 1 1 12 0 96 96 0
-evaReport Landed Global 1 1 8 0 64 64 0
-evaReport Splashed Global 1 1 8 0 64 64 0
-evaReport FlyingLow Global 1 1 6 0 48 48 0
-evaReport FlyingHigh Global 1 1 6 0 48 48 0
-evaReport InSpaceLow Global 1 1 7 0 56 56 0
-evaReport InSpaceHigh Global 1 1 7 0 56 56 0
-evaReport Landed Global 1 1 9 0 72 72 0
-evaReport InSpaceLow Global 1 1 8 0 64 64 0
-evaReport InSpaceHigh Global 1 1 8 0 64 64 0
-evaReport Landed Global 1 1 8 0 64 64 0
-evaReport InSpaceLow Global 1 1 7 0 56 56 0
-evaReport InSpaceHigh Global 1 1 7 0 56 56 0
-evaReport FlyingLow Global 1 1 12 0 96 96 0
-evaReport FlyingHigh Global 1 1 12 0 96 96 0
-evaReport InSpaceLow Global 1 1 7 0 56 56 0
-evaReport InSpaceHigh Global 1 1 7 0 56 56 0
-evaReport Landed Administration 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed AstronautComplex 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed Badlands 1 1 0.3 0 2.4 2.4 0.00
-evaReport Landed Crawlerway 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed Deserts 1 1 0.3 0 2.4 2.4 0.00
-evaReport Landed FlagPole 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed Grasslands 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed Highlands 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed IceCaps 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed MissionControl 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed Mountains 1 1 0.3 0 2.4 2.4 0.00
-evaReport Landed R&D 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed R&DCentralBuilding 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed R&DMainBuilding 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed R&DObservatory 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed R&DSideLab 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed R&DSmallLab 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed R&DTanks 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed SPH 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed SPHMainBuilding 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed Shores 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed TrackingStation 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed TrackingStationHub 1 0 0.3 2.4 2.4 0 100.00
-evaReport Landed Tundra 1 1 0.3 0 2.4 2.4 0.00
-evaReport Landed Water 1 0 0.3 2.4 2.4 0 100.00
-evaReport Splashed Badlands 1 1 0.4 0 3.2 3.2 0.00
-evaReport Splashed Deserts 1 1 0.4 0 3.2 3.2 0.00
-evaReport Splashed Grasslands 1 1 0.4 0 3.2 3.2 0.00
-evaReport Splashed Highlands 1 1 0.4 0 3.2 3.2 0.00
-evaReport Splashed IceCaps 1 1 0.4 0 3.2 3.2 0.00
-evaReport Splashed Mountains 1 1 0.4 0 3.2 3.2 0.00
-evaReport Splashed Shores 1 0 0.4 3.2 3.2 0 100.00
-evaReport Splashed Tundra 1 1 0.4 0 3.2 3.2 0.00
-evaReport Splashed Water 1 0 0.4 3.2 3.2 0 100.00
-evaReport FlyingLow Administration 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow AstronautComplex 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow Badlands 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow Crawlerway 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow Deserts 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow FlagPole 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow Grasslands 1 0 0.7 5.6 5.6 0 100.00
-evaReport FlyingLow Highlands 1 0 0.7 5.6 5.6 0 100.00
-evaReport FlyingLow IceCaps 1 0 0.7 5.6 5.6 0 100.00
-evaReport FlyingLow MissionControl 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow Mountains 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow R&DCentralBuilding 1 0 0.7 5.6 5.6 0 100.00
-evaReport FlyingLow R&DSmallLab 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow R&DTanks 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow SPH 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow SPHMainBuilding 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow Shores 1 0 0.7 5.6 5.6 0 100.00
-evaReport FlyingLow TrackingStation 1 0 0.7 5.6 5.6 0 100.00
-evaReport FlyingLow TrackingStationHub 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow Tundra 1 1 0.7 0 5.6 5.6 0.00
-evaReport FlyingLow Water 1 0 0.7 5.6 5.6 0 100.00
-evaReport FlyingHigh Global 1 0 0.9 7.2 7.2 0 100.00
-evaReport InSpaceLow Badlands 1 0 1 8 8 0 100.00
-evaReport InSpaceLow Deserts 1 0 1 8 8 0 100.00
-evaReport InSpaceLow Grasslands 1 0 1 8 8 0 100.00
-evaReport InSpaceLow Highlands 1 0 1 8 8 0 100.00
-evaReport InSpaceLow IceCaps 1 1 1 0 8 8 0.00
-evaReport InSpaceLow Mountains 1 0 1 8 8 0 100.00
-evaReport InSpaceLow Shores 1 0 1 8 8 0 100.00
-evaReport InSpaceLow Tundra 1 1 1 0 8 8 0.00
-evaReport InSpaceLow Water 1 0 1 8 8 0 100.00
-evaReport InSpaceHigh Global 1 0 1.5 12 12 0 100.00
-evaReport InSpaceLow Global 1 1 11 0 88 88 0
-evaReport InSpaceHigh Global 1 1 11 0 88 88 0
-evaReport Landed Global 1 1 14 0 112 112 0
-evaReport Splashed Global 1 1 12 0 96 96 0
-evaReport FlyingLow Global 1 1 11 0 88 88 0
-evaReport FlyingHigh Global 1 1 11 0 88 88 0
-evaReport InSpaceLow Global 1 1 9 0 72 72 0
-evaReport InSpaceHigh Global 1 1 9 0 72 72 0
-evaReport Landed Flats 1 1 5 0 40 40 0
-evaReport Landed GreatFlats 1 1 5 0 40 40 0
-evaReport Landed GreaterFlats 1 1 5 0 40 40 0
-evaReport Landed Highlands 1 1 5 0 40 40 0
-evaReport Landed LesserFlats 1 1 5 0 40 40 0
-evaReport Landed Lowlands 1 1 5 0 40 40 0
-evaReport Landed Midlands 1 1 5 0 40 40 0
-evaReport Landed Poles 1 1 5 0 40 40 0
-evaReport Landed Slopes 1 1 5 0 40 40 0
-evaReport FlyingHigh Global 1 1 1 0 8 8 0.00
-evaReport InSpaceLow Flats 1 1 4 0 32 32 0
-evaReport InSpaceLow GreatFlats 1 1 4 0 32 32 0
-evaReport InSpaceLow GreaterFlats 1 1 4 0 32 32 0
-evaReport InSpaceLow Highlands 1 1 4 0 32 32 0
-evaReport InSpaceLow LesserFlats 1 1 4 0 32 32 0
-evaReport InSpaceLow Lowlands 1 1 4 0 32 32 0
-evaReport InSpaceLow Midlands 1 1 4 0 32 32 0
-evaReport InSpaceLow Poles 1 1 4 0 32 32 0
-evaReport InSpaceLow Slopes 1 1 4 0 32 32 0
-evaReport InSpaceHigh Global 1 1 4 0 32 32 0
-evaReport Landed Global 1 1 10 0 80 80 0
-evaReport InSpaceLow Global 1 1 8 0 64 64 0
-evaReport InSpaceHigh Global 1 1 8 0 64 64 0
-evaReport Landed Canyons 1 1 4 0 32 32 0
-evaReport Landed EastCrater 1 1 4 0 32 32 0
-evaReport Landed EastFarsideCrater 1 1 4 0 32 32 0
-evaReport Landed FarsideCrater 1 1 4 0 32 32 0
-evaReport Landed HighlandCraters 1 1 4 0 32 32 0
-evaReport Landed Highlands 1 0 4 32 32 0 100.00
-evaReport Landed MidlandCraters 1 1 4 0 32 32 0
-evaReport Landed Midlands 1 0 4 32 32 0 100.00
-evaReport Landed NorthernBasin 1 1 4 0 32 32 0
-evaReport Landed NorthwestCrater 1 1 4 0 32 32 0
-evaReport Landed PolarCrater 1 1 4 0 32 32 0
-evaReport Landed PolarLowlands 1 0 4 32 32 0 100.00
-evaReport Landed Poles 1 1 4 0 32 32 0
-evaReport Landed SouthwestCrater 1 0 4 32 32 0 100.00
-evaReport Landed TwinCraters 1 1 4 0 32 32 0
-evaReport FlyingHigh Global 1 1 1 0 8 8 0.00
-evaReport InSpaceLow Canyons 1 0 3 24 24 0 100.00
-evaReport InSpaceLow EastCrater 1 0 3 24 24 0 100.00
-evaReport InSpaceLow EastFarsideCrater 1 0 3 24 24 0 100.00
-evaReport InSpaceLow FarsideCrater 1 0 3 24 24 0 100.00
-evaReport InSpaceLow HighlandCraters 1 0 3 24 24 0 100.00
-evaReport InSpaceLow Highlands 1 0 3 24 24 0 100.00
-evaReport InSpaceLow MidlandCraters 1 0 3 24 24 0 100.00
-evaReport InSpaceLow Midlands 1 0 3 24 24 0 100.00
-evaReport InSpaceLow NorthernBasin 1 0 3 24 24 0 100.00
-evaReport InSpaceLow NorthwestCrater 1 0 3 24 24 0 100.00
-evaReport InSpaceLow PolarCrater 1 0 3 24 24 0 100.00
-evaReport InSpaceLow PolarLowlands 1 0 3 24 24 0 100.00
-evaReport InSpaceLow Poles 1 0 3 24 24 0 100.00
-evaReport InSpaceLow SouthwestCrater 1 0 3 24 24 0 100.00
-evaReport InSpaceLow TwinCraters 1 0 3 24 24 0 100.00
-evaReport InSpaceHigh Global 1 0 2 16 16 0 100.00
-evaReport Landed Global 1 1 12 0 96 96 0
-evaReport InSpaceLow Global 1 1 9 0 72 72 0
-evaReport InSpaceHigh Global 1 1 9 0 72 72 0
-evaReport Landed Global 1 1 12 0 96 96 0
-evaReport InSpaceLow Global 1 1 10 0 80 80 0
-evaReport InSpaceHigh Global 1 1 10 0 80 80 0
-evaReport Landed Global 1 1 12 0 96 96 0
-evaReport InSpaceLow Global 1 1 9 0 72 72 0
-evaReport InSpaceHigh Global 1 1 9 0 72 72 0
-gravityScan Landed Global 3 1 12 0 264 264 0
-gravityScan InSpaceLow Global 3 1 9 0 198 198 0
-gravityScan InSpaceHigh Global 3 1 9 0 198 198 0
-gravityScan Landed Global 3 1 8 0 176 176 0
-gravityScan InSpaceLow Global 3 1 7 0 154 154 0
-gravityScan InSpaceHigh Global 3 1 7 0 154 154 0
-gravityScan Landed Global 3 1 8 0 176 176 0
-gravityScan InSpaceLow Global 3 1 7 0 154 154 0
-gravityScan InSpaceHigh Global 3 1 7 0 154 154 0
-gravityScan Landed Global 3 1 15 0 330 330 0
-gravityScan InSpaceLow Global 3 1 12 0 264 264 0
-gravityScan InSpaceHigh Global 3 1 12 0 264 264 0
-gravityScan Landed Global 3 1 8 0 176 176 0
-gravityScan Splashed Global 3 1 8 0 176 176 0
-gravityScan InSpaceLow Global 3 1 7 0 154 154 0
-gravityScan InSpaceHigh Global 3 1 7 0 154 154 0
-gravityScan Landed Global 3 1 9 0 198 198 0
-gravityScan InSpaceLow Global 3 1 8 0 176 176 0
-gravityScan InSpaceHigh Global 3 1 8 0 176 176 0
-gravityScan Landed Global 3 1 8 0 176 176 0
-gravityScan InSpaceLow Global 3 1 7 0 154 154 0
-gravityScan InSpaceHigh Global 3 1 7 0 154 154 0
-gravityScan InSpaceLow Global 3 1 7 0 154 154 0
-gravityScan InSpaceHigh Global 3 1 7 0 154 154 0
-gravityScan Landed Administration 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed AstronautComplex 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed Badlands 3 1 0.3 0 6.6 6.6 0.00
-gravityScan Landed Crawlerway 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed Deserts 3 1 0.3 0 6.6 6.6 0.00
-gravityScan Landed FlagPole 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed Grasslands 3 1 0.3 0 6.6 6.6 0.00
-gravityScan Landed Highlands 3 1 0.3 0 6.6 6.6 0.00
-gravityScan Landed IceCaps 3 1 0.3 0 6.6 6.6 0.00
-gravityScan Landed MissionControl 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed Mountains 3 1 0.3 0 6.6 6.6 0.00
-gravityScan Landed R&D 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed R&DCentralBuilding 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed R&DMainBuilding 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed R&DObservatory 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed R&DSideLab 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed R&DSmallLab 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed R&DTanks 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed SPH 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed SPHMainBuilding 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed Shores 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed TrackingStation 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed TrackingStationHub 3 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-gravityScan Landed Tundra 3 1 0.3 0 6.6 6.6 0.00
-gravityScan Landed Water 3 1 0.3 0 6.6 6.6 0.00
-gravityScan Splashed Badlands 3 1 0.4 0 8.8 8.8 0.00
-gravityScan Splashed Deserts 3 1 0.4 0 8.8 8.8 0.00
-gravityScan Splashed Grasslands 3 1 0.4 0 8.8 8.8 0.00
-gravityScan Splashed Highlands 3 1 0.4 0 8.8 8.8 0.00
-gravityScan Splashed IceCaps 3 1 0.4 0 8.8 8.8 0.00
-gravityScan Splashed Mountains 3 1 0.4 0 8.8 8.8 0.00
-gravityScan Splashed Shores 3 1 0.4 0 8.8 8.8 0.00
-gravityScan Splashed Tundra 3 1 0.4 0 8.8 8.8 0.00
-gravityScan Splashed Water 3 1 0.4 0 8.8 8.8 0.00
-gravityScan InSpaceLow Badlands 3 1 1 0 22 22 0.00
-gravityScan InSpaceLow Deserts 3 0.09090909 1 20 22 2 90.91
-gravityScan InSpaceLow Grasslands 3 0.008264455 1 21.81818 22 0.181819999999998 99.17
-gravityScan InSpaceLow Highlands 3 0.008264455 1 21.81818 22 0.181819999999998 99.17
-gravityScan InSpaceLow IceCaps 3 1 1 0 22 22 0.00
-gravityScan InSpaceLow Mountains 3 0.008264455 1 21.81818 22 0.181819999999998 99.17
-gravityScan InSpaceLow Shores 3 0.008264455 1 21.81818 22 0.181819999999998 99.17
-gravityScan InSpaceLow Tundra 3 1 1 0 22 22 0.00
-gravityScan InSpaceLow Water 3 0.008264455 1 21.81818 22 0.181819999999998 99.17
-gravityScan InSpaceHigh Badlands 3 1 1 0 22 22 0
-gravityScan InSpaceHigh Deserts 3 1 1 0 22 22 0
-gravityScan InSpaceHigh Grasslands 3 1 1.5 0 33 33 0.00
-gravityScan InSpaceHigh Highlands 3 1 1.5 0 33 33 0.00
-gravityScan InSpaceHigh IceCaps 3 1 1 0 22 22 0
-gravityScan InSpaceHigh Mountains 3 1 1 0 22 22 0
-gravityScan InSpaceHigh Shores 3 1 1.5 0 33 33 0.00
-gravityScan InSpaceHigh Tundra 3 1 1.5 0 33 33 0.00
-gravityScan InSpaceHigh Water 3 1 1.5 0 33 33 0.00
-gravityScan InSpaceLow Global 3 1 11 0 242 242 0
-gravityScan InSpaceHigh Global 3 1 11 0 242 242 0
-gravityScan Landed Global 3 1 14 0 308 308 0
-gravityScan Splashed Global 3 1 12 0 264 264 0
-gravityScan InSpaceLow Global 3 1 9 0 198 198 0
-gravityScan InSpaceHigh Global 3 1 9 0 198 198 0
-gravityScan Landed Flats 3 1 5 0 110 110 0
-gravityScan Landed GreatFlats 3 1 5 0 110 110 0
-gravityScan Landed GreaterFlats 3 1 5 0 110 110 0
-gravityScan Landed Highlands 3 1 5 0 110 110 0
-gravityScan Landed LesserFlats 3 1 5 0 110 110 0
-gravityScan Landed Lowlands 3 1 5 0 110 110 0
-gravityScan Landed Midlands 3 1 5 0 110 110 0
-gravityScan Landed Poles 3 1 5 0 110 110 0
-gravityScan Landed Slopes 3 1 5 0 110 110 0
-gravityScan InSpaceLow Flats 3 1 4 0 88 88 0
-gravityScan InSpaceLow GreatFlats 3 1 4 0 88 88 0
-gravityScan InSpaceLow GreaterFlats 3 1 4 0 88 88 0
-gravityScan InSpaceLow Highlands 3 1 4 0 88 88 0
-gravityScan InSpaceLow LesserFlats 3 1 4 0 88 88 0
-gravityScan InSpaceLow Lowlands 3 1 4 0 88 88 0
-gravityScan InSpaceLow Midlands 3 1 4 0 88 88 0
-gravityScan InSpaceLow Poles 3 1 4 0 88 88 0
-gravityScan InSpaceLow Slopes 3 1 4 0 88 88 0
-gravityScan InSpaceHigh Flats 3 1 4 0 88 88 0
-gravityScan InSpaceHigh GreatFlats 3 1 4 0 88 88 0
-gravityScan InSpaceHigh GreaterFlats 3 1 4 0 88 88 0
-gravityScan InSpaceHigh Highlands 3 1 4 0 88 88 0
-gravityScan InSpaceHigh LesserFlats 3 1 4 0 88 88 0
-gravityScan InSpaceHigh Lowlands 3 1 4 0 88 88 0
-gravityScan InSpaceHigh Midlands 3 1 4 0 88 88 0
-gravityScan InSpaceHigh Poles 3 1 4 0 88 88 0
-gravityScan InSpaceHigh Slopes 3 1 4 0 88 88 0
-gravityScan Landed Global 3 1 10 0 220 220 0
-gravityScan InSpaceLow Global 3 1 8 0 176 176 0
-gravityScan InSpaceHigh Global 3 1 8 0 176 176 0
-gravityScan Landed Canyons 3 1 4 0 88 88 0
-gravityScan Landed EastCrater 3 1 4 0 88 88 0
-gravityScan Landed EastFarsideCrater 3 1 4 0 88 88 0
-gravityScan Landed FarsideCrater 3 1 4 0 88 88 0
-gravityScan Landed HighlandCraters 3 1 4 0 88 88 0
-gravityScan Landed Highlands 3 1 4 0 88 88 0
-gravityScan Landed MidlandCraters 3 1 4 0 88 88 0
-gravityScan Landed Midlands 3 1 4 0 88 88 0
-gravityScan Landed NorthernBasin 3 1 4 0 88 88 0
-gravityScan Landed NorthwestCrater 3 1 4 0 88 88 0
-gravityScan Landed PolarCrater 3 1 4 0 88 88 0
-gravityScan Landed PolarLowlands 3 1 4 0 88 88 0
-gravityScan Landed Poles 3 1 4 0 88 88 0
-gravityScan Landed SouthwestCrater 3 1 4 0 88 88 0
-gravityScan Landed TwinCraters 3 1 4 0 88 88 0
-gravityScan InSpaceLow Canyons 3 1 3 0 66 66 0
-gravityScan InSpaceLow EastCrater 3 1 3 0 66 66 0
-gravityScan InSpaceLow EastFarsideCrater 3 1 3 0 66 66 0
-gravityScan InSpaceLow FarsideCrater 3 1 3 0 66 66 0
-gravityScan InSpaceLow HighlandCraters 3 1 3 0 66 66 0
-gravityScan InSpaceLow Highlands 3 1 3 0 66 66 0.00
-gravityScan InSpaceLow MidlandCraters 3 1 3 0 66 66 0
-gravityScan InSpaceLow Midlands 3 1 3 0 66 66 0.00
-gravityScan InSpaceLow NorthernBasin 3 1 3 0 66 66 0
-gravityScan InSpaceLow NorthwestCrater 3 1 3 0 66 66 0
-gravityScan InSpaceLow PolarCrater 3 1 3 0 66 66 0
-gravityScan InSpaceLow PolarLowlands 3 1 3 0 66 66 0
-gravityScan InSpaceLow Poles 3 1 3 0 66 66 0
-gravityScan InSpaceLow SouthwestCrater 3 1 3 0 66 66 0
-gravityScan InSpaceLow TwinCraters 3 1 3 0 66 66 0
-gravityScan InSpaceHigh Canyons 3 1 3 0 66 66 0
-gravityScan InSpaceHigh EastCrater 3 1 3 0 66 66 0
-gravityScan InSpaceHigh EastFarsideCrater 3 1 3 0 66 66 0
-gravityScan InSpaceHigh FarsideCrater 3 1 2 0 44 44 0.00
-gravityScan InSpaceHigh HighlandCraters 3 1 2 0 44 44 0.00
-gravityScan InSpaceHigh Highlands 3 1 2 0 44 44 0.00
-gravityScan InSpaceHigh MidlandCraters 3 1 3 0 66 66 0
-gravityScan InSpaceHigh Midlands 3 1 2 0 44 44 0.00
-gravityScan InSpaceHigh NorthernBasin 3 1 3 0 66 66 0
-gravityScan InSpaceHigh NorthwestCrater 3 1 3 0 66 66 0
-gravityScan InSpaceHigh PolarCrater 3 1 3 0 66 66 0
-gravityScan InSpaceHigh PolarLowlands 3 1 3 0 66 66 0
-gravityScan InSpaceHigh Poles 3 1 3 0 66 66 0
-gravityScan InSpaceHigh SouthwestCrater 3 1 3 0 66 66 0
-gravityScan InSpaceHigh TwinCraters 3 1 3 0 66 66 0
-gravityScan Landed Global 3 1 12 0 264 264 0
-gravityScan InSpaceLow Global 3 1 9 0 198 198 0
-gravityScan InSpaceHigh Global 3 1 9 0 198 198 0
-gravityScan Landed Global 3 1 12 0 264 264 0
-gravityScan InSpaceLow Global 3 1 10 0 220 220 0
-gravityScan InSpaceHigh Global 3 1 10 0 220 220 0
-gravityScan Landed Global 3 1 12 0 264 264 0
-gravityScan InSpaceLow Global 3 1 9 0 198 198 0
-gravityScan InSpaceHigh Global 3 1 9 0 198 198 0
-mobileMaterialsLab Landed Global 1 1 12 0 384 384 0
-mobileMaterialsLab InSpaceLow Global 1 1 9 0 288 288 0
-mobileMaterialsLab InSpaceHigh Global 1 1 9 0 288 288 0
-mobileMaterialsLab Landed Global 1 1 8 0 256 256 0
-mobileMaterialsLab InSpaceLow Global 1 1 7 0 224 224 0
-mobileMaterialsLab InSpaceHigh Global 1 1 7 0 224 224 0
-mobileMaterialsLab Landed Global 1 1 8 0 256 256 0
-mobileMaterialsLab FlyingLow Global 1 1 5 0 160 160 0
-mobileMaterialsLab FlyingHigh Global 1 1 5 0 160 160 0
-mobileMaterialsLab InSpaceLow Global 1 1 7 0 224 224 0
-mobileMaterialsLab InSpaceHigh Global 1 1 7 0 224 224 0
-mobileMaterialsLab Landed Global 1 1 15 0 480 480 0
-mobileMaterialsLab InSpaceLow Global 1 1 12 0 384 384 0
-mobileMaterialsLab InSpaceHigh Global 1 1 12 0 384 384 0
-mobileMaterialsLab Landed Global 1 1 8 0 256 256 0
-mobileMaterialsLab Splashed Global 1 1 8 0 256 256 0
-mobileMaterialsLab FlyingLow Global 1 1 6 0 192 192 0
-mobileMaterialsLab FlyingHigh Global 1 1 6 0 192 192 0
-mobileMaterialsLab InSpaceLow Global 1 1 7 0 224 224 0
-mobileMaterialsLab InSpaceHigh Global 1 1 7 0 224 224 0
-mobileMaterialsLab Landed Global 1 1 9 0 288 288 0
-mobileMaterialsLab InSpaceLow Global 1 1 8 0 256 256 0
-mobileMaterialsLab InSpaceHigh Global 1 1 8 0 256 256 0
-mobileMaterialsLab Landed Global 1 1 8 0 256 256 0
-mobileMaterialsLab InSpaceLow Global 1 1 7 0 224 224 0
-mobileMaterialsLab InSpaceHigh Global 1 1 7 0 224 224 0
-mobileMaterialsLab FlyingLow Global 1 1 12 0 384 384 0
-mobileMaterialsLab FlyingHigh Global 1 1 12 0 384 384 0
-mobileMaterialsLab InSpaceLow Global 1 1 7 0 224 224 0
-mobileMaterialsLab InSpaceHigh Global 1 1 7 0 224 224 0
-mobileMaterialsLab Landed Administration 1 2.39412E-05 0.3 9.599771 9.6 0.000228999999999147 100.00
-mobileMaterialsLab Landed AstronautComplex 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed Badlands 1 1 0.3 0 9.6 9.6 0.00
-mobileMaterialsLab Landed Crawlerway 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed Deserts 1 1 0.3 0 9.6 9.6 0.00
-mobileMaterialsLab Landed FlagPole 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed Grasslands 1 1 0.3 0 9.6 9.6 0.00
-mobileMaterialsLab Landed Highlands 1 1 0.3 0 9.6 9.6 0.00
-mobileMaterialsLab Landed IceCaps 1 1 0.3 0 9.6 9.6 0.00
-mobileMaterialsLab Landed MissionControl 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed Mountains 1 1 0.3 0 9.6 9.6 0.00
-mobileMaterialsLab Landed R&D 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed R&DCentralBuilding 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed R&DMainBuilding 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed R&DObservatory 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed R&DSideLab 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed R&DSmallLab 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed SPH 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed SPHMainBuilding 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed Shores 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed TrackingStation 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed TrackingStationHub 1 0.002289812 0.3 9.578018 9.6 0.0219819999999995 99.77
-mobileMaterialsLab Landed Tundra 1 1 0.3 0 9.6 9.6 0.00
-mobileMaterialsLab Landed Water 1 1 0.3 0 9.6 9.6 0.00
-mobileMaterialsLab Splashed Badlands 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab Splashed Deserts 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab Splashed Grasslands 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab Splashed Highlands 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab Splashed IceCaps 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab Splashed Mountains 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab Splashed Shores 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab Splashed Tundra 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab Splashed Water 1 1 0.4 0 12.8 12.8 0.00
-mobileMaterialsLab FlyingLow Global 1 1 0.7 0 22.4 22.4 0.00
-mobileMaterialsLab FlyingHigh Global 1 1 0.9 0 28.8 28.8 0.00
-mobileMaterialsLab InSpaceLow Global 1 1 1 0 32 32 0.00
-mobileMaterialsLab InSpaceHigh Global 1 1 1.5 0 48 48 0.00
-mobileMaterialsLab InSpaceLow Global 1 1 11 0 352 352 0
-mobileMaterialsLab InSpaceHigh Global 1 1 11 0 352 352 0
-mobileMaterialsLab Landed Global 1 1 14 0 448 448 0
-mobileMaterialsLab Splashed Global 1 1 12 0 384 384 0
-mobileMaterialsLab FlyingLow Global 1 1 11 0 352 352 0
-mobileMaterialsLab FlyingHigh Global 1 1 11 0 352 352 0
-mobileMaterialsLab InSpaceLow Global 1 1 9 0 288 288 0
-mobileMaterialsLab InSpaceHigh Global 1 1 9 0 288 288 0
-mobileMaterialsLab Landed Flats 1 1 5 0 160 160 0
-mobileMaterialsLab Landed GreatFlats 1 1 5 0 160 160 0
-mobileMaterialsLab Landed GreaterFlats 1 1 5 0 160 160 0
-mobileMaterialsLab Landed Highlands 1 1 5 0 160 160 0
-mobileMaterialsLab Landed LesserFlats 1 1 5 0 160 160 0
-mobileMaterialsLab Landed Lowlands 1 1 5 0 160 160 0
-mobileMaterialsLab Landed Midlands 1 1 5 0 160 160 0
-mobileMaterialsLab Landed Poles 1 1 5 0 160 160 0
-mobileMaterialsLab Landed Slopes 1 1 5 0 160 160 0
-mobileMaterialsLab FlyingHigh Global 1 1 1 0 32 32 0.00
-mobileMaterialsLab InSpaceLow Global 1 1 4 0 128 128 0
-mobileMaterialsLab InSpaceHigh Global 1 1 4 0 128 128 0
-mobileMaterialsLab Landed Global 1 1 10 0 320 320 0
-mobileMaterialsLab InSpaceLow Global 1 1 8 0 256 256 0
-mobileMaterialsLab InSpaceHigh Global 1 1 8 0 256 256 0
-mobileMaterialsLab Landed Canyons 1 1 4 0 128 128 0
-mobileMaterialsLab Landed EastCrater 1 1 4 0 128 128 0
-mobileMaterialsLab Landed EastFarsideCrater 1 1 4 0 128 128 0
-mobileMaterialsLab Landed FarsideCrater 1 1 4 0 128 128 0
-mobileMaterialsLab Landed HighlandCraters 1 1 4 0 128 128 0
-mobileMaterialsLab Landed Highlands 1 1 4 0 128 128 0
-mobileMaterialsLab Landed MidlandCraters 1 1 4 0 128 128 0
-mobileMaterialsLab Landed Midlands 1 1 4 0 128 128 0
-mobileMaterialsLab Landed NorthernBasin 1 1 4 0 128 128 0
-mobileMaterialsLab Landed NorthwestCrater 1 1 4 0 128 128 0
-mobileMaterialsLab Landed PolarCrater 1 1 4 0 128 128 0
-mobileMaterialsLab Landed PolarLowlands 1 1 4 0 128 128 0
-mobileMaterialsLab Landed Poles 1 1 4 0 128 128 0
-mobileMaterialsLab Landed SouthwestCrater 1 1 4 0 128 128 0
-mobileMaterialsLab Landed TwinCraters 1 1 4 0 128 128 0
-mobileMaterialsLab FlyingHigh Global 1 1 1 0 32 32 0.00
-mobileMaterialsLab InSpaceLow Global 1 1 3 0 96 96 0
-mobileMaterialsLab InSpaceHigh Global 1 1 3 0 96 96 0
-mobileMaterialsLab Landed Global 1 1 12 0 384 384 0
-mobileMaterialsLab InSpaceLow Global 1 1 9 0 288 288 0
-mobileMaterialsLab InSpaceHigh Global 1 1 9 0 288 288 0
-mobileMaterialsLab Landed Global 1 1 12 0 384 384 0
-mobileMaterialsLab InSpaceLow Global 1 1 10 0 320 320 0
-mobileMaterialsLab InSpaceHigh Global 1 1 10 0 320 320 0
-mobileMaterialsLab Landed Global 1 1 12 0 384 384 0
-mobileMaterialsLab InSpaceLow Global 1 1 9 0 288 288 0
-mobileMaterialsLab InSpaceHigh Global 1 1 9 0 288 288 0
-mysteryGoo Landed Global 1 1 12 0 156 156 0
-mysteryGoo InSpaceLow Global 1 1 9 0 117 117 0
-mysteryGoo InSpaceHigh Global 1 1 9 0 117 117 0
-mysteryGoo Landed Global 1 1 8 0 104 104 0
-mysteryGoo InSpaceLow Global 1 1 7 0 91 91 0
-mysteryGoo InSpaceHigh Global 1 1 7 0 91 91 0
-mysteryGoo Landed Global 1 1 8 0 104 104 0
-mysteryGoo FlyingLow Global 1 1 5 0 65 65 0
-mysteryGoo FlyingHigh Global 1 1 5 0 65 65 0
-mysteryGoo InSpaceLow Global 1 1 7 0 91 91 0
-mysteryGoo InSpaceHigh Global 1 1 7 0 91 91 0
-mysteryGoo Landed Global 1 1 15 0 195 195 0
-mysteryGoo InSpaceLow Global 1 1 12 0 156 156 0
-mysteryGoo InSpaceHigh Global 1 1 12 0 156 156 0
-mysteryGoo Landed Global 1 1 8 0 104 104 0
-mysteryGoo Splashed Global 1 1 8 0 104 104 0
-mysteryGoo FlyingLow Global 1 1 6 0 78 78 0
-mysteryGoo FlyingHigh Global 1 1 6 0 78 78 0
-mysteryGoo InSpaceLow Global 1 1 7 0 91 91 0
-mysteryGoo InSpaceHigh Global 1 1 7 0 91 91 0
-mysteryGoo Landed Global 1 1 9 0 117 117 0
-mysteryGoo InSpaceLow Global 1 1 8 0 104 104 0
-mysteryGoo InSpaceHigh Global 1 1 8 0 104 104 0
-mysteryGoo Landed Global 1 1 8 0 104 104 0
-mysteryGoo InSpaceLow Global 1 1 7 0 91 91 0
-mysteryGoo InSpaceHigh Global 1 1 7 0 91 91 0
-mysteryGoo FlyingLow Global 1 1 12 0 156 156 0
-mysteryGoo FlyingHigh Global 1 1 12 0 156 156 0
-mysteryGoo InSpaceLow Global 1 1 7 0 91 91 0
-mysteryGoo InSpaceHigh Global 1 1 7 0 91 91 0
-mysteryGoo Landed Administration 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed AstronautComplex 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed Badlands 1 1 0.3 0 3.9 3.9 0.00
-mysteryGoo Landed Crawlerway 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed Deserts 1 1 0.3 0 3.9 3.9 0.00
-mysteryGoo Landed FlagPole 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed Grasslands 1 0.05325446 0.3 3.692308 3.9 0.207692 94.67
-mysteryGoo Landed Highlands 1 1 0.3 0 3.9 3.9 0.00
-mysteryGoo Landed IceCaps 1 1 0.3 0 3.9 3.9 0.00
-mysteryGoo Landed MissionControl 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed Mountains 1 1 0.3 0 3.9 3.9 0.00
-mysteryGoo Landed R&D 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed R&DCentralBuilding 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed R&DObservatory 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed R&DSideLab 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed R&DSmallLab 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed SPH 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed SPHMainBuilding 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed Shores 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed TrackingStation 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed TrackingStationHub 1 0.002836019 0.3 3.88894 3.9 0.0110600000000001 99.72
-mysteryGoo Landed Tundra 1 1 0.3 0 3.9 3.9 0.00
-mysteryGoo Landed Water 1 1 0.3 0 3.9 3.9 0.00
-mysteryGoo Splashed Badlands 1 1 0.4 0 5.2 5.2 0.00
-mysteryGoo Splashed Deserts 1 1 0.4 0 5.2 5.2 0.00
-mysteryGoo Splashed Grasslands 1 1 0.4 0 5.2 5.2 0.00
-mysteryGoo Splashed Highlands 1 1 0.4 0 5.2 5.2 0.00
-mysteryGoo Splashed IceCaps 1 1 0.4 0 5.2 5.2 0.00
-mysteryGoo Splashed Mountains 1 1 0.4 0 5.2 5.2 0.00
-mysteryGoo Splashed Shores 1 1 0.4 0 5.2 5.2 0.00
-mysteryGoo Splashed Tundra 1 1 0.4 0 5.2 5.2 0.00
-mysteryGoo Splashed Water 1 0.002835989 0.4 5.185253 5.2 0.0147469999999998 99.72
-mysteryGoo FlyingLow Global 1 0.0001510159 0.7 9.098625 9.099999 0.00137400000000021 99.98
-mysteryGoo FlyingHigh Global 1 0.01228944 0.9 11.55621 11.7 0.143789999999999 98.77
-mysteryGoo InSpaceLow Global 1 0.01228949 1 12.84024 13 0.15976 98.77
-mysteryGoo InSpaceHigh Global 1 0.002836374 1.5 19.44469 19.5 0.0553099999999986 99.72
-mysteryGoo InSpaceLow Global 1 1 11 0 143 143 0
-mysteryGoo InSpaceHigh Global 1 1 11 0 143 143 0
-mysteryGoo Landed Global 1 1 14 0 182 182 0
-mysteryGoo Splashed Global 1 1 12 0 156 156 0
-mysteryGoo FlyingLow Global 1 1 11 0 143 143 0
-mysteryGoo FlyingHigh Global 1 1 11 0 143 143 0
-mysteryGoo InSpaceLow Global 1 1 9 0 117 117 0
-mysteryGoo InSpaceHigh Global 1 1 9 0 117 117 0
-mysteryGoo Landed Flats 1 1 5 0 65 65 0
-mysteryGoo Landed GreatFlats 1 1 5 0 65 65 0
-mysteryGoo Landed GreaterFlats 1 1 5 0 65 65 0
-mysteryGoo Landed Highlands 1 1 5 0 65 65 0
-mysteryGoo Landed LesserFlats 1 1 5 0 65 65 0
-mysteryGoo Landed Lowlands 1 1 5 0 65 65 0
-mysteryGoo Landed Midlands 1 1 5 0 65 65 0
-mysteryGoo Landed Poles 1 1 5 0 65 65 0
-mysteryGoo Landed Slopes 1 1 5 0 65 65 0
-mysteryGoo FlyingHigh Global 1 1 1 0 13 13 0.00
-mysteryGoo InSpaceLow Global 1 1 4 0 52 52 0
-mysteryGoo InSpaceHigh Global 1 1 4 0 52 52 0
-mysteryGoo Landed Global 1 1 10 0 130 130 0
-mysteryGoo InSpaceLow Global 1 1 8 0 104 104 0
-mysteryGoo InSpaceHigh Global 1 1 8 0 104 104 0
-mysteryGoo Landed Canyons 1 1 4 0 52 52 0
-mysteryGoo Landed EastCrater 1 1 4 0 52 52 0
-mysteryGoo Landed EastFarsideCrater 1 1 4 0 52 52 0
-mysteryGoo Landed FarsideCrater 1 1 4 0 52 52 0
-mysteryGoo Landed HighlandCraters 1 1 4 0 52 52 0
-mysteryGoo Landed Highlands 1 0.002836007 4 51.85253 52 0.147469999999998 99.72
-mysteryGoo Landed MidlandCraters 1 1 4 0 52 52 0
-mysteryGoo Landed Midlands 1 1 4 0 52 52 0
-mysteryGoo Landed NorthernBasin 1 1 4 0 52 52 0
-mysteryGoo Landed NorthwestCrater 1 1 4 0 52 52 0
-mysteryGoo Landed PolarCrater 1 1 4 0 52 52 0
-mysteryGoo Landed PolarLowlands 1 1 4 0 52 52 0
-mysteryGoo Landed Poles 1 1 4 0 52 52 0
-mysteryGoo Landed SouthwestCrater 1 1 4 0 52 52 0
-mysteryGoo Landed TwinCraters 1 1 4 0 52 52 0
-mysteryGoo FlyingHigh Global 1 1 1 0 13 13 0.00
-mysteryGoo InSpaceLow Global 1 0.002836081 3 38.88939 39 0.110610000000001 99.72
-mysteryGoo InSpaceHigh Global 1 0.002836007 2 25.92626 26 0.0737400000000008 99.72
-mysteryGoo Landed Global 1 1 12 0 156 156 0
-mysteryGoo InSpaceLow Global 1 1 9 0 117 117 0
-mysteryGoo InSpaceHigh Global 1 1 9 0 117 117 0
-mysteryGoo Landed Global 1 1 12 0 156 156 0
-mysteryGoo InSpaceLow Global 1 1 10 0 130 130 0
-mysteryGoo InSpaceHigh Global 1 1 10 0 130 130 0
-mysteryGoo Landed Global 1 1 12 0 156 156 0
-mysteryGoo InSpaceLow Global 1 1 9 0 117 117 0
-mysteryGoo InSpaceHigh Global 1 1 9 0 117 117 0
-seismicScan Landed Global 2.5 1 12 0 264 264 0
-seismicScan Landed Global 2.5 1 8 0 176 176 0
-seismicScan Landed Global 2.5 1 8 0 176 176 0
-seismicScan Landed Global 2.5 1 15 0 330 330 0
-seismicScan Landed Global 2.5 1 8 0 176 176 0
-seismicScan Landed Global 2.5 1 9 0 198 198 0
-seismicScan Landed Global 2.5 1 8 0 176 176 0
-seismicScan Landed Administration 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed AstronautComplex 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed Badlands 2.5 1 0.3 0 6.6 6.6 0.00
-seismicScan Landed Crawlerway 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed Deserts 2.5 1 0.3 0 6.6 6.6 0.00
-seismicScan Landed FlagPole 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed Grasslands 2.5 1 0.3 0 6.6 6.6 0.00
-seismicScan Landed Highlands 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed IceCaps 2.5 1 0.3 0 6.6 6.6 0.00
-seismicScan Landed MissionControl 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed Mountains 2.5 1 0.3 0 6.6 6.6 0.00
-seismicScan Landed R&D 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed R&DCentralBuilding 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed R&DMainBuilding 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed R&DObservatory 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed R&DSideLab 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed R&DSmallLab 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed R&DTanks 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed SPH 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed SPHMainBuilding 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed Shores 2.5 0.0007513075 0.3 6.595041 6.6 0.00495899999999949 99.92
-seismicScan Landed TrackingStation 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed TrackingStationHub 2.5 0.008264455 0.3 6.545455 6.6 0.0545449999999992 99.17
-seismicScan Landed Tundra 2.5 1 0.3 0 6.6 6.6 0.00
-seismicScan Landed Water 2.5 1 0.3 0 6.6 6.6 0.00
-seismicScan Landed Global 2.5 1 14 0 308 308 0
-seismicScan Landed Flats 2.5 1 5 0 110 110 0
-seismicScan Landed GreatFlats 2.5 1 5 0 110 110 0
-seismicScan Landed GreaterFlats 2.5 1 5 0 110 110 0
-seismicScan Landed Highlands 2.5 1 5 0 110 110 0
-seismicScan Landed LesserFlats 2.5 1 5 0 110 110 0
-seismicScan Landed Lowlands 2.5 1 5 0 110 110 0
-seismicScan Landed Midlands 2.5 1 5 0 110 110 0
-seismicScan Landed Poles 2.5 1 5 0 110 110 0
-seismicScan Landed Slopes 2.5 1 5 0 110 110 0
-seismicScan Landed Global 2.5 1 10 0 220 220 0
-seismicScan Landed Canyons 2.5 1 4 0 88 88 0
-seismicScan Landed EastCrater 2.5 1 4 0 88 88 0
-seismicScan Landed EastFarsideCrater 2.5 1 4 0 88 88 0
-seismicScan Landed FarsideCrater 2.5 1 4 0 88 88 0
-seismicScan Landed HighlandCraters 2.5 1 4 0 88 88 0
-seismicScan Landed Highlands 2.5 1 4 0 88 88 0
-seismicScan Landed MidlandCraters 2.5 1 4 0 88 88 0
-seismicScan Landed Midlands 2.5 0.008264455 4 87.27273 88 0.727270000000004 99.17
-seismicScan Landed NorthernBasin 2.5 1 4 0 88 88 0
-seismicScan Landed NorthwestCrater 2.5 1 4 0 88 88 0
-seismicScan Landed PolarCrater 2.5 1 4 0 88 88 0
-seismicScan Landed PolarLowlands 2.5 0.008264455 4 87.27273 88 0.727270000000004 99.17
-seismicScan Landed Poles 2.5 1 4 0 88 88 0
-seismicScan Landed SouthwestCrater 2.5 0.008264455 4 87.27273 88 0.727270000000004 99.17
-seismicScan Landed TwinCraters 2.5 1 4 0 88 88 0
-seismicScan Landed Global 2.5 1 12 0 264 264 0
-seismicScan Landed Global 2.5 1 12 0 264 264 0
-seismicScan Landed Global 2.5 1 12 0 264 264 0
-surfaceSample Landed Global 1 1 12 0 480 480 0
-surfaceSample Landed Global 1 1 8 0 320 320 0
-surfaceSample Landed Global 1 1 8 0 320 320 0
-surfaceSample Landed Global 1 1 15 0 600 600 0
-surfaceSample Landed Global 1 1 8 0 320 320 0
-surfaceSample Splashed Global 1 1 8 0 320 320 0
-surfaceSample Landed Global 1 1 9 0 360 360 0
-surfaceSample Landed Global 1 1 8 0 320 320 0
-surfaceSample Landed Administration 1 0.015625 0.3 11.8125 12 0.1875 98.44
-surfaceSample Landed AstronautComplex 1 0.015625 0.3 11.8125 12 0.1875 98.44
-surfaceSample Landed Badlands 1 1 0.3 0 12 12 0.00
-surfaceSample Landed Crawlerway 1 0.015625 0.3 11.8125 12 0.1875 98.44
-surfaceSample Landed Deserts 1 1 0.3 0 12 12 0.00
-surfaceSample Landed FlagPole 1 0.25 0.3 9 12 3 75.00
-surfaceSample Landed Grasslands 1 0.0009765625 0.3 11.98828 12 0.0117200000000004 99.90
-surfaceSample Landed Highlands 1 0.0002437433 0.3 11.99708 12 0.00291999999999959 99.98
-surfaceSample Landed IceCaps 1 1 0.3 0 12 12 0.00
-surfaceSample Landed MissionControl 1 0.015625 0.3 11.8125 12 0.1875 98.44
-surfaceSample Landed Mountains 1 1 0.3 0 12 12 0.00
-surfaceSample Landed R&D 1 0.015625 0.3 11.8125 12 0.1875 98.44
-surfaceSample Landed R&DCentralBuilding 1 0.0625 0.3 11.25 12 0.75 93.75
-surfaceSample Landed R&DMainBuilding 1 0.25 0.3 9 12 3 75.00
-surfaceSample Landed R&DObservatory 1 0.25 0.3 9 12 3 75.00
-surfaceSample Landed R&DSideLab 1 0.25 0.3 9 12 3 75.00
-surfaceSample Landed R&DSmallLab 1 0.0625 0.3 11.25 12 0.75 93.75
-surfaceSample Landed R&DTanks 1 0.25 0.3 9 12 3 75.00
-surfaceSample Landed SPH 1 0.015625 0.3 11.8125 12 0.1875 98.44
-surfaceSample Landed SPHMainBuilding 1 0.25 0.3 9 12 3 75.00
-surfaceSample Landed Shores 1 0.015625 0.3 11.8125 12 0.1875 98.44
-surfaceSample Landed TrackingStation 1 0.015625 0.3 11.8125 12 0.1875 98.44
-surfaceSample Landed TrackingStationHub 1 0.25 0.3 9 12 3 75.00
-surfaceSample Landed Tundra 1 1 0.3 0 12 12 0.00
-surfaceSample Landed Water 1 0.00390625 0.3 11.95313 12 0.0468700000000002 99.61
-surfaceSample Splashed Badlands 1 1 0.4 0 16 16 0.00
-surfaceSample Splashed Deserts 1 1 0.4 0 16 16 0.00
-surfaceSample Splashed Grasslands 1 1 0.4 0 16 16 0.00
-surfaceSample Splashed Highlands 1 1 0.4 0 16 16 0.00
-surfaceSample Splashed IceCaps 1 1 0.4 0 16 16 0.00
-surfaceSample Splashed Mountains 1 1 0.4 0 16 16 0.00
-surfaceSample Splashed Shores 1 1 0.4 0 16 16 0.00
-surfaceSample Splashed Tundra 1 1 0.4 0 16 16 0.00
-surfaceSample Splashed Water 1 0.00390625 0.4 15.9375 16 0.0625 99.61
-surfaceSample Landed Global 1 1 14 0 560 560 0
-surfaceSample Splashed Global 1 1 12 0 480 480 0
-surfaceSample Landed Flats 1 1 5 0 200 200 0
-surfaceSample Landed GreatFlats 1 1 5 0 200 200 0
-surfaceSample Landed GreaterFlats 1 1 5 0 200 200 0
-surfaceSample Landed Highlands 1 1 5 0 200 200 0
-surfaceSample Landed LesserFlats 1 1 5 0 200 200 0
-surfaceSample Landed Lowlands 1 1 5 0 200 200 0
-surfaceSample Landed Midlands 1 1 5 0 200 200 0
-surfaceSample Landed Poles 1 1 5 0 200 200 0
-surfaceSample Landed Slopes 1 1 5 0 200 200 0
-surfaceSample Landed Global 1 1 10 0 400 400 0
-surfaceSample Landed Canyons 1 1 4 0 160 160 0
-surfaceSample Landed EastCrater 1 1 4 0 160 160 0
-surfaceSample Landed EastFarsideCrater 1 1 4 0 160 160 0
-surfaceSample Landed FarsideCrater 1 1 4 0 160 160 0
-surfaceSample Landed HighlandCraters 1 1 4 0 160 160 0
-surfaceSample Landed Highlands 1 0.1992188 4 128.125 160 31.875 80.08
-surfaceSample Landed MidlandCraters 1 1 4 0 160 160 0
-surfaceSample Landed Midlands 1 1 4 0 160 160 0.00
-surfaceSample Landed NorthernBasin 1 1 4 0 160 160 0
-surfaceSample Landed NorthwestCrater 1 1 4 0 160 160 0
-surfaceSample Landed PolarCrater 1 1 4 0 160 160 0
-surfaceSample Landed PolarLowlands 1 0.1992188 4 128.125 160 31.875 80.08
-surfaceSample Landed Poles 1 1 4 0 160 160 0
-surfaceSample Landed SouthwestCrater 1 0.1992188 4 128.125 160 31.875 80.08
-surfaceSample Landed TwinCraters 1 1 4 0 160 160 0
-surfaceSample Landed Global 1 1 12 0 480 480 0
-surfaceSample Landed Global 1 1 12 0 480 480 0
-surfaceSample Landed Global 1 1 12 0 480 480 0
-temperatureScan Landed Global 1 1 12 0 96 96 0
-temperatureScan InSpaceLow Global 1 1 9 0 72 72 0
-temperatureScan Landed Global 1 1 8 0 64 64 0
-temperatureScan InSpaceLow Global 1 1 7 0 56 56 0
-temperatureScan Landed Global 1 1 8 0 64 64 0
-temperatureScan FlyingLow Global 1 1 5 0 40 40 0
-temperatureScan FlyingHigh Global 1 1 5 0 40 40 0
-temperatureScan InSpaceLow Global 1 1 7 0 56 56 0
-temperatureScan Landed Global 1 1 15 0 120 120 0
-temperatureScan InSpaceLow Global 1 1 12 0 96 96 0
-temperatureScan Landed Global 1 1 8 0 64 64 0
-temperatureScan Splashed Global 1 1 8 0 64 64 0
-temperatureScan FlyingLow Global 1 1 6 0 48 48 0
-temperatureScan FlyingHigh Global 1 1 6 0 48 48 0
-temperatureScan InSpaceLow Global 1 1 7 0 56 56 0
-temperatureScan Landed Global 1 1 9 0 72 72 0
-temperatureScan InSpaceLow Global 1 1 8 0 64 64 0
-temperatureScan Landed Global 1 1 8 0 64 64 0
-temperatureScan InSpaceLow Global 1 1 7 0 56 56 0
-temperatureScan FlyingLow Global 1 1 12 0 96 96 0
-temperatureScan FlyingHigh Global 1 1 12 0 96 96 0
-temperatureScan InSpaceLow Global 1 1 7 0 56 56 0
-temperatureScan Landed Administration 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed AstronautComplex 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed Badlands 1 1 0.3 0 2.4 2.4 0.00
-temperatureScan Landed Crawlerway 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed Deserts 1 1 0.3 0 2.4 2.4 0.00
-temperatureScan Landed FlagPole 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed Grasslands 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed Highlands 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed IceCaps 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed MissionControl 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed Mountains 1 1 0.3 0 2.4 2.4 0.00
-temperatureScan Landed R&D 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed R&DCentralBuilding 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed R&DMainBuilding 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed R&DObservatory 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed R&DSideLab 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed R&DSmallLab 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed R&DTanks 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed SPH 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed SPHMainBuilding 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed Shores 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed TrackingStation 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed TrackingStationHub 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Landed Tundra 1 1 0.3 0 2.4 2.4 0.00
-temperatureScan Landed Water 1 0 0.3 2.4 2.4 0 100.00
-temperatureScan Splashed Badlands 1 1 0.4 0 3.2 3.2 0.00
-temperatureScan Splashed Deserts 1 1 0.4 0 3.2 3.2 0.00
-temperatureScan Splashed Grasslands 1 1 0.4 0 3.2 3.2 0.00
-temperatureScan Splashed Highlands 1 1 0.4 0 3.2 3.2 0.00
-temperatureScan Splashed IceCaps 1 1 0.4 0 3.2 3.2 0.00
-temperatureScan Splashed Mountains 1 1 0.4 0 3.2 3.2 0.00
-temperatureScan Splashed Shores 1 1 0.4 0 3.2 3.2 0.00
-temperatureScan Splashed Tundra 1 1 0.4 0 3.2 3.2 0.00
-temperatureScan Splashed Water 1 0 0.4 3.2 3.2 0 100.00
-temperatureScan FlyingLow Badlands 1 1 0.7 0 5.6 5.6 0.00
-temperatureScan FlyingLow Crawlerway 1 1 0.7 0 5.6 5.6 0.00
-temperatureScan FlyingLow Deserts 1 1 0.7 0 5.6 5.6 0.00
-temperatureScan FlyingLow Grasslands 1 0 0.7 5.6 5.6 0 100.00
-temperatureScan FlyingLow Highlands 1 0 0.7 5.6 5.6 0 100.00
-temperatureScan FlyingLow IceCaps 1 0 0.7 5.6 5.6 0 100.00
-temperatureScan FlyingLow MissionControl 1 1 0.7 0 5.6 5.6 0.00
-temperatureScan FlyingLow Mountains 1 0 0.7 5.6 5.6 0 100.00
-temperatureScan FlyingLow R&D 1 1 0.7 0 5.6 5.6 0.00
-temperatureScan FlyingLow SPH 1 1 0.7 0 5.6 5.6 0.00
-temperatureScan FlyingLow Shores 1 0 0.7 5.6 5.6 0 100.00
-temperatureScan FlyingLow TrackingStation 1 1 0.7 0 5.6 5.6 0.00
-temperatureScan FlyingLow Tundra 1 0 0.7 5.6 5.6 0 100.00
-temperatureScan FlyingLow Water 1 0 0.7 5.6 5.6 0 100.00
-temperatureScan FlyingHigh Global 1 0 0.9 7.2 7.2 0 100.00
-temperatureScan InSpaceLow Global 1 0 1 8 8 0 100.00
-temperatureScan InSpaceLow Global 1 1 11 0 88 88 0
-temperatureScan Landed Global 1 1 14 0 112 112 0
-temperatureScan Splashed Global 1 1 12 0 96 96 0
-temperatureScan FlyingLow Global 1 1 11 0 88 88 0
-temperatureScan FlyingHigh Global 1 1 11 0 88 88 0
-temperatureScan InSpaceLow Global 1 1 9 0 72 72 0
-temperatureScan Landed Flats 1 1 5 0 40 40 0
-temperatureScan Landed GreatFlats 1 1 5 0 40 40 0
-temperatureScan Landed GreaterFlats 1 1 5 0 40 40 0
-temperatureScan Landed Highlands 1 1 5 0 40 40 0
-temperatureScan Landed LesserFlats 1 1 5 0 40 40 0
-temperatureScan Landed Lowlands 1 1 5 0 40 40 0
-temperatureScan Landed Midlands 1 1 5 0 40 40 0
-temperatureScan Landed Poles 1 1 5 0 40 40 0
-temperatureScan Landed Slopes 1 1 5 0 40 40 0
-temperatureScan FlyingHigh Global 1 1 1 0 8 8 0.00
-temperatureScan InSpaceLow Global 1 1 4 0 32 32 0
-temperatureScan Landed Global 1 1 10 0 80 80 0
-temperatureScan InSpaceLow Global 1 1 8 0 64 64 0
-temperatureScan Landed Canyons 1 1 4 0 32 32 0
-temperatureScan Landed EastCrater 1 1 4 0 32 32 0
-temperatureScan Landed EastFarsideCrater 1 1 4 0 32 32 0
-temperatureScan Landed FarsideCrater 1 1 4 0 32 32 0
-temperatureScan Landed HighlandCraters 1 1 4 0 32 32 0
-temperatureScan Landed Highlands 1 0 4 32 32 0 100.00
-temperatureScan Landed MidlandCraters 1 1 4 0 32 32 0
-temperatureScan Landed Midlands 1 0 4 32 32 0 100.00
-temperatureScan Landed NorthernBasin 1 1 4 0 32 32 0
-temperatureScan Landed NorthwestCrater 1 1 4 0 32 32 0
-temperatureScan Landed PolarCrater 1 1 4 0 32 32 0
-temperatureScan Landed PolarLowlands 1 0 4 32 32 0 100.00
-temperatureScan Landed Poles 1 1 4 0 32 32 0
-temperatureScan Landed SouthwestCrater 1 0 4 32 32 0 100.00
-temperatureScan Landed TwinCraters 1 1 4 0 32 32 0
-temperatureScan FlyingHigh Global 1 1 1 0 8 8 0.00
-temperatureScan InSpaceLow Global 1 0 3 24 24 0 100.00
-temperatureScan Landed Global 1 1 12 0 96 96 0
-temperatureScan InSpaceLow Global 1 1 9 0 72 72 0
-temperatureScan Landed Global 1 1 12 0 96 96 0
-temperatureScan InSpaceLow Global 1 1 10 0 80 80 0
-temperatureScan Landed Global 1 1 12 0 96 96 0
-temperatureScan InSpaceLow Global 1 1 9 0 72 72 0
-recovery Kerbin Flew 1 0 5 6 6 0 100.00
-recovery Kerbin SubOrbited 1 3.576278E-06 8 9.599966 9.6 3.39999999994234e-05 100.00
-recovery Kerbin Orbited 1 0 10 12 12 0 100.00
-recovery Mun FlewBy 1 1 2 0 14.4 14.4 0
-recovery Mun SubOrbited 1 1 2 0 19.2 19.2 0
-recovery Mun Orbited 1 1 2 0 24 24 0
-recovery Mun Surfaced 1 0.004629665 30 35.83333 36 0.166670000000003 99.54
-recovery Minmus FlewBy 1 1 2.5 0 18 18 0
-recovery Minmus SubOrbited 1 1 2.5 0 24 24 0
-recovery Minmus Orbited 1 1 2.5 0 30 30 0
-recovery Minmus Surfaced 1 1 2.5 0 45 45 0
-recovery Kerbol FlewBy 1 1 4 0 28.8 28.8 0
-recovery Kerbol SubOrbited 1 1 4 0 38.4 38.4 0
-recovery Kerbol Orbited 1 1 4 0 48 48 0
-recovery Moho FlewBy 1 1 7 0 50.4 50.4 0
-recovery Moho SubOrbited 1 1 7 0 67.2 67.2 0
-recovery Moho Orbited 1 1 7 0 84 84 0
-recovery Moho Surfaced 1 1 7 0 126 126 0
-recovery Eve FlewBy 1 1 5 0 36 36 0
-recovery Eve SubOrbited 1 1 5 0 48 48 0
-recovery Eve Orbited 1 1 5 0 60 60 0
-recovery Eve Surfaced 1 1 5 0 90 90 0
-recovery Gilly FlewBy 1 1 6 0 43.2 43.2 0
-recovery Gilly SubOrbited 1 1 6 0 57.6 57.6 0
-recovery Gilly Orbited 1 1 6 0 72 72 0
-recovery Gilly Surfaced 1 1 6 0 108 108 0
-recovery Duna FlewBy 1 1 5 0 36 36 0
-recovery Duna SubOrbited 1 1 5 0 48 48 0
-recovery Duna Orbited 1 1 5 0 60 60 0
-recovery Duna Surfaced 1 1 5 0 90 90 0
-recovery Ike FlewBy 1 1 5 0 36 36 0
-recovery Ike SubOrbited 1 1 5 0 48 48 0
-recovery Ike Orbited 1 1 5 0 60 60 0
-recovery Ike Surfaced 1 1 5 0 90 90 0
-recovery Dres FlewBy 1 1 6 0 43.2 43.2 0
-recovery Dres SubOrbited 1 1 6 0 57.6 57.6 0
-recovery Dres Orbited 1 1 6 0 72 72 0
-recovery Dres Surfaced 1 1 6 0 108 108 0
-recovery Jool FlewBy 1 1 6 0 43.2 43.2 0
-recovery Jool SubOrbited 1 1 6 0 57.6 57.6 0
-recovery Jool Orbited 1 1 6 0 72 72 0
-recovery Laythe FlewBy 1 1 8 0 57.6 57.6 0
-recovery Laythe SubOrbited 1 1 8 0 76.8 76.8 0
-recovery Laythe Orbited 1 1 8 0 96 96 0
-recovery Laythe Surfaced 1 1 8 0 144 144 0
-recovery Vall FlewBy 1 1 8 0 57.6 57.6 0
-recovery Vall SubOrbited 1 1 8 0 76.8 76.8 0
-recovery Vall Orbited 1 1 8 0 96 96 0
-recovery Vall Surfaced 1 1 8 0 144 144 0
-recovery Tylo FlewBy 1 1 8 0 57.6 57.6 0
-recovery Tylo SubOrbited 1 1 8 0 76.8 76.8 0
-recovery Tylo Orbited 1 1 8 0 96 96 0
-recovery Tylo Surfaced 1 1 8 0 144 144 0
-recovery Bop FlewBy 1 1 8 0 57.6 57.6 0
-recovery Bop SubOrbited 1 1 8 0 76.8 76.8 0
-recovery Bop Orbited 1 1 8 0 96 96 0
-recovery Bop Surfaced 1 1 8 0 144 144 0
-recovery Pol FlewBy 1 1 8 0 57.6 57.6 0
-recovery Pol SubOrbited 1 1 8 0 76.8 76.8 0
-recovery Pol Orbited 1 1 8 0 96 96 0
-recovery Pol Surfaced 1 1 8 0 144 144 0
-recovery Eeloo FlewBy 1 1 10 0 72 72 0
-recovery Eeloo SubOrbited 1 1 10 0 96 96 0
-recovery Eeloo Orbited 1 1 10 0 120 120 0
-recovery Eeloo Surfaced 1 1 10 0 180 180 0
-SCANsat Kerbin AltimetryLoRes 2 1 1.5 30 30 0 100.00
-SCANsat Kerbin BiomeAnomaly 4 1 1.5 30 30 0 100.00
-SCANsat Kerbin AltimetryHiRes 3 0.6584877 1.5 10.24537 30 19.75463 34.15
-SCANsat Mun AltimetryLoRes 2 1 2 40 40 0 100.00
-SCANsat Mun BiomeAnomaly 4 1 2 40 40 0 100.00
-SCANsat Mun AltimetryHiRes 1 1 3 0 30 30 0
-SCANsat Minmus AltimetryLoRes 2 0.1875771 2.5 40.62114 50 9.37886 81.24
-SCANsat Minmus BiomeAnomaly 4 0.2846759 2.5 35.7662 50 14.2338 71.53
-SCANsat Minmus AltimetryHiRes 1 1 4 0 40 40 0
-SCANsat Moho AltimetryLoRes 1 1 8 0 160 160 0
-SCANsat Moho BiomeAnomaly 1 1 8 0 160 160 0
-SCANsat Moho AltimetryHiRes 1 1 8 0 80 80 0
-SCANsat Eve AltimetryLoRes 1 1 7 0 140 140 0
-SCANsat Eve BiomeAnomaly 1 1 7 0 140 140 0
-SCANsat Eve AltimetryHiRes 1 1 7 0 70 70 0
-SCANsat Gilly AltimetryLoRes 1 1 8 0 160 160 0
-SCANsat Gilly BiomeAnomaly 1 1 8 0 160 160 0
-SCANsat Gilly AltimetryHiRes 1 1 8 0 80 80 0
-SCANsat Duna AltimetryLoRes 1 1 7 0 140 140 0
-SCANsat Duna BiomeAnomaly 1 1 7 0 140 140 0
-SCANsat Duna AltimetryHiRes 1 1 7 0 70 70 0
-SCANsat Ike AltimetryLoRes 1 1 7 0 140 140 0
-SCANsat Ike BiomeAnomaly 1 1 7 0 140 140 0
-SCANsat Ike AltimetryHiRes 1 1 7 0 70 70 0
-SCANsat Dres AltimetryLoRes 1 1 7 0 140 140 0
-SCANsat Dres BiomeAnomaly 1 1 7 0 140 140 0
-SCANsat Dres AltimetryHiRes 1 1 7 0 70 70 0
-SCANsat Laythe AltimetryLoRes 1 1 9 0 180 180 0
-SCANsat Laythe BiomeAnomaly 1 1 9 0 180 180 0
-SCANsat Laythe AltimetryHiRes 1 1 9 0 90 90 0
-SCANsat Vall AltimetryLoRes 1 1 9 0 180 180 0
-SCANsat Vall BiomeAnomaly 1 1 9 0 180 180 0
-SCANsat Vall AltimetryHiRes 1 1 9 0 90 90 0
-SCANsat Tylo AltimetryLoRes 1 1 10 0 200 200 0
-SCANsat Tylo BiomeAnomaly 1 1 10 0 200 200 0
-SCANsat Tylo AltimetryHiRes 1 1 10 0 100 100 0
-SCANsat Bop AltimetryLoRes 1 1 9 0 180 180 0
-SCANsat Bop BiomeAnomaly 1 1 9 0 180 180 0
-SCANsat Bop AltimetryHiRes 1 1 9 0 90 90 0
-SCANsat Pol AltimetryLoRes 1 1 9 0 180 180 0
-SCANsat Pol BiomeAnomaly 1 1 9 0 180 180 0
-SCANsat Pol AltimetryHiRes 1 1 9 0 90 90 0
-SCANsat Eeloo AltimetryLoRes 1 1 12 0 240 240 0
-SCANsat Eeloo BiomeAnomaly 1 1 12 0 240 240 0
-SCANsat Eeloo AltimetryHiRes 1 1 12 0 120 120 0
+Experiment,Condition,Biome,dsc,scv,sbv,sci,cap,Left,Perc.Accom
+atmosphereAnalysis,Landed,Global,10,1,8,0,192,192,0
+atmosphereAnalysis,FlyingLow,Global,10,1,5,0,120,120,0
+atmosphereAnalysis,FlyingHigh,Global,10,1,5,0,120,120,0
+atmosphereAnalysis,Landed,Global,10,1,8,0,192,192,0
+atmosphereAnalysis,FlyingLow,Global,10,1,6,0,144,144,0
+atmosphereAnalysis,FlyingHigh,Global,10,1,6,0,144,144,0
+atmosphereAnalysis,FlyingLow,Global,10,1,12,0,288,288,0
+atmosphereAnalysis,FlyingHigh,Global,10,1,12,0,288,288,0
+atmosphereAnalysis,Landed,AstronautComplex,10,0.004629625,0.3,7.166667,7.2,0.0333329999999998,99.54
+atmosphereAnalysis,Landed,Badlands,10,1,0.3,0,7.2,7.2,0.00
+atmosphereAnalysis,Landed,Crawlerway,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,Deserts,10,1,0.3,0,7.2,7.2,0.00
+atmosphereAnalysis,Landed,FlagPole,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,Grasslands,10,0.0001286136,0.3,7.199074,7.2,0.00092599999999976,99.99
+atmosphereAnalysis,Landed,Highlands,10,1,0.3,0,7.2,7.2,0.00
+atmosphereAnalysis,Landed,IceCaps,10,1,0.3,0,7.2,7.2,0.00
+atmosphereAnalysis,Landed,MissionControl,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,Mountains,10,1,0.3,0,7.2,7.2,0.00
+atmosphereAnalysis,Landed,R&D,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,R&DCentralBuilding,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,R&DSideLab,10,0.02777775,0.3,7,7.2,0.2,97.22
+atmosphereAnalysis,Landed,R&DSmallLab,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,SPH,10,0.004629625,0.3,7.166667,7.2,0.0333329999999998,99.54
+atmosphereAnalysis,Landed,SPHMainBuilding,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,Shores,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,TrackingStation,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,TrackingStationHub,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,Tundra,10,0.0007716152,0.3,7.194444,7.2,0.00555600000000034,99.92
+atmosphereAnalysis,Landed,Water,10,1,0.3,0,7.2,7.2,0.00
+atmosphereAnalysis,FlyingLow,Badlands,10,1,0.7,0,16.8,16.8,0.00
+atmosphereAnalysis,FlyingLow,Deserts,10,1,0.7,0,16.8,16.8,0.00
+atmosphereAnalysis,FlyingLow,Grasslands,10,1,0.7,0,16.8,16.8,0.00
+atmosphereAnalysis,FlyingLow,Highlands,10,1,0.7,0,16.8,16.8,0.00
+atmosphereAnalysis,FlyingLow,IceCaps,10,1,0.7,0,16.8,16.8,0.00
+atmosphereAnalysis,FlyingLow,Mountains,10,1,0.7,0,16.8,16.8,0.00
+atmosphereAnalysis,FlyingLow,Shores,10,1,0.7,0,16.8,16.8,0.00
+atmosphereAnalysis,FlyingLow,Tundra,10,1,0.7,0,16.8,16.8,0.00
+atmosphereAnalysis,FlyingLow,Water,10,0.1666666,0.7,14,16.8,2.8,83.33
+atmosphereAnalysis,FlyingHigh,Badlands,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,FlyingHigh,Deserts,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,FlyingHigh,Grasslands,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,FlyingHigh,Highlands,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,FlyingHigh,IceCaps,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,FlyingHigh,Mountains,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,FlyingHigh,Shores,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,FlyingHigh,Tundra,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,FlyingHigh,Water,10,1,0.9,0,21.6,21.6,0.00
+atmosphereAnalysis,Landed,Global,10,1,14,0,336,336,0
+atmosphereAnalysis,FlyingLow,Global,10,1,11,0,264,264,0
+atmosphereAnalysis,FlyingHigh,Global,10,1,11,0,264,264,0
+barometerScan,Landed,Global,1,1,8,0,96,96,0
+barometerScan,FlyingLow,Global,1,1,5,0,60,60,0
+barometerScan,FlyingHigh,Global,1,1,5,0,60,60,0
+barometerScan,Landed,Global,1,1,8,0,96,96,0
+barometerScan,Splashed,Global,1,1,8,0,96,96,0
+barometerScan,FlyingLow,Global,1,1,6,0,72,72,0
+barometerScan,FlyingHigh,Global,1,1,6,0,72,72,0
+barometerScan,FlyingLow,Global,1,1,12,0,144,144,0
+barometerScan,FlyingHigh,Global,1,1,12,0,144,144,0
+barometerScan,Landed,Administration,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,AstronautComplex,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,Badlands,1,1,0.3,0,3.6,3.6,0.00
+barometerScan,Landed,Crawlerway,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,Deserts,1,1,0.3,0,3.6,3.6,0.00
+barometerScan,Landed,FlagPole,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,Grasslands,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,Highlands,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,IceCaps,1,1,0.3,0,3.6,3.6,0.00
+barometerScan,Landed,MissionControl,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,Mountains,1,1,0.3,0,3.6,3.6,0.00
+barometerScan,Landed,R&D,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,R&DCentralBuilding,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,R&DMainBuilding,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,R&DObservatory,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,R&DSideLab,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,R&DSmallLab,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,R&DTanks,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,SPH,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,SPHMainBuilding,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,Shores,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,TrackingStation,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,TrackingStationHub,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,Tundra,1,0,0.3,3.6,3.6,0,100.00
+barometerScan,Landed,Water,1,1,0.3,0,3.6,3.6,0.00
+barometerScan,Splashed,Badlands,1,1,0.4,0,4.8,4.8,0.00
+barometerScan,Splashed,Deserts,1,1,0.4,0,4.8,4.8,0.00
+barometerScan,Splashed,Grasslands,1,1,0.4,0,4.8,4.8,0.00
+barometerScan,Splashed,Highlands,1,1,0.4,0,4.8,4.8,0.00
+barometerScan,Splashed,IceCaps,1,1,0.4,0,4.8,4.8,0.00
+barometerScan,Splashed,Mountains,1,1,0.4,0,4.8,4.8,0.00
+barometerScan,Splashed,Shores,1,1,0.4,0,4.8,4.8,0.00
+barometerScan,Splashed,Tundra,1,1,0.4,0,4.8,4.8,0.00
+barometerScan,Splashed,Water,1,0,0.4,4.8,4.8,0,100.00
+barometerScan,FlyingLow,Global,1,0,0.7,8.4,8.4,0,100.00
+barometerScan,FlyingHigh,Global,1,8.830317E-08,0.9,10.8,10.8,0,100.00
+barometerScan,Landed,Global,1,1,14,0,168,168,0
+barometerScan,Splashed,Global,1,1,12,0,144,144,0
+barometerScan,FlyingLow,Global,1,1,11,0,132,132,0
+barometerScan,FlyingHigh,Global,1,1,11,0,132,132,0
+crewReport,Landed,Global,1,1,12,0,60,60,0
+crewReport,InSpaceLow,Global,1,1,9,0,45,45,0
+crewReport,InSpaceHigh,Global,1,1,9,0,45,45,0
+crewReport,Landed,Global,1,1,8,0,40,40,0
+crewReport,InSpaceLow,Global,1,1,7,0,35,35,0
+crewReport,InSpaceHigh,Global,1,1,7,0,35,35,0
+crewReport,Landed,Global,1,1,8,0,40,40,0
+crewReport,FlyingLow,Global,1,1,5,0,25,25,0
+crewReport,FlyingHigh,Global,1,1,5,0,25,25,0
+crewReport,InSpaceLow,Global,1,1,7,0,35,35,0
+crewReport,InSpaceHigh,Global,1,1,7,0,35,35,0
+crewReport,Landed,Global,1,1,15,0,75,75,0
+crewReport,InSpaceLow,Global,1,1,12,0,60,60,0
+crewReport,InSpaceHigh,Global,1,1,12,0,60,60,0
+crewReport,Landed,Global,1,1,8,0,40,40,0
+crewReport,Splashed,Global,1,1,8,0,40,40,0
+crewReport,FlyingLow,Global,1,1,6,0,30,30,0
+crewReport,FlyingHigh,Global,1,1,6,0,30,30,0
+crewReport,InSpaceLow,Global,1,1,7,0,35,35,0
+crewReport,InSpaceHigh,Global,1,1,7,0,35,35,0
+crewReport,Landed,Global,1,1,9,0,45,45,0
+crewReport,InSpaceLow,Global,1,1,8,0,40,40,0
+crewReport,InSpaceHigh,Global,1,1,8,0,40,40,0
+crewReport,Landed,Global,1,1,8,0,40,40,0
+crewReport,InSpaceLow,Global,1,1,7,0,35,35,0
+crewReport,InSpaceHigh,Global,1,1,7,0,35,35,0
+crewReport,FlyingLow,Global,1,1,12,0,60,60,0
+crewReport,FlyingHigh,Global,1,1,12,0,60,60,0
+crewReport,InSpaceLow,Global,1,1,7,0,35,35,0
+crewReport,InSpaceHigh,Global,1,1,7,0,35,35,0
+crewReport,Landed,Administration,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,AstronautComplex,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,Badlands,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,Crawlerway,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,Deserts,1,1,0.3,0,1.5,1.5,0.00
+crewReport,Landed,Grasslands,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,Highlands,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,IceCaps,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,MissionControl,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,Mountains,1,1,0.3,0,1.5,1.5,0.00
+crewReport,Landed,R&D,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,R&DSmallLab,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,SPH,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,Shores,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,TrackingStation,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,TrackingStationHub,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Landed,Tundra,1,1,0.3,0,1.5,1.5,0.00
+crewReport,Landed,Water,1,0,0.3,1.5,1.5,0,100.00
+crewReport,Splashed,Badlands,1,1,0.4,0,2,2,0.00
+crewReport,Splashed,Deserts,1,1,0.4,0,2,2,0.00
+crewReport,Splashed,Grasslands,1,1,0.4,0,2,2,0.00
+crewReport,Splashed,Highlands,1,1,0.4,0,2,2,0.00
+crewReport,Splashed,IceCaps,1,1,0.4,0,2,2,0.00
+crewReport,Splashed,Mountains,1,1,0.4,0,2,2,0.00
+crewReport,Splashed,Shores,1,0,0.4,2,2,0,100.00
+crewReport,Splashed,Tundra,1,1,0.4,0,2,2,0.00
+crewReport,Splashed,Water,1,0,0.4,2,2,0,100.00
+crewReport,FlyingLow,Badlands,1,0,0.7,3.5,3.5,0,100.00
+crewReport,FlyingLow,Deserts,1,1,0.7,0,3.5,3.5,0.00
+crewReport,FlyingLow,Grasslands,1,0,0.7,3.5,3.5,0,100.00
+crewReport,FlyingLow,Highlands,1,0,0.7,3.5,3.5,0,100.00
+crewReport,FlyingLow,IceCaps,1,0,0.7,3.5,3.5,0,100.00
+crewReport,FlyingLow,Mountains,1,0,0.7,3.5,3.5,0,100.00
+crewReport,FlyingLow,Shores,1,0,0.7,3.5,3.5,0,100.00
+crewReport,FlyingLow,Tundra,1,0,0.7,3.5,3.5,0,100.00
+crewReport,FlyingLow,Water,1,0,0.7,3.5,3.5,0,100.00
+crewReport,FlyingHigh,Global,1,0,0.9,4.5,4.5,0,100.00
+crewReport,InSpaceLow,Global,1,0,1,5,5,0,100.00
+crewReport,InSpaceHigh,Global,1,0,1.5,7.5,7.5,0,100.00
+crewReport,InSpaceLow,Global,1,1,11,0,55,55,0
+crewReport,InSpaceHigh,Global,1,1,11,0,55,55,0
+crewReport,Landed,Global,1,1,14,0,70,70,0
+crewReport,Splashed,Global,1,1,12,0,60,60,0
+crewReport,FlyingLow,Global,1,1,11,0,55,55,0
+crewReport,FlyingHigh,Global,1,1,11,0,55,55,0
+crewReport,InSpaceLow,Global,1,1,9,0,45,45,0
+crewReport,InSpaceHigh,Global,1,1,9,0,45,45,0
+crewReport,Landed,Flats,1,0,5,25,25,0,100.00
+crewReport,Landed,GreatFlats,1,1,5,0,25,25,0
+crewReport,Landed,GreaterFlats,1,1,5,0,25,25,0
+crewReport,Landed,Highlands,1,1,5,0,25,25,0
+crewReport,Landed,LesserFlats,1,0,5,25,25,0,100.00
+crewReport,Landed,Lowlands,1,1,5,0,25,25,0.00
+crewReport,Landed,Midlands,1,0,5,25,25,0,100.00
+crewReport,Landed,Poles,1,0,5,25,25,0,100.00
+crewReport,Landed,Slopes,1,1,5,0,25,25,0.00
+crewReport,FlyingHigh,Global,1,1,1,0,5,5,0.00
+crewReport,InSpaceLow,Global,1,0,4,20,20,0,100.00
+crewReport,InSpaceHigh,Global,1,0,2.5,12.5,12.5,0,100.00
+crewReport,Landed,Global,1,1,10,0,50,50,0
+crewReport,InSpaceLow,Global,1,1,8,0,40,40,0
+crewReport,InSpaceHigh,Global,1,1,8,0,40,40,0
+crewReport,Landed,Canyons,1,1,4,0,20,20,0
+crewReport,Landed,EastCrater,1,1,4,0,20,20,0
+crewReport,Landed,EastFarsideCrater,1,1,4,0,20,20,0
+crewReport,Landed,FarsideCrater,1,1,4,0,20,20,0
+crewReport,Landed,HighlandCraters,1,1,4,0,20,20,0
+crewReport,Landed,Highlands,1,0,4,20,20,0,100.00
+crewReport,Landed,MidlandCraters,1,1,4,0,20,20,0
+crewReport,Landed,Midlands,1,0,4,20,20,0,100.00
+crewReport,Landed,NorthernBasin,1,0,4,20,20,0,100.00
+crewReport,Landed,NorthwestCrater,1,1,4,0,20,20,0.00
+crewReport,Landed,PolarCrater,1,1,4,0,20,20,0
+crewReport,Landed,PolarLowlands,1,0,4,20,20,0,100.00
+crewReport,Landed,Poles,1,0,4,20,20,0,100.00
+crewReport,Landed,SouthwestCrater,1,0,4,20,20,0,100.00
+crewReport,Landed,TwinCraters,1,1,4,0,20,20,0
+crewReport,Splashed,Highlands,1,1,1,0,5,5,0.00
+crewReport,Splashed,Midlands,1,1,1,0,5,5,0.00
+crewReport,Splashed,NorthwestCrater,1,1,1,0,5,5,0.00
+crewReport,Splashed,Poles,1,1,1,0,5,5,0.00
+crewReport,FlyingLow,Highlands,1,1,1,0,5,5,0.00
+crewReport,FlyingLow,Midlands,1,1,1,0,5,5,0.00
+crewReport,FlyingLow,NorthwestCrater,1,1,1,0,5,5,0.00
+crewReport,FlyingLow,Poles,1,1,1,0,5,5,0.00
+crewReport,FlyingHigh,Global,1,1,1,0,5,5,0.00
+crewReport,InSpaceLow,Global,1,0,3,15,15,0,100.00
+crewReport,InSpaceHigh,Global,1,0,2,10,10,0,100.00
+crewReport,Landed,Global,1,1,12,0,60,60,0
+crewReport,InSpaceLow,Global,1,1,9,0,45,45,0
+crewReport,InSpaceHigh,Global,1,1,9,0,45,45,0
+crewReport,Landed,Global,1,1,12,0,60,60,0
+crewReport,InSpaceLow,Global,1,1,10,0,50,50,0
+crewReport,InSpaceHigh,Global,1,1,10,0,50,50,0
+crewReport,Landed,Global,1,1,12,0,60,60,0
+crewReport,InSpaceLow,Global,1,1,9,0,45,45,0
+crewReport,InSpaceHigh,Global,1,1,9,0,45,45,0
+evaReport,Landed,Global,1,1,12,0,96,96,0
+evaReport,InSpaceLow,Global,1,1,9,0,72,72,0
+evaReport,InSpaceHigh,Global,1,1,9,0,72,72,0
+evaReport,Landed,Global,1,1,8,0,64,64,0
+evaReport,InSpaceLow,Global,1,1,7,0,56,56,0
+evaReport,InSpaceHigh,Global,1,1,7,0,56,56,0
+evaReport,Landed,Global,1,1,8,0,64,64,0
+evaReport,FlyingLow,Global,1,1,5,0,40,40,0
+evaReport,FlyingHigh,Global,1,1,5,0,40,40,0
+evaReport,InSpaceLow,Global,1,1,7,0,56,56,0
+evaReport,InSpaceHigh,Global,1,1,7,0,56,56,0
+evaReport,Landed,Global,1,1,15,0,120,120,0
+evaReport,InSpaceLow,Global,1,1,12,0,96,96,0
+evaReport,InSpaceHigh,Global,1,1,12,0,96,96,0
+evaReport,Landed,Global,1,1,8,0,64,64,0
+evaReport,Splashed,Global,1,1,8,0,64,64,0
+evaReport,FlyingLow,Global,1,1,6,0,48,48,0
+evaReport,FlyingHigh,Global,1,1,6,0,48,48,0
+evaReport,InSpaceLow,Global,1,1,7,0,56,56,0
+evaReport,InSpaceHigh,Global,1,1,7,0,56,56,0
+evaReport,Landed,Global,1,1,9,0,72,72,0
+evaReport,InSpaceLow,Global,1,1,8,0,64,64,0
+evaReport,InSpaceHigh,Global,1,1,8,0,64,64,0
+evaReport,Landed,Global,1,1,8,0,64,64,0
+evaReport,InSpaceLow,Global,1,1,7,0,56,56,0
+evaReport,InSpaceHigh,Global,1,1,7,0,56,56,0
+evaReport,FlyingLow,Global,1,1,12,0,96,96,0
+evaReport,FlyingHigh,Global,1,1,12,0,96,96,0
+evaReport,InSpaceLow,Global,1,1,7,0,56,56,0
+evaReport,InSpaceHigh,Global,1,1,7,0,56,56,0
+evaReport,Landed,Administration,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,AstronautComplex,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,Badlands,1,1,0.3,0,2.4,2.4,0.00
+evaReport,Landed,Crawlerway,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,Deserts,1,1,0.3,0,2.4,2.4,0.00
+evaReport,Landed,FlagPole,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,Grasslands,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,Highlands,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,IceCaps,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,MissionControl,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,Mountains,1,1,0.3,0,2.4,2.4,0.00
+evaReport,Landed,R&D,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,R&DCentralBuilding,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,R&DMainBuilding,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,R&DObservatory,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,R&DSideLab,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,R&DSmallLab,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,R&DTanks,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,SPH,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,SPHMainBuilding,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,Shores,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,TrackingStation,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,TrackingStationHub,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Landed,Tundra,1,1,0.3,0,2.4,2.4,0.00
+evaReport,Landed,Water,1,0,0.3,2.4,2.4,0,100.00
+evaReport,Splashed,Badlands,1,1,0.4,0,3.2,3.2,0.00
+evaReport,Splashed,Deserts,1,1,0.4,0,3.2,3.2,0.00
+evaReport,Splashed,Grasslands,1,1,0.4,0,3.2,3.2,0.00
+evaReport,Splashed,Highlands,1,1,0.4,0,3.2,3.2,0.00
+evaReport,Splashed,IceCaps,1,1,0.4,0,3.2,3.2,0.00
+evaReport,Splashed,Mountains,1,1,0.4,0,3.2,3.2,0.00
+evaReport,Splashed,Shores,1,0,0.4,3.2,3.2,0,100.00
+evaReport,Splashed,Tundra,1,1,0.4,0,3.2,3.2,0.00
+evaReport,Splashed,Water,1,0,0.4,3.2,3.2,0,100.00
+evaReport,FlyingLow,Administration,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,AstronautComplex,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,Badlands,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,Crawlerway,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,Deserts,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,FlagPole,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,Grasslands,1,0,0.7,5.6,5.6,0,100.00
+evaReport,FlyingLow,Highlands,1,0,0.7,5.6,5.6,0,100.00
+evaReport,FlyingLow,IceCaps,1,0,0.7,5.6,5.6,0,100.00
+evaReport,FlyingLow,MissionControl,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,Mountains,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,R&DCentralBuilding,1,0,0.7,5.6,5.6,0,100.00
+evaReport,FlyingLow,R&DSmallLab,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,R&DTanks,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,SPH,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,SPHMainBuilding,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,Shores,1,0,0.7,5.6,5.6,0,100.00
+evaReport,FlyingLow,TrackingStation,1,0,0.7,5.6,5.6,0,100.00
+evaReport,FlyingLow,TrackingStationHub,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,Tundra,1,1,0.7,0,5.6,5.6,0.00
+evaReport,FlyingLow,Water,1,0,0.7,5.6,5.6,0,100.00
+evaReport,FlyingHigh,Global,1,0,0.9,7.2,7.2,0,100.00
+evaReport,InSpaceLow,Badlands,1,0,1,8,8,0,100.00
+evaReport,InSpaceLow,Deserts,1,0,1,8,8,0,100.00
+evaReport,InSpaceLow,Grasslands,1,0,1,8,8,0,100.00
+evaReport,InSpaceLow,Highlands,1,0,1,8,8,0,100.00
+evaReport,InSpaceLow,IceCaps,1,1,1,0,8,8,0.00
+evaReport,InSpaceLow,Mountains,1,0,1,8,8,0,100.00
+evaReport,InSpaceLow,Shores,1,0,1,8,8,0,100.00
+evaReport,InSpaceLow,Tundra,1,1,1,0,8,8,0.00
+evaReport,InSpaceLow,Water,1,0,1,8,8,0,100.00
+evaReport,InSpaceHigh,Global,1,0,1.5,12,12,0,100.00
+evaReport,InSpaceLow,Global,1,1,11,0,88,88,0
+evaReport,InSpaceHigh,Global,1,1,11,0,88,88,0
+evaReport,Landed,Global,1,1,14,0,112,112,0
+evaReport,Splashed,Global,1,1,12,0,96,96,0
+evaReport,FlyingLow,Global,1,1,11,0,88,88,0
+evaReport,FlyingHigh,Global,1,1,11,0,88,88,0
+evaReport,InSpaceLow,Global,1,1,9,0,72,72,0
+evaReport,InSpaceHigh,Global,1,1,9,0,72,72,0
+evaReport,Landed,Flats,1,0,5,40,40,0,100.00
+evaReport,Landed,GreatFlats,1,1,5,0,40,40,0.00
+evaReport,Landed,GreaterFlats,1,1,5,0,40,40,0
+evaReport,Landed,Highlands,1,1,5,0,40,40,0
+evaReport,Landed,LesserFlats,1,0,5,40,40,0,100.00
+evaReport,Landed,Lowlands,1,1,5,0,40,40,0.00
+evaReport,Landed,Midlands,1,0,5,40,40,0,100.00
+evaReport,Landed,Poles,1,0,5,40,40,0,100.00
+evaReport,Landed,Slopes,1,1,5,0,40,40,0.00
+evaReport,FlyingHigh,Global,1,1,1,0,8,8,0.00
+evaReport,InSpaceLow,Flats,1,0,4,32,32,0,100.00
+evaReport,InSpaceLow,GreatFlats,1,0,4,32,32,0,100.00
+evaReport,InSpaceLow,GreaterFlats,1,0,4,32,32,0,100.00
+evaReport,InSpaceLow,Highlands,1,0,4,32,32,0,100.00
+evaReport,InSpaceLow,LesserFlats,1,0,4,32,32,0,100.00
+evaReport,InSpaceLow,Lowlands,1,0,4,32,32,0,100.00
+evaReport,InSpaceLow,Midlands,1,0,4,32,32,0,100.00
+evaReport,InSpaceLow,Poles,1,0,4,32,32,0,100.00
+evaReport,InSpaceLow,Slopes,1,0,4,32,32,0,100.00
+evaReport,InSpaceHigh,Global,1,0,2.5,20,20,0,100.00
+evaReport,Landed,Global,1,1,10,0,80,80,0
+evaReport,InSpaceLow,Global,1,1,8,0,64,64,0
+evaReport,InSpaceHigh,Global,1,1,8,0,64,64,0
+evaReport,Landed,Canyons,1,1,4,0,32,32,0
+evaReport,Landed,EastCrater,1,1,4,0,32,32,0
+evaReport,Landed,EastFarsideCrater,1,1,4,0,32,32,0
+evaReport,Landed,FarsideCrater,1,1,4,0,32,32,0
+evaReport,Landed,HighlandCraters,1,1,4,0,32,32,0
+evaReport,Landed,Highlands,1,0,4,32,32,0,100.00
+evaReport,Landed,MidlandCraters,1,1,4,0,32,32,0
+evaReport,Landed,Midlands,1,0,4,32,32,0,100.00
+evaReport,Landed,NorthernBasin,1,0,4,32,32,0,100.00
+evaReport,Landed,NorthwestCrater,1,1,4,0,32,32,0.00
+evaReport,Landed,PolarCrater,1,1,4,0,32,32,0
+evaReport,Landed,PolarLowlands,1,0,4,32,32,0,100.00
+evaReport,Landed,Poles,1,0,4,32,32,0,100.00
+evaReport,Landed,SouthwestCrater,1,0,4,32,32,0,100.00
+evaReport,Landed,TwinCraters,1,1,4,0,32,32,0
+evaReport,Splashed,Highlands,1,1,1,0,8,8,0.00
+evaReport,Splashed,Midlands,1,1,1,0,8,8,0.00
+evaReport,Splashed,NorthwestCrater,1,1,1,0,8,8,0.00
+evaReport,Splashed,Poles,1,1,1,0,8,8,0.00
+evaReport,FlyingLow,Highlands,1,1,1,0,8,8,0.00
+evaReport,FlyingLow,Midlands,1,1,1,0,8,8,0.00
+evaReport,FlyingLow,NorthwestCrater,1,1,1,0,8,8,0.00
+evaReport,FlyingLow,Poles,1,1,1,0,8,8,0.00
+evaReport,FlyingHigh,Global,1,1,1,0,8,8,0.00
+evaReport,InSpaceLow,Canyons,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,EastCrater,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,EastFarsideCrater,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,FarsideCrater,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,HighlandCraters,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,Highlands,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,MidlandCraters,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,Midlands,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,NorthernBasin,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,NorthwestCrater,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,PolarCrater,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,PolarLowlands,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,Poles,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,SouthwestCrater,1,0,3,24,24,0,100.00
+evaReport,InSpaceLow,TwinCraters,1,0,3,24,24,0,100.00
+evaReport,InSpaceHigh,Global,1,0,2,16,16,0,100.00
+evaReport,Landed,Global,1,1,12,0,96,96,0
+evaReport,InSpaceLow,Global,1,1,9,0,72,72,0
+evaReport,InSpaceHigh,Global,1,1,9,0,72,72,0
+evaReport,Landed,Global,1,1,12,0,96,96,0
+evaReport,InSpaceLow,Global,1,1,10,0,80,80,0
+evaReport,InSpaceHigh,Global,1,1,10,0,80,80,0
+evaReport,Landed,Global,1,1,12,0,96,96,0
+evaReport,InSpaceLow,Global,1,1,9,0,72,72,0
+evaReport,InSpaceHigh,Global,1,1,9,0,72,72,0
+gravityScan,Landed,Global,3,1,12,0,264,264,0
+gravityScan,InSpaceLow,Global,3,1,9,0,198,198,0
+gravityScan,InSpaceHigh,Global,3,1,9,0,198,198,0
+gravityScan,Landed,Global,3,1,8,0,176,176,0
+gravityScan,InSpaceLow,Global,3,1,7,0,154,154,0
+gravityScan,InSpaceHigh,Global,3,1,7,0,154,154,0
+gravityScan,Landed,Global,3,1,8,0,176,176,0
+gravityScan,InSpaceLow,Global,3,1,7,0,154,154,0
+gravityScan,InSpaceHigh,Global,3,1,7,0,154,154,0
+gravityScan,Landed,Global,3,1,15,0,330,330,0
+gravityScan,InSpaceLow,Global,3,1,12,0,264,264,0
+gravityScan,InSpaceHigh,Global,3,1,12,0,264,264,0
+gravityScan,Landed,Global,3,1,8,0,176,176,0
+gravityScan,Splashed,Global,3,1,8,0,176,176,0
+gravityScan,InSpaceLow,Global,3,1,7,0,154,154,0
+gravityScan,InSpaceHigh,Global,3,1,7,0,154,154,0
+gravityScan,Landed,Global,3,1,9,0,198,198,0
+gravityScan,InSpaceLow,Global,3,1,8,0,176,176,0
+gravityScan,InSpaceHigh,Global,3,1,8,0,176,176,0
+gravityScan,Landed,Global,3,1,8,0,176,176,0
+gravityScan,InSpaceLow,Global,3,1,7,0,154,154,0
+gravityScan,InSpaceHigh,Global,3,1,7,0,154,154,0
+gravityScan,InSpaceLow,Global,3,1,7,0,154,154,0
+gravityScan,InSpaceHigh,Global,3,1,7,0,154,154,0
+gravityScan,Landed,Administration,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,AstronautComplex,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,Badlands,3,1,0.3,0,6.6,6.6,0.00
+gravityScan,Landed,Crawlerway,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,Deserts,3,1,0.3,0,6.6,6.6,0.00
+gravityScan,Landed,FlagPole,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,Grasslands,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,Highlands,3,1,0.3,0,6.6,6.6,0.00
+gravityScan,Landed,IceCaps,3,1,0.3,0,6.6,6.6,0.00
+gravityScan,Landed,MissionControl,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,Mountains,3,1,0.3,0,6.6,6.6,0.00
+gravityScan,Landed,R&D,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,R&DCentralBuilding,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,R&DMainBuilding,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,R&DObservatory,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,R&DSideLab,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,R&DSmallLab,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,R&DTanks,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,SPH,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,SPHMainBuilding,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,Shores,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,TrackingStation,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,TrackingStationHub,3,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+gravityScan,Landed,Tundra,3,6.213333E-06,0.3,6.599959,6.6,4.09999999995136e-05,100.00
+gravityScan,Landed,Water,3,1,0.3,0,6.6,6.6,0.00
+gravityScan,Splashed,Badlands,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,Splashed,Deserts,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,Splashed,Grasslands,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,Splashed,Highlands,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,Splashed,IceCaps,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,Splashed,Mountains,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,Splashed,Shores,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,Splashed,Tundra,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,Splashed,Water,3,1,0.4,0,8.8,8.8,0.00
+gravityScan,InSpaceLow,Badlands,3,1,1,0,22,22,0.00
+gravityScan,InSpaceLow,Deserts,3,0.09090909,1,20,22,2,90.91
+gravityScan,InSpaceLow,Grasslands,3,0.008264455,1,21.81818,22,0.181819999999998,99.17
+gravityScan,InSpaceLow,Highlands,3,0.008264455,1,21.81818,22,0.181819999999998,99.17
+gravityScan,InSpaceLow,IceCaps,3,1,1,0,22,22,0.00
+gravityScan,InSpaceLow,Mountains,3,0.008264455,1,21.81818,22,0.181819999999998,99.17
+gravityScan,InSpaceLow,Shores,3,0.008264455,1,21.81818,22,0.181819999999998,99.17
+gravityScan,InSpaceLow,Tundra,3,1,1,0,22,22,0.00
+gravityScan,InSpaceLow,Water,3,0.008264455,1,21.81818,22,0.181819999999998,99.17
+gravityScan,InSpaceHigh,Badlands,3,1,1,0,22,22,0
+gravityScan,InSpaceHigh,Deserts,3,1,1,0,22,22,0
+gravityScan,InSpaceHigh,Grasslands,3,1,1.5,0,33,33,0.00
+gravityScan,InSpaceHigh,Highlands,3,1,1.5,0,33,33,0.00
+gravityScan,InSpaceHigh,IceCaps,3,1,1,0,22,22,0
+gravityScan,InSpaceHigh,Mountains,3,1,1,0,22,22,0
+gravityScan,InSpaceHigh,Shores,3,1,1.5,0,33,33,0.00
+gravityScan,InSpaceHigh,Tundra,3,0.09090909,1.5,30,33,3,90.91
+gravityScan,InSpaceHigh,Water,3,1,1.5,0,33,33,0.00
+gravityScan,InSpaceLow,Global,3,1,11,0,242,242,0
+gravityScan,InSpaceHigh,Global,3,1,11,0,242,242,0
+gravityScan,Landed,Global,3,1,14,0,308,308,0
+gravityScan,Splashed,Global,3,1,12,0,264,264,0
+gravityScan,InSpaceLow,Global,3,1,9,0,198,198,0
+gravityScan,InSpaceHigh,Global,3,1,9,0,198,198,0
+gravityScan,Landed,Flats,3,1,5,0,110,110,0
+gravityScan,Landed,GreatFlats,3,1,5,0,110,110,0
+gravityScan,Landed,GreaterFlats,3,1,5,0,110,110,0
+gravityScan,Landed,Highlands,3,1,5,0,110,110,0
+gravityScan,Landed,LesserFlats,3,1,5,0,110,110,0
+gravityScan,Landed,Lowlands,3,1,5,0,110,110,0
+gravityScan,Landed,Midlands,3,1,5,0,110,110,0
+gravityScan,Landed,Poles,3,1,5,0,110,110,0
+gravityScan,Landed,Slopes,3,1,5,0,110,110,0
+gravityScan,InSpaceLow,Flats,3,1,4,0,88,88,0
+gravityScan,InSpaceLow,GreatFlats,3,1,4,0,88,88,0
+gravityScan,InSpaceLow,GreaterFlats,3,1,4,0,88,88,0
+gravityScan,InSpaceLow,Highlands,3,1,4,0,88,88,0
+gravityScan,InSpaceLow,LesserFlats,3,1,4,0,88,88,0
+gravityScan,InSpaceLow,Lowlands,3,1,4,0,88,88,0
+gravityScan,InSpaceLow,Midlands,3,1,4,0,88,88,0
+gravityScan,InSpaceLow,Poles,3,1,4,0,88,88,0
+gravityScan,InSpaceLow,Slopes,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,Flats,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,GreatFlats,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,GreaterFlats,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,Highlands,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,LesserFlats,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,Lowlands,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,Midlands,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,Poles,3,1,4,0,88,88,0
+gravityScan,InSpaceHigh,Slopes,3,1,4,0,88,88,0
+gravityScan,Landed,Global,3,1,10,0,220,220,0
+gravityScan,InSpaceLow,Global,3,1,8,0,176,176,0
+gravityScan,InSpaceHigh,Global,3,1,8,0,176,176,0
+gravityScan,Landed,Canyons,3,1,4,0,88,88,0
+gravityScan,Landed,EastCrater,3,1,4,0,88,88,0
+gravityScan,Landed,EastFarsideCrater,3,1,4,0,88,88,0
+gravityScan,Landed,FarsideCrater,3,1,4,0,88,88,0
+gravityScan,Landed,HighlandCraters,3,1,4,0,88,88,0
+gravityScan,Landed,Highlands,3,1,4,0,88,88,0.00
+gravityScan,Landed,MidlandCraters,3,1,4,0,88,88,0
+gravityScan,Landed,Midlands,3,1,4,0,88,88,0.00
+gravityScan,Landed,NorthernBasin,3,0.008264455,4,87.27273,88,0.727270000000004,99.17
+gravityScan,Landed,NorthwestCrater,3,1,4,0,88,88,0.00
+gravityScan,Landed,PolarCrater,3,1,4,0,88,88,0
+gravityScan,Landed,PolarLowlands,3,1,4,0,88,88,0
+gravityScan,Landed,Poles,3,0.09090909,4,80,88,8,90.91
+gravityScan,Landed,SouthwestCrater,3,1,4,0,88,88,0
+gravityScan,Landed,TwinCraters,3,1,4,0,88,88,0
+gravityScan,Splashed,Highlands,3,1,1,0,22,22,0.00
+gravityScan,Splashed,Midlands,3,1,1,0,22,22,0.00
+gravityScan,Splashed,NorthwestCrater,3,1,1,0,22,22,0.00
+gravityScan,Splashed,Poles,3,1,1,0,22,22,0.00
+gravityScan,InSpaceLow,Canyons,3,1,3,0,66,66,0
+gravityScan,InSpaceLow,EastCrater,3,1,3,0,66,66,0
+gravityScan,InSpaceLow,EastFarsideCrater,3,1,3,0,66,66,0
+gravityScan,InSpaceLow,FarsideCrater,3,0.008264484,3,65.45454,66,0.545460000000006,99.17
+gravityScan,InSpaceLow,HighlandCraters,3,0.008264484,3,65.45454,66,0.545460000000006,99.17
+gravityScan,InSpaceLow,Highlands,3,0.008264484,3,65.45454,66,0.545460000000006,99.17
+gravityScan,InSpaceLow,MidlandCraters,3,1,3,0,66,66,0
+gravityScan,InSpaceLow,Midlands,3,0.008264484,3,65.45454,66,0.545460000000006,99.17
+gravityScan,InSpaceLow,NorthernBasin,3,0.008264484,3,65.45454,66,0.545460000000006,99.17
+gravityScan,InSpaceLow,NorthwestCrater,3,0.008264484,3,65.45454,66,0.545460000000006,99.17
+gravityScan,InSpaceLow,PolarCrater,3,1,3,0,66,66,0
+gravityScan,InSpaceLow,PolarLowlands,3,0.09090909,3,60,66,6,90.91
+gravityScan,InSpaceLow,Poles,3,0.0007513798,3,65.95041,66,0.0495899999999949,99.92
+gravityScan,InSpaceLow,SouthwestCrater,3,1,3,0,66,66,0
+gravityScan,InSpaceLow,TwinCraters,3,0.008264484,3,65.45454,66,0.545460000000006,99.17
+gravityScan,InSpaceHigh,Canyons,3,1,3,0,66,66,0
+gravityScan,InSpaceHigh,EastCrater,3,1,3,0,66,66,0
+gravityScan,InSpaceHigh,EastFarsideCrater,3,1,3,0,66,66,0
+gravityScan,InSpaceHigh,FarsideCrater,3,0.008264455,2,43.63636,44,0.363639999999997,99.17
+gravityScan,InSpaceHigh,HighlandCraters,3,0.008264455,2,43.63636,44,0.363639999999997,99.17
+gravityScan,InSpaceHigh,Highlands,3,0.008264455,2,43.63636,44,0.363639999999997,99.17
+gravityScan,InSpaceHigh,MidlandCraters,3,0.008264455,2,43.63636,44,0.363639999999997,99.17
+gravityScan,InSpaceHigh,Midlands,3,0.008264455,2,43.63636,44,0.363639999999997,99.17
+gravityScan,InSpaceHigh,NorthernBasin,3,0.008264455,2,43.63636,44,0.363639999999997,99.17
+gravityScan,InSpaceHigh,NorthwestCrater,3,0.008264455,2,43.63636,44,0.363639999999997,99.17
+gravityScan,InSpaceHigh,PolarCrater,3,1,3,0,66,66,0
+gravityScan,InSpaceHigh,PolarLowlands,3,1,3,0,66,66,0
+gravityScan,InSpaceHigh,Poles,3,1,2,0,44,44,0.00
+gravityScan,InSpaceHigh,SouthwestCrater,3,1,3,0,66,66,0
+gravityScan,InSpaceHigh,TwinCraters,3,1,3,0,66,66,0
+gravityScan,Landed,Global,3,1,12,0,264,264,0
+gravityScan,InSpaceLow,Global,3,1,9,0,198,198,0
+gravityScan,InSpaceHigh,Global,3,1,9,0,198,198,0
+gravityScan,Landed,Global,3,1,12,0,264,264,0
+gravityScan,InSpaceLow,Global,3,1,10,0,220,220,0
+gravityScan,InSpaceHigh,Global,3,1,10,0,220,220,0
+gravityScan,Landed,Global,3,1,12,0,264,264,0
+gravityScan,InSpaceLow,Global,3,1,9,0,198,198,0
+gravityScan,InSpaceHigh,Global,3,1,9,0,198,198,0
+mobileMaterialsLab,Landed,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,9,0,288,288,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,9,0,288,288,0
+mobileMaterialsLab,Landed,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,Landed,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,FlyingLow,Global,1,1,5,0,160,160,0
+mobileMaterialsLab,FlyingHigh,Global,1,1,5,0,160,160,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,Landed,Global,1,1,15,0,480,480,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,Landed,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,Splashed,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,FlyingLow,Global,1,1,6,0,192,192,0
+mobileMaterialsLab,FlyingHigh,Global,1,1,6,0,192,192,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,Landed,Global,1,1,9,0,288,288,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,Landed,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,FlyingLow,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,FlyingHigh,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,7,0,224,224,0
+mobileMaterialsLab,Landed,Administration,1,2.39412E-05,0.3,9.599771,9.6,0.000228999999999147,100.00
+mobileMaterialsLab,Landed,AstronautComplex,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,Badlands,1,1,0.3,0,9.6,9.6,0.00
+mobileMaterialsLab,Landed,Crawlerway,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,Deserts,1,1,0.3,0,9.6,9.6,0.00
+mobileMaterialsLab,Landed,FlagPole,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,Grasslands,1,0.0001095732,0.3,9.598948,9.6,0.00105199999999961,99.99
+mobileMaterialsLab,Landed,Highlands,1,1,0.3,0,9.6,9.6,0.00
+mobileMaterialsLab,Landed,IceCaps,1,1,0.3,0,9.6,9.6,0.00
+mobileMaterialsLab,Landed,MissionControl,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,Mountains,1,1,0.3,0,9.6,9.6,0.00
+mobileMaterialsLab,Landed,R&D,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,R&DCentralBuilding,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,R&DMainBuilding,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,R&DObservatory,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,R&DSideLab,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,R&DSmallLab,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,SPH,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,SPHMainBuilding,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,Shores,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,TrackingStation,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,TrackingStationHub,1,0.002289812,0.3,9.578018,9.6,0.0219819999999995,99.77
+mobileMaterialsLab,Landed,Tundra,1,0.0001095732,0.3,9.598948,9.6,0.00105199999999961,99.99
+mobileMaterialsLab,Landed,Water,1,1,0.3,0,9.6,9.6,0.00
+mobileMaterialsLab,Splashed,Badlands,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,Splashed,Deserts,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,Splashed,Grasslands,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,Splashed,Highlands,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,Splashed,IceCaps,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,Splashed,Mountains,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,Splashed,Shores,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,Splashed,Tundra,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,Splashed,Water,1,1,0.4,0,12.8,12.8,0.00
+mobileMaterialsLab,FlyingLow,Global,1,1,0.7,0,22.4,22.4,0.00
+mobileMaterialsLab,FlyingHigh,Global,1,1,0.9,0,28.8,28.8,0.00
+mobileMaterialsLab,InSpaceLow,Global,1,1,1,0,32,32,0.00
+mobileMaterialsLab,InSpaceHigh,Global,1,1,1.5,0,48,48,0.00
+mobileMaterialsLab,InSpaceLow,Global,1,1,11,0,352,352,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,11,0,352,352,0
+mobileMaterialsLab,Landed,Global,1,1,14,0,448,448,0
+mobileMaterialsLab,Splashed,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,FlyingLow,Global,1,1,11,0,352,352,0
+mobileMaterialsLab,FlyingHigh,Global,1,1,11,0,352,352,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,9,0,288,288,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,9,0,288,288,0
+mobileMaterialsLab,Landed,Flats,1,1,5,0,160,160,0
+mobileMaterialsLab,Landed,GreatFlats,1,1,5,0,160,160,0
+mobileMaterialsLab,Landed,GreaterFlats,1,1,5,0,160,160,0
+mobileMaterialsLab,Landed,Highlands,1,1,5,0,160,160,0
+mobileMaterialsLab,Landed,LesserFlats,1,1,5,0,160,160,0
+mobileMaterialsLab,Landed,Lowlands,1,1,5,0,160,160,0
+mobileMaterialsLab,Landed,Midlands,1,1,5,0,160,160,0
+mobileMaterialsLab,Landed,Poles,1,1,5,0,160,160,0
+mobileMaterialsLab,Landed,Slopes,1,1,5,0,160,160,0
+mobileMaterialsLab,FlyingHigh,Global,1,1,1,0,32,32,0.00
+mobileMaterialsLab,InSpaceLow,Global,1,1,4,0,128,128,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,Global,1,1,10,0,320,320,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,8,0,256,256,0
+mobileMaterialsLab,Landed,Canyons,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,EastCrater,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,EastFarsideCrater,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,FarsideCrater,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,HighlandCraters,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,Highlands,1,1,4,0,128,128,0.00
+mobileMaterialsLab,Landed,MidlandCraters,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,Midlands,1,1,4,0,128,128,0.00
+mobileMaterialsLab,Landed,NorthernBasin,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,NorthwestCrater,1,1,4,0,128,128,0.00
+mobileMaterialsLab,Landed,PolarCrater,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,PolarLowlands,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,Poles,1,1,4,0,128,128,0.00
+mobileMaterialsLab,Landed,SouthwestCrater,1,1,4,0,128,128,0
+mobileMaterialsLab,Landed,TwinCraters,1,1,4,0,128,128,0
+mobileMaterialsLab,Splashed,Highlands,1,1,1,0,32,32,0.00
+mobileMaterialsLab,Splashed,Midlands,1,1,1,0,32,32,0.00
+mobileMaterialsLab,Splashed,NorthwestCrater,1,1,1,0,32,32,0.00
+mobileMaterialsLab,Splashed,Poles,1,1,1,0,32,32,0.00
+mobileMaterialsLab,FlyingLow,Global,1,1,1,0,32,32,0.00
+mobileMaterialsLab,FlyingHigh,Global,1,1,1,0,32,32,0.00
+mobileMaterialsLab,InSpaceLow,Global,1,1,3,0,96,96,0.00
+mobileMaterialsLab,InSpaceHigh,Global,1,1,2,0,64,64,0.00
+mobileMaterialsLab,Landed,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,9,0,288,288,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,9,0,288,288,0
+mobileMaterialsLab,Landed,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,10,0,320,320,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,10,0,320,320,0
+mobileMaterialsLab,Landed,Global,1,1,12,0,384,384,0
+mobileMaterialsLab,InSpaceLow,Global,1,1,9,0,288,288,0
+mobileMaterialsLab,InSpaceHigh,Global,1,1,9,0,288,288,0
+mysteryGoo,Landed,Global,1,1,12,0,156,156,0
+mysteryGoo,InSpaceLow,Global,1,1,9,0,117,117,0
+mysteryGoo,InSpaceHigh,Global,1,1,9,0,117,117,0
+mysteryGoo,Landed,Global,1,1,8,0,104,104,0
+mysteryGoo,InSpaceLow,Global,1,1,7,0,91,91,0
+mysteryGoo,InSpaceHigh,Global,1,1,7,0,91,91,0
+mysteryGoo,Landed,Global,1,1,8,0,104,104,0
+mysteryGoo,FlyingLow,Global,1,1,5,0,65,65,0
+mysteryGoo,FlyingHigh,Global,1,1,5,0,65,65,0
+mysteryGoo,InSpaceLow,Global,1,1,7,0,91,91,0
+mysteryGoo,InSpaceHigh,Global,1,1,7,0,91,91,0
+mysteryGoo,Landed,Global,1,1,15,0,195,195,0
+mysteryGoo,InSpaceLow,Global,1,1,12,0,156,156,0
+mysteryGoo,InSpaceHigh,Global,1,1,12,0,156,156,0
+mysteryGoo,Landed,Global,1,1,8,0,104,104,0
+mysteryGoo,Splashed,Global,1,1,8,0,104,104,0
+mysteryGoo,FlyingLow,Global,1,1,6,0,78,78,0
+mysteryGoo,FlyingHigh,Global,1,1,6,0,78,78,0
+mysteryGoo,InSpaceLow,Global,1,1,7,0,91,91,0
+mysteryGoo,InSpaceHigh,Global,1,1,7,0,91,91,0
+mysteryGoo,Landed,Global,1,1,9,0,117,117,0
+mysteryGoo,InSpaceLow,Global,1,1,8,0,104,104,0
+mysteryGoo,InSpaceHigh,Global,1,1,8,0,104,104,0
+mysteryGoo,Landed,Global,1,1,8,0,104,104,0
+mysteryGoo,InSpaceLow,Global,1,1,7,0,91,91,0
+mysteryGoo,InSpaceHigh,Global,1,1,7,0,91,91,0
+mysteryGoo,FlyingLow,Global,1,1,12,0,156,156,0
+mysteryGoo,FlyingHigh,Global,1,1,12,0,156,156,0
+mysteryGoo,InSpaceLow,Global,1,1,7,0,91,91,0
+mysteryGoo,InSpaceHigh,Global,1,1,7,0,91,91,0
+mysteryGoo,Landed,Administration,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,AstronautComplex,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,Badlands,1,1,0.3,0,3.9,3.9,0.00
+mysteryGoo,Landed,Crawlerway,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,Deserts,1,1,0.3,0,3.9,3.9,0.00
+mysteryGoo,Landed,FlagPole,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,Grasslands,1,0.0006544896,0.3,3.897448,3.9,0.00255200000000011,99.93
+mysteryGoo,Landed,Highlands,1,1,0.3,0,3.9,3.9,0.00
+mysteryGoo,Landed,IceCaps,1,1,0.3,0,3.9,3.9,0.00
+mysteryGoo,Landed,MissionControl,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,Mountains,1,1,0.3,0,3.9,3.9,0.00
+mysteryGoo,Landed,R&D,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,R&DCentralBuilding,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,R&DObservatory,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,R&DSideLab,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,R&DSmallLab,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,SPH,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,SPHMainBuilding,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,Shores,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,TrackingStation,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,TrackingStationHub,1,0.002836019,0.3,3.88894,3.9,0.0110600000000001,99.72
+mysteryGoo,Landed,Tundra,1,0.0001510596,0.3,3.899411,3.9,0.000589000000000173,99.98
+mysteryGoo,Landed,Water,1,1,0.3,0,3.9,3.9,0.00
+mysteryGoo,Splashed,Badlands,1,1,0.4,0,5.2,5.2,0.00
+mysteryGoo,Splashed,Deserts,1,1,0.4,0,5.2,5.2,0.00
+mysteryGoo,Splashed,Grasslands,1,1,0.4,0,5.2,5.2,0.00
+mysteryGoo,Splashed,Highlands,1,1,0.4,0,5.2,5.2,0.00
+mysteryGoo,Splashed,IceCaps,1,1,0.4,0,5.2,5.2,0.00
+mysteryGoo,Splashed,Mountains,1,1,0.4,0,5.2,5.2,0.00
+mysteryGoo,Splashed,Shores,1,1,0.4,0,5.2,5.2,0.00
+mysteryGoo,Splashed,Tundra,1,1,0.4,0,5.2,5.2,0.00
+mysteryGoo,Splashed,Water,1,0.002835989,0.4,5.185253,5.2,0.0147469999999998,99.72
+mysteryGoo,FlyingLow,Global,1,0.0001510159,0.7,9.098625,9.099999,0.00137400000000021,99.98
+mysteryGoo,FlyingHigh,Global,1,0.01228944,0.9,11.55621,11.7,0.143789999999999,98.77
+mysteryGoo,InSpaceLow,Global,1,0.01228949,1,12.84024,13,0.15976,98.77
+mysteryGoo,InSpaceHigh,Global,1,0.002836374,1.5,19.44469,19.5,0.0553099999999986,99.72
+mysteryGoo,InSpaceLow,Global,1,1,11,0,143,143,0
+mysteryGoo,InSpaceHigh,Global,1,1,11,0,143,143,0
+mysteryGoo,Landed,Global,1,1,14,0,182,182,0
+mysteryGoo,Splashed,Global,1,1,12,0,156,156,0
+mysteryGoo,FlyingLow,Global,1,1,11,0,143,143,0
+mysteryGoo,FlyingHigh,Global,1,1,11,0,143,143,0
+mysteryGoo,InSpaceLow,Global,1,1,9,0,117,117,0
+mysteryGoo,InSpaceHigh,Global,1,1,9,0,117,117,0
+mysteryGoo,Landed,Flats,1,1,5,0,65,65,0
+mysteryGoo,Landed,GreatFlats,1,1,5,0,65,65,0
+mysteryGoo,Landed,GreaterFlats,1,1,5,0,65,65,0
+mysteryGoo,Landed,Highlands,1,1,5,0,65,65,0
+mysteryGoo,Landed,LesserFlats,1,1,5,0,65,65,0
+mysteryGoo,Landed,Lowlands,1,1,5,0,65,65,0
+mysteryGoo,Landed,Midlands,1,1,5,0,65,65,0.00
+mysteryGoo,Landed,Poles,1,1,5,0,65,65,0
+mysteryGoo,Landed,Slopes,1,1,5,0,65,65,0
+mysteryGoo,FlyingHigh,Global,1,1,1,0,13,13,0.00
+mysteryGoo,InSpaceLow,Global,1,1,4,0,52,52,0.00
+mysteryGoo,InSpaceHigh,Global,1,1,2.5,0,32.5,32.5,0.00
+mysteryGoo,Landed,Global,1,1,10,0,130,130,0
+mysteryGoo,InSpaceLow,Global,1,1,8,0,104,104,0
+mysteryGoo,InSpaceHigh,Global,1,1,8,0,104,104,0
+mysteryGoo,Landed,Canyons,1,1,4,0,52,52,0
+mysteryGoo,Landed,EastCrater,1,1,4,0,52,52,0
+mysteryGoo,Landed,EastFarsideCrater,1,1,4,0,52,52,0
+mysteryGoo,Landed,FarsideCrater,1,1,4,0,52,52,0
+mysteryGoo,Landed,HighlandCraters,1,1,4,0,52,52,0
+mysteryGoo,Landed,Highlands,1,0.002836007,4,51.85253,52,0.147469999999998,99.72
+mysteryGoo,Landed,MidlandCraters,1,1,4,0,52,52,0
+mysteryGoo,Landed,Midlands,1,1,4,0,52,52,0.00
+mysteryGoo,Landed,NorthernBasin,1,0.002836007,4,51.85253,52,0.147469999999998,99.72
+mysteryGoo,Landed,NorthwestCrater,1,1,4,0,52,52,0.00
+mysteryGoo,Landed,PolarCrater,1,1,4,0,52,52,0
+mysteryGoo,Landed,PolarLowlands,1,1,4,0,52,52,0
+mysteryGoo,Landed,Poles,1,1,4,0,52,52,0.00
+mysteryGoo,Landed,SouthwestCrater,1,1,4,0,52,52,0
+mysteryGoo,Landed,TwinCraters,1,1,4,0,52,52,0
+mysteryGoo,Splashed,Highlands,1,1,1,0,13,13,0.00
+mysteryGoo,Splashed,Midlands,1,1,1,0,13,13,0.00
+mysteryGoo,Splashed,NorthwestCrater,1,1,1,0,13,13,0.00
+mysteryGoo,Splashed,Poles,1,1,1,0,13,13,0.00
+mysteryGoo,FlyingLow,Global,1,1,1,0,13,13,0.00
+mysteryGoo,FlyingHigh,Global,1,1,1,0,13,13,0.00
+mysteryGoo,InSpaceLow,Global,1,0.002836081,3,38.88939,39,0.110610000000001,99.72
+mysteryGoo,InSpaceHigh,Global,1,0.002836007,2,25.92626,26,0.0737400000000008,99.72
+mysteryGoo,Landed,Global,1,1,12,0,156,156,0
+mysteryGoo,InSpaceLow,Global,1,1,9,0,117,117,0
+mysteryGoo,InSpaceHigh,Global,1,1,9,0,117,117,0
+mysteryGoo,Landed,Global,1,1,12,0,156,156,0
+mysteryGoo,InSpaceLow,Global,1,1,10,0,130,130,0
+mysteryGoo,InSpaceHigh,Global,1,1,10,0,130,130,0
+mysteryGoo,Landed,Global,1,1,12,0,156,156,0
+mysteryGoo,InSpaceLow,Global,1,1,9,0,117,117,0
+mysteryGoo,InSpaceHigh,Global,1,1,9,0,117,117,0
+seismicScan,Landed,Global,2.5,1,12,0,264,264,0
+seismicScan,Landed,Global,2.5,1,8,0,176,176,0
+seismicScan,Landed,Global,2.5,1,8,0,176,176,0
+seismicScan,Landed,Global,2.5,1,15,0,330,330,0
+seismicScan,Landed,Global,2.5,1,8,0,176,176,0
+seismicScan,Landed,Global,2.5,1,9,0,198,198,0
+seismicScan,Landed,Global,2.5,1,8,0,176,176,0
+seismicScan,Landed,Administration,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,AstronautComplex,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,Badlands,2.5,1,0.3,0,6.6,6.6,0.00
+seismicScan,Landed,Crawlerway,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,Deserts,2.5,1,0.3,0,6.6,6.6,0.00
+seismicScan,Landed,FlagPole,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,Grasslands,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,Highlands,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,IceCaps,2.5,1,0.3,0,6.6,6.6,0.00
+seismicScan,Landed,MissionControl,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,Mountains,2.5,1,0.3,0,6.6,6.6,0.00
+seismicScan,Landed,R&D,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,R&DCentralBuilding,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,R&DMainBuilding,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,R&DObservatory,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,R&DSideLab,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,R&DSmallLab,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,R&DTanks,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,SPH,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,SPHMainBuilding,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,Shores,2.5,0.0007513075,0.3,6.595041,6.6,0.00495899999999949,99.92
+seismicScan,Landed,TrackingStation,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,TrackingStationHub,2.5,0.008264455,0.3,6.545455,6.6,0.0545449999999992,99.17
+seismicScan,Landed,Tundra,2.5,6.213333E-06,0.3,6.599959,6.6,4.09999999995136e-05,100.00
+seismicScan,Landed,Water,2.5,1,0.3,0,6.6,6.6,0.00
+seismicScan,Landed,Global,2.5,1,14,0,308,308,0
+seismicScan,Landed,Flats,2.5,1,5,0,110,110,0.00
+seismicScan,Landed,GreatFlats,2.5,1,5,0,110,110,0
+seismicScan,Landed,GreaterFlats,2.5,1,5,0,110,110,0
+seismicScan,Landed,Highlands,2.5,1,5,0,110,110,0
+seismicScan,Landed,LesserFlats,2.5,1,5,0,110,110,0.00
+seismicScan,Landed,Lowlands,2.5,1,5,0,110,110,0.00
+seismicScan,Landed,Midlands,2.5,1,5,0,110,110,0.00
+seismicScan,Landed,Poles,2.5,1,5,0,110,110,0
+seismicScan,Landed,Slopes,2.5,1,5,0,110,110,0
+seismicScan,Landed,Global,2.5,1,10,0,220,220,0
+seismicScan,Landed,Canyons,2.5,1,4,0,88,88,0
+seismicScan,Landed,EastCrater,2.5,1,4,0,88,88,0
+seismicScan,Landed,EastFarsideCrater,2.5,1,4,0,88,88,0
+seismicScan,Landed,FarsideCrater,2.5,1,4,0,88,88,0
+seismicScan,Landed,HighlandCraters,2.5,1,4,0,88,88,0
+seismicScan,Landed,Highlands,2.5,1,4,0,88,88,0.00
+seismicScan,Landed,MidlandCraters,2.5,1,4,0,88,88,0
+seismicScan,Landed,Midlands,2.5,0.008264455,4,87.27273,88,0.727270000000004,99.17
+seismicScan,Landed,NorthernBasin,2.5,0.004883506,4,87.57025,88,0.429749999999999,99.51
+seismicScan,Landed,NorthwestCrater,2.5,1,4,0,88,88,0.00
+seismicScan,Landed,PolarCrater,2.5,1,4,0,88,88,0
+seismicScan,Landed,PolarLowlands,2.5,0.008264455,4,87.27273,88,0.727270000000004,99.17
+seismicScan,Landed,Poles,2.5,0.008264455,4,87.27273,88,0.727270000000004,99.17
+seismicScan,Landed,SouthwestCrater,2.5,0.008264455,4,87.27273,88,0.727270000000004,99.17
+seismicScan,Landed,TwinCraters,2.5,1,4,0,88,88,0
+seismicScan,Landed,Global,2.5,1,12,0,264,264,0
+seismicScan,Landed,Global,2.5,1,12,0,264,264,0
+seismicScan,Landed,Global,2.5,1,12,0,264,264,0
+surfaceSample,Landed,Global,1,1,12,0,480,480,0
+surfaceSample,Landed,Global,1,1,8,0,320,320,0
+surfaceSample,Landed,Global,1,1,8,0,320,320,0
+surfaceSample,Landed,Global,1,1,15,0,600,600,0
+surfaceSample,Landed,Global,1,1,8,0,320,320,0
+surfaceSample,Splashed,Global,1,1,8,0,320,320,0
+surfaceSample,Landed,Global,1,1,9,0,360,360,0
+surfaceSample,Landed,Global,1,1,8,0,320,320,0
+surfaceSample,Landed,Administration,1,0.015625,0.3,11.8125,12,0.1875,98.44
+surfaceSample,Landed,AstronautComplex,1,0.015625,0.3,11.8125,12,0.1875,98.44
+surfaceSample,Landed,Badlands,1,1,0.3,0,12,12,0.00
+surfaceSample,Landed,Crawlerway,1,0.015625,0.3,11.8125,12,0.1875,98.44
+surfaceSample,Landed,Deserts,1,1,0.3,0,12,12,0.00
+surfaceSample,Landed,FlagPole,1,0.25,0.3,9,12,3,75.00
+surfaceSample,Landed,Grasslands,1,0.0009765625,0.3,11.98828,12,0.0117200000000004,99.90
+surfaceSample,Landed,Highlands,1,0.0002437433,0.3,11.99708,12,0.00291999999999959,99.98
+surfaceSample,Landed,IceCaps,1,1,0.3,0,12,12,0.00
+surfaceSample,Landed,MissionControl,1,0.015625,0.3,11.8125,12,0.1875,98.44
+surfaceSample,Landed,Mountains,1,1,0.3,0,12,12,0.00
+surfaceSample,Landed,R&D,1,0.015625,0.3,11.8125,12,0.1875,98.44
+surfaceSample,Landed,R&DCentralBuilding,1,0.0625,0.3,11.25,12,0.75,93.75
+surfaceSample,Landed,R&DMainBuilding,1,0.25,0.3,9,12,3,75.00
+surfaceSample,Landed,R&DObservatory,1,0.25,0.3,9,12,3,75.00
+surfaceSample,Landed,R&DSideLab,1,0.25,0.3,9,12,3,75.00
+surfaceSample,Landed,R&DSmallLab,1,0.0625,0.3,11.25,12,0.75,93.75
+surfaceSample,Landed,R&DTanks,1,0.25,0.3,9,12,3,75.00
+surfaceSample,Landed,SPH,1,0.015625,0.3,11.8125,12,0.1875,98.44
+surfaceSample,Landed,SPHMainBuilding,1,0.25,0.3,9,12,3,75.00
+surfaceSample,Landed,Shores,1,0.015625,0.3,11.8125,12,0.1875,98.44
+surfaceSample,Landed,TrackingStation,1,0.015625,0.3,11.8125,12,0.1875,98.44
+surfaceSample,Landed,TrackingStationHub,1,0.25,0.3,9,12,3,75.00
+surfaceSample,Landed,Tundra,1,1,0.3,0,12,12,0.00
+surfaceSample,Landed,Water,1,0.00390625,0.3,11.95313,12,0.0468700000000002,99.61
+surfaceSample,Splashed,Badlands,1,1,0.4,0,16,16,0.00
+surfaceSample,Splashed,Deserts,1,1,0.4,0,16,16,0.00
+surfaceSample,Splashed,Grasslands,1,1,0.4,0,16,16,0.00
+surfaceSample,Splashed,Highlands,1,1,0.4,0,16,16,0.00
+surfaceSample,Splashed,IceCaps,1,1,0.4,0,16,16,0.00
+surfaceSample,Splashed,Mountains,1,1,0.4,0,16,16,0.00
+surfaceSample,Splashed,Shores,1,1,0.4,0,16,16,0.00
+surfaceSample,Splashed,Tundra,1,1,0.4,0,16,16,0.00
+surfaceSample,Splashed,Water,1,0.00390625,0.4,15.9375,16,0.0625,99.61
+surfaceSample,Landed,Global,1,1,14,0,560,560,0
+surfaceSample,Splashed,Global,1,1,12,0,480,480,0
+surfaceSample,Landed,Flats,1,0.796875,5,40.625,200,159.375,20.31
+surfaceSample,Landed,GreatFlats,1,0.8125,5,37.5,200,162.5,18.75
+surfaceSample,Landed,GreaterFlats,1,1,5,0,200,200,0
+surfaceSample,Landed,Highlands,1,1,5,0,200,200,0
+surfaceSample,Landed,LesserFlats,1,0.796875,5,40.625,200,159.375,20.31
+surfaceSample,Landed,Lowlands,1,0.8125,5,37.5,200,162.5,18.75
+surfaceSample,Landed,Midlands,1,0.8125,5,37.5,200,162.5,18.75
+surfaceSample,Landed,Poles,1,0.796875,5,40.625,200,159.375,20.31
+surfaceSample,Landed,Slopes,1,1,5,0,200,200,0.00
+surfaceSample,Landed,Global,1,1,10,0,400,400,0
+surfaceSample,Landed,Canyons,1,1,4,0,160,160,0
+surfaceSample,Landed,EastCrater,1,1,4,0,160,160,0
+surfaceSample,Landed,EastFarsideCrater,1,1,4,0,160,160,0
+surfaceSample,Landed,FarsideCrater,1,1,4,0,160,160,0
+surfaceSample,Landed,HighlandCraters,1,1,4,0,160,160,0
+surfaceSample,Landed,Highlands,1,0.1992188,4,128.125,160,31.875,80.08
+surfaceSample,Landed,MidlandCraters,1,1,4,0,160,160,0
+surfaceSample,Landed,Midlands,1,1,4,0,160,160,0.00
+surfaceSample,Landed,NorthernBasin,1,0.1992188,4,128.125,160,31.875,80.08
+surfaceSample,Landed,NorthwestCrater,1,1,4,0,160,160,0.00
+surfaceSample,Landed,PolarCrater,1,1,4,0,160,160,0
+surfaceSample,Landed,PolarLowlands,1,0.1992188,4,128.125,160,31.875,80.08
+surfaceSample,Landed,Poles,1,0.203125,4,127.5,160,32.5,79.69
+surfaceSample,Landed,SouthwestCrater,1,0.1992188,4,128.125,160,31.875,80.08
+surfaceSample,Landed,TwinCraters,1,1,4,0,160,160,0
+surfaceSample,Splashed,Highlands,1,1,1,0,40,40,0.00
+surfaceSample,Splashed,Midlands,1,1,1,0,40,40,0.00
+surfaceSample,Splashed,NorthwestCrater,1,1,1,0,40,40,0.00
+surfaceSample,Splashed,Poles,1,1,1,0,40,40,0.00
+surfaceSample,Landed,Global,1,1,12,0,480,480,0
+surfaceSample,Landed,Global,1,1,12,0,480,480,0
+surfaceSample,Landed,Global,1,1,12,0,480,480,0
+temperatureScan,Landed,Global,1,1,12,0,96,96,0
+temperatureScan,InSpaceLow,Global,1,1,9,0,72,72,0
+temperatureScan,Landed,Global,1,1,8,0,64,64,0
+temperatureScan,InSpaceLow,Global,1,1,7,0,56,56,0
+temperatureScan,Landed,Global,1,1,8,0,64,64,0
+temperatureScan,FlyingLow,Global,1,1,5,0,40,40,0
+temperatureScan,FlyingHigh,Global,1,1,5,0,40,40,0
+temperatureScan,InSpaceLow,Global,1,1,7,0,56,56,0
+temperatureScan,Landed,Global,1,1,15,0,120,120,0
+temperatureScan,InSpaceLow,Global,1,1,12,0,96,96,0
+temperatureScan,Landed,Global,1,1,8,0,64,64,0
+temperatureScan,Splashed,Global,1,1,8,0,64,64,0
+temperatureScan,FlyingLow,Global,1,1,6,0,48,48,0
+temperatureScan,FlyingHigh,Global,1,1,6,0,48,48,0
+temperatureScan,InSpaceLow,Global,1,1,7,0,56,56,0
+temperatureScan,Landed,Global,1,1,9,0,72,72,0
+temperatureScan,InSpaceLow,Global,1,1,8,0,64,64,0
+temperatureScan,Landed,Global,1,1,8,0,64,64,0
+temperatureScan,InSpaceLow,Global,1,1,7,0,56,56,0
+temperatureScan,FlyingLow,Global,1,1,12,0,96,96,0
+temperatureScan,FlyingHigh,Global,1,1,12,0,96,96,0
+temperatureScan,InSpaceLow,Global,1,1,7,0,56,56,0
+temperatureScan,Landed,Administration,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,AstronautComplex,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,Badlands,1,1,0.3,0,2.4,2.4,0.00
+temperatureScan,Landed,Crawlerway,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,Deserts,1,1,0.3,0,2.4,2.4,0.00
+temperatureScan,Landed,FlagPole,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,Grasslands,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,Highlands,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,IceCaps,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,MissionControl,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,Mountains,1,1,0.3,0,2.4,2.4,0.00
+temperatureScan,Landed,R&D,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,R&DCentralBuilding,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,R&DMainBuilding,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,R&DObservatory,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,R&DSideLab,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,R&DSmallLab,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,R&DTanks,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,SPH,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,SPHMainBuilding,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,Shores,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,TrackingStation,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,TrackingStationHub,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,Tundra,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Landed,Water,1,0,0.3,2.4,2.4,0,100.00
+temperatureScan,Splashed,Badlands,1,1,0.4,0,3.2,3.2,0.00
+temperatureScan,Splashed,Deserts,1,1,0.4,0,3.2,3.2,0.00
+temperatureScan,Splashed,Grasslands,1,1,0.4,0,3.2,3.2,0.00
+temperatureScan,Splashed,Highlands,1,1,0.4,0,3.2,3.2,0.00
+temperatureScan,Splashed,IceCaps,1,1,0.4,0,3.2,3.2,0.00
+temperatureScan,Splashed,Mountains,1,1,0.4,0,3.2,3.2,0.00
+temperatureScan,Splashed,Shores,1,1,0.4,0,3.2,3.2,0.00
+temperatureScan,Splashed,Tundra,1,1,0.4,0,3.2,3.2,0.00
+temperatureScan,Splashed,Water,1,0,0.4,3.2,3.2,0,100.00
+temperatureScan,FlyingLow,Badlands,1,1,0.7,0,5.6,5.6,0.00
+temperatureScan,FlyingLow,Crawlerway,1,1,0.7,0,5.6,5.6,0.00
+temperatureScan,FlyingLow,Deserts,1,1,0.7,0,5.6,5.6,0.00
+temperatureScan,FlyingLow,Grasslands,1,0,0.7,5.6,5.6,0,100.00
+temperatureScan,FlyingLow,Highlands,1,0,0.7,5.6,5.6,0,100.00
+temperatureScan,FlyingLow,IceCaps,1,0,0.7,5.6,5.6,0,100.00
+temperatureScan,FlyingLow,MissionControl,1,1,0.7,0,5.6,5.6,0.00
+temperatureScan,FlyingLow,Mountains,1,0,0.7,5.6,5.6,0,100.00
+temperatureScan,FlyingLow,R&D,1,1,0.7,0,5.6,5.6,0.00
+temperatureScan,FlyingLow,SPH,1,1,0.7,0,5.6,5.6,0.00
+temperatureScan,FlyingLow,Shores,1,0,0.7,5.6,5.6,0,100.00
+temperatureScan,FlyingLow,TrackingStation,1,1,0.7,0,5.6,5.6,0.00
+temperatureScan,FlyingLow,Tundra,1,0,0.7,5.6,5.6,0,100.00
+temperatureScan,FlyingLow,Water,1,0,0.7,5.6,5.6,0,100.00
+temperatureScan,FlyingHigh,Global,1,0,0.9,7.2,7.2,0,100.00
+temperatureScan,InSpaceLow,Global,1,0,1,8,8,0,100.00
+temperatureScan,InSpaceLow,Global,1,1,11,0,88,88,0
+temperatureScan,Landed,Global,1,1,14,0,112,112,0
+temperatureScan,Splashed,Global,1,1,12,0,96,96,0
+temperatureScan,FlyingLow,Global,1,1,11,0,88,88,0
+temperatureScan,FlyingHigh,Global,1,1,11,0,88,88,0
+temperatureScan,InSpaceLow,Global,1,1,9,0,72,72,0
+temperatureScan,Landed,Flats,1,1,5,0,40,40,0.00
+temperatureScan,Landed,GreatFlats,1,1,5,0,40,40,0.00
+temperatureScan,Landed,GreaterFlats,1,1,5,0,40,40,0
+temperatureScan,Landed,Highlands,1,1,5,0,40,40,0
+temperatureScan,Landed,LesserFlats,1,1,5,0,40,40,0.00
+temperatureScan,Landed,Lowlands,1,1,5,0,40,40,0.00
+temperatureScan,Landed,Midlands,1,1,5,0,40,40,0.00
+temperatureScan,Landed,Poles,1,1,5,0,40,40,0.00
+temperatureScan,Landed,Slopes,1,1,5,0,40,40,0.00
+temperatureScan,FlyingHigh,Global,1,1,1,0,8,8,0.00
+temperatureScan,InSpaceLow,Global,1,0.5,4,16,32,16,50.00
+temperatureScan,Landed,Global,1,1,10,0,80,80,0
+temperatureScan,InSpaceLow,Global,1,1,8,0,64,64,0
+temperatureScan,Landed,Canyons,1,1,4,0,32,32,0
+temperatureScan,Landed,EastCrater,1,1,4,0,32,32,0
+temperatureScan,Landed,EastFarsideCrater,1,1,4,0,32,32,0
+temperatureScan,Landed,FarsideCrater,1,1,4,0,32,32,0
+temperatureScan,Landed,HighlandCraters,1,1,4,0,32,32,0
+temperatureScan,Landed,Highlands,1,0,4,32,32,0,100.00
+temperatureScan,Landed,MidlandCraters,1,1,4,0,32,32,0
+temperatureScan,Landed,Midlands,1,0,4,32,32,0,100.00
+temperatureScan,Landed,NorthernBasin,1,0,4,32,32,0,100.00
+temperatureScan,Landed,NorthwestCrater,1,1,4,0,32,32,0.00
+temperatureScan,Landed,PolarCrater,1,1,4,0,32,32,0
+temperatureScan,Landed,PolarLowlands,1,0,4,32,32,0,100.00
+temperatureScan,Landed,Poles,1,0,4,32,32,0,100.00
+temperatureScan,Landed,SouthwestCrater,1,0,4,32,32,0,100.00
+temperatureScan,Landed,TwinCraters,1,1,4,0,32,32,0
+temperatureScan,Splashed,Highlands,1,1,1,0,8,8,0.00
+temperatureScan,Splashed,Midlands,1,1,1,0,8,8,0.00
+temperatureScan,Splashed,NorthwestCrater,1,1,1,0,8,8,0.00
+temperatureScan,Splashed,Poles,1,1,1,0,8,8,0.00
+temperatureScan,FlyingLow,Highlands,1,1,1,0,8,8,0.00
+temperatureScan,FlyingLow,Midlands,1,1,1,0,8,8,0.00
+temperatureScan,FlyingLow,NorthwestCrater,1,1,1,0,8,8,0.00
+temperatureScan,FlyingLow,Poles,1,1,1,0,8,8,0.00
+temperatureScan,FlyingHigh,Global,1,1,1,0,8,8,0.00
+temperatureScan,InSpaceLow,Global,1,0,3,24,24,0,100.00
+temperatureScan,Landed,Global,1,1,12,0,96,96,0
+temperatureScan,InSpaceLow,Global,1,1,9,0,72,72,0
+temperatureScan,Landed,Global,1,1,12,0,96,96,0
+temperatureScan,InSpaceLow,Global,1,1,10,0,80,80,0
+temperatureScan,Landed,Global,1,1,12,0,96,96,0
+temperatureScan,InSpaceLow,Global,1,1,9,0,72,72,0
+recovery,Kerbin,Flew,1,0,5,6,6,0,100.00
+recovery,Kerbin,SubOrbited,1,3.576278E-06,8,9.599966,9.6,3.39999999994234e-05,100.00
+recovery,Kerbin,Orbited,1,0,10,12,12,0,100.00
+recovery,Mun,FlewBy,1,1,2,0,14.4,14.4,0
+recovery,Mun,SubOrbited,1,0.1666667,20,20,24,4,83.33
+recovery,Mun,Orbited,1,1,2,0,24,24,0
+recovery,Mun,Surfaced,1,0.0007717345,30,35.97222,36,0.0277799999999999,99.92
+recovery,Minmus,FlewBy,1,1,2.5,0,18,18,0
+recovery,Minmus,SubOrbited,1,1,2.5,0,24,24,0
+recovery,Minmus,Orbited,1,1,2.5,0,30,30,0
+recovery,Minmus,Surfaced,1,1,2.5,0,45,45,0
+recovery,Kerbol,FlewBy,1,1,4,0,28.8,28.8,0
+recovery,Kerbol,SubOrbited,1,1,4,0,38.4,38.4,0
+recovery,Kerbol,Orbited,1,1,4,0,48,48,0
+recovery,Moho,FlewBy,1,1,7,0,50.4,50.4,0
+recovery,Moho,SubOrbited,1,1,7,0,67.2,67.2,0
+recovery,Moho,Orbited,1,1,7,0,84,84,0
+recovery,Moho,Surfaced,1,1,7,0,126,126,0
+recovery,Eve,FlewBy,1,1,5,0,36,36,0
+recovery,Eve,SubOrbited,1,1,5,0,48,48,0
+recovery,Eve,Orbited,1,1,5,0,60,60,0
+recovery,Eve,Surfaced,1,1,5,0,90,90,0
+recovery,Gilly,FlewBy,1,1,6,0,43.2,43.2,0
+recovery,Gilly,SubOrbited,1,1,6,0,57.6,57.6,0
+recovery,Gilly,Orbited,1,1,6,0,72,72,0
+recovery,Gilly,Surfaced,1,1,6,0,108,108,0
+recovery,Duna,FlewBy,1,1,5,0,36,36,0
+recovery,Duna,SubOrbited,1,1,5,0,48,48,0
+recovery,Duna,Orbited,1,1,5,0,60,60,0
+recovery,Duna,Surfaced,1,1,5,0,90,90,0
+recovery,Ike,FlewBy,1,1,5,0,36,36,0
+recovery,Ike,SubOrbited,1,1,5,0,48,48,0
+recovery,Ike,Orbited,1,1,5,0,60,60,0
+recovery,Ike,Surfaced,1,1,5,0,90,90,0
+recovery,Dres,FlewBy,1,1,6,0,43.2,43.2,0
+recovery,Dres,SubOrbited,1,1,6,0,57.6,57.6,0
+recovery,Dres,Orbited,1,1,6,0,72,72,0
+recovery,Dres,Surfaced,1,1,6,0,108,108,0
+recovery,Jool,FlewBy,1,1,6,0,43.2,43.2,0
+recovery,Jool,SubOrbited,1,1,6,0,57.6,57.6,0
+recovery,Jool,Orbited,1,1,6,0,72,72,0
+recovery,Laythe,FlewBy,1,1,8,0,57.6,57.6,0
+recovery,Laythe,SubOrbited,1,1,8,0,76.8,76.8,0
+recovery,Laythe,Orbited,1,1,8,0,96,96,0
+recovery,Laythe,Surfaced,1,1,8,0,144,144,0
+recovery,Vall,FlewBy,1,1,8,0,57.6,57.6,0
+recovery,Vall,SubOrbited,1,1,8,0,76.8,76.8,0
+recovery,Vall,Orbited,1,1,8,0,96,96,0
+recovery,Vall,Surfaced,1,1,8,0,144,144,0
+recovery,Tylo,FlewBy,1,1,8,0,57.6,57.6,0
+recovery,Tylo,SubOrbited,1,1,8,0,76.8,76.8,0
+recovery,Tylo,Orbited,1,1,8,0,96,96,0
+recovery,Tylo,Surfaced,1,1,8,0,144,144,0
+recovery,Bop,FlewBy,1,1,8,0,57.6,57.6,0
+recovery,Bop,SubOrbited,1,1,8,0,76.8,76.8,0
+recovery,Bop,Orbited,1,1,8,0,96,96,0
+recovery,Bop,Surfaced,1,1,8,0,144,144,0
+recovery,Pol,FlewBy,1,1,8,0,57.6,57.6,0
+recovery,Pol,SubOrbited,1,1,8,0,76.8,76.8,0
+recovery,Pol,Orbited,1,1,8,0,96,96,0
+recovery,Pol,Surfaced,1,1,8,0,144,144,0
+recovery,Eeloo,FlewBy,1,1,10,0,72,72,0
+recovery,Eeloo,SubOrbited,1,1,10,0,96,96,0
+recovery,Eeloo,Orbited,1,1,10,0,120,120,0
+recovery,Eeloo,Surfaced,1,1,10,0,180,180,0
+SCANsat,Kerbin,AltimetryLoRes,2,1,1.5,30,30,0,100.00
+SCANsat,Kerbin,AltimetryHiRes,3,0.2494907,1.5,22.51528,30,7.48472,75.05
+SCANsat,Kerbin,BiomeAnomaly,4,1,1.5,30,30,0,100.00
+SCANsat,Mun,AltimetryLoRes,2,1,2,40,40,0,100.00
+SCANsat,Mun,AltimetryHiRes,3,0.6373302,2,14.50679,40,25.49321,36.27
+SCANsat,Mun,BiomeAnomaly,4,1,2,40,40,0,100.00
+SCANsat,Minmus,AltimetryLoRes,2,0.05890434,2.5,47.05478,50,2.94522,94.11
+SCANsat,Minmus,AltimetryHiRes,1,1,4,0,40,40,0
+SCANsat,Minmus,BiomeAnomaly,4,0.05898147,2.5,47.05093,50,2.94907,94.10
+SCANsat,Moho,AltimetryLoRes,1,1,8,0,160,160,0
+SCANsat,Moho,AltimetryHiRes,1,1,8,0,80,80,0
+SCANsat,Moho,BiomeAnomaly,1,1,8,0,160,160,0
+SCANsat,Eve,AltimetryLoRes,1,1,7,0,140,140,0
+SCANsat,Eve,AltimetryHiRes,1,1,7,0,70,70,0
+SCANsat,Eve,BiomeAnomaly,1,1,7,0,140,140,0
+SCANsat,Gilly,AltimetryLoRes,1,1,8,0,160,160,0
+SCANsat,Gilly,AltimetryHiRes,1,1,8,0,80,80,0
+SCANsat,Gilly,BiomeAnomaly,1,1,8,0,160,160,0
+SCANsat,Duna,AltimetryLoRes,1,1,7,0,140,140,0
+SCANsat,Duna,AltimetryHiRes,1,1,7,0,70,70,0
+SCANsat,Duna,BiomeAnomaly,1,1,7,0,140,140,0
+SCANsat,Ike,AltimetryLoRes,1,1,7,0,140,140,0
+SCANsat,Ike,AltimetryHiRes,1,1,7,0,70,70,0
+SCANsat,Ike,BiomeAnomaly,1,1,7,0,140,140,0
+SCANsat,Dres,AltimetryLoRes,1,1,7,0,140,140,0
+SCANsat,Dres,AltimetryHiRes,1,1,7,0,70,70,0
+SCANsat,Dres,BiomeAnomaly,1,1,7,0,140,140,0
+SCANsat,Laythe,AltimetryLoRes,1,1,9,0,180,180,0
+SCANsat,Laythe,AltimetryHiRes,1,1,9,0,90,90,0
+SCANsat,Laythe,BiomeAnomaly,1,1,9,0,180,180,0
+SCANsat,Vall,AltimetryLoRes,1,1,9,0,180,180,0
+SCANsat,Vall,AltimetryHiRes,1,1,9,0,90,90,0
+SCANsat,Vall,BiomeAnomaly,1,1,9,0,180,180,0
+SCANsat,Tylo,AltimetryLoRes,1,1,10,0,200,200,0
+SCANsat,Tylo,AltimetryHiRes,1,1,10,0,100,100,0
+SCANsat,Tylo,BiomeAnomaly,1,1,10,0,200,200,0
+SCANsat,Bop,AltimetryLoRes,1,1,9,0,180,180,0
+SCANsat,Bop,AltimetryHiRes,1,1,9,0,90,90,0
+SCANsat,Bop,BiomeAnomaly,1,1,9,0,180,180,0
+SCANsat,Pol,AltimetryLoRes,1,1,9,0,180,180,0
+SCANsat,Pol,AltimetryHiRes,1,1,9,0,90,90,0
+SCANsat,Pol,BiomeAnomaly,1,1,9,0,180,180,0
+SCANsat,Eeloo,AltimetryLoRes,1,1,12,0,240,240,0
+SCANsat,Eeloo,AltimetryHiRes,1,1,12,0,120,120,0
+SCANsat,Eeloo,BiomeAnomaly,1,1,12,0,240,240,0
