@@ -391,7 +391,7 @@ foreach (0..scalar @test - 1) {
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^SCANsat|^asteroid/;
   if ($biome[$_]) {
-    if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB/)) {
+    if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D/)) {
       my $cleft = sprintf '%.2f', 100*$sci[$_]/$cap[$_];
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
     }
@@ -462,6 +462,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
   writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix);
+
   writeToCSV(\@{$dataMatrix{$key}}) if $opts{c};
 
   if ($opts{t}) {
