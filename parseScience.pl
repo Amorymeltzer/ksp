@@ -463,7 +463,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
   writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix);
 
-  # Add in spob name to csv
+  # Add in spob name to csv, only necessary for stock science
   $dataMatrix{$key}[1] .= "\@$planet";
   writeToCSV(\@{$dataMatrix{$key}}) if $opts{c};
 
