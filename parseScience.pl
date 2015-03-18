@@ -15,7 +15,6 @@
 ## Asteroids
 
 ### FIXES TODO
-## SCANsat spacing in -t output (capitalization fix)
 ## Flag SCANsat on/off, or auto-detect??
 
 
@@ -159,6 +158,7 @@ my $eolTicker = '0';
 my $recov = 'Recov';
 my $recovery = 'recovery';
 my $scansat = 'SCANsat';
+my $scansatMap = 'SCANsatMapping';
 
 
 ### Begin!
@@ -492,7 +492,7 @@ foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
 
   if ($opts{t}) {
     # Neater spacing in test averages output
-    buildScienceData($key,$scansat,\%testData,\%scan);
+    buildScienceData($key,$scansatMap,\%testData,\%scan);
   } elsif ($opts{a}) {
     buildScienceData($key,$scansat,\%spobData,\%scan);
   }
@@ -659,7 +659,7 @@ sub average1
 
     if ($opts{t}) {
       push @{$arrayRef}, $recovery; # Neater spacing in test averages output
-      push @{$arrayRef}, $scansat;  # Neater spacing in test averages output
+      push @{$arrayRef}, $scansatMap;  # Neater spacing in test averages output
       @{$arrayRef} = sort @{$arrayRef};
     }
 
