@@ -388,6 +388,7 @@ close $file or die $!;
 
 # Build the matrix
 foreach (0..scalar @test - 1) {
+  # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^SCANsat|^asteroid/;
   if ($biome[$_]) {
     if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB/)) {
@@ -620,6 +621,7 @@ sub writeToCSV
 
     print $csv join q{,} , @{$lineRef};
     print $csv "\n";
+    return;
   }
 
 sub writeToExcel
