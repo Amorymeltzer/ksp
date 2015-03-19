@@ -4,10 +4,10 @@
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
 
-## Fix for 0.90 beta by adding in ALL BIOMES
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes", asteroids
 ## Option to pull KSC stuff in/out of Kerbin
 ## Cleanup data/test hashes, the order of the data is unintuitive
+## Cleanup var/vara/etc. crap.  Better commenting.
 ## Can you do srfsplashed in every biome on other planets with water?
 
 ### Add support for:
