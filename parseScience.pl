@@ -118,6 +118,11 @@ my @planets = qw (Kerbin Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
 my $planetCount = scalar @planets - 1; # Use this a bunch
 
 # Different spobs, different biomes
+my %spobBiomes = (
+		  Kerbin => [ qw (Water Shores Grasslands Highlands Mountains Deserts
+				Badlands Tundra IceCaps) ]
+		 );
+print "@{$spobBiomes{Kerbin}}\n";
 my @kerBiomes = qw (Water Shores Grasslands Highlands Mountains Deserts
 		    Badlands Tundra IceCaps);
 my @munBiomes = qw (FarsideCrater HighlandCraters Highlands MidlandCraters
@@ -547,7 +552,8 @@ sub arrayBuild
     my $plane = shift;
     my @tmpArray;
     if ($plane eq 'Kerbin') {
-      @tmpArray = ([@kerBiomes])x6;
+      #  @tmpArray = ([@kerBiomes])x6;
+      @tmpArray = ([@{$spobBiomes{$plane}}])x6;
     } elsif ($plane eq 'Mun') {
       @tmpArray = ([@munBiomes])x6;
     } elsif ($plane eq 'Minmus') {
