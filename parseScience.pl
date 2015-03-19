@@ -126,37 +126,28 @@ my %spobBiomes = (
 			       PolarLowlands Poles SouthwestCrater TwinCraters Canyons
 			       EastCrater EastFarsideCrater) ],
 		  Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
-				  Lowlands Midlands Poles Slopes) ]
+				  Lowlands Midlands Poles Slopes) ],
+		  Moho => [ qw (NorthPole NorthernSinkholeRidge NorthernSinkhole Highlands
+				Midlands MinorCraters CentralLowlands WesternLowlands
+				SouthWesternLowlands SouthEasternLowlands Canyon
+				SouthPole) ],
+		  Eve => [ qw (Poles ExplodiumSea Lowlands Midlands Highlands Peaks
+			       ImpactEjecta) ],
+		  Gilly => [ qw (Lowlands Midlands Highlands) ],
+		  Duna => [ qw (Poles Highlands Midlands Lowlands Craters) ],
+		  Ike => [ qw (PolarLowlands Midlands Lowlands EasternMountainRidge
+			       WesternMountainRidge CentralMountainRidge
+			       SouthEasternMountainRange SouthPole) ],
+		  Dres => [ qw (Poles Highlands Midlands Lowlands Ridges ImpactEjecta
+				ImpactCraters Canyons) ],
+		  Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
+		  Vall => [ qw (Poles Highlands Midlands Lowlands) ],
+		  Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater) ],
+		  Bop => [ qw (Poles Slopes Peaks Valley Rodges) ],
+		  Pol => [ qw (Poles Lowlands Midlands Highlands) ],
+		  Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
+				 Craters) ]
 		 );
-my @kerBiomes = qw (Water Shores Grasslands Highlands Mountains Deserts
-		    Badlands Tundra IceCaps);
-my @munBiomes = qw (FarsideCrater HighlandCraters Highlands MidlandCraters
-		    Midlands NorthernBasin NorthwestCrater PolarCrater
-		    PolarLowlands Poles SouthwestCrater TwinCraters Canyons
-		    EastCrater EastFarsideCrater);
-my @minBiomes = qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
-		    Lowlands Midlands Poles Slopes);
-my @mohBiomes = qw (NorthPole NorthernSinkholeRidge NorthernSinkhole Highlands
-		    Midlands MinorCraters CentralLowlands WesternLowlands
-		    SouthWesternLowlands SouthEasternLowlands Canyon
-		    SouthPole);
-my @eveBiomes = qw (Poles ExplodiumSea Lowlands Midlands Highlands Peaks
-		    ImpactEjecta);
-my @gilBiomes = qw (Lowlands Midlands Highlands);
-my @dunBiomes = qw (Poles Highlands Midlands Lowlands Craters);
-my @ikeBiomes = qw (PolarLowlands Midlands Lowlands EasternMountainRidge
-		    WesternMountainRidge CentralMountainRidge
-		    SouthEasternMountainRange SouthPole);
-my @dreBiomes = qw (Poles Highlands Midlands Lowlands Ridges ImpactEjecta
-		    ImpactCraters Canyons);
-my @layBiomes = qw (Poles Shores Dunes TheSagenSea);
-my @valBiomes = qw (Poles Highlands Midlands Lowlands);
-my @tylBiomes = qw (Highlands Midlands Lowlands Mara MajorCrater);
-my @bopBiomes = qw (Poles Slopes Peaks Valley Rodges);
-my @polBiomes = qw (Poles Lowlands Midlands Highlands);
-my @eelBiomes = qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
-		    Craters);
-
 
 # Am I in a science or recovery loop, or did I leave a recovery loop?
 my $ticker = '0';
