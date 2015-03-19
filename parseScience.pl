@@ -120,9 +120,14 @@ my $planetCount = scalar @planets - 1; # Use this a bunch
 # Different spobs, different biomes
 my %spobBiomes = (
 		  Kerbin => [ qw (Water Shores Grasslands Highlands Mountains Deserts
-				Badlands Tundra IceCaps) ]
+				  Badlands Tundra IceCaps) ],
+		  Mun => [ qw (FarsideCrater HighlandCraters Highlands MidlandCraters
+			       Midlands NorthernBasin NorthwestCrater PolarCrater
+			       PolarLowlands Poles SouthwestCrater TwinCraters Canyons
+			       EastCrater EastFarsideCrater) ],
+		  Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
+				  Lowlands Midlands Poles Slopes) ]
 		 );
-print "@{$spobBiomes{Kerbin}}\n";
 my @kerBiomes = qw (Water Shores Grasslands Highlands Mountains Deserts
 		    Badlands Tundra IceCaps);
 my @munBiomes = qw (FarsideCrater HighlandCraters Highlands MidlandCraters
@@ -555,9 +560,10 @@ sub arrayBuild
       #  @tmpArray = ([@kerBiomes])x6;
       @tmpArray = ([@{$spobBiomes{$plane}}])x6;
     } elsif ($plane eq 'Mun') {
-      @tmpArray = ([@munBiomes])x6;
+      #  @tmpArray = ([@munBiomes])x6;
+      @tmpArray = ([@{$spobBiomes{$plane}}])x6;
     } elsif ($plane eq 'Minmus') {
-      @tmpArray = ([@minBiomes])x6;
+      @tmpArray = ([@{$spobBiomes{$plane}}])x6;
     } else {
       @tmpArray = ([qw (Global)])x6;
     }
@@ -664,8 +670,8 @@ sub average1
     my $arrayRef = shift;
 
     if ($opts{t}) {
-      push @{$arrayRef}, $recovery; # Neater spacing in test averages output
-      push @{$arrayRef}, $scansatMap;  # Neater spacing in test averages output
+      push @{$arrayRef}, $recovery;   # Neater spacing in test averages output
+      push @{$arrayRef}, $scansatMap; # Neater spacing in test averages output
       @{$arrayRef} = sort @{$arrayRef};
     }
 
