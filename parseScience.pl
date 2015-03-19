@@ -342,8 +342,7 @@ while (<$file>) {
 	@pieces = (split /@/, $tmp2);
       } elsif ($tmp2 =~ m/^$scansat/) {
 	$scanTicker = 1;
-	$tmp2 =~ s/InSpaceHighsurface$//g;
-	$tmp2 =~ s/^$scansat(.*)\@(.*)/$scansat\@$2\@$1/g;
+	$tmp2 =~ s/^$scansat(.*)\@(.*)InSpaceHighsurface$/$scansat\@$2\@$1/g;
 	@pieces = (split /@/, $tmp2);
       } else {
 	($recoTicker,$scanTicker) = (0,0);
