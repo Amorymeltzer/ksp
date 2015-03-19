@@ -16,7 +16,8 @@ Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  
 ```
 Usage: parseScience.pl [-atsnchH -u <savefile_name>]
       -a Display average science left for each planet.
-      -t Display average science left for each experiment type.
+      -t Display average science left for each experiment type.  Supersedes
+	     the -a flag.
       -s Sort output by science left, including averages from -a and -t flags.
       -p Sort output by percent science accomplished, including averages from
          the -a and -t flags.  Supersedes the -s flag.
