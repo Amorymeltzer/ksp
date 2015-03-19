@@ -141,6 +141,7 @@ my %spobBiomes = (
 			       SouthEasternMountainRange SouthPole) ],
 		  Dres => [ qw (Poles Highlands Midlands Lowlands Ridges ImpactEjecta
 				ImpactCraters Canyons) ],
+		  Jool => [ qw (Global) ],
 		  Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
 		  Vall => [ qw (Poles Highlands Midlands Lowlands) ],
 		  Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater) ],
