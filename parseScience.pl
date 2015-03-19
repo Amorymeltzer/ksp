@@ -548,18 +548,7 @@ sub binary
 sub arrayBuild
   {
     my $plane = shift;
-    my @tmpArray;
-    if ($plane eq 'Kerbin') {
-      #  @tmpArray = ([@kerBiomes])x6;
-      @tmpArray = ([@{$spobBiomes{$plane}}])x6;
-    } elsif ($plane eq 'Mun') {
-      #  @tmpArray = ([@munBiomes])x6;
-      @tmpArray = ([@{$spobBiomes{$plane}}])x6;
-    } elsif ($plane eq 'Minmus') {
-      @tmpArray = ([@{$spobBiomes{$plane}}])x6;
-    } else {
-      @tmpArray = ([qw (Global)])x6;
-    }
+    my @tmpArray = ([@{$spobBiomes{$plane}}])x6;;
 
     return @tmpArray;
   }
