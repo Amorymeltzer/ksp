@@ -127,6 +127,7 @@ my %spobBiomes = (
 			       EastCrater EastFarsideCrater) ],
 		  Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
 				  Lowlands Midlands Poles Slopes) ],
+		  Kerbol => [ qw (Global) ],
 		  Moho => [ qw (NorthPole NorthernSinkholeRidge NorthernSinkhole Highlands
 				Midlands MinorCraters CentralLowlands WesternLowlands
 				SouthWesternLowlands SouthEasternLowlands Canyon
