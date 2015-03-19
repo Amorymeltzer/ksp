@@ -231,12 +231,11 @@ foreach my $i (0..scalar @testdef - 1) {
     my @situations = qw (Landed Splashed FlyingLow
 			 FlyingHigh InSpaceLow InSpaceHigh);
 
-    # Build an array of arrays, nullify alongside @situations
+    # Create array of arrays for spob-specific biomes, nullify w/ @situations
     # Don't forget the KSC/Runway/Launchpad/etc. biomes, but only for landed?
-    # Have to somehow deal with eva report while flying over, goo?
+    # Have to somehow deal with various reports while flying over KSC
     # ;;;;;; ##### FIXME TODO
-    # Only three spobs have biomes as of 0.25
-    my @biomes = arrayBuild ($planets[$planet]);
+    my @biomes = ([@{$spobBiomes{$planets[$planet]}}])x6;
 
     for (my $var = scalar @sits - 1;$var>=0;$var--) {
       my $vara = abs $var-5;
@@ -540,17 +539,6 @@ sub binary
       $ones = '0'.$ones;
     }
     return $ones;
-  }
-
-# Create array of arrays for spob-specific @biomes
-# More efficiently pass first three letters for array assignment
-# FIXME TODO
-sub arrayBuild
-  {
-    my $plane = shift;
-    my @tmpArray = ([@{$spobBiomes{$plane}}])x6;;
-
-    return @tmpArray;
   }
 
 ## Custom sort order, adapted from:
