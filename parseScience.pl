@@ -395,6 +395,11 @@ foreach (0..scalar @test - 1) {
   if ($biome[$_]) {
     if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/)) {
       my $cleft = sprintf '%.2f', 100*$sci[$_]/$cap[$_];
+
+      # Skip over annoying "fake" science expts caused by ScienceAlert, for
+      # more info See
+      # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
+      next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
     }
   }
