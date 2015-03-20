@@ -15,7 +15,13 @@
 ## Asteroids
 
 ### FIXES TODO
+## Version number, etc. for release
 ## Flag SCANsat on/off, or auto-detect??
+## Sort reco/scanTicker into final elsif
+## Turn cascading tmp1/2 elifs into hash lookup?  Might revert above
+## Subroutine cleft calc
+## Biomes are hardcoded, would be nice to pull from somewhere
+## Same for sbv, multipliers, etc.
 
 
 use strict;
