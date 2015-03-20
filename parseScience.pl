@@ -17,7 +17,6 @@
 ### FIXES TODO
 ## Version number, etc. for release
 ## Flag SCANsat on/off, or auto-detect??
-## Sort reco/scanTicker into final elsif
 ## Turn cascading tmp1/2 elifs into hash lookup?  Might revert above
 ## Biomes are hardcoded, would be nice to pull from somewhere
 ## Same for sbv, multipliers, etc.
@@ -124,37 +123,37 @@ my $planetCount = scalar @planets - 1; # Use this a bunch
 
 # Different spobs, different biomes
 my %universe = (
-		  Kerbin => [ qw (Water Shores Grasslands Highlands Mountains Deserts
-				  Badlands Tundra IceCaps) ],
-		  Mun => [ qw (FarsideCrater HighlandCraters Highlands MidlandCraters
-			       Midlands NorthernBasin NorthwestCrater PolarCrater
-			       PolarLowlands Poles SouthwestCrater TwinCraters Canyons
-			       EastCrater EastFarsideCrater) ],
-		  Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
-				  Lowlands Midlands Poles Slopes) ],
-		  Kerbol => [ qw (Global) ],
-		  Moho => [ qw (NorthPole NorthernSinkholeRidge NorthernSinkhole Highlands
-				Midlands MinorCraters CentralLowlands WesternLowlands
-				SouthWesternLowlands SouthEasternLowlands Canyon
-				SouthPole) ],
-		  Eve => [ qw (Poles ExplodiumSea Lowlands Midlands Highlands Peaks
-			       ImpactEjecta) ],
-		  Gilly => [ qw (Lowlands Midlands Highlands) ],
-		  Duna => [ qw (Poles Highlands Midlands Lowlands Craters) ],
-		  Ike => [ qw (PolarLowlands Midlands Lowlands EasternMountainRidge
-			       WesternMountainRidge CentralMountainRidge
-			       SouthEasternMountainRange SouthPole) ],
-		  Dres => [ qw (Poles Highlands Midlands Lowlands Ridges ImpactEjecta
-				ImpactCraters Canyons) ],
-		  Jool => [ qw (Global) ],
-		  Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
-		  Vall => [ qw (Poles Highlands Midlands Lowlands) ],
-		  Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater) ],
-		  Bop => [ qw (Poles Slopes Peaks Valley Rodges) ],
-		  Pol => [ qw (Poles Lowlands Midlands Highlands) ],
-		  Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
-				 Craters) ]
-		 );
+		Kerbin => [ qw (Water Shores Grasslands Highlands Mountains Deserts
+				Badlands Tundra IceCaps) ],
+		Mun => [ qw (FarsideCrater HighlandCraters Highlands MidlandCraters
+			     Midlands NorthernBasin NorthwestCrater PolarCrater
+			     PolarLowlands Poles SouthwestCrater TwinCraters Canyons
+			     EastCrater EastFarsideCrater) ],
+		Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
+				Lowlands Midlands Poles Slopes) ],
+		Kerbol => [ qw (Global) ],
+		Moho => [ qw (NorthPole NorthernSinkholeRidge NorthernSinkhole Highlands
+			      Midlands MinorCraters CentralLowlands WesternLowlands
+			      SouthWesternLowlands SouthEasternLowlands Canyon
+			      SouthPole) ],
+		Eve => [ qw (Poles ExplodiumSea Lowlands Midlands Highlands Peaks
+			     ImpactEjecta) ],
+		Gilly => [ qw (Lowlands Midlands Highlands) ],
+		Duna => [ qw (Poles Highlands Midlands Lowlands Craters) ],
+		Ike => [ qw (PolarLowlands Midlands Lowlands EasternMountainRidge
+			     WesternMountainRidge CentralMountainRidge
+			     SouthEasternMountainRange SouthPole) ],
+		Dres => [ qw (Poles Highlands Midlands Lowlands Ridges ImpactEjecta
+			      ImpactCraters Canyons) ],
+		Jool => [ qw (Global) ],
+		Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
+		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
+		Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater) ],
+		Bop => [ qw (Poles Slopes Peaks Valley Rodges) ],
+		Pol => [ qw (Poles Lowlands Midlands Highlands) ],
+		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
+			       Craters) ]
+	       );
 
 # Am I in a science, recovery, or SCANsat loop?
 my $ticker = '0';
@@ -372,15 +371,15 @@ while (<$file>) {
       @sci = (@sci,$tmp2);
     } elsif ($tmp1 =~ m/^cap/) {
       @cap = (@cap,$tmp2);
-    }
 
-    # Build hashes holding recovery and SCANsat data
-    if (($recoTicker == 1) && ($tmp1 eq 'cap')) {
-      my $cleft = calcPerc($sci[-1],$cap[-1]);
-      $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
-    } elsif (($scanTicker == 1) && ($tmp1 eq 'cap')) {
-      my $cleft = calcPerc($sci[-1],$cap[-1]);
-      $scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
+      # Build recovery and SCANsat data hashes
+      if ($recoTicker == 1) {
+	my $cleft = calcPerc($sci[-1],$cap[-1]);
+	$reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
+      } elsif ($scanTicker == 1) {
+	my $cleft = calcPerc($sci[-1],$cap[-1]);
+	$scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
+      }
     }
 
     # Not sure what do?  ;;;;;; ##### FIXME TODO
@@ -548,10 +547,10 @@ sub binary
     return $ones;
   }
 
-  sub calcPerc {
-    my ($sciC,$capC) = @_;
-    return sprintf '%.2f', 100*$sciC/$capC;
-  }
+sub calcPerc {
+  my ($sciC,$capC) = @_;
+  return sprintf '%.2f', 100*$sciC/$capC;
+}
 
 ## Custom sort order, adapted from:
 ## http://stackoverflow.com/a/8171591/2521092
