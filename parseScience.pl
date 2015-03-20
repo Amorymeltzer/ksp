@@ -118,7 +118,7 @@ my @planets = qw (Kerbin Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
 my $planetCount = scalar @planets - 1; # Use this a bunch
 
 # Different spobs, different biomes
-my %spobBiomes = (
+my %universe = (
 		  Kerbin => [ qw (Water Shores Grasslands Highlands Mountains Deserts
 				  Badlands Tundra IceCaps) ],
 		  Mun => [ qw (FarsideCrater HighlandCraters Highlands MidlandCraters
@@ -235,7 +235,7 @@ foreach my $i (0..scalar @testdef - 1) {
     # Don't forget the KSC/Runway/Launchpad/etc. biomes, but only for landed?
     # Have to somehow deal with various reports while flying over KSC
     # ;;;;;; ##### FIXME TODO
-    my @biomes = ([@{$spobBiomes{$planets[$planet]}}])x6;
+    my @biomes = ([@{$universe{$planets[$planet]}}])x6;
 
     for (my $var = scalar @sits - 1;$var>=0;$var--) {
       my $vara = abs $var-5;
