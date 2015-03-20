@@ -376,7 +376,8 @@ while (<$file>) {
 
     # Build hashes holding recovery and SCANsat data
     if (($recoTicker == 1) && ($tmp1 eq 'cap')) {
-      my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
+      #  my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
+      my $cleft = calcPerc($sci[-1],$cap[-1]);
       $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
     } elsif (($scanTicker == 1) && ($tmp1 eq 'cap')) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
@@ -546,6 +547,11 @@ sub binary
       $ones = '0'.$ones;
     }
     return $ones;
+  }
+
+  sub calcPerc {
+    my ($sciC,$capC) = @_;
+    return sprintf '%.2f', 100*$sciC/$capC;
   }
 
 ## Custom sort order, adapted from:
