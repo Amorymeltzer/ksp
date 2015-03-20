@@ -151,11 +151,10 @@ my %universe = (
 				 Craters) ]
 		 );
 
-# Am I in a science or recovery loop, or did I leave a recovery loop?
+# Am I in a science, recovery, or SCANsat loop?
 my $ticker = '0';
 my $recoTicker = '0';
 my $scanTicker = '0';
-my $eolTicker = '0';
 
 # Sometimes I use one versus the other, mainly for spacing in averages table
 my $recov = 'Recov';
@@ -333,8 +332,6 @@ while (<$file>) {
     $tmp2 =~ s/Sun/Kerbol/g;
 
     if ($tmp1 eq 'id') {
-      $eolTicker = 0;
-
       # Replace recovery and SCANsat data here, why not?
       if ($tmp2 =~ m/^$recovery/) {
 	$recoTicker = 1;
@@ -369,14 +366,13 @@ while (<$file>) {
       @sci = (@sci,$tmp2);
     } elsif ($tmp1 =~ m/^cap/) {
       @cap = (@cap,$tmp2);
-      $eolTicker = 1;
     }
 
     # Build hash holding recovery for SCANsat data
-    if (($recoTicker == 1) && ($eolTicker == 1)) {
+    if (($recoTicker == 1) && ($tmp1 eq 'cap')) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
-    } elsif (($scanTicker == 1) && ($eolTicker == 1)) {
+    } elsif (($scanTicker == 1) && ($tmp1 eq 'cap')) {
       my $cleft = sprintf '%.2f', 100*$sci[-1]/$cap[-1];
       $scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
     }
