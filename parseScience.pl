@@ -223,7 +223,8 @@ while (<$defs>) {
 close $defs or die $!;
 
 
-# Iterate and decide on conditions, build matrix, gogogo
+## Iterate and decide on conditions, build matrix, gogogo
+# Build stock science hash
 foreach my $i (0..scalar @testdef - 1) {
   # Array of binary values, only need to do once per test
   my @sits = split //,$sitmask[$i];
