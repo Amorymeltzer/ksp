@@ -73,18 +73,15 @@ my %reco;			# Separate hash for craft recovery
 my %scan;			# Separate hash for SCANsat
 my %sbvData;			# Hold sbv values from END data
 
-# Reverse-engineered caps for recovery missions.  SubOrbited and Orbited are
-# messed up - the default values from Kerbin are inverted elsewhere. ;;;;;;
-# ##### FIXME TODO
-my %recoCaps = (
+# Reverse-engineered caps for recovery missions and SCANsat data.  SubOrbited and
+# Orbited are messed up - the default values from Kerbin are inverted
+# elsewhere.  All SCANsat caps are 20
+my %sciCaps = (
 		Flew => 6,
 		FlewBy => 7.2,
 		SubOrbited => 9.6,
 		Orbited => 12,
-		Surfaced => 18
-	       );
-# All SCANsat caps are 20
-my %scanCaps = (
+		Surfaced => 18,
 		AltimetryLoRes => 20,
 		BiomeAnomaly => 20,
 		AltimetryHiRes => 20
@@ -293,14 +290,14 @@ foreach my $planet (0..$planetCount) {
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
-    my $cleft = $sbVal*$recoCaps{$situations[$sit]};
+    my $cleft = $sbVal*$sciCaps{$situations[$sit]};
     $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
 
 # Build SCANsat hash
 foreach my $planet (0..$planetCount) {
-  my @situations = keys %scanCaps;
+  my @situations = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
 
   foreach my $sit (0..scalar @situations - 1) {
     # No surface?  Do scanning
@@ -311,7 +308,7 @@ foreach my $planet (0..$planetCount) {
     # it's somewhat less logical.  This will suffice for now
     # FIXME TODO
     my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
-    my $cleft = $sbVal*$scanCaps{$situations[$sit]};
+    my $cleft = $sbVal*$sciCaps{$situations[$sit]};
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
