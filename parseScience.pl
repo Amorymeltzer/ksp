@@ -16,6 +16,7 @@
 
 ### FIXES TODO
 ## Version number, etc. for release
+## dotfile config for repeated use
 ## Flag SCANsat on/off, or auto-detect??
 ## Turn cascading tmp1/2 elifs into hash lookup?  Might revert above
 ## Biomes are hardcoded, would be nice to pull from somewhere
