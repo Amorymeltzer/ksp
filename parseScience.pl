@@ -35,14 +35,12 @@ my %opts = ();
 getopts('atspncu:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
-  usage(); exit;
+  usage();
+  exit;
 }
 
 
 ### FILE DEFINITIONS
-my $outfile = 'scienceToDo.xlsx';
-my $csvOut = 'scienceToDo.csv';
-
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
 
@@ -63,15 +61,19 @@ if (! -e $pers) {
   exit;
 }
 
+my $outfile = 'scienceToDo.xlsx';
+my $csvOut = 'scienceToDo.csv';
+
+
 ### GLOBAL VARIABLES
 my %dataMatrix;			# Hold errything
 my %reco;			# Separate hash for craft recovery
 my %scan;			# Separate hash for SCANsat
 my %sbvData;			# Hold sbv values from END data
 
-# Access reverse-engineered caps for recovery missions.  SubOrbited and
-# Orbited are messed up - the default values from Kerbin are inverted
-# elsewhere. ;;;;;; ##### FIXME TODO
+# Reverse-engineered caps for recovery missions.  SubOrbited and Orbited are
+# messed up - the default values from Kerbin are inverted elsewhere. ;;;;;;
+# ##### FIXME TODO
 my %recoCaps = (
 		Flew => 6,
 		FlewBy => 7.2,
