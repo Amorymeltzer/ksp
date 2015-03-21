@@ -87,7 +87,7 @@ my %recoCaps = (
 my %scanCaps = (
 		AltimetryLoRes => 20,
 		BiomeAnomaly => 20,
-		AltimetryHiRes => 10
+		AltimetryHiRes => 20
 	       );
 my %workVars;		      # Hash of arrays to hold worksheets, current row
 my %spobData;		      # Hold data on science per spob
