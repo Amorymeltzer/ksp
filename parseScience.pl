@@ -5,20 +5,22 @@
 # Leftover science in red, candidates for manual cleanup in green
 
 ## Ignores KSC/LaunchPad/Runway/etc. "biomes", asteroids
-## Option to pull KSC stuff in/out of Kerbin
-## Cleanup data/test hashes, the order of the data is unintuitive
-## Cleanup var/vara/etc. crap.  Better commenting.
 ## Can you do srfsplashed in every biome on other planets with water?
 
 ### Add support for:
 ## KSC biomes
 ## Asteroids
 
-### FIXES TODO
+### FIXES, TODOS
 ## Version number, etc. for release
 ## dotfile config for repeated use
+## Option to pull KSC stuff in/out of Kerbin?
+## Incorporate InSpaceLow/High, etc. cutoffs somehow
+### Print into excel?  New header?
 ## Flag SCANsat on/off, or auto-detect??
 ## Turn cascading tmp1/2 elifs into hash lookup?  Might revert above
+## Cleanup data/test hashes, the order of the data is unintuitive
+## Cleanup var/vara/etc. crap.  Better commenting.
 ## Biomes are hardcoded, would be nice to pull from somewhere
 ## Same for sbv, multipliers, etc.
 
