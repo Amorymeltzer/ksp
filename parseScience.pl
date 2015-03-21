@@ -76,7 +76,7 @@ my %sbvData;			# Hold sbv values from END data
 # Reverse-engineered caps for recovery missions and SCANsat data.  SubOrbited and
 # Orbited are messed up - the default values from Kerbin are inverted
 # elsewhere.  All SCANsat caps are 20
-my %sciCaps = (
+my %rsCaps = (
 		Flew => 6,
 		FlewBy => 7.2,
 		SubOrbited => 9.6,
@@ -290,7 +290,7 @@ foreach my $planet (0..$planetCount) {
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
-    my $cleft = $sbVal*$sciCaps{$situations[$sit]};
+    my $cleft = $sbVal*$rsCaps{$situations[$sit]};
     $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
@@ -308,7 +308,7 @@ foreach my $planet (0..$planetCount) {
     # it's somewhat less logical.  This will suffice for now
     # FIXME TODO
     my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
-    my $cleft = $sbVal*$sciCaps{$situations[$sit]};
+    my $cleft = $sbVal*$rsCaps{$situations[$sit]};
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
