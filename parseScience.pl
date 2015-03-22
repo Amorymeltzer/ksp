@@ -13,6 +13,7 @@
 
 ### FIXES, TODOS
 ## SCANsat uses recovery, not inspacehigh, except Kerbin is 1.5?!?!
+## Also allows Sun scanning?!
 ## Can use sbv, cap, etc. matching to check for errors
 ### Debug only
 ## Version number, etc. for release
