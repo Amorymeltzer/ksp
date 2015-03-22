@@ -12,6 +12,9 @@
 ## Asteroids
 
 ### FIXES, TODOS
+## SCANsat uses recovery, not inspacehigh, except Kerbin is 1.5?!?!
+## Can use sbv, cap, etc. matching to check for errors
+### Debug only
 ## Version number, etc. for release
 ## dotfile config for repeated use
 ## Option to pull KSC stuff in/out of Kerbin?
