@@ -45,6 +45,9 @@ if ($opts{h} || $opts{H}) {
   exit;
 }
 
+### ENVIRONMENT VARIABLES
+my ($username,$average,$tests,$scienceleft,$percentdone,$noformat,$csv);
+
 
 ### FILE DEFINITIONS
 ## Preference file
@@ -111,7 +114,7 @@ if (! -e $pers) {
 }
 
 my $outfile = 'scienceToDo.xlsx';
-my $csvOut = 'scienceToDo.csv';
+my $csvFile = 'scienceToDo.csv';
 
 
 ### GLOBAL VARIABLES
@@ -511,7 +514,7 @@ foreach my $planet (0..$planetCount) {
 
 
 ## Actually print everybody!
-open my $csv, '>', "$csvOut" or die $!;
+open my $csvOut, '>', "$csvFile" or die $!;
 writeToCSV(\@header) if $opts{c};
 
 # Stock science
@@ -554,7 +557,7 @@ foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
     buildScienceData($key,$scansat,\%spobData,\%scan);
   }
 }
-close $csv or die $!;
+close $csvOut or die $!;
 
 
 ## Sorting of different average tables
@@ -664,8 +667,8 @@ sub writeToCSV
   {
     my $lineRef = shift;
 
-    print $csv join q{,} , @{$lineRef};
-    print $csv "\n";
+    print $csvOut join q{,} , @{$lineRef};
+    print $csvOut "\n";
     return;
   }
 
