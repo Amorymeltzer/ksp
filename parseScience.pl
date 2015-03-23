@@ -19,6 +19,7 @@
 ## Version number, etc. for release
 ## dotfile config for repeated use
 ## Option to pull KSC stuff in/out of Kerbin?
+## Option to combine spobs by system?  Joolian, etc.
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header?
 ## Flag SCANsat on/off, or auto-detect??
