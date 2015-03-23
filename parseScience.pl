@@ -73,24 +73,10 @@ my $csvOut = 'scienceToDo.csv';
 
 
 ### GLOBAL VARIABLES
-my %dataMatrix;			# Hold errything
-my %reco;			# Separate hash for craft recovery
-my %scan;			# Separate hash for SCANsat
-my %sbvData;			# Hold sbv values from END data
-
-# Reverse-engineered caps for recovery missions and SCANsat data.  SubOrbited and
-# Orbited are messed up - the default values from Kerbin are inverted
-# elsewhere.  All SCANsat caps are 20
-my %rsCaps = (
-		Flew => 6,
-		FlewBy => 7.2,
-		SubOrbited => 9.6,
-		Orbited => 12,
-		Surfaced => 18,
-		AltimetryLoRes => 20,
-		BiomeAnomaly => 20,
-		AltimetryHiRes => 20
-	       );
+my %dataMatrix;		      # Hold stock data
+my %reco;		      # Separate hash for craft recovery
+my %scan;		      # Separate hash for SCANsat
+my %sbvData;		      # Hold sbv values from END data
 my %workVars;		      # Hash of arrays to hold worksheets, current row
 my %spobData;		      # Hold data on science per spob
 my %testData;		      # Hold data on science per test
@@ -161,6 +147,25 @@ my %universe = (
 		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
 			       Craters) ]
 	       );
+
+# Various situations you may find yourself in
+my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);
+my @recoSits = qw (Flew FlewBy SubOrbited Orbited Surfaced);
+my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
+
+# Reverse-engineered caps for recovery missions and SCANsat data.  SubOrbited and
+# Orbited are messed up - the default values from Kerbin are inverted
+# elsewhere.  All SCANsat caps are 20
+my %rsCaps = (
+	      Flew => 6,
+	      FlewBy => 7.2,
+	      SubOrbited => 9.6,
+	      Orbited => 12,
+	      Surfaced => 18,
+	      AltimetryLoRes => 20,
+	      BiomeAnomaly => 20,
+	      AltimetryHiRes => 20
+	     );
 
 # Am I in a science, recovery, or SCANsat loop?
 my $ticker = '0';
@@ -568,7 +573,7 @@ sub specialSort
     my @specOrder = @planets;
     my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
     my $sord = join q{|}, @specOrder;
-    my @condOrder = qw (Flew SubOrbited Orbited Surfaced AltimetryLoRes AltimetryHiRes BiomeAnomaly);
+    my @condOrder = qw (Flew FlewBy SubOrbited Orbited Surfaced AltimetryLoRes AltimetryHiRes BiomeAnomaly);
     my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
     my $cord = join q{|}, @condOrder;
 
