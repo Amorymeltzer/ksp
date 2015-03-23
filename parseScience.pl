@@ -47,13 +47,22 @@ if ($opts{h} || $opts{H}) {
 
 
 ### FILE DEFINITIONS
-my $dotfile = '.parsesciencerc';
+## Preference file
+my $dotfile;
+# Search for a dotfile in these locations
+my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
+foreach my $place (@dotLocales) {
+  if (-e $place) {
+    $dotfile = $place;
+    exit;
+  }
+}
+# All superseded by commandline flag
 if ($opts{k}) {
   $dotfile = $opts{k};
 }
-if (!-e $dotfile) {
-  print "aha\n";
-  exit;
+if ($dotfile) {
+  print "asd\n";
 }
 
 my $scidef = 'ScienceDefs.cfg';
