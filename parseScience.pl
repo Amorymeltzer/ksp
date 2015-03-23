@@ -46,12 +46,12 @@ if ($opts{h} || $opts{H}) {
 }
 
 ### ENVIRONMENT VARIABLES
-my ($username,$average,$tests,$scienceleft,$percentdone,$noformat,$csv);
+# Replaced from the %opts table
+my ($dotfile,			# Preference file
+    $username,$average,$tests,$scienceleft,$percentdone,$noformat,$csv);
 
 
 ### FILE DEFINITIONS
-## Preference file
-my $dotfile;
 # Round up the usual suspects, all superseded by commandline flag
 my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
 if ($opts{k}) {
