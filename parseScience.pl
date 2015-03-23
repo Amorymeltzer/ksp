@@ -69,7 +69,7 @@ if ($dotfile) {
     chomp;
     next if m/^#/g;		# Ignore comments
     next if !$_;		# Ignore blank lines
-    next if !m/^.+ = .+/i;
+    next if !m/^.+ = .+/;
     s/ //g;
 
     my @tmp = split /=/;
