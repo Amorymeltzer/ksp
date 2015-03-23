@@ -12,8 +12,7 @@
 ## Asteroids
 
 ### FIXES, TODOS
-## SCANsat uses recovery, not inspacehigh, except Kerbin is 1.5?!?!
-## Also allows Sun scanning?!
+## SCANsat allows Sun scanning?!
 ## Can use sbv, cap, etc. matching to check for errors
 ### Debug only
 ## Version number, etc. for release
@@ -309,11 +308,7 @@ foreach my $planet (0..$planetCount) {
     # No surface?  Do scanning
     next if ($planets[$planet] =~ m/^Kerbol|^Jool/);
 
-    # SCANsat sbv values used to correspond to InSpaceHigh values but this
-    # apparently changed in a recent update to SCANsat, so now it corresponds
-    # to recovery values.  Except Kerbin.  Which is 1.5 instead of 1.  For
-    # some reason.  This will suffice for now FIXME TODO
-    my $sbVal = $sbvData{$planets[$planet].'Recovery'};
+    my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
     my $cleft = $sbVal*$rsCaps{$situations[$sit]};
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
@@ -749,81 +744,81 @@ USAGE
 ## was easier to just duplicate them here rather than build another loop.
 __END__
 Kerbol InSpaceLow 11
-  Kerbol InSpaceHigh 11
+  Kerbol InSpaceHigh 2
   Kerbol Recovery 4
   Kerbin Landed 0.3
   Kerbin Splashed 0.4
   Kerbin FlyingLow 0.7
-  Kerbin FlyingHigh 0.7
+  Kerbin FlyingHigh 0.9
   Kerbin InSpaceLow 1
-  Kerbin InSpaceHigh 1
+  Kerbin InSpaceHigh 1.5
   Kerbin Recovery 1
   Mun Landed 4
   Mun InSpaceLow 3
-  Mun InSpaceHigh 3
+  Mun InSpaceHigh 2
   Mun Recovery 2
   Minmus Landed 5
   Minmus InSpaceLow 4
-  Minmus InSpaceHigh 4
+  Minmus InSpaceHigh 2.5
   Minmus Recovery 2.5
   Moho Landed 10
   Moho InSpaceLow 8
-  Moho InSpaceHigh 8
+  Moho InSpaceHigh 7
   Moho Recovery 7
   Eve Landed 8
   Eve Splashed 8
   Eve FlyingLow 6
   Eve FlyingHigh 6
   Eve InSpaceLow 7
-  Eve InSpaceHigh 7
+  Eve InSpaceHigh 5
   Eve Recovery 5
   Gilly Landed 9
   Gilly InSpaceLow 8
-  Gilly InSpaceHigh 8
+  Gilly InSpaceHigh 6
   Gilly Recovery 6
   Duna Landed 8
   Duna FlyingLow 5
   Duna FlyingHigh 5
   Duna InSpaceLow 7
-  Duna InSpaceHigh 7
+  Duna InSpaceHigh 5
   Duna Recovery 5
   Ike Landed 8
   Ike InSpaceLow 7
-  Ike InSpaceHigh 7
+  Ike InSpaceHigh 5
   Ike Recovery 5
   Dres Landed 8
   Dres InSpaceLow 7
-  Dres InSpaceHigh 7
+  Dres InSpaceHigh 6
   Dres Recovery 6
   Jool FlyingLow 12
-  Jool FlyingHigh 12
+  Jool FlyingHigh 9
   Jool InSpaceLow 7
-  Jool InSpaceHigh 7
+  Jool InSpaceHigh 6
   Jool Recovery 6
   Laythe Landed 14
   Laythe Splashed 12
   Laythe FlyingLow 11
-  Laythe FlyingHigh 11
+  Laythe FlyingHigh 10
   Laythe InSpaceLow 9
-  Laythe InSpaceHigh 9
+  Laythe InSpaceHigh 8
   Laythe Recovery 8
   Vall Landed 12
   Vall InSpaceLow 9
-  Vall InSpaceHigh 9
+  Vall InSpaceHigh 8
   Vall Recovery 8
   Tylo Landed 12
   Tylo InSpaceLow 10
-  Tylo InSpaceHigh 10
+  Tylo InSpaceHigh 8
   Tylo Recovery 8
   Bop Landed 12
   Bop InSpaceLow 9
-  Bop InSpaceHigh 9
+  Bop InSpaceHigh 8
   Bop Recovery 8
   Pol Landed 12
   Pol InSpaceLow 9
-  Pol InSpaceHigh 9
+  Pol InSpaceHigh 8
   Pol Recovery 8
   Eeloo Landed 15
   Eeloo InSpaceLow 12
-  Eeloo InSpaceHigh 12
+  Eeloo InSpaceHigh 10
   Eeloo Recovery 10
