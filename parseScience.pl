@@ -49,18 +49,20 @@ if ($opts{h} || $opts{H}) {
 ### FILE DEFINITIONS
 ## Preference file
 my $dotfile;
-# Search for a dotfile in these locations
-my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
-foreach my $place (@dotLocales) {
-  if (-e $place) {
-    $dotfile = $place;
-    exit;
-  }
-}
+# Round up the usual suspects
 # All superseded by commandline flag
+my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
 if ($opts{k}) {
   $dotfile = $opts{k};
+} else {
+  foreach my $place (@dotLocales) {
+    if (-e $place) {
+      $dotfile = $place;
+      last;
+    }
+  }
 }
+
 if ($dotfile) {
   print "asd\n";
 }
@@ -174,12 +176,12 @@ my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
 # Orbited are messed up - the default values from Kerbin are inverted
 # elsewhere.  All SCANsat caps are 20
 my %recoCap = (
-	      Flew => 6,
-	      FlewBy => 7.2,
-	      SubOrbited => 9.6,
-	      Orbited => 12,
-	      Surfaced => 18
-	     );
+	       Flew => 6,
+	       FlewBy => 7.2,
+	       SubOrbited => 9.6,
+	       Orbited => 12,
+	       Surfaced => 18
+	      );
 my $scanCap = 20;
 
 # Am I in a science, recovery, or SCANsat loop?
