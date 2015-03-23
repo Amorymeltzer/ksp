@@ -156,16 +156,14 @@ my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
 # Reverse-engineered caps for recovery missions and SCANsat data.  SubOrbited and
 # Orbited are messed up - the default values from Kerbin are inverted
 # elsewhere.  All SCANsat caps are 20
-my %rsCaps = (
+my %recoCap = (
 	      Flew => 6,
 	      FlewBy => 7.2,
 	      SubOrbited => 9.6,
 	      Orbited => 12,
-	      Surfaced => 18,
-	      AltimetryLoRes => 20,
-	      BiomeAnomaly => 20,
-	      AltimetryHiRes => 20
+	      Surfaced => 18
 	     );
+my $scanCap = 20;
 
 # Am I in a science, recovery, or SCANsat loop?
 my $ticker = '0';
@@ -301,7 +299,7 @@ foreach my $planet (0..$planetCount) {
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
-    my $cleft = $sbVal*$rsCaps{$situations[$sit]};
+    my $cleft = $sbVal*$recoCap{$situations[$sit]};
     $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
@@ -315,7 +313,7 @@ foreach my $planet (0..$planetCount) {
     next if ($planets[$planet] =~ m/^Kerbol|^Jool/);
 
     my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
-    my $cleft = $sbVal*$rsCaps{$situations[$sit]};
+    my $cleft = $sbVal*$scanCap;
     $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
   }
 }
