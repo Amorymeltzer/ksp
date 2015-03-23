@@ -49,8 +49,7 @@ if ($opts{h} || $opts{H}) {
 ### FILE DEFINITIONS
 ## Preference file
 my $dotfile;
-# Round up the usual suspects
-# All superseded by commandline flag
+# Round up the usual suspects, all superseded by commandline flag
 my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
 if ($opts{k}) {
   $dotfile = $opts{k};
@@ -64,8 +63,23 @@ if ($opts{k}) {
 }
 
 if ($dotfile) {
-  print "asd\n";
+  my %dotHash;			# Hold data from dotfile
+  open my $dot, '<', "$dotfile" or die $!;
+  while (<$dot>) {
+    chomp;
+    next if m/^#/g;		# Ignore comments
+    next if !$_;		# Ignore blank lines
+    print;
+    print "\n";
+    s/ //g;
+    
+    my @tmp = split /=/;
+    print "$tmp[0]$tmp[1]\n";
+    
+  }
+  
 }
+
 
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
