@@ -69,7 +69,7 @@ if ($dotfile) {
     chomp;
     next if m/^#/g;		# Ignore comments
     next if !$_;		# Ignore blank lines
-    next if !m/^[a-z]+ = [a-z]+/i;
+    next if !m/^.+ = .+/i;
     s/ //g;
 
     my @tmp = split /=/;
@@ -77,7 +77,7 @@ if ($dotfile) {
     $dotHash{$tmp[0]} = $tmp[1];
   }
   close $dot or die $!;
-  }
+
 }
 
 
