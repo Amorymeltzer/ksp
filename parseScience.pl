@@ -76,8 +76,9 @@ if ($dotfile) {
     s/ //g;
 
     my @tmp = split /=/;
-  }
 
+    $dotHash{$tmp[0]} = $tmp[1];
+  }
 }
 
 
