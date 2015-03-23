@@ -23,6 +23,7 @@
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header?
 ## Flag SCANsat on/off, or auto-detect??
+## Introduce generic error/caveat/message handling, could help with above
 ## Turn cascading tmp1/2 elifs into hash lookup?  Might revert above
 ## Cleanup data/test hashes, the order of the data is unintuitive
 ## Cleanup var/vara/etc. crap.  Better commenting.
