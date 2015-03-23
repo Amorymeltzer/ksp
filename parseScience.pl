@@ -38,7 +38,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('atspncu:hH', \%opts);
+getopts('atspncu:k:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage();
@@ -47,6 +47,15 @@ if ($opts{h} || $opts{H}) {
 
 
 ### FILE DEFINITIONS
+my $dotfile = '.parsesciencerc';
+if ($opts{k}) {
+  $dotfile = $opts{k};
+}
+if (!-e $dotfile) {
+  print "aha\n";
+  exit;
+}
+
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
 
@@ -722,7 +731,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-atsnchH -u <savefile_name>]
+Usage: $0 [-atsnchH -k path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -t Display average science left for each experiment type.  Supersedes
          the -a flag.
@@ -733,6 +742,7 @@ Usage: $0 [-atsnchH -u <savefile_name>]
       -c Output data to csv file as well
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
+      -k Path to config file.  Supersedes a local .parsesciencerc file.
       -h or H Print this message.
 USAGE
     return;
