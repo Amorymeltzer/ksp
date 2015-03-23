@@ -79,7 +79,7 @@ if ($dotfile) {
   close $dot or die $!;
 
   foreach my $key (keys %dotHash) {
-    print "$key\n";
+    #print "$key\n";
 
     # Proof I DO need to actually assign variable for each option
     if ($key eq 'username') {
