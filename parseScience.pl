@@ -79,6 +79,7 @@ if ($dotfile) {
 
     $dotHash{$tmp[0]} = $tmp[1];
   }
+  close $dot or die $!;
 }
 
 
