@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # parseScience.pl by Amory Meltzer
+# https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
