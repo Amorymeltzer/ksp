@@ -69,15 +69,15 @@ if ($dotfile) {
     chomp;
     next if m/^#/g;		# Ignore comments
     next if !$_;		# Ignore blank lines
+    next if !m/^[a-z]+ = [a-z]+/;
+
     print;
     print "\n";
     s/ //g;
-    
+
     my @tmp = split /=/;
-    print "$tmp[0]$tmp[1]\n";
-    
   }
-  
+
 }
 
 
