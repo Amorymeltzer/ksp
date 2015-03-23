@@ -244,8 +244,7 @@ foreach my $i (0..scalar @testdef - 1) {
   foreach my $planet (0..$planetCount) {
 
     # Build list of potential situations
-    my @situations = qw (Landed Splashed FlyingLow
-			 FlyingHigh InSpaceLow InSpaceHigh);
+    my @situations = @stockSits;
 
     # Create array of arrays for spob-specific biomes, nullify w/ @situations
     # Don't forget the KSC/Runway/Launchpad/etc. biomes, but only for landed?
@@ -288,8 +287,10 @@ foreach my $i (0..scalar @testdef - 1) {
 
 # Build recovery hash
 foreach my $planet (0..$planetCount) {
-  my @situations = qw (FlewBy SubOrbited Orbited Surfaced);
+  my @situations = @recoSits;
 
+  # Only one of Flew or FlewBy
+  shift @situations;
   # Kerbin is special of course
   if ($planets[$planet] eq 'Kerbin') {
     $situations[0] = 'Flew';
@@ -307,7 +308,7 @@ foreach my $planet (0..$planetCount) {
 
 # Build SCANsat hash
 foreach my $planet (0..$planetCount) {
-  my @situations = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
+  my @situations = @scanSits;
 
   foreach my $sit (0..scalar @situations - 1) {
     # No surface?  Do scanning
@@ -573,7 +574,7 @@ sub specialSort
     my @specOrder = @planets;
     my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
     my $sord = join q{|}, @specOrder;
-    my @condOrder = qw (Flew FlewBy SubOrbited Orbited Surfaced AltimetryLoRes AltimetryHiRes BiomeAnomaly);
+    my @condOrder = (@recoSits, @scanSits);
     my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
     my $cord = join q{|}, @condOrder;
 
@@ -595,7 +596,7 @@ sub sitSort
   {
     my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
 
-    my @sitOrder = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);
+    my @sitOrder = @stockSits;
     my %sit_order_map = map { $sitOrder[$_] => $_ } 0..$#sitOrder;
     my $sord = join q{|}, @sitOrder;
 
