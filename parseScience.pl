@@ -49,14 +49,14 @@ if ($opts{h} || $opts{H}) {
 my $dotfile;			# Preference file
 # Replaced from the %opts table
 my %opt = (
-		username => 0,
-		average => 0,
-		tests => 0,
-		scienceleft => 0,
-		percentdone => 0,
-		noformat => 0,
-		csv => 0
-	       );
+	   username => 0,
+	   average => 0,
+	   tests => 0,
+	   scienceleft => 0,
+	   percentdone => 0,
+	   noformat => 0,
+	   csv => 0
+	  );
 
 
 ### FILE DEFINITIONS
@@ -74,7 +74,6 @@ if ($opts{k}) {
 }
 
 if ($dotfile) {
-  my %dotHash;			# Hold data from dotfile
   open my $dot, '<', "$dotfile" or die $!;
   while (<$dot>) {
     chomp;
@@ -83,20 +82,19 @@ if ($dotfile) {
     next if !m/^.+ = .+/;
     s/ //g;
 
-    my @tmp = split /=/;
+    my @config = split /=/;
 
-    $dotHash{$tmp[0]} = $tmp[1];
-  }
-  close $dot or die $!;
-
-  foreach my $key (keys %dotHash) {
-    if ($key eq 'username') {
-      $opt{$key} ||= $dotHash{$key};
+    if ($config[0] eq 'username') {
+      $opt{$config[0]} ||= $config[0];
+    } elsif ($config[1] eq 'true') {
+      $opt{$config[0]} = 1;
+    } elsif ($config[1] eq 'false') {
+      $opt{$config[0]} = 0;
     } else {
-      $opt{$key} = 1 if $dotHash{$key} eq 'true';
-      $opt{$key} = 0 if $dotHash{$key} eq 'false';
+      next;
     }
   }
+close $dot or die $!;
 }
 
 
