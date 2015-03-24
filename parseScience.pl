@@ -64,7 +64,7 @@ my %opt = (
 ## .parsesciencerc config file
 # Round up the usual suspects, all superseded by commandline flag
 my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
-if ($opts{k}) {
+if ($opts{k} && -e $opts{k}) {
   $dotfile = $opts{k};
 } else {
   foreach my $place (@dotLocales) {
