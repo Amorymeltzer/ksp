@@ -16,6 +16,7 @@
 ## SCANsat allows Sun scanning?!
 ## Version number, etc. for release
 ## dotfile config for repeated use
+## Use Cwd even necessary?!
 ## Option to pull KSC stuff in/out of Kerbin?
 ## Option to combine spobs by system?  Joolian, etc.
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
@@ -64,7 +65,8 @@ my %opt = (
 # Round up the usual suspects, all superseded by commandline flag
 my $cwd = cwd();		# Current working directory
 my $scriptDir = $FindBin::Bin;	# Directory of this script
-my @dotLocales = ("$cwd/.parsesciencerc","$scriptDir/.parsesciencerc",'~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
+my $rc = 'parsesciencerc';
+my @dotLocales = ("$cwd/.$rc","$scriptDir/.$rc","~/.$rc",'~/.config/parseScience/$rc');
 if ($opts{k} && -e $opts{k}) {
   $dotfile = $opts{k};
 } else {
