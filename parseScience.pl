@@ -17,6 +17,7 @@
 ## Version number, etc. for release
 ## dotfile config for repeated use
 ### Commandline options to turn OFF an option
+### CSV gets erased by C option?!
 ## Option to pull KSC stuff in/out of Kerbin?
 ## Option to combine spobs by system?  Joolian, etc.
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
@@ -39,7 +40,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('atspncu:k:hH', \%opts);
+getopts('aAtTsSpPnNcCu:k:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage();
@@ -131,13 +132,21 @@ if (! -e $pers) {
 my $outfile = 'scienceToDo.xlsx';
 my $csvFile = 'scienceToDo.csv';
 
-# Overwrite config file options on the commandline
-$opt{'average'} ||= $opts{a};
-$opt{'tests'} ||= $opts{t};
-$opt{'scienceleft'} ||= $opts{s};
-$opt{'percentdone'} ||= $opts{p};
-$opt{'noformat'} ||= $opts{n};
-$opt{'csv'} ||= $opts{c};
+
+# Overwrite config file options if the corresponding flag is on the commandline
+# Negated options always take precedence
+my @negatableOpts = keys %opt;
+foreach my $negate (@negatableOpts) {
+  next if $negate eq 'username';  # Non-negatable
+  my $ng8 = substr $negate, 0, 1; # Short key for %opts
+  my $Ung8 = uc $ng8;		  # Uppercase key for negated option
+
+  if ($opts{$Ung8}) {
+    $opt{$negate} = 0;
+  } elsif ($opts{$ng8}) {
+    $opt{$negate} = $opts{$ng8};
+  }
+}
 
 
 ### GLOBAL VARIABLES
