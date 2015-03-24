@@ -38,7 +38,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCu:k:hH', \%opts);
+getopts('aAtTsSpPnNcCu:Uk:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage();
@@ -105,28 +105,19 @@ if ($dotfile) {
 
 
 ### FILE DEFINITIONS
+# Change this to match the location of your KSP install
+my $path = '/Applications/KSP_osx';
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
-# Change this to match the location of your KSP install
+
 if ($opts{u}) {
   $opt{'username'} = $opts{u};
-  my $path = '/Applications/KSP_osx';
-  $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
-  $pers = "$path/saves/$opt{'username'}/persistent.sfs";
 }
-# Test files for existance
-warnNicely("No ScienceDefs.cfg file found at $scidef", 1) if !-e $scidef;
-warnNicely("No persistent.sfs file found at $pers\n", 1) if !-e $pers;
-
-my $outfile = 'scienceToDo.xlsx';
-my $csvFile = 'scienceToDo.csv';
-
 
 # Overwrite config file options if the corresponding flag is on the commandline
 # Negated options always take precedence
 my @negatableOpts = keys %opt;
 foreach my $negate (@negatableOpts) {
-  next if $negate eq 'username';  # Non-negatable
   my $ng8 = substr $negate, 0, 1; # Short key for %opts
   my $Ung8 = uc $ng8;		  # Uppercase key for negated option
 
@@ -136,6 +127,20 @@ foreach my $negate (@negatableOpts) {
     $opt{$negate} = $opts{$ng8};
   }
 }
+
+if ($opt{username}) {
+  $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
+  $pers = "$path/saves/$opt{'username'}/persistent.sfs";
+}
+
+# Test files for existance
+warnNicely("No ScienceDefs.cfg file found at $scidef", 1) if !-e $scidef;
+warnNicely("No persistent.sfs file found at $pers\n", 1) if !-e $pers;
+
+my $outfile = 'scienceToDo.xlsx';
+my $csvFile = 'scienceToDo.csv';
+
+
 
 
 ### GLOBAL VARIABLES
