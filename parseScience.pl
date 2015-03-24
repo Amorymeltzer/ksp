@@ -62,11 +62,14 @@ my %opt = (
 	  );
 
 ## .parsesciencerc config file
-# Round up the usual suspects, all superseded by commandline flag
+# Useful shorthands for finding files
+my $rc = 'parsesciencerc';	# Config dotfile name of choice.  Wordy.
 my $cwd = cwd();		# Current working directory
 my $scriptDir = $FindBin::Bin;	# Directory of this script
-my $rc = 'parsesciencerc';
-my @dotLocales = ("$cwd/.$rc","$scriptDir/.$rc","~/.$rc",'~/.config/parseScience/$rc');
+my $home = $ENV{HOME};		# MAGIC hash with user env variables for $home
+
+# Round up the usual suspects, all superseded by commandline flag
+my @dotLocales = ("$cwd/.$rc","$scriptDir/.$rc","$home/.$rc","$home/.config/parseScience/$rc");
 if ($opts{k} && -e $opts{k}) {
   $dotfile = $opts{k};
 } else {
