@@ -94,6 +94,7 @@ if ($dotfile) {
     } elsif ($config[1] eq 'false') {
       $opt{$config[0]} = 0;
     } else {
+      warnNicely("Unknown option at $. $dotfile");
       next;
     }
   }
@@ -606,6 +607,12 @@ if ($opt{'average'} || $opt{'tests'}) {
 
 
 ### SUBROUTINES
+sub warnNicely
+  {
+    my $err = shift @_;
+    print "Warning: $err\n";
+  }
+
 # Convert string to binary, pad to six digits
 sub binary
   {
