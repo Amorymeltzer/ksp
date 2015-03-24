@@ -727,7 +727,7 @@ sub average1
       printAverageTable(${$arrayRef}[$index],$hashRef);
     }
 
-    if (!$opt{'test'}) {
+    if (!$opt{'tests'}) {
       printAverageTable($recov,$hashRef);
       printAverageTable($scansat,$hashRef);
     }
