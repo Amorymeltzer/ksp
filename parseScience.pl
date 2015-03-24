@@ -15,14 +15,13 @@
 ### FIXES, TODOS
 ## SCANsat allows Sun scanning?!
 ## Version number, etc. for release
-## dotfile config for repeated use
-## Use Cwd even necessary?!
+## Use Cwd even necessary for config processing?!
+## Windows path to Gamedata/pers/scidefs/etc.?
 ## Option to pull KSC stuff in/out of Kerbin?
 ## Option to combine spobs by system?  Joolian, etc.
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header?
 ## Flag SCANsat on/off, or auto-detect??
-## Introduce generic error/caveat/message handling, could help with above
 ## Turn cascading tmp1/2 elifs into hash lookup?  Might revert above
 ## Cleanup data/test hashes, the order of the data is unintuitive
 ## Cleanup var/vara/etc. crap.  Better commenting.
