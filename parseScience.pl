@@ -16,7 +16,6 @@
 ## SCANsat allows Sun scanning?!
 ## Version number, etc. for release
 ## dotfile config for repeated use
-### Commandline options to turn OFF an option
 ## Option to pull KSC stuff in/out of Kerbin?
 ## Option to combine spobs by system?  Joolian, etc.
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
@@ -120,12 +119,10 @@ if ($opts{u}) {
 
 # Test files for existance
 if (! -e $scidef) {
-  print "No ScienceDefs.cfg file found at $scidef\n";
-  exit;
+  warnNicely("No ScienceDefs.cfg file found at $scidef", 1);
 }
 if (! -e $pers) {
-  print "No persistent.sfs file found at $pers\n";
-  exit;
+  warnNicely("No persistent.sfs file found at $pers\n", 1);
 }
 
 my $outfile = 'scienceToDo.xlsx';
@@ -622,8 +619,14 @@ if ($opt{'average'} || $opt{'tests'}) {
 ### SUBROUTINES
 sub warnNicely
   {
-    my $err = shift @_;
-    print "Warning: $err\n";
+    my ($err,$ilynPayne) = @_;
+    if ($ilynPayne) {
+      print 'ERROR: ';
+    } else {
+      print 'Warning: ';
+    }
+    print "$err\n";
+    exit if $ilynPayne;
   }
 
 # Convert string to binary, pad to six digits
