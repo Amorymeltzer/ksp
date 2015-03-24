@@ -35,6 +35,7 @@ use diagnostics;
 
 use Getopt::Std;
 use Cwd;
+use FindBin;
 use Excel::Writer::XLSX;
 
 # Parse command line options
@@ -62,7 +63,8 @@ my %opt = (
 ## .parsesciencerc config file
 # Round up the usual suspects, all superseded by commandline flag
 my $cwd = cwd();		# Current working directory
-my @dotLocales = ("$cwd/.parsesciencerc",'~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
+my $scriptDir = $FindBin::Bin;	# Directory of this script
+my @dotLocales = ("$cwd/.parsesciencerc","$scriptDir/.parsesciencerc",'~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
 if ($opts{k} && -e $opts{k}) {
   $dotfile = $opts{k};
 } else {
