@@ -17,7 +17,6 @@
 ## Version number, etc. for release
 ## dotfile config for repeated use
 ### Commandline options to turn OFF an option
-### CSV gets erased by C option?!
 ## Option to pull KSC stuff in/out of Kerbin?
 ## Option to combine spobs by system?  Joolian, etc.
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
@@ -546,7 +545,7 @@ foreach my $planet (0..$planetCount) {
 
 
 ## Actually print everybody!
-open my $csvOut, '>', "$csvFile" or die $!;
+open my $csvOut, '>', "$csvFile" or die $! if $opt{'csv'};
 writeToCSV(\@header) if $opt{'csv'};
 
 # Stock science
@@ -589,7 +588,7 @@ foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
     buildScienceData($key,$scansat,\%spobData,\%scan);
   }
 }
-close $csvOut or die $!;
+close $csvOut or die $! if  $opt{'csv'};
 
 
 ## Sorting of different average tables
