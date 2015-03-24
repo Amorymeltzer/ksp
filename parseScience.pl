@@ -85,7 +85,7 @@ if ($dotfile) {
     my @config = split /=/;
 
     if ($config[0] eq 'username') {
-      $opt{$config[0]} ||= $config[0];
+      $opt{$config[0]} = $config[0];
     } elsif ($config[1] eq 'true') {
       $opt{$config[0]} = 1;
     } elsif ($config[1] eq 'false') {
