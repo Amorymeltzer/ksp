@@ -1,0 +1,26 @@
+# parseScience.pl config file
+# https://github.com/Amorymeltzer/ksp
+#
+# This config file must follow a very simple, basic syntax.  Each line must be
+# a single key, value pair as such:
+# key = value
+#
+# Ony certain keys are allowable.  Any others will at best be ignored and at
+# worst muck things up.  username takes the name of your save file, all other
+# keys take a boolean true or false.
+# Allowable keys:
+# username
+# average
+# tests
+# science left
+# percent accomplished
+# no formatting
+# csv
+
+username = Jebediah
+average = true
+tests = true
+scienceleft = true
+percentdone = true
+noformat = true
+csv = true
