@@ -34,6 +34,7 @@ use warnings;
 use diagnostics;
 
 use Getopt::Std;
+use Cwd;
 use Excel::Writer::XLSX;
 
 # Parse command line options
@@ -60,7 +61,8 @@ my %opt = (
 
 ## .parsesciencerc config file
 # Round up the usual suspects, all superseded by commandline flag
-my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
+my $cwd = cwd();		# Current working directory
+my @dotLocales = ("$cwd/.parsesciencerc",'~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
 if ($opts{k} && -e $opts{k}) {
   $dotfile = $opts{k};
 } else {
