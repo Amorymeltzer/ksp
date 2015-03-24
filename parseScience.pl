@@ -58,8 +58,6 @@ my %opt = (
 	   csv => 0
 	  );
 
-
-### FILE DEFINITIONS
 ## .parsesciencerc config file
 # Round up the usual suspects, all superseded by commandline flag
 my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
@@ -106,9 +104,9 @@ if ($dotfile) {
 }
 
 
+### FILE DEFINITIONS
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
-
 # Change this to match the location of your KSP install
 if ($opts{u}) {
   $opt{'username'} = $opts{u};
@@ -116,7 +114,6 @@ if ($opts{u}) {
   $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
   $pers = "$path/saves/$opt{'username'}/persistent.sfs";
 }
-
 # Test files for existance
 warnNicely("No ScienceDefs.cfg file found at $scidef", 1) if !-e $scidef;
 warnNicely("No persistent.sfs file found at $pers\n", 1) if !-e $pers;
