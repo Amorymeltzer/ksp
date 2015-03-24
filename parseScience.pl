@@ -16,6 +16,7 @@
 ## SCANsat allows Sun scanning?!
 ## Version number, etc. for release
 ## dotfile config for repeated use
+### Commandline options to turn OFF an option
 ## Option to pull KSC stuff in/out of Kerbin?
 ## Option to combine spobs by system?  Joolian, etc.
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
@@ -60,6 +61,7 @@ my %opt = (
 
 
 ### FILE DEFINITIONS
+## .parsesciencerc config file
 # Round up the usual suspects, all superseded by commandline flag
 my @dotLocales = ('.parsesciencerc','~/.parsesciencerc','~/.config/parseScience/parsesciencerc');
 if ($opts{k}) {
@@ -73,6 +75,7 @@ if ($opts{k}) {
   }
 }
 
+# Parse config file
 if ($dotfile) {
   open my $dot, '<', "$dotfile" or die $!;
   while (<$dot>) {
@@ -122,7 +125,7 @@ if (! -e $pers) {
 my $outfile = 'scienceToDo.xlsx';
 my $csvFile = 'scienceToDo.csv';
 
-
+# Overwrite config file options on the commandline
 $opt{'average'} ||= $opts{a};
 $opt{'tests'} ||= $opts{t};
 $opt{'scienceleft'} ||= $opts{s};
