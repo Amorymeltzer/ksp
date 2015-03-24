@@ -46,9 +46,17 @@ if ($opts{h} || $opts{H}) {
 }
 
 ### ENVIRONMENT VARIABLES
+my $dotfile;			# Preference file
 # Replaced from the %opts table
-my ($dotfile,			# Preference file
-    $username,$average,$tests,$scienceleft,$percentdone,$noformat,$csv);
+my %opt = (
+		username => 0,
+		average => 0,
+		tests => 0,
+		scienceleft => 0,
+		percentdone => 0,
+		noformat => 0,
+		csv => 0
+	       );
 
 
 ### FILE DEFINITIONS
@@ -86,8 +94,7 @@ if ($dotfile) {
 
     # Proof I DO need to actually assign variable for each option
     if ($key eq 'username') {
-      $opts{u} = $dotHash{$key};
-
+      #${$key} ||= $dotHash{$key};
     }
   }
 }
@@ -98,10 +105,10 @@ my $pers = 'persistent.sfs';
 
 # Change this to match the location of your KSP install
 if ($opts{u}) {
-  $username = $opts{u};
+  $opt{'username'} = $opts{u};
   my $path = '/Applications/KSP_osx';
   $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
-  $pers = "$path/saves/$username/persistent.sfs";
+  $pers = "$path/saves/$opt{'username'}/persistent.sfs";
 }
 
 # Test files for existance
@@ -118,12 +125,12 @@ my $outfile = 'scienceToDo.xlsx';
 my $csvFile = 'scienceToDo.csv';
 
 
-$average ||= $opts{a};
-$tests ||= $opts{t};
-$scienceleft ||= $opts{s};
-$percentdone ||= $opts{p};
-$noformat ||= $opts{n};
-$csv ||= $opts{c};
+$opt{'average'} ||= $opts{a};
+$opt{'tests'} ||= $opts{t};
+$opt{'scienceleft'} ||= $opts{s};
+$opt{'percentdone'} ||= $opts{p};
+$opt{'noformat'} ||= $opts{n};
+$opt{'csv'} ||= $opts{c};
 
 
 ### GLOBAL VARIABLES
@@ -482,7 +489,7 @@ my $bgRed = $workbook->add_format();
 my $bgGreen = $workbook->add_format();
 
 # Turn off formatting if so desired
-if (!$noformat) {
+if (!$opt{'noformat'}) {
   $bold->set_bold();
   $bgRed->set_bg_color( 'red' );
   $bgGreen->set_bg_color( 'green' );
@@ -524,7 +531,7 @@ foreach my $planet (0..$planetCount) {
 
 ## Actually print everybody!
 open my $csvOut, '>', "$csvFile" or die $!;
-writeToCSV(\@header) if $csv;
+writeToCSV(\@header) if $opt{'csv'};
 
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
@@ -534,35 +541,35 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
   # Add in spob name to csv, only necessary for stock science
   $dataMatrix{$key}[1] .= "\@$planet";
-  writeToCSV(\@{$dataMatrix{$key}}) if $csv;
+  writeToCSV(\@{$dataMatrix{$key}}) if $opt{'csv'};
 
-  if ($tests) {
+  if ($opt{'tests'}) {
     buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
-  } elsif ($average) {
+  } elsif ($opt{'average'}) {
     buildScienceData($key,$planet,\%spobData,\%dataMatrix);
   }
 }
 # Recovery
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
   writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
-  writeToCSV(\@{$reco{$key}}) if $csv;
+  writeToCSV(\@{$reco{$key}}) if $opt{'csv'};
 
-  if ($tests) {
+  if ($opt{'tests'}) {
     # Neater spacing in test averages output
     buildScienceData($key,$recovery,\%testData,\%reco);
-  } elsif ($average) {
+  } elsif ($opt{'average'}) {
     buildScienceData($key,$recov,\%spobData,\%reco);
   }
 }
 # SCANsat
 foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
   writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
-  writeToCSV(\@{$scan{$key}}) if $csv;
+  writeToCSV(\@{$scan{$key}}) if $opt{'csv'};
 
-  if ($tests) {
+  if ($opt{'tests'}) {
     # Neater spacing in test averages output
     buildScienceData($key,$scansatMap,\%testData,\%scan);
-  } elsif ($average) {
+  } elsif ($opt{'average'}) {
     buildScienceData($key,$scansat,\%spobData,\%scan);
   }
 }
@@ -571,25 +578,25 @@ close $csvOut or die $!;
 
 ## Sorting of different average tables
 # Ensure the -t flag supersedes -a if both are given
-if ($average || $tests) {
+if ($opt{'average'} || $opt{'tests'}) {
   my $string = "Average science left:\n\n";
   my ($tmpHashRef,$tmpArrayRef);
 
-  if ($tests) {
+  if ($opt{'tests'}) {
     $string .= "Test\t";
     $tmpHashRef = \%testData;
-    $tmpArrayRef = \@testdef if !$scienceleft;
-  } elsif ($average) {
+    $tmpArrayRef = \@testdef if !$opt{'scienceleft'};
+  } elsif ($opt{'average'}) {
     $string .= 'Spob';
     $tmpHashRef = \%spobData;
-    $tmpArrayRef = \@planets if !$scienceleft;
+    $tmpArrayRef = \@planets if !$opt{'scienceleft'};
   }
   $string .= "\tAvg/exp\tTotal\tCompleted\n";
   print "$string";
 
-  if ($percentdone) {
+  if ($opt{'percentdone'}) {
     average3($tmpHashRef);
-  } elsif ($scienceleft) {
+  } elsif ($opt{'scienceleft'}) {
     average2($tmpHashRef);
   } else {
     average1($tmpHashRef,$tmpArrayRef);
@@ -633,9 +640,9 @@ sub specialSort
     my ($x,$y) = map {/^($sord)/} @input;
     my ($v,$w) = map {/($cord)/} @input;
 
-    if ($percentdone) {
+    if ($opt{'percentdone'}) {
       ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
-    } elsif ($scienceleft) {
+    } elsif ($opt{'scienceleft'}) {
       ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } else {
       $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
@@ -663,9 +670,9 @@ sub sitSort
 
     my ($x,$y) = map {/($sord)/} @input;
 
-    if ($percentdone) {
+    if ($opt{'percentdone'}) {
       $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
-    } elsif ($scienceleft) {
+    } elsif ($opt{'scienceleft'}) {
       $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     } else {
       $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
@@ -711,7 +718,7 @@ sub average1
     my $hashRef = shift;
     my $arrayRef = shift;
 
-    if ($tests) {
+    if ($opt{'tests'}) {
       push @{$arrayRef}, $recovery;   # Neater spacing in test averages output
       push @{$arrayRef}, $scansatMap; # Neater spacing in test averages output
       @{$arrayRef} = sort @{$arrayRef};
@@ -721,7 +728,7 @@ sub average1
       printAverageTable(${$arrayRef}[$index],$hashRef);
     }
 
-    if (!$tests) {
+    if (!$opt{'test'}) {
       printAverageTable($recov,$hashRef);
       printAverageTable($scansat,$hashRef);
     }
