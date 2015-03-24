@@ -80,11 +80,16 @@ if ($dotfile) {
   open my $dot, '<', "$dotfile" or die $!;
   while (<$dot>) {
     chomp;
+
     next if m/^#/g;		# Ignore comments
     next if !$_;		# Ignore blank lines
-    next if !m/^.+ = .+/;
-    s/ //g;
 
+    if (!m/^.+ = .+/) {		# Ignore and warn on malformed entries
+      warnNicely("Malformed entry at line $. of $dotfile.  Skipping...");
+      next;
+    }
+
+    s/ //g;
     my @config = split /=/;
 
     if ($config[0] eq 'username') {
@@ -94,11 +99,11 @@ if ($dotfile) {
     } elsif ($config[1] eq 'false') {
       $opt{$config[0]} = 0;
     } else {
-      warnNicely("Unknown option at $. $dotfile");
+      warnNicely("Unknown option at line $. of $dotfile.  Skipping...");
       next;
     }
   }
-close $dot or die $!;
+  close $dot or die $!;
 }
 
 
