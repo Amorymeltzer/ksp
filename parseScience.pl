@@ -93,7 +93,8 @@ if ($dotfile) {
     if ($key eq 'username') {
       $opt{$key} ||= $dotHash{$key};
     } else {
-      $opt{$key} = $dotHash{$key} if $dotHash{$key} eq 'true';
+      $opt{$key} = 1 if $dotHash{$key} eq 'true';
+      $opt{$key} = 0 if $dotHash{$key} eq 'false';
     }
   }
 }
