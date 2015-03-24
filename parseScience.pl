@@ -118,12 +118,8 @@ if ($opts{u}) {
 }
 
 # Test files for existance
-if (! -e $scidef) {
-  warnNicely("No ScienceDefs.cfg file found at $scidef", 1);
-}
-if (! -e $pers) {
-  warnNicely("No persistent.sfs file found at $pers\n", 1);
-}
+warnNicely("No ScienceDefs.cfg file found at $scidef", 1) if !-e $scidef;
+warnNicely("No persistent.sfs file found at $pers\n", 1) if !-e $pers;
 
 my $outfile = 'scienceToDo.xlsx';
 my $csvFile = 'scienceToDo.csv';
