@@ -2,18 +2,21 @@ Perl scripts to help with Kerbal Space Program.
 
 
 #### parseScience.pl ####
-Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon, including vessel recovery and any SCANsat data.
+Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon, including vessel recovery.  Supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
 **Requires:**
 - KSP v0.90 Beta
 - Perl (Duh.)
-- Excel::Writer::XLSX ([CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
+- Excel::Writer::XLSX (Get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
 
-**Running**
+**Basic Usage**
+````perl
+perl parseScience.pl -u <savefile_name> -<opts>
+````
 
-Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  Use `-u` to specify a savefile username and it will use the external files found in your install; otherwise, it will require local versions of `ScienceDefs.cfg` and `persistent.sfs`.
+Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  Use `-u` to specify the username of your savefile and it will use the external files found in your install; otherwise, it will require local versions of `ScienceDefs.cfg` and `persistent.sfs`.
 
-```
+````perl
 Usage: parseScience.pl [-aAtTsSnNcC -hH -k path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
@@ -34,7 +37,7 @@ Usage: parseScience.pl [-aAtTsSnNcC -hH -k path/to/dotfile -u <savefile_name>]
       -U Turn off -u.
       -k Specify path to config file.  Supersedes a local .parsesciencerc file.
       -h or H Print this message.
-```
+````
 
 **Todo**
 - Incorporate the KSC/LaunchPad/Runway/etc. "biomes", asteroids
