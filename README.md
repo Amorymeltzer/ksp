@@ -32,7 +32,7 @@ Usage: parseScience.pl [-aAtTsSnNcC -hH -k path/to/dotfile -u <savefile_name>]
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
-      -k Path to config file.  Supersedes a local .parsesciencerc file.
+      -k Specify path to config file.  Supersedes a local .parsesciencerc file.
       -h or H Print this message.
 ```
 
