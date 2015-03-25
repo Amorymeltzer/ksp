@@ -4,8 +4,7 @@ Perl scripts to help with Kerbal Space Program.
 ### parseScience.pl
 Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon, including vessel recovery.  Supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
-<!--  **Requires:**
-#### Requires:
+#### Requiresments
 - KSP v0.90 Beta
 - Perl (Duh.)
 - Excel::Writer::XLSX (Get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
