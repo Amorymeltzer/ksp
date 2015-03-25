@@ -814,17 +814,24 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-atsnchH -k path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcC -hH -k path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
+      -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
          the -a flag.
+      -T Turn off-T.
       -s Sort output by science left, including averages from -a and -t flags.
+      -S Turn off -S.
       -p Sort output by percent science accomplished, including averages from
          the -a and -t flags.  Supersedes the -s flag.
+      -P Turn off -P.
       -n Turn off formatted printing (i.e., colors and bolding).
+      -N Turn off -N.
       -c Output data to csv file as well
+      -C Turn off -c.
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
+      -U Turn off -u.
       -k Path to config file.  Supersedes a local .parsesciencerc file.
       -h or H Print this message.
 USAGE
