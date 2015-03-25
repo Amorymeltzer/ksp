@@ -25,6 +25,9 @@ Users of this tool will almost certainly be running it repeatedly with the same 
 The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check, in order, the directory `parseScience.pl` is in, your $home directory, and then `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-k` flag.
 
 The file itself follows strict guidelines.  You can see a sample in [sample_parsesciencerc](./sample_parsesciencerc).  Each option must be in `key = value` format, one per line.  Only the following keys are available; `username` takes a savefile name, the rest take either `true` or `false`, lowercase.  Any corresponding options provided on the commandline will override options set here.
+
+Should the same key be given twice, the last one will be used.
+
 ````shell
 username = Zaphod
 average = true
@@ -38,6 +41,7 @@ includeSCANsat = true
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
 ##### 3b. Full Options
+The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIU) take precedence.
 ````
 Usage: parseScience.pl [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
@@ -64,7 +68,9 @@ Usage: parseScience.pl [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
 ````
 
 #### 4. Todo
-- Incorporate the KSC/LaunchPad/Runway/etc. "biomes", asteroids
+- Incorporate the KSC/LaunchPad/Runway/etc. "biomes"
+- Asteroids
+- Incorporate Windows/Mac/Linux-appropriate paths to Gamedata
 
 
 #### 5. deltaVScience.pl
