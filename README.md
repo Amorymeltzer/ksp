@@ -75,3 +75,6 @@ Usage: parseScience.pl [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
 
 #### 5. deltaVScience.pl
 **Roughly** estimate science points per delta-V needed per planet/moon.  Uses averages table output from `parseScience.pl` (-a or -as).  Very rough.
+
+#### 6. License
+Licensed under the [BSD 2-Clause license](./LICENSE).
