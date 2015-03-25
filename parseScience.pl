@@ -521,10 +521,20 @@ if (!$opt{'noformat'}) {
 # Subroutine these ;;;;;; ##### FIXME TODO
 $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
 $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
+# Recovery widths, manually determined
+# Subroutine these ;;;;;; ##### FIXME TODO
+$workVars{$recov}[0]->set_column( 0, 0, 9.17 );
+$workVars{$recov}[0]->set_column( 1, 1, 6.5 );
+$workVars{$recov}[0]->set_column( 2, 2, 9 );
 
 if ($opt{includeSCANsat}) {
   $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
   $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
+
+  # SCANsat widths, manually determined
+  $workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
+  $workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
+  $workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
 }
 
 $header[1] = 'Condition';
@@ -536,17 +546,6 @@ foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
 }
 
-# Recovery widths, manually determined
-# Subroutine these ;;;;;; ##### FIXME TODO
-$workVars{$recov}[0]->set_column( 0, 0, 9.17 );
-$workVars{$recov}[0]->set_column( 1, 1, 6.5 );
-$workVars{$recov}[0]->set_column( 2, 2, 9 );
-# SCANsat widths, manually determined
-if ($opt{includeSCANsat}) {
-  $workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
-  $workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
-  $workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
-}
 # Stock science widths, manually determined
 foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
@@ -759,7 +758,7 @@ sub average1
     my $arrayRef = shift;
 
     if ($opt{'tests'}) {
-      push @{$arrayRef}, $recovery;   # Neater spacing in test averages output
+      push @{$arrayRef}, $recovery; # Neater spacing in test averages output
       push @{$arrayRef}, $scansatMap if $opt{includeSCANsat};
       @{$arrayRef} = sort @{$arrayRef};
     }
