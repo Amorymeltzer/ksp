@@ -23,7 +23,7 @@ Users of this tool will almost certainly be running it repeatedly with the same 
 
 The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check, in order, the directory `parseScience.pl` is in, your $home directory, and then `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-k` flag.
 
-The file itself follows strict guidelines.  You can see a sample in [sample_parsesciencerc](../sample_parsesciencerc).  Each option must be in `key = value` format, one per line.  Only the following keys are available; `username` takes a savefile name, the rest take either `true` or `false`, lowercase.  Any corresponding options provided on the commandline will override options set here.
+The file itself follows strict guidelines.  You can see a sample in [sample_parsesciencerc](./sample_parsesciencerc).  Each option must be in `key = value` format, one per line.  Only the following keys are available; `username` takes a savefile name, the rest take either `true` or `false`, lowercase.  Any corresponding options provided on the commandline will override options set here.
 ````
 username = Jebediah
 average = true
