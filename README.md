@@ -14,8 +14,9 @@ Return a list of science points remaining and obtained so far, helpfully colored
 perl parseScience.pl -u <savefile_name> -<opts>
 ````
 
-Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  Use `-u` to specify the username of your savefile and it will use the external files found in your install; otherwise, it will require local versions of `ScienceDefs.cfg` and `persistent.sfs`.
+Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  Use `-u` to specify the username of your savefile and it will use the files found in your install; otherwise, it will require local versions of `ScienceDefs.cfg` and `persistent.sfs`.  If you want it to calculate SCANsat data, pass the `-i` flag.
 
+Alternatively, use a custom config file...
 
 #### Advanced Usage
 ##### .parsesciencerc Config File
@@ -32,6 +33,7 @@ scienceleft = true
 percentdone = true
 noformat = true
 csv = true
+includeSCANsat = true
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
@@ -52,7 +54,9 @@ Usage: parseScience.pl [-aAtTsSnNcC -hH -k path/to/dotfile -u <savefile_name>]
       -N Turn off -N.
       -c Output data to csv file as well.
       -C Turn off -c.
-      -u Enter the username of your KSP save folder; otherwise, whatever files
+	  -i Include data from SCANsat.
+	  -I Turn off -i.
+	  -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
       -k Specify path to config file.  Supersedes a local .parsesciencerc file.

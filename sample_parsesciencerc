@@ -16,11 +16,13 @@
 # percent accomplished
 # no formatting
 # csv
+# includeSCANsat
 
-username = Jebediah
+username = Zaphod
 average = true
 tests = true
 scienceleft = true
 percentdone = true
 noformat = true
 csv = true
+includeSCANsat = true
