@@ -1,3 +1,9 @@
+Version 0.93.1 - 2015-03-25
+-------------------------
+
+Remove -H option to show help
+ - Confusing given the use of uppercased flags to negate options, and redundant given -h.
+
 Version 0.93 - 2015-03-25
 -------------------------
 
