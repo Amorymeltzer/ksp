@@ -828,7 +828,7 @@ Usage: $0 [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
       -P Turn off -P.
       -n Turn off formatted printing (i.e., colors and bolding).
       -N Turn off -N.
-      -c Output data to csv file as well
+      -c Output data to csv file as well.
       -C Turn off -c.
       -i Include data from SCANsat.
       -I Turn off -i.
