@@ -385,16 +385,18 @@ foreach my $planet (0..$planetCount) {
 }
 
 # Build SCANsat hash
-foreach my $planet (0..$planetCount) {
-  my @situations = @scanSits;
+if ($opt{includeSCANsat}) {
+  foreach my $planet (0..$planetCount) {
+    my @situations = @scanSits;
 
-  foreach my $sit (0..scalar @situations - 1) {
-    # No surface?  Do scanning
-    next if ($planets[$planet] =~ m/^Kerbol|^Jool/);
+    foreach my $sit (0..scalar @situations - 1) {
+      # No surface?  Do scanning
+      next if ($planets[$planet] =~ m/^Kerbol|^Jool/);
 
-    my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
-    my $cleft = $sbVal*$scanCap;
-    $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
+      my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
+      my $cleft = $sbVal*$scanCap;
+      $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
+    }
   }
 }
 
@@ -429,7 +431,7 @@ while (<$file>) {
 	$recoTicker = 1;
 	$tmp2 =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
 	@pieces = (split /@/, $tmp2);
-      } elsif ($tmp2 =~ m/^$scansat/) {
+      } elsif ($opt{includeSCANsat} && $tmp2 =~ m/^$scansat/) {
 	$scanTicker = 1;
 	$tmp2 =~ s/^$scansat(.*)\@(.*)InSpaceHighsurface$/$scansat\@$2\@$1/g;
 	@pieces = (split /@/, $tmp2);
@@ -463,7 +465,7 @@ while (<$file>) {
       if ($recoTicker == 1) {
 	my $cleft = calcPerc($sci[-1],$cap[-1]);
 	$reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
-      } elsif ($scanTicker == 1) {
+      } elsif ($opt{includeSCANsat} && $scanTicker == 1) {
 	my $cleft = calcPerc($sci[-1],$cap[-1]);
 	$scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
       }
@@ -488,6 +490,7 @@ foreach (0..scalar @test - 1) {
       # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
       # Might cause problems with KSC biomes later FIXME TODO
       next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
+
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
     }
   }
@@ -519,8 +522,10 @@ if (!$opt{'noformat'}) {
 $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
 $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
 
-$workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
-$workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
+if ($opt{includeSCANsat}) {
+  $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
+  $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
+}
 
 $header[1] = 'Condition';
 $header[2] = 'Biome';
@@ -537,9 +542,11 @@ $workVars{$recov}[0]->set_column( 0, 0, 9.17 );
 $workVars{$recov}[0]->set_column( 1, 1, 6.5 );
 $workVars{$recov}[0]->set_column( 2, 2, 9 );
 # SCANsat widths, manually determined
-$workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
-$workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
-$workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
+if ($opt{includeSCANsat}) {
+  $workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
+  $workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
+  $workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
+}
 # Stock science widths, manually determined
 foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
@@ -581,15 +588,17 @@ foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
   }
 }
 # SCANsat
-foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
-  writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
-  writeToCSV(\@{$scan{$key}}) if $opt{'csv'};
+if ($opt{includeSCANsat}) {
+  foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
+    writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
+    writeToCSV(\@{$scan{$key}}) if $opt{'csv'};
 
-  if ($opt{'tests'}) {
-    # Neater spacing in test averages output
-    buildScienceData($key,$scansatMap,\%testData,\%scan);
-  } elsif ($opt{'average'}) {
-    buildScienceData($key,$scansat,\%spobData,\%scan);
+    if ($opt{'tests'}) {
+      # Neater spacing in test averages output
+      buildScienceData($key,$scansatMap,\%testData,\%scan);
+    } elsif ($opt{'average'}) {
+      buildScienceData($key,$scansat,\%spobData,\%scan);
+    }
   }
 }
 close $csvOut or die $! if  $opt{'csv'};
@@ -751,7 +760,7 @@ sub average1
 
     if ($opt{'tests'}) {
       push @{$arrayRef}, $recovery;   # Neater spacing in test averages output
-      push @{$arrayRef}, $scansatMap; # Neater spacing in test averages output
+      push @{$arrayRef}, $scansatMap if $opt{includeSCANsat};
       @{$arrayRef} = sort @{$arrayRef};
     }
 
@@ -761,7 +770,7 @@ sub average1
 
     if (!$opt{'tests'}) {
       printAverageTable($recov,$hashRef);
-      printAverageTable($scansat,$hashRef);
+      printAverageTable($scansat,$hashRef) if $opt{includeSCANsat};
     }
 
     return;
