@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # parseScience.pl by Amory Meltzer
+# v0.93
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
@@ -14,7 +15,6 @@
 
 ### FIXES, TODOS
 ## SCANsat allows Sun scanning?!
-## Version number, etc. for release
 ## Use Cwd even necessary for config processing?!
 ## Windows path to Gamedata/pers/scidefs/etc.?
 ## Option to pull KSC stuff in/out of Kerbin?
