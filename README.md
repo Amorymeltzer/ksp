@@ -43,7 +43,7 @@ Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 ##### 3b. Full Options
 The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIU) take precedence.
 ````
-Usage: parseScience.pl [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
+Usage: parseScience.pl [-aAtTsSnNcCiI -h -k path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -64,7 +64,7 @@ Usage: parseScience.pl [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
          are present in the local directory will be used.
       -U Turn off -u.
       -k Specify path to config file.  Supersedes a local .parsesciencerc file.
-      -h or H Print this message.
+      -h Print this message.
 ````
 
 #### 4. Todo

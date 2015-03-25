@@ -41,9 +41,9 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCiIu:Uk:hH', \%opts);
+getopts('aAtTsSpPnNcCiIu:Uk:h', \%opts);
 
-if ($opts{h} || $opts{H}) {
+if ($opts{h}) {
   usage();
   exit;
 }
@@ -822,7 +822,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiI -h -k path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -842,8 +842,8 @@ Usage: $0 [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
-      -k SPecify path to config file.  Supersedes a local .parsesciencerc file.
-      -h or H Print this message.
+      -k Specify path to config file.  Supersedes a local .parsesciencerc file.
+      -h Print this message.
 USAGE
     return;
   }
