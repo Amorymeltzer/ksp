@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # deltaVScience.pl by Amory Meltzer
+# https://github.com/Amorymeltzer/ksp
 # Attempt to (roughly) estimate a ratio of science per deltaV for each spob
 # Takes in an averages (-a or -as) table from parseScience.pl
 # Delta-V from http://mononyk.us/wherecanigo.php?dv=0&loc=orbit&figs=diff
