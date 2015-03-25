@@ -121,7 +121,7 @@ my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
 
 if ($opts{u}) {
-  $opt{'username'} = $opts{u};
+  $opt{username} = $opts{u};
 }
 
 # Overwrite config file options if the corresponding flag is on the commandline
@@ -140,7 +140,7 @@ foreach my $negate (@negatableOpts) {
 
 if ($opt{username}) {
   $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
-  $pers = "$path/saves/$opt{'username'}/persistent.sfs";
+  $pers = "$path/saves/$opt{username}/persistent.sfs";
 }
 
 # Test files for existance
@@ -510,7 +510,7 @@ my $bgRed = $workbook->add_format();
 my $bgGreen = $workbook->add_format();
 
 # Turn off formatting if so desired
-if (!$opt{'noformat'}) {
+if (!$opt{noformat}) {
   $bold->set_bold();
   $bgRed->set_bg_color( 'red' );
   $bgGreen->set_bg_color( 'green' );
@@ -554,8 +554,8 @@ foreach my $planet (0..$planetCount) {
 
 
 ## Actually print everybody!
-open my $csvOut, '>', "$csvFile" or die $! if $opt{'csv'};
-writeToCSV(\@header) if $opt{'csv'};
+open my $csvOut, '>', "$csvFile" or die $! if $opt{csv};
+writeToCSV(\@header) if $opt{csv};
 
 # Stock science
 foreach my $key (sort sitSort keys %dataMatrix) {
@@ -565,23 +565,23 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
   # Add in spob name to csv, only necessary for stock science
   $dataMatrix{$key}[1] .= "\@$planet";
-  writeToCSV(\@{$dataMatrix{$key}}) if $opt{'csv'};
+  writeToCSV(\@{$dataMatrix{$key}}) if $opt{csv};
 
-  if ($opt{'tests'}) {
+  if ($opt{tests}) {
     buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
-  } elsif ($opt{'average'}) {
+  } elsif ($opt{average}) {
     buildScienceData($key,$planet,\%spobData,\%dataMatrix);
   }
 }
 # Recovery
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
   writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
-  writeToCSV(\@{$reco{$key}}) if $opt{'csv'};
+  writeToCSV(\@{$reco{$key}}) if $opt{csv};
 
-  if ($opt{'tests'}) {
+  if ($opt{tests}) {
     # Neater spacing in test averages output
     buildScienceData($key,$recovery,\%testData,\%reco);
-  } elsif ($opt{'average'}) {
+  } elsif ($opt{average}) {
     buildScienceData($key,$recov,\%spobData,\%reco);
   }
 }
@@ -589,40 +589,40 @@ foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
 if ($opt{includeSCANsat}) {
   foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
     writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
-    writeToCSV(\@{$scan{$key}}) if $opt{'csv'};
+    writeToCSV(\@{$scan{$key}}) if $opt{csv};
 
-    if ($opt{'tests'}) {
+    if ($opt{tests}) {
       # Neater spacing in test averages output
       buildScienceData($key,$scansatMap,\%testData,\%scan);
-    } elsif ($opt{'average'}) {
+    } elsif ($opt{average}) {
       buildScienceData($key,$scansat,\%spobData,\%scan);
     }
   }
 }
-close $csvOut or die $! if  $opt{'csv'};
+close $csvOut or die $! if  $opt{csv};
 
 
 ## Sorting of different average tables
 # Ensure the -t flag supersedes -a if both are given
-if ($opt{'average'} || $opt{'tests'}) {
+if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
   my ($tmpHashRef,$tmpArrayRef);
 
-  if ($opt{'tests'}) {
+  if ($opt{tests}) {
     $string .= "Test\t";
     $tmpHashRef = \%testData;
-    $tmpArrayRef = \@testdef if !$opt{'scienceleft'};
-  } elsif ($opt{'average'}) {
+    $tmpArrayRef = \@testdef if !$opt{scienceleft};
+  } elsif ($opt{average}) {
     $string .= 'Spob';
     $tmpHashRef = \%spobData;
-    $tmpArrayRef = \@planets if !$opt{'scienceleft'};
+    $tmpArrayRef = \@planets if !$opt{scienceleft};
   }
   $string .= "\tAvg/exp\tTotal\tCompleted\n";
   print "$string";
 
-  if ($opt{'percentdone'}) {
+  if ($opt{percentdone}) {
     average3($tmpHashRef);
-  } elsif ($opt{'scienceleft'}) {
+  } elsif ($opt{scienceleft}) {
     average2($tmpHashRef);
   } else {
     average1($tmpHashRef,$tmpArrayRef);
@@ -678,9 +678,9 @@ sub specialSort
     my ($x,$y) = map {/^($sord)/} @input;
     my ($v,$w) = map {/($cord)/} @input;
 
-    if ($opt{'percentdone'}) {
+    if ($opt{percentdone}) {
       ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
-    } elsif ($opt{'scienceleft'}) {
+    } elsif ($opt{scienceleft}) {
       ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
     } else {
       $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
@@ -708,9 +708,9 @@ sub sitSort
 
     my ($x,$y) = map {/($sord)/} @input;
 
-    if ($opt{'percentdone'}) {
+    if ($opt{percentdone}) {
       $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
-    } elsif ($opt{'scienceleft'}) {
+    } elsif ($opt{scienceleft}) {
       $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     } else {
       $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
@@ -756,7 +756,7 @@ sub average1
     my $hashRef = shift;
     my $arrayRef = shift;
 
-    if ($opt{'tests'}) {
+    if ($opt{tests}) {
       push @{$arrayRef}, $recovery; # Neater spacing in test averages output
       push @{$arrayRef}, $scansatMap if $opt{includeSCANsat};
       @{$arrayRef} = sort @{$arrayRef};
@@ -766,7 +766,7 @@ sub average1
       printAverageTable(${$arrayRef}[$index],$hashRef);
     }
 
-    if (!$opt{'tests'}) {
+    if (!$opt{tests}) {
       printAverageTable($recov,$hashRef);
       printAverageTable($scansat,$hashRef) if $opt{includeSCANsat};
     }
