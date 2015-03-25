@@ -21,10 +21,11 @@
 ## Option to combine spobs by system?  Joolian, etc.
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header?
-## Flag SCANsat auto-detect??
+
 ## Turn cascading tmp1/2 elsifs into hash lookup?  Might revert above
 ## Cleanup data/test hashes, the order of the data is unintuitive
 ## Cleanup var/vara/etc. crap.  Better commenting.
+
 ## Biomes are hardcoded, would be nice to pull from somewhere
 ## Same for sbv, multipliers, etc.
 
