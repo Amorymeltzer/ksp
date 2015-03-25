@@ -4,7 +4,7 @@ Perl scripts to help with Kerbal Space Program.
 ### parseScience.pl (v0.93)
 Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon, including vessel recovery.  Supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
-#### 1. Requiresments
+#### 1. Requirements
 - KSP v0.90 Beta
 - Perl (Duh.)
 - Excel::Writer::XLSX (Get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
@@ -19,7 +19,7 @@ Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  
 Alternatively, use a custom config file...
 
 #### 3. Advanced Usage
-##### 3a. .parsesciencerc Config File
+##### 3a. Config File (.parsesciencerc)
 Users of this tool will almost certainly be running it repeatedly with the same options, so `parseScience.pl` supports the use of a user config file to simplify things a bit.  This way, you can dump your favorite options in a file and just `path/to/parseScience.pl` without worrying about commandline options, location of the script, etc.  You can still, of course, pass commandline flags to `parseScience.pl`; they will always override any settings in your config file.
 
 The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check, in order, the directory `parseScience.pl` is in, your $home directory, and then `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-k` flag.
