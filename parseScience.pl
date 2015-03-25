@@ -40,7 +40,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCu:Uk:hH', \%opts);
+getopts('aAtTsSpPnNcCiIu:Uk:hH', \%opts);
 
 if ($opts{h} || $opts{H}) {
   usage();
@@ -57,7 +57,8 @@ my %opt = (
 	   scienceleft => 0,
 	   percentdone => 0,
 	   noformat => 0,
-	   csv => 0
+	   csv => 0,
+	   includeSCANsat => 0
 	  );
 
 ## .parsesciencerc config file
@@ -814,7 +815,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcC -hH -k path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiI -hH -k path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -829,6 +830,8 @@ Usage: $0 [-aAtTsSnNcC -hH -k path/to/dotfile -u <savefile_name>]
       -N Turn off -N.
       -c Output data to csv file as well
       -C Turn off -c.
+      -i Include data from SCANsat.
+      -I Turn off -i.
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
