@@ -341,7 +341,7 @@ foreach my $i (0..scalar @testdef - 1) {
 	$biomes[$var] = [ qw (Global)];
       }
     }
-
+    @situations = qw (Landed) if $planets[$planet] eq 'KSC';
     foreach my $sit (0..scalar @situations - 1) {
       # No surface
       next if (($situations[$sit] eq 'Landed') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
@@ -869,6 +869,7 @@ Kerbol InSpaceLow 11
   Kerbin InSpaceLow 1
   Kerbin InSpaceHigh 1.5
   Kerbin Recovery 1
+  KSC Landed 0.3
   Mun Landed 4
   Mun InSpaceLow 3
   Mun InSpaceHigh 2
