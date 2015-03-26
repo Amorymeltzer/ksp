@@ -191,7 +191,7 @@ my (
     @biome			# What biome
    );
 
-my @planets = qw (Kerbin Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
+my @planets = qw (Kerbin KSC Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
 		  Jool Laythe Vall Tylo Bop Pol Eeloo);
 my $planetCount = scalar @planets - 1; # Use this a bunch
 
@@ -199,6 +199,7 @@ my $planetCount = scalar @planets - 1; # Use this a bunch
 my %universe = (
 		Kerbin => [ qw (Water Shores Grasslands Highlands Mountains Deserts
 				Badlands Tundra IceCaps) ],
+		KSC => [ qw (KSC R&D) ],
 		Mun => [ qw (FarsideCrater HighlandCraters Highlands MidlandCraters
 			     Midlands NorthernBasin NorthwestCrater PolarCrater
 			     PolarLowlands Poles SouthwestCrater TwinCraters Canyons
