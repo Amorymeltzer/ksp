@@ -341,6 +341,7 @@ foreach my $i (0..scalar @testdef - 1) {
 	$biomes[$var] = [ qw (Global)];
       }
     }
+    # ;;;;;; ##### FIXME TODO
     @situations = qw (Landed) if $planets[$planet] eq 'KSC';
     foreach my $sit (0..scalar @situations - 1) {
       # No surface
