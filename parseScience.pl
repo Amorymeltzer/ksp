@@ -197,44 +197,48 @@ my $planetCount = scalar @planets - 1; # Use this a bunch
 
 # Different spobs, different biomes
 my %universe = (
-		Kerbin => [ qw (Water Shores Grasslands Highlands Mountains Deserts
-				Badlands Tundra IceCaps) ],
+		Kerbin => [ qw (Water Shores Grasslands Highlands Mountains
+				Deserts Badlands Tundra IceCaps) ],
 		KSC => [ qw (KSC Administration AstronautComplex Crawlerway
-		FlagPole LaundPad MissionControl R&D R&DCentralBuilding
-		R&DCornerLab R&DMainBuilding R&DOBservatory R&DSideLab
-		R&DSmallLab R&DTanks R&DWindTunnel Runway SPH SPHMainBuilding
-		SPHRoundTank SPHTanks SPHWaterTower TrackingStation
-		TrackingStationDishEast TrackingStationDishNorth
-		TrackingStationSouth TrackingStationHub VAB VABMainBuilding
-		VABPodMemorial VABRoundTank VABTanks) ],
-		Mun => [ qw (FarsideCrater HighlandCraters Highlands MidlandCraters
-			     Midlands NorthernBasin NorthwestCrater PolarCrater
-			     PolarLowlands Poles SouthwestCrater TwinCraters Canyons
-			     EastCrater EastFarsideCrater) ],
-		Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands LesserFlats
-				Lowlands Midlands Poles Slopes) ],
+			     FlagPole LaundPad MissionControl R&D
+			     R&DCentralBuilding R&DCornerLab R&DMainBuilding
+			     R&DOBservatory R&DSideLab R&DSmallLab R&DTanks
+			     R&DWindTunnel Runway SPH SPHMainBuilding
+			     SPHRoundTank SPHTanks SPHWaterTower
+			     TrackingStation TrackingStationDishEast
+			     TrackingStationDishNorth TrackingStationSouth
+			     TrackingStationHub VAB VABMainBuilding
+			     VABPodMemorial VABRoundTank VABTanks) ],
+		Mun => [ qw (FarsideCrater HighlandCraters Highlands
+			     MidlandCraters Midlands NorthernBasin
+			     NorthwestCrater PolarCrater PolarLowlands Poles
+			     SouthwestCrater TwinCraters Canyons EastCrater
+			     EastFarsideCrater) ],
+		Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands
+				LesserFlats Lowlands Midlands Poles Slopes) ],
 		Kerbol => [ qw (Global) ],
-		Moho => [ qw (NorthPole NorthernSinkholeRidge NorthernSinkhole Highlands
-			      Midlands MinorCraters CentralLowlands WesternLowlands
-			      SouthWesternLowlands SouthEasternLowlands Canyon
-			      SouthPole) ],
-		Eve => [ qw (Poles ExplodiumSea Lowlands Midlands Highlands Peaks
-			     ImpactEjecta) ],
+		Moho => [ qw (NorthPole NorthernSinkholeRidge NorthernSinkhole
+			      Highlands Midlands MinorCraters CentralLowlands
+			      WesternLowlands SouthWesternLowlands
+			      SouthEasternLowlands Canyon SouthPole) ],
+		Eve => [ qw (Poles ExplodiumSea Lowlands Midlands Highlands
+			     Peaks ImpactEjecta) ],
 		Gilly => [ qw (Lowlands Midlands Highlands) ],
 		Duna => [ qw (Poles Highlands Midlands Lowlands Craters) ],
-		Ike => [ qw (PolarLowlands Midlands Lowlands EasternMountainRidge
-			     WesternMountainRidge CentralMountainRidge
-			     SouthEasternMountainRange SouthPole) ],
-		Dres => [ qw (Poles Highlands Midlands Lowlands Ridges ImpactEjecta
-			      ImpactCraters Canyons) ],
+		Ike => [ qw (PolarLowlands Midlands Lowlands
+			     EasternMountainRidge WesternMountainRidge
+			     CentralMountainRidge SouthEasternMountainRange
+			     SouthPole) ],
+		Dres => [ qw (Poles Highlands Midlands Lowlands Ridges
+			      ImpactEjecta ImpactCraters Canyons) ],
 		Jool => [ qw (Global) ],
 		Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
 		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
 		Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater) ],
 		Bop => [ qw (Poles Slopes Peaks Valley Rodges) ],
 		Pol => [ qw (Poles Lowlands Midlands Highlands) ],
-		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons Highlands
-			       Craters) ]
+		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons
+			       Highlands Craters) ]
 	       );
 
 # Various situations you may find yourself in
