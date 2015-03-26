@@ -199,7 +199,14 @@ my $planetCount = scalar @planets - 1; # Use this a bunch
 my %universe = (
 		Kerbin => [ qw (Water Shores Grasslands Highlands Mountains Deserts
 				Badlands Tundra IceCaps) ],
-		KSC => [ qw (KSC R&D) ],
+		KSC => [ qw (KSC Administration AstronautComplex Crawlerway
+		FlagPole LaundPad MissionControl R&D R&DCentralBuilding
+		R&DCornerLab R&DMainBuilding R&DOBservatory R&DSideLab
+		R&DSmallLab R&DTanks R&DWindTunnel Runway SPH SPHMainBuilding
+		SPHRoundTank SPHTanks SPHWaterTower TrackingStation
+		TrackingStationDishEast TrackingStationDishNorth
+		TrackingStationSouth TrackingStationHub VAB VABMainBuilding
+		VABPodMemorial VABRoundTank VABTanks) ],
 		Mun => [ qw (FarsideCrater HighlandCraters Highlands MidlandCraters
 			     Midlands NorthernBasin NorthwestCrater PolarCrater
 			     PolarLowlands Poles SouthwestCrater TwinCraters Canyons
