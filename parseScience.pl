@@ -379,6 +379,7 @@ foreach my $planet (0..$planetCount) {
   }
 
   foreach my $sit (0..scalar @situations - 1) {
+    next if $planets[$planet] eq 'KSC';
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
@@ -394,7 +395,7 @@ if ($opt{includeSCANsat}) {
 
     foreach my $sit (0..scalar @situations - 1) {
       # No surface?  Do scanning
-      next if ($planets[$planet] =~ m/^Kerbol|^Jool/);
+      next if ($planets[$planet] =~ m/^Kerbol|^Jool|^KSC/);
 
       my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
       my $cleft = $sbVal*$scanCap;
