@@ -343,17 +343,20 @@ foreach my $i (0..scalar @testdef - 1) {
     # ;;;;;; ##### FIXME TODO
     my @biomes = ([@{$universe{$planets[$planet]}}])x6;
 
-    for (my $var = scalar @sits - 1;$var>=0;$var--) {
-      my $vara = abs $var-5;
-      if ($sits[$vara] == 0) {
-	splice @situations, $var, 1;
-	splice @biomes, $var, 1;
-      } elsif ($bins[$vara] == 0) {
-	$biomes[$var] = [ qw (Global)];
+    if ($planets[$planet] eq 'KSC') {
+      @situations = qw (Landed);
+    } else {
+      for (my $var = scalar @sits - 1;$var>=0;$var--) {
+	my $vara = abs $var-5;
+	if ($sits[$vara] == 0) {
+	  splice @situations, $var, 1;
+	  splice @biomes, $var, 1;
+	} elsif ($bins[$vara] == 0) {
+	  $biomes[$var] = [ qw (Global)];
+	}
       }
     }
-    # ;;;;;; ##### FIXME TODO
-    @situations = qw (Landed) if $planets[$planet] eq 'KSC';
+
     foreach my $sit (0..scalar @situations - 1) {
       # No surface
       next if (($situations[$sit] eq 'Landed') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
