@@ -43,7 +43,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCiIu:Uf:h', \%opts);
+getopts('aAtTsSpPnNcCiIkKu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -61,7 +61,8 @@ my %opt = (
 	   percentdone => 0,
 	   noformat => 0,
 	   csv => 0,
-	   includeSCANsat => 0
+	   includeSCANsat => 0,
+	   ksckerbin => 0
 	  );
 
 ## .parsesciencerc config file
