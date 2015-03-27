@@ -338,11 +338,9 @@ foreach my $i (0..scalar @testdef - 1) {
     my @situations = @stockSits;
 
     # Create array of arrays for spob-specific biomes, nullify w/ @situations
-    # Don't forget the KSC/Runway/Launchpad/etc. biomes, but only for landed?
-    # Have to somehow deal with various reports while flying over KSC
-    # ;;;;;; ##### FIXME TODO
     my @biomes = ([@{$universe{$planets[$planet]}}])x6;
 
+    # KSC biomes are SrfLanded only
     if ($planets[$planet] eq 'KSC') {
       @situations = qw (Landed);
     } else {
@@ -503,8 +501,7 @@ foreach (0..scalar @test - 1) {
     if ($test[$_] !~ m/$recovery/i) {
       my $cleft = calcPerc($sci[$_],$cap[$_]);
 
-      # I should be getting false-reports here from random FlyingLow stuff,
-      # why aren't I? ;;;;;; ##### FIXME TODO
+      # Take KSC out of Kerbin
       $spob[$_] = 'KSC' if $biome[$_] =~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/;
 
       # Skip over annoying "fake" science expts caused by ScienceAlert
