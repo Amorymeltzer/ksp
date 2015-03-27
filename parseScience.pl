@@ -500,9 +500,10 @@ foreach (0..scalar @test - 1) {
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^SCANsat|^asteroid/;
   if ($biome[$_]) {
-    if (($test[$_] !~ m/$recovery/i) && ($biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/)) {
+    if ($test[$_] !~ m/$recovery/i) {
       my $cleft = calcPerc($sci[$_],$cap[$_]);
 
+      $spob[$_] = 'KSC' if $biome[$_] =~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/;
       # Skip over annoying "fake" science expts caused by ScienceAlert
       # For more info see
       # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
