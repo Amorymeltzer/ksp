@@ -43,7 +43,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCiIu:Uk:h', \%opts);
+getopts('aAtTsSpPnNcCiIu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -73,8 +73,8 @@ my $home = $ENV{HOME};		# MAGIC hash with user env variables for $home
 
 # Round up the usual suspects, all superseded by commandline flag
 my @dotLocales = ("$cwd/.$rc","$scriptDir/.$rc","$home/.$rc","$home/.config/parseScience/$rc");
-if ($opts{k} && -e $opts{k}) {
-  $dotfile = $opts{k};
+if ($opts{f} && -e $opts{f}) {
+  $dotfile = $opts{f};
 } else {
   foreach my $place (@dotLocales) {
     if (-e $place) {
@@ -842,7 +842,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcCiI -h -k path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiI -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -862,7 +862,7 @@ Usage: $0 [-aAtTsSnNcCiI -h -k path/to/dotfile -u <savefile_name>]
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
-      -k Specify path to config file.  Supersedes a local .parsesciencerc file.
+      -f Specify path to config file.  Supersedes a local .parsesciencerc file.
       -h Print this message.
 USAGE
     return;

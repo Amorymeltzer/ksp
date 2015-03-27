@@ -22,7 +22,7 @@ Alternatively, use a custom config file...
 ##### 3a. Config File (.parsesciencerc)
 Users of this tool will almost certainly be running it repeatedly with the same options, so `parseScience.pl` supports the use of a user config file to simplify things a bit.  This way, you can dump your favorite options in a file and just `path/to/parseScience.pl` without worrying about commandline options, location of the script, etc.  You can still, of course, pass commandline flags to `parseScience.pl`; they will always override any settings in your config file.
 
-The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check, in order, the directory `parseScience.pl` is in, your $home directory, and then `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-k` flag.
+The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check, in order, the directory `parseScience.pl` is in, your $home directory, and then `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-f` flag.
 
 The file itself follows strict guidelines.  You can see a sample in [sample_parsesciencerc](./sample_parsesciencerc).  Each option must be in `key = value` format, one per line.  Only the following keys are available; `username` takes a savefile name, the rest take either `true` or `false`, lowercase.  Any corresponding options provided on the commandline will override options set here.
 
@@ -43,7 +43,7 @@ Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 ##### 3b. Full Options
 The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIU) take precedence.
 ````
-Usage: parseScience.pl [-aAtTsSnNcCiI -h -k path/to/dotfile -u <savefile_name>]
+Usage: parseScience.pl [-aAtTsSnNcCiI -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -63,7 +63,7 @@ Usage: parseScience.pl [-aAtTsSnNcCiI -h -k path/to/dotfile -u <savefile_name>]
 	  -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
-      -k Specify path to config file.  Supersedes a local .parsesciencerc file.
+      -f Specify path to config file.  Supersedes a local .parsesciencerc file.
       -h Print this message.
 ````
 
