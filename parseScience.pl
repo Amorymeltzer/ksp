@@ -503,7 +503,10 @@ foreach (0..scalar @test - 1) {
     if ($test[$_] !~ m/$recovery/i) {
       my $cleft = calcPerc($sci[$_],$cap[$_]);
 
+      # I should be getting false-reports here from random FlyingLow stuff,
+      # why aren't I? ;;;;;; ##### FIXME TODO
       $spob[$_] = 'KSC' if $biome[$_] =~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/;
+
       # Skip over annoying "fake" science expts caused by ScienceAlert
       # For more info see
       # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
