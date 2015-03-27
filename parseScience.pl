@@ -19,6 +19,7 @@
 ## Windows path to Gamedata/pers/scidefs/etc.?
 ## Option to pull KSC stuff in/out of Kerbin?
 ## Option to combine spobs by system?  Joolian, etc.
+## Option to print averages table to file
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header?
 
