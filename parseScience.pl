@@ -503,7 +503,9 @@ foreach (0..scalar @test - 1) {
       my $cleft = calcPerc($sci[$_],$cap[$_]);
 
       # Take KSC out of Kerbin
-      $spob[$_] = 'KSC' if $biome[$_] =~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/;
+      if (!$opt{ksckerbin} && $biome[$_] =~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
+	$spob[$_] = 'KSC';
+      }
 
       # Skip over annoying "fake" science expts caused by ScienceAlert
       # For more info see
