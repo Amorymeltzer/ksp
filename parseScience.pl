@@ -192,9 +192,8 @@ my (
     @biome			# What biome
    );
 
-my @planets = qw (Kerbin Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres Jool
-		  Laythe Vall Tylo Bop Pol Eeloo);
-splice @planets, 1, 0, 'KSC' if !$opt{ksckerbin};
+my @planets = qw (Kerbin KSC Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
+		  Jool Laythe Vall Tylo Bop Pol Eeloo);
 my $planetCount = scalar @planets - 1; # Use this a bunch
 
 # Different spobs, different biomes
@@ -368,6 +367,10 @@ foreach my $i (0..scalar @testdef - 1) {
 	next if $atmo[$i] == 1;
       }
 
+      # Inconvenient, ruined by the cleaner funciton later
+      if ($planets[$planet] eq 'KSC' && $opt{ksckerbin}) {
+	$planets[$planet] = 'Kerbin';
+      }
       foreach my $bin (0..scalar @{$biomes[$sit]} - 1) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
@@ -379,6 +382,11 @@ foreach my $i (0..scalar @testdef - 1) {
   }
 }
 
+# UGLY as sin ;;;;;; ##### FIXME TODO
+if ($opt{ksckerbin}) {
+  splice @planets, 1, 1;
+  $planetCount--;
+}
 
 # Build recovery hash
 foreach my $planet (0..$planetCount) {
