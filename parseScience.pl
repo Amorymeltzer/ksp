@@ -192,8 +192,9 @@ my (
     @biome			# What biome
    );
 
-my @planets = qw (Kerbin KSC Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
-		  Jool Laythe Vall Tylo Bop Pol Eeloo);
+my @planets = qw (Kerbin Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres Jool
+		  Laythe Vall Tylo Bop Pol Eeloo);
+splice @planets, 1, 0, 'KSC' if !$opt{ksckerbin};
 my $planetCount = scalar @planets - 1; # Use this a bunch
 
 # Different spobs, different biomes
