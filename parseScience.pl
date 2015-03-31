@@ -576,10 +576,8 @@ foreach my $planet (0..$planetCount) {
   # Interpolate via " instead of '
   $workVars{$planets[$planet]} = [$workbook->add_worksheet( "$planets[$planet]" ), 1];
   $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
-}
 
 # Stock science widths, manually determined
-foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
   $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
   $workVars{$planets[$planet]}[0]->set_column( 2, 2, 8.5 );
