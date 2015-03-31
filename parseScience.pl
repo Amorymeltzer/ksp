@@ -269,6 +269,7 @@ my $recov = 'Recov';
 my $recovery = 'recovery';
 my $scansat = 'SCANsat';
 my $scansatMap = 'SCANsatMapping';
+my $ksc = 'KSC';
 
 
 ### Begin!
@@ -341,7 +342,7 @@ foreach my $i (0..scalar @testdef - 1) {
     # Array of arrays for spob-specific biomes, nullify alongside @situations
     my @biomes = ([@{$universe{$planets[$planet]}}])x6;
     # KSC biomes are SrfLanded only
-    if ($planets[$planet] eq 'KSC') {
+    if ($planets[$planet] eq $ksc) {
       @situations = qw (Landed);
     } else {
       for (my $var = scalar @sits - 1;$var>=0;$var--) {
@@ -367,7 +368,7 @@ foreach my $i (0..scalar @testdef - 1) {
       }
       # Fold KSC into Kerbin, if need be
       # Inconvenient, ruined by the cleaner funciton later
-      if ($planets[$planet] eq 'KSC' && $opt{ksckerbin}) {
+      if ($planets[$planet] eq $ksc && $opt{ksckerbin}) {
 	$planets[$planet] = 'Kerbin';
       }
       foreach my $bin (0..scalar @{$biomes[$sit]} - 1) {
@@ -389,7 +390,7 @@ if ($opt{ksckerbin}) {
 
 # Build recovery hash
 foreach my $planet (0..$planetCount) {
-  next if $planets[$planet] eq 'KSC';
+  next if $planets[$planet] eq $ksc;
   my @situations = @recoSits;
 
   # Only one of Flew or FlewBy
@@ -413,7 +414,7 @@ foreach my $planet (0..$planetCount) {
 if ($opt{includeSCANsat}) {
   foreach my $planet (0..$planetCount) {
     # No surface?  No scanning!
-    next if ($planets[$planet] =~ m/^Kerbol|^Jool|^KSC/);
+    next if ($planets[$planet] =~ m/^Kerbol|^Jool|^$ksc/);
     my @situations = @scanSits;
 
     foreach my $sit (0..scalar @situations - 1) {
@@ -510,14 +511,14 @@ foreach (0..scalar @test - 1) {
     if ($test[$_] !~ m/$recovery/i) {
       my $cleft = calcPerc($sci[$_],$cap[$_]);
 
-      if ($biome[$_] =~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
+      if ($biome[$_] =~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
 	# KSC biomes *should* be SrfLanded-only, this ensures that we skip any
 	# anomalous data in persistent.sfs.  This complements the test below
 	# but saves some work given the KSC/Kerbin potential with the -k flag
 	next if $where[$_] ne 'Landed';
 	# Take KSC out of Kerbin
 	if (!$opt{ksckerbin}) {
-	  $spob[$_] = 'KSC';
+	  $spob[$_] = $ksc;
 	}
       }
 
@@ -526,7 +527,7 @@ foreach (0..scalar @test - 1) {
       # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
       # Might cause problems with KSC biomes later FIXME TODO
       #  next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
-      next if (!$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} && $biome[$_] !~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/);
+      next if (!$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} && $biome[$_] !~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/);
 
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
     }
