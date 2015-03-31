@@ -511,9 +511,15 @@ foreach (0..scalar @test - 1) {
     if ($test[$_] !~ m/$recovery/i) {
       my $cleft = calcPerc($sci[$_],$cap[$_]);
 
-      # Take KSC out of Kerbin
-      if (!$opt{ksckerbin} && $biome[$_] =~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
-	$spob[$_] = 'KSC';
+      if ($biome[$_] =~ m/^KSC|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
+	# KSC biomes *should* be SrfLanded-only, this ensures that we skip any
+	# anomalous data in persistent.sfs.  This complements the test below
+	# but saves some work given the KSC/Kerbin potential with the -k flag
+	next if $where[$_] ne 'Landed';
+	# Take KSC out of Kerbin
+	if (!$opt{ksckerbin}) {
+	  $spob[$_] = 'KSC';
+	}
       }
 
       # Skip over annoying "fake" science expts caused by ScienceAlert
