@@ -390,6 +390,7 @@ if ($opt{ksckerbin}) {
 
 # Build recovery hash
 foreach my $planet (0..$planetCount) {
+  next if $planets[$planet] eq 'KSC';
   my @situations = @recoSits;
 
   # Only one of Flew or FlewBy
@@ -401,7 +402,6 @@ foreach my $planet (0..$planetCount) {
   }
 
   foreach my $sit (0..scalar @situations - 1) {
-    next if $planets[$planet] eq 'KSC';
     # No surface
     next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
@@ -413,11 +413,11 @@ foreach my $planet (0..$planetCount) {
 # Build SCANsat hash
 if ($opt{includeSCANsat}) {
   foreach my $planet (0..$planetCount) {
+    # No surface?  Do scanning
+    next if ($planets[$planet] =~ m/^Kerbol|^Jool|^KSC/);
     my @situations = @scanSits;
 
     foreach my $sit (0..scalar @situations - 1) {
-      # No surface?  Do scanning
-      next if ($planets[$planet] =~ m/^Kerbol|^Jool|^KSC/);
 
       my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
       my $cleft = $sbVal*$scanCap;
@@ -577,7 +577,7 @@ foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]} = [$workbook->add_worksheet( "$planets[$planet]" ), 1];
   $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
 
-# Stock science widths, manually determined
+  # Stock science widths, manually determined
   $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
   $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
   $workVars{$planets[$planet]}[0]->set_column( 2, 2, 8.5 );
