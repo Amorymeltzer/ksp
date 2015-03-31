@@ -338,9 +338,8 @@ foreach my $i (0..scalar @testdef - 1) {
     # Build list of potential situations
     my @situations = @stockSits;
 
-    # Create array of arrays for spob-specific biomes, nullify w/ @situations
+    # Array of arrays for spob-specific biomes, nullify alongside @situations
     my @biomes = ([@{$universe{$planets[$planet]}}])x6;
-
     # KSC biomes are SrfLanded only
     if ($planets[$planet] eq 'KSC') {
       @situations = qw (Landed);
@@ -356,6 +355,7 @@ foreach my $i (0..scalar @testdef - 1) {
       }
     }
 
+    # Can I fold this in above?  ;;;;;; ##### FIXME TODO
     foreach my $sit (0..scalar @situations - 1) {
       # No surface
       next if (($situations[$sit] eq 'Landed') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
