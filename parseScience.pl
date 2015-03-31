@@ -201,9 +201,9 @@ my %universe = (
 		Kerbin => [ qw (Water Shores Grasslands Highlands Mountains
 				Deserts Badlands Tundra IceCaps) ],
 		KSC => [ qw (KSC Administration AstronautComplex Crawlerway
-			     FlagPole LaundPad MissionControl R&D
+			     FlagPole LaunchPad MissionControl R&D
 			     R&DCentralBuilding R&DCornerLab R&DMainBuilding
-			     R&DOBservatory R&DSideLab R&DSmallLab R&DTanks
+			     R&DObservatory R&DSideLab R&DSmallLab R&DTanks
 			     R&DWindTunnel Runway SPH SPHMainBuilding
 			     SPHRoundTank SPHTanks SPHWaterTower
 			     TrackingStation TrackingStationDishEast
