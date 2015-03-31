@@ -413,7 +413,7 @@ foreach my $planet (0..$planetCount) {
 # Build SCANsat hash
 if ($opt{includeSCANsat}) {
   foreach my $planet (0..$planetCount) {
-    # No surface?  Do scanning
+    # No surface?  No scanning!
     next if ($planets[$planet] =~ m/^Kerbol|^Jool|^KSC/);
     my @situations = @scanSits;
 
