@@ -355,7 +355,6 @@ foreach my $i (0..scalar @testdef - 1) {
       }
     }
 
-    # Can I fold this in above?  ;;;;;; ##### FIXME TODO
     foreach my $sit (0..scalar @situations - 1) {
       # No surface
       next if (($situations[$sit] eq 'Landed') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
@@ -368,6 +367,7 @@ foreach my $i (0..scalar @testdef - 1) {
       }
 
       # Inconvenient, ruined by the cleaner funciton later
+      # Can I fold this in above?  ;;;;;; ##### FIXME TODO
       if ($planets[$planet] eq 'KSC' && $opt{ksckerbin}) {
 	$planets[$planet] = 'Kerbin';
       }
@@ -691,7 +691,8 @@ sub calcPerc {
 
 ## Custom sort order, adapted from:
 ## http://stackoverflow.com/a/8171591/2521092
-# Kerbin and moons come first, then Kerbol, then proper sorting of conditions,
+# Kerbin, KSC, and its moons come first, then Kerbol, then proper sorting of
+# conditions
 # matches worksheets
 # Incorporate KSC FIXME TODO
 sub specialSort
