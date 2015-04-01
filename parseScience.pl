@@ -341,7 +341,6 @@ foreach my $i (0..scalar @testdef - 1) {
     my @situations = @stockSits;
 
     # Array of arrays for spob-specific biomes, nullify alongside @situations
-    #  my @biomes = ([@{$universe{$planets[$planet]}}])x6;
     my @biomes = ([@{$universe{$stavro}}])x6;
     # KSC biomes are SrfLanded only
     if ($stavro eq $ksc) {
@@ -360,13 +359,10 @@ foreach my $i (0..scalar @testdef - 1) {
 
     foreach my $sit (0..scalar @situations - 1) {
       # No surface
-      #  next if (($situations[$sit] eq 'Landed') && ($planets[$planet] =~ m/^Kerbol$|^Jool$/));
       next if (($situations[$sit] eq 'Landed') && ($stavro =~ m/^Kerbol$|^Jool$/));
       # Water
-      #  next if (($situations[$sit] eq 'Splashed') && ($planets[$planet] !~ m/^Kerbin$|^Eve$|^Laythe$/));
       next if (($situations[$sit] eq 'Splashed') && ($stavro !~ m/^Kerbin$|^Eve$|^Laythe$/));
       # Atmosphere
-      #  if ($planets[$planet] !~ m/^Kerbin$|^Eve$|^Duna$|^Jool$|^Laythe$/) {
       if ($stavro !~ m/^Kerbin$|^Eve$|^Duna$|^Jool$|^Laythe$/) {
 	next if $situations[$sit] =~ m/^FlyingLow$|^FlyingHigh$/;
 	next if $atmo[$i] == 1;
@@ -374,17 +370,14 @@ foreach my $i (0..scalar @testdef - 1) {
       # Fold KSC into Kerbin, if need be
       # Inconvenient, ruined by the cleaning funciton later
       if ($stavro eq $ksc && $opt{ksckerbin}) {
-	#  $planets[$planet] = 'Kerbin';
 	$stavro = 'Kerbin';
       }
 
       foreach my $bin (0..scalar @{$biomes[$sit]} - 1) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
-	#  my $sbVal = $sbvData{$planets[$planet].$situations[$sit]};
 	my $sbVal = $sbvData{$stavro.$situations[$sit]};
 	my $cleft = $sbVal*$scienceCap[$i];
-	#  $dataMatrix{$testdef[$i].$planets[$planet].$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$planets[$planet],$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$cleft,$cleft,'0'];
 	$dataMatrix{$testdef[$i].$stavro.$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$stavro,$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$cleft,$cleft,'0'];
       }
     }
