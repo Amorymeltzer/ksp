@@ -37,13 +37,14 @@ percentdone = true
 noformat = true
 csv = true
 includeSCANsat = true
+ksckerbin = true
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
 ##### 3b. Full Options
-The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIU) take precedence.
+The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIKU) take precedence.
 ````
-Usage: parseScience.pl [-aAtTsSnNcCiI -h -f path/to/dotfile -u <savefile_name>]
+Usage: parseScience.pl [-aAtTsSnNcCiIkK -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -60,6 +61,8 @@ Usage: parseScience.pl [-aAtTsSnNcCiI -h -f path/to/dotfile -u <savefile_name>]
       -C Turn off -c.
 	  -i Include data from SCANsat.
 	  -I Turn off -i.
+      -k List data from KSC biomes as being from Kerbin.
+      -K Turn off -k.
 	  -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.

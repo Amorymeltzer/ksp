@@ -861,7 +861,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcCiI -h -f path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiIkK -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -878,6 +878,8 @@ Usage: $0 [-aAtTsSnNcCiI -h -f path/to/dotfile -u <savefile_name>]
       -C Turn off -c.
       -i Include data from SCANsat.
       -I Turn off -i.
+      -k List data from KSC biomes as being from Kerbin.
+      -K Turn off -k.
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
