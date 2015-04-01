@@ -16,6 +16,7 @@
 ### FIXES, TODOS
 ## SCANsat allows Sun scanning?!
 ## Use Cwd even necessary for config processing?!
+## Option to skip dsc, sbv, etc. stuff?
 ## Windows path to Gamedata/pers/scidefs/etc.?
 ## Option to pull KSC stuff in/out of Kerbin?
 ## Option to print averages table to file
