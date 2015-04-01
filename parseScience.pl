@@ -42,7 +42,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCiIkKu:Uf:h', \%opts);
+getopts('aAtTsSpPnNcCiIkKlLu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -61,7 +61,8 @@ my %opt = (
 	   noformat => 0,
 	   csv => 0,
 	   includeSCANsat => 0,
-	   ksckerbin => 0
+	   ksckerbin => 0,
+	   lean => 0
 	  );
 
 ## .parsesciencerc config file
@@ -538,6 +539,9 @@ foreach (0..scalar @test - 1) {
 ### Begin the printing process!
 ###
 my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left Perc.Accom];
+if ($opt{lean}) {
+  splice @header, 3, 3;
+}
 
 ## Prepare fancy-schmancy Excel workbook
 # Create new workbook
@@ -758,6 +762,10 @@ sub writeToCSV
   {
     my $lineRef = shift;
 
+    if ($opt{lean}) {
+      splice @{$lineRef}, 3, 3;
+    }
+
     print $csvOut join q{,} , @{$lineRef};
     print $csvOut "\n";
     return;
@@ -766,6 +774,10 @@ sub writeToCSV
 sub writeToExcel
   {
     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
+
+    if ($opt{lean}) {
+      splice @{$rowRef}, 3, 3;
+    }
 
     $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
     $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[8] > 0;
