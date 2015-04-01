@@ -861,7 +861,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcCiIkK -h -f path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiIkKU -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
