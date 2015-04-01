@@ -1,7 +1,7 @@
 Perl scripts to help with Kerbal Space Program.
 
 
-### parseScience.pl (v0.93)
+### parseScience.pl (v0.94)
 Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon, including vessel recovery.  Supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
 #### 1. Requirements
@@ -44,7 +44,7 @@ Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 ##### 3b. Full Options
 The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIKU) take precedence.
 ````
-Usage: parseScience.pl [-aAtTsSnNcCiIkK -h -f path/to/dotfile -u <savefile_name>]
+Usage: parseScience.pl [-aAtTsSnNcCiIkKU -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes

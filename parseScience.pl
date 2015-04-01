@@ -1,16 +1,15 @@
 #!/usr/bin/env perl
 # parseScience.pl by Amory Meltzer
-# v0.93.1
+# v0.94
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
 
-## Ignores KSC/LaunchPad/Runway/etc. "biomes", asteroids
+## Ignores asteroids
 ## Can you do srfsplashed in every biome on other planets with water?
 
 ### Add support for:
-## KSC biomes
 ## Asteroids
 
 ### FIXES, TODOS
@@ -18,7 +17,7 @@
 ## Use Cwd even necessary for config processing?!
 ## Option to skip dsc, sbv, etc. stuff?
 ## Windows path to Gamedata/pers/scidefs/etc.?
-## Option to pull KSC stuff in/out of Kerbin?
+## Option to skip KSC altogether?
 ## Option to print averages table to file
 ## User-specified KSP location?
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
@@ -527,7 +526,6 @@ foreach (0..scalar @test - 1) {
       # Skip over annoying "fake" science expts caused by ScienceAlert
       # For more info see
       # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
-      # Might cause problems with KSC biomes later FIXME TODO
       next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
       #  next if (!$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} && $biome[$_] !~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/);
 
