@@ -780,8 +780,12 @@ sub writeToExcel
     }
 
     $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
-    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[8] > 0;
-    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] >0));
+    if (!$opt{lean}) {
+      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[8] > 0;
+      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] >0));
+    } else {
+      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed ) if ${$hashRef}{$matrixKey}[5] > 0;
+    }
     $workVars{$sheetName}[1]++;
     return;
   }
