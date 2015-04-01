@@ -363,7 +363,7 @@ foreach my $i (0..scalar @testdef - 1) {
       # Water
       next if (($situations[$sit] eq 'Splashed') && ($stavro !~ m/^Kerbin$|^Eve$|^Laythe$/));
       # Atmosphere
-      if ($stavro !~ m/^Kerbin$|^Eve$|^Duna$|^Jool$|^Laythe$/) {
+      if ($stavro !~ m/^$ksc$|^Kerbin$|^Eve$|^Duna$|^Jool$|^Laythe$/) {
 	next if $situations[$sit] =~ m/^FlyingLow$|^FlyingHigh$/;
 	next if $atmo[$i] == 1;
       }
