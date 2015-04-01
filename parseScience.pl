@@ -760,13 +760,13 @@ sub sitSort
 
 sub writeToCSV
   {
-    my $lineRef = shift;
+    my $rowRef = shift;
 
     if ($opt{lean}) {
-      splice @{$lineRef}, 3, 3;
+      splice @{$rowRef}, 3, 3;
     }
 
-    print $csvOut join q{,} , @{$lineRef};
+    print $csvOut join q{,} , @{$rowRef};
     print $csvOut "\n";
     return;
   }
