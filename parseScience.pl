@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # parseScience.pl by Amory Meltzer
-# v0.94
+# v0.94.1
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
@@ -15,7 +15,7 @@
 ### FIXES, TODOS
 ## SCANsat allows Sun scanning?!
 ## Use Cwd even necessary for config processing?!
-## Option to skip dsc, sbv, etc. stuff?
+## Make -l lean option default?
 ## Windows path to Gamedata/pers/scidefs/etc.?
 ## Option to skip KSC altogether?
 ## Option to print averages table to file
@@ -876,7 +876,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcCiIkKU -h -f path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiIkKlLU -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -895,6 +895,8 @@ Usage: $0 [-aAtTsSnNcCiIkKU -h -f path/to/dotfile -u <savefile_name>]
       -I Turn off -i.
       -k List data from KSC biomes as being from Kerbin.
       -K Turn off -k.
+      -l Remove some boring data from the output (dsc, sbv, scv).
+      -L Turn off -l.
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
