@@ -362,15 +362,16 @@ foreach my $i (0..scalar @testdef - 1) {
       # Water
       next if (($situations[$sit] eq 'Splashed') && ($planets[$planet] !~ m/^Kerbin$|^Eve$|^Laythe$/));
       # Atmosphere
-      if ($planets[$planet] !~ m/^Kerbin|^Eve|^Duna|^Jool|^Laythe/) {
+      if ($planets[$planet] !~ m/^Kerbin$|^Eve$|^Duna$|^Jool$|^Laythe$/) {
 	next if $situations[$sit] =~ m/^FlyingLow$|^FlyingHigh$/;
 	next if $atmo[$i] == 1;
       }
       # Fold KSC into Kerbin, if need be
-      # Inconvenient, ruined by the cleaner funciton later
+      # Inconvenient, ruined by the cleaning funciton later
       if ($planets[$planet] eq $ksc && $opt{ksckerbin}) {
 	$planets[$planet] = 'Kerbin';
       }
+
       foreach my $bin (0..scalar @{$biomes[$sit]} - 1) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
