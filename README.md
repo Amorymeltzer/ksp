@@ -71,7 +71,6 @@ Usage: parseScience.pl [-aAtTsSnNcCiIkKU -h -f path/to/dotfile -u <savefile_name
 ````
 
 #### 4. Todo
-- Incorporate the KSC/LaunchPad/Runway/etc. "biomes"
 - Asteroids
 - Incorporate Windows/Mac/Linux-appropriate paths to Gamedata
 
