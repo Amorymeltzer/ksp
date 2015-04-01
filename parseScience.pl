@@ -528,8 +528,8 @@ foreach (0..scalar @test - 1) {
       # For more info see
       # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
       # Might cause problems with KSC biomes later FIXME TODO
-      #  next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
-      next if (!$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} && $biome[$_] !~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/);
+      next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
+      #  next if (!$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} && $biome[$_] !~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/);
 
       $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
     }
