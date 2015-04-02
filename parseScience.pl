@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # parseScience.pl by Amory Meltzer
-# v0.94.1
+# v0.94.2
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
@@ -40,7 +40,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCiIkKlLu:Uf:h', \%opts);
+getopts('aAtTsSpPnNcCiIkKmMu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -60,7 +60,7 @@ my %opt = (
 	   csv => 0,
 	   includeSCANsat => 0,
 	   ksckerbin => 0,
-	   lean => 0
+	   moredata => 0
 	  );
 
 ## .parsesciencerc config file
@@ -534,7 +534,7 @@ foreach (0..scalar @test - 1) {
 ### Begin the printing process!
 ###
 my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left Perc.Accom];
-if ($opt{lean}) {
+if (!$opt{moredata}) {
   splice @header, 3, 3;
 }
 
@@ -757,7 +757,7 @@ sub writeToCSV
   {
     my $rowRef = shift;
 
-    if ($opt{lean}) {
+    if (!$opt{moredata}) {
       splice @{$rowRef}, 3, 3;
     }
 
@@ -770,12 +770,12 @@ sub writeToExcel
   {
     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
 
-    if ($opt{lean}) {
+    if (!$opt{moredata}) {
       splice @{$rowRef}, 3, 3;
     }
 
     $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
-    if ($opt{lean}) {
+    if (!$opt{moredata}) {
       $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed ) if ${$hashRef}{$matrixKey}[5] > 0;
     } else {
       $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[8] > 0;
@@ -871,7 +871,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcCiIkKlLU -h -f path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiIkKmMU -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -890,8 +890,8 @@ Usage: $0 [-aAtTsSnNcCiIkKlLU -h -f path/to/dotfile -u <savefile_name>]
       -I Turn off -i.
       -k List data from KSC biomes as being from Kerbin.
       -K Turn off -k.
-      -l Remove some boring data from the output (dsc, sbv, scv).
-      -L Turn off -l.
+      -m Add some largely boring data to the output (dsc, sbv, scv).
+      -M Turn off -m.
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.

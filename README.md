@@ -1,7 +1,7 @@
 Perl scripts to help with Kerbal Space Program.
 
 
-### parseScience.pl (v0.94.1)
+### parseScience.pl (v0.94.2)
 Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon, including vessel recovery.  Supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
 #### 1. Requirements
@@ -38,7 +38,7 @@ noformat = true
 csv = true
 includeSCANsat = true
 ksckerbin = true
-lean = true
+moredata = true
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
@@ -64,8 +64,8 @@ Usage: parseScience.pl [-aAtTsSnNcCiIkKlLU -h -f path/to/dotfile -u <savefile_na
 	  -I Turn off -i.
       -k List data from KSC biomes as being from Kerbin.
       -K Turn off -k.
-      -l Remove some boring data from the output (dsc, sbv, scv).
-      -L Turn off -l.
+      -m Add some largely boring data to the output (dsc, sbv, scv).
+      -M Turn off -m.
 	  -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.

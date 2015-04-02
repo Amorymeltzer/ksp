@@ -18,7 +18,7 @@
 # csv
 # includeSCANsat
 # ksckerbin
-# lean
+# more
 
 username = Zaphod
 average = true
@@ -29,4 +29,4 @@ noformat = true
 csv = true
 includeSCANsat = true
 ksckerbin = true
-lean = true
+moredata = true
