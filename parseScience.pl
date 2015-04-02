@@ -121,10 +121,6 @@ my $path = '/Applications/KSP_osx';
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
 
-if ($opts{u}) {
-  $opt{username} = $opts{u};
-}
-
 # Overwrite config file options if the corresponding flag is on the commandline
 # Negated options always take precedence
 my @negatableOpts = keys %opt;
