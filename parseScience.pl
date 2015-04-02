@@ -6,16 +6,14 @@
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
 
-## Ignores asteroids
-## Can you do srfsplashed in every biome on other planets with water?
-
 ### Add support for:
 ## Asteroids
 
 ### FIXES, TODOS
+## Can you do srfsplashed in every biome on other planets with water?
 ## SCANsat allows Sun scanning?!
 ## Use Cwd even necessary for config processing?!
-## Make -l lean option default?
+## Make -l lean option default?  -m More?
 ## Windows path to Gamedata/pers/scidefs/etc.?
 ## Option to skip KSC altogether?
 ## Option to print averages table to file
