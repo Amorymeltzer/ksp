@@ -117,7 +117,8 @@ if ($dotfile) {
 
 ### FILE DEFINITIONS
 # Change this to match the location of your KSP install
-my $path = '/Applications/KSP_osx';
+#  my $path = '/Applications/KSP_osx';
+my $path = '/Applications/KSP_osx/';
 my $scidef = 'ScienceDefs.cfg';
 my $pers = 'persistent.sfs';
 
@@ -136,8 +137,8 @@ foreach my $negate (@negatableOpts) {
 }
 
 if ($opt{username}) {
-  $scidef = "$path/GameData/Squad/Resources/ScienceDefs.cfg";
-  $pers = "$path/saves/$opt{username}/persistent.sfs";
+  $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
+  $pers = $path."saves/$opt{username}/persistent.sfs";
 }
 
 # Test files for existance
