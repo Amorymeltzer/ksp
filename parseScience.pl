@@ -15,8 +15,9 @@
 ## Use Cwd even necessary for config processing?!
 ## Windows/linux path to Gamedata/pers/scidefs/etc.?
 ## User-specified KSP location?
-## Option to skip KSC altogether?
+### -g
 ## Option to print averages table to file
+### -o
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header/column?  Put in _DATA_ array
 
