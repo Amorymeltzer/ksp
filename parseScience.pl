@@ -13,10 +13,10 @@
 ## Can you do srfsplashed in every biome on other planets with water?
 ## SCANsat allows Sun scanning?!
 ## Use Cwd even necessary for config processing?!
-## Windows path to Gamedata/pers/scidefs/etc.?
+## Windows/linux path to Gamedata/pers/scidefs/etc.?
+## User-specified KSP location?
 ## Option to skip KSC altogether?
 ## Option to print averages table to file
-## User-specified KSP location?
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header?
 
@@ -533,6 +533,7 @@ foreach (0..scalar @test - 1) {
 ### Begin the printing process!
 ###
 my @header = qw [Experiment Spob Condition sci cap Left Perc.Accom];
+# Splice extra headings in
 if ($opt{moredata}) {
   splice @header, 3, 0, qw (dsc scv sbv);
 }
