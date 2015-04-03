@@ -14,6 +14,8 @@
 ## SCANsat allows Sun scanning?!
 ## Use Cwd even necessary for config processing?!
 ## Windows/linux path to Gamedata/pers/scidefs/etc.?
+### $^O for os name
+### darwin for mac, ??? for windows, ??? for linux
 ## User-specified KSP location?
 ### -g
 ## Option to print averages table to file
