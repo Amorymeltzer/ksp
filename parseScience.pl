@@ -18,7 +18,7 @@
 ## Option to skip KSC altogether?
 ## Option to print averages table to file
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
-### Print into excel?  New header?
+### Print into excel?  New header/column?  Put in _DATA_ array
 
 ## Turn cascading tmp1/2 elsifs into hash lookup?  Might revert above
 ## Cleanup data/test hashes, the order of the data is unintuitive
@@ -47,7 +47,6 @@ if ($opts{h}) {
 }
 
 ### ENVIRONMENT VARIABLES
-my $dotfile;			# Preference file
 # Replaced from the %opts table
 my %opt = (
 	   username => 0,
@@ -63,6 +62,7 @@ my %opt = (
 	  );
 
 ## .parsesciencerc config file
+my $dotfile;
 # Useful shorthands for finding files
 my $rc = 'parsesciencerc';	# Config dotfile name of choice.  Wordy.
 my $cwd = cwd();		# Current working directory
