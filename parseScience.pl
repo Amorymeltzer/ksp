@@ -42,7 +42,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCiIkKmMu:Uf:h', \%opts);
+getopts('aAtTsSpPnNcCiIkKmMoOu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -61,7 +61,8 @@ my %opt = (
 	   csv => 0,
 	   includeSCANsat => 0,
 	   ksckerbin => 0,
-	   moredata => 0
+	   moredata => 0,
+	   outputdatatable => 0
 	  );
 
 ## .parsesciencerc config file
@@ -149,6 +150,7 @@ warnNicely("No persistent.sfs file found at $pers\n", 1) if !-e $pers;
 
 my $outfile = 'scienceToDo.xlsx';
 my $csvFile = 'scienceToDo.csv';
+my $avgFile = 'average_table.txt';
 
 
 ### GLOBAL VARIABLES
@@ -642,6 +644,7 @@ close $csvOut or die $! if  $opt{csv};
 
 
 ## Sorting of different average tables
+open my $avgOut, '>', "$avgFile" or die $!;
 # Ensure the -t flag supersedes -a if both are given
 if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
@@ -659,6 +662,10 @@ if ($opt{average} || $opt{tests}) {
   $string .= "\tAvg/exp\tTotal\tCompleted\n";
   print "$string";
 
+  if ($opt{outputdatatable}) {
+    print $avgOut "$string";
+  }
+
   if ($opt{percentdone}) {
     average3($tmpHashRef);
   } elsif ($opt{scienceleft}) {
@@ -667,6 +674,7 @@ if ($opt{average} || $opt{tests}) {
     average1($tmpHashRef,$tmpArrayRef);
   }
 }
+close $avgOut or die $!;
 
 
 ### SUBROUTINES
@@ -863,6 +871,9 @@ sub printAverageTable
     my $per = 100*$remains/$hash{$ind}[2];
 
     printf "%s\t%.0f\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0], $per;
+    if ($opt{outputdatatable}) {
+      printf $avgOut "%s\t%.0f\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0], $per;
+    }
 
     return;
   }

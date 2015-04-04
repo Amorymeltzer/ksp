@@ -1,0 +1,23 @@
+Average science left:
+
+Spob	Avg/exp	Total	Completed
+Kerbin	6	1613	30
+KSC	2	698	61
+Mun	47	8069	29
+Minmus	73	7851	10
+Kerbol	103	1128	0
+Moho	169	23598	0
+Eve	125	24900	0
+Gilly	146	5978	0
+Duna	113	12136	0
+Ike	134	12856	0
+Dres	136	13090	0
+Jool	130	3238	0
+Laythe	200	24253	0
+Vall	192	9970	0
+Tylo	197	12424	0
+Bop	194	12216	0
+Pol	192	9970	0
+Eeloo	248	21086	0
+Recov	67	4379	2
+SCANsat	114	5129	5
