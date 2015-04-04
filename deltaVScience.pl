@@ -2,7 +2,7 @@
 # deltaVScience.pl by Amory Meltzer
 # https://github.com/Amorymeltzer/ksp
 # Attempt to (roughly) estimate a ratio of science per deltaV for each spob
-# Takes in an averages (-a or -as) table from parseScience.pl
+# Takes in an average (-a or -as) table from parseScience.pl
 # Delta-V from http://mononyk.us/wherecanigo.php?dv=0&loc=orbit&figs=diff
 ## Use full output for situation-specific calculations?
 ## Merge recovery into planetary spob?  Eh, maybe doesn't make sense.
@@ -12,7 +12,7 @@ use warnings;
 use diagnostics;
 
 
-my $avgData = 'averages_table.txt';
+my $avgData = 'average_table.txt';
 my %deltaVData;			# Hold delta-V values from END data
 
 
