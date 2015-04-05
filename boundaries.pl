@@ -2,13 +2,14 @@
 # boundaries.pl by Amory Meltzer
 # https://github.com/Amorymeltzer/ksp
 # Print condition boundaries (InSpaceHigh, etc.)
+# Data from wiki and http://forum.kerbalspaceprogram.com/threads/53567
 
 
 use strict;
 use warnings;
 use diagnostics;
 
-my %boundData;			# Hold delta-V values from END data
+my %boundData;
 
 
 # Construct deltaV hash
