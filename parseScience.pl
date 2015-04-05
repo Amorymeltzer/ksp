@@ -122,10 +122,11 @@ if ($dotfile) {
 ### FILE DEFINITIONS
 # Change this to match the location of your KSP install
 my $path;
+my $OS = $^O;
 # Get user's OS
-if ($^O eq 'darwin') {
+if ($OS eq 'darwin') {
   $path = '/Applications/KSP_osx/';
-} elsif ($^O eq 'linux') {
+} elsif ($OS eq 'linux') {
   $path = '/Applications/KSP_linux/';
 }
 my $scidef = 'ScienceDefs.cfg';
