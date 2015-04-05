@@ -9,16 +9,6 @@
 # worst muck things up.  username takes the name of your save file, all other
 # keys take a boolean true or false.
 # Allowable keys:
-# username
-# average
-# tests
-# science left
-# percent accomplished
-# no formatting
-# csv
-# includeSCANsat
-# ksckerbin
-# more
 
 username = Zaphod
 average = true
@@ -30,3 +20,4 @@ csv = true
 includeSCANsat = true
 ksckerbin = true
 moredata = true
+outputdatatable = true

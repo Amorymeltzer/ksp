@@ -644,7 +644,7 @@ close $csvOut or die $! if  $opt{csv};
 
 
 ## Sorting of different average tables
-open my $avgOut, '>', "$avgFile" or die $!;
+open my $avgOut, '>', "$avgFile" or die $! if  $opt{outputdatatable};
 # Ensure the -t flag supersedes -a if both are given
 if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
@@ -659,12 +659,10 @@ if ($opt{average} || $opt{tests}) {
     $tmpHashRef = \%spobData;
     $tmpArrayRef = \@planets if !$opt{scienceleft};
   }
+
   $string .= "\tAvg/exp\tTotal\tCompleted\n";
   print "$string";
-
-  if ($opt{outputdatatable}) {
-    print $avgOut "$string";
-  }
+  print $avgOut "$string"  if  $opt{outputdatatable};
 
   if ($opt{percentdone}) {
     average3($tmpHashRef);
@@ -674,7 +672,7 @@ if ($opt{average} || $opt{tests}) {
     average1($tmpHashRef,$tmpArrayRef);
   }
 }
-close $avgOut or die $!;
+close $avgOut or die $! if  $opt{outputdatatable};
 
 
 ### SUBROUTINES
@@ -885,7 +883,7 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcCiIkKmMU -h -f path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiIkKmMoOU -h -f path/to/dotfile -u <savefile_name>]
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -906,6 +904,8 @@ Usage: $0 [-aAtTsSnNcCiIkKmMU -h -f path/to/dotfile -u <savefile_name>]
       -K Turn off -k.
       -m Add some largely boring data to the output (dsc, sbv, scv).
       -M Turn off -m.
+      -o Save the selected average table to a file.
+      -O Turn off -o.
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.

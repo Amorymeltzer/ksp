@@ -39,6 +39,7 @@ csv = true
 includeSCANsat = true
 ksckerbin = true
 moredata = true
+outputdatatable = true
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
@@ -66,6 +67,8 @@ Usage: parseScience.pl [-aAtTsSnNcCiIkKlLU -h -f path/to/dotfile -u <savefile_na
       -K Turn off -k.
       -m Add some largely boring data to the output (dsc, sbv, scv).
       -M Turn off -m.
+      -o Save the selected average table to a file.
+      -O Turn off -o.
 	  -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.
