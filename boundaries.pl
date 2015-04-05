@@ -19,7 +19,7 @@ while (<DATA>) {
   $boundData{$borders[0]."@".$borders[1]} = $borders[2];
 }
 
-print "Spob\tCondition\tAltitude\n";
+print "Spob\tCondition\tAltitude (km))\n";
 
 foreach my $key (keys %boundData) {
   my @tmp = split /@/, $key;
