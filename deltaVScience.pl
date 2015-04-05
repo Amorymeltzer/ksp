@@ -29,7 +29,8 @@ open my $avg, '<', "$avgData" or die $!;
 while (<$avg>) {
   next until $. > 3;		# Skip header lines
   chomp;
-  next if /^R|^Kerbi|^KSC/;		# N/A for Kerbin, KSC, recovery
+  # No delta-V for recovery, Kerbin, KSC, SCANsat
+  next if /^R|^Kerbi|^KSC|^SCANsat/;
   my @avgs = split /\t/;
 
   # Is this the best sclaing factor?
