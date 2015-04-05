@@ -18,14 +18,14 @@
 ### darwin for mac, ??? for windows, ??? for linux
 ## User-specified KSP location?
 ### -g
-## Option to print averages table to file
-### -o
+## Average table printing implies -a?  -ps implies -a?
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header/column?  Put in _DATA_ array
 
 ## Turn cascading tmp1/2 elsifs into hash lookup?  Might revert above
 ## Cleanup data/test hashes, the order of the data is unintuitive
 ## Cleanup var/vara/etc. crap.  Better commenting.
+## Use POD for usage??
 
 ## Biomes are hardcoded, would be nice to pull from somewhere
 ## Same for sbv, multipliers, etc.
@@ -877,7 +877,6 @@ sub printAverageTable
   }
 
 #### Usage statement ####
-# Use POD or whatever?
 # Escapes not necessary but ensure pretty colors
 # Final line must be unindented?
 sub usage
@@ -904,7 +903,7 @@ Usage: $0 [-aAtTsSnNcCiIkKmMoOU -h -f path/to/dotfile -u <savefile_name>]
       -K Turn off -k.
       -m Add some largely boring data to the output (dsc, sbv, scv).
       -M Turn off -m.
-      -o Save the selected average table to a file.
+      -o Save the chosen average table to a file.
       -O Turn off -o.
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
