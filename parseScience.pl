@@ -124,6 +124,9 @@ if ($dotfile) {
 
 
 ### FILE DEFINITIONS
+my $scidef = 'ScienceDefs.cfg';
+my $pers = 'persistent.sfs';
+
 # Overwrite config file options if the corresponding flag is on the commandline
 # Negated options always take precedence
 my @negatableOpts = keys %opt;
@@ -137,10 +140,6 @@ foreach my $negate (@negatableOpts) {
     $opt{$negate} = $opts{$ng8};
   }
 }
-
-
-my $scidef = 'ScienceDefs.cfg';
-my $pers = 'persistent.sfs';
 
 # MAGIC hash with config variables - this saves having to use the still
 # magic but decidedly less-readable $^O
