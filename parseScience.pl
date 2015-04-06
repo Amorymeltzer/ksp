@@ -138,6 +138,10 @@ foreach my $negate (@negatableOpts) {
   }
 }
 
+
+my $scidef = 'ScienceDefs.cfg';
+my $pers = 'persistent.sfs';
+
 # MAGIC hash with config variables - this saves having to use the still
 # magic but decidedly less-readable $^O
 my $OS = $Config{osname};
@@ -148,9 +152,11 @@ if ($OS eq 'darwin') {
 } elsif ($OS eq 'linux') {
   $path = '/Applications/KSP_linux/';
 }
-my $scidef = 'ScienceDefs.cfg';
-my $pers = 'persistent.sfs';
 
+if ($opt{gamelocation}) {
+  $path = $opt{gamelocation};
+  $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
+}
 if ($opt{username}) {
   $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
   $pers = $path."saves/$opt{username}/persistent.sfs";
