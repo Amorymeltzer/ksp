@@ -17,6 +17,7 @@
 ## Windows/linux path to Gamedata/pers/scidefs/etc.?
 ### $^O for os name
 ### darwin for mac, ??? for windows, ??? for linux
+### Windows errors at $home
 ## User-specified KSP location?
 ### -g
 ## Average table printing implies -a?  -ps implies -a?
@@ -82,6 +83,7 @@ if ($opts{f} && -e $opts{f}) {
   $dotfile = $opts{f};
 } else {
   foreach my $place (@dotLocales) {
+    $place =~ s/\//\\/g if $Config{osname} eq 'MSWin32';
     if (-e $place) {
       $dotfile = $place;
       last;
