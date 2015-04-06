@@ -39,6 +39,7 @@ use warnings;
 use Getopt::Std;
 use Cwd;
 use FindBin;
+use Config;
 use Excel::Writer::XLSX;
 
 # Parse command line options
@@ -134,10 +135,11 @@ foreach my $negate (@negatableOpts) {
   }
 }
 
-# Change this to match the location of your KSP install
+# MAGIC hash with config variables - this saves having to use the still
+# magic but decidedly less-readable $^O
+my $OS = $Config{osname};
+
 my $path;
-my $OS = $^O;
-# Get user's OS
 if ($OS eq 'darwin') {
   $path = '/Applications/KSP_osx/';
 } elsif ($OS eq 'linux') {
