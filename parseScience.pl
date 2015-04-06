@@ -120,18 +120,6 @@ if ($dotfile) {
 
 
 ### FILE DEFINITIONS
-# Change this to match the location of your KSP install
-my $path;
-my $OS = $^O;
-# Get user's OS
-if ($OS eq 'darwin') {
-  $path = '/Applications/KSP_osx/';
-} elsif ($OS eq 'linux') {
-  $path = '/Applications/KSP_linux/';
-}
-my $scidef = 'ScienceDefs.cfg';
-my $pers = 'persistent.sfs';
-
 # Overwrite config file options if the corresponding flag is on the commandline
 # Negated options always take precedence
 my @negatableOpts = keys %opt;
@@ -145,6 +133,18 @@ foreach my $negate (@negatableOpts) {
     $opt{$negate} = $opts{$ng8};
   }
 }
+
+# Change this to match the location of your KSP install
+my $path;
+my $OS = $^O;
+# Get user's OS
+if ($OS eq 'darwin') {
+  $path = '/Applications/KSP_osx/';
+} elsif ($OS eq 'linux') {
+  $path = '/Applications/KSP_linux/';
+}
+my $scidef = 'ScienceDefs.cfg';
+my $pers = 'persistent.sfs';
 
 if ($opt{username}) {
   $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
