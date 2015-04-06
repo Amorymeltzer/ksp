@@ -20,6 +20,7 @@
 ### Windows errors at $home
 ## User-specified KSP location?
 ### -g
+### Steam locations
 ## Average table printing implies -a?  -ps implies -a?
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
 ### Print into excel?  New header/column?  Put in _DATA_ array
