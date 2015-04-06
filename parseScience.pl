@@ -157,7 +157,7 @@ if ($opt{gamelocation}) {
   } elsif ($OS eq 'linux') {
     $path = '/Applications/KSP_linux/';
   } elsif ($OS eq 'MSWin32') {
-    $path = 'C/KSP-win/';
+    $path = 'C:/Program Files/KSP-win/';
   }
 }
 
