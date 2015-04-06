@@ -44,7 +44,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCiIkKmMoOu:Uf:h', \%opts);
+getopts('aAtTsSpPnNcCiIkKmMoOu:Ug:Gf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -64,7 +64,8 @@ my %opt = (
 	   includeSCANsat => 0,
 	   ksckerbin => 0,
 	   moredata => 0,
-	   outputdatatable => 0
+	   outputdatatable => 0,
+	   gamelocation => 0
 	  );
 
 ## .parsesciencerc config file
@@ -106,6 +107,8 @@ if ($dotfile) {
     my @config = split /=/;
 
     if ($config[0] eq 'username') {
+      $opt{$config[0]} = $config[1];
+    } elsif ($config[0] eq 'gamelocation') {
       $opt{$config[0]} = $config[1];
     } elsif ($config[1] eq 'true') {
       $opt{$config[0]} = 1;
