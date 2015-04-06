@@ -154,7 +154,6 @@ if ($OS eq 'darwin') {
 
 if ($opt{gamelocation}) {
   $path = $opt{gamelocation};
-  $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
 }
 if ($opt{username}) {
   $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
