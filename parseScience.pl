@@ -11,7 +11,7 @@
 
 ### FIXES, TODOS
 ## Can you do srfsplashed in every biome on other planets with water?
-## SCANsat allows Sun scanning?!
+## Check SCANsat cap values for Jool, Kerbol?  Might be off.
 ## Use Cwd even necessary for config processing?!
 ## Windows/linux path to Gamedata/pers/scidefs/etc.?
 ### $^O for os name
@@ -414,10 +414,11 @@ foreach my $planet (0..$planetCount) {
 # Build SCANsat hash
 if ($opt{includeSCANsat}) {
   foreach my $planet (0..$planetCount) {
-    # No surface?  No scanning!
-    next if ($planets[$planet] =~ m/^Kerbol|^Jool|^$ksc/);
-    my @situations = @scanSits;
+    # No scanning for KSC biomes
+    # But *technically* you can scan Jool and Kerbol
+    next if ($planets[$planet] eq $ksc);
 
+    my @situations = @scanSits;
     foreach my $sit (0..scalar @situations - 1) {
 
       my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
