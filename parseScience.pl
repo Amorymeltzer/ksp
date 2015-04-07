@@ -510,7 +510,7 @@ foreach (0..scalar @test - 1) {
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^$scansat|^asteroid/;
   if ($biome[$_]) {
-    next if $test[$_] =~ m/^$recovery/i;
+    next if $test[$_] eq $recovery;
     my $percL = calcPerc($sci[$_],$cap[$_]);
 
     if ($biome[$_] =~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
