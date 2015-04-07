@@ -508,7 +508,7 @@ close $file or die $!;
 # Build the matrix
 foreach (0..scalar @test - 1) {
   # Exclude tests stored in separate hashes
-  next if $test[$_] =~ m/^SCANsat|^asteroid/;
+  next if $test[$_] =~ m/^$scansat|^asteroid/;
   if ($biome[$_]) {
     if ($test[$_] !~ m/$recovery/i) {
       my $percL = calcPerc($sci[$_],$cap[$_]);
