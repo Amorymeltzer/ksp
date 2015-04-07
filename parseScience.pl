@@ -491,11 +491,11 @@ while (<$file>) {
 
       # Build recovery and SCANsat data hashes
       if ($recoTicker == 1) {
-	my $cleft = calcPerc($sci[-1],$cap[-1]);
-	$reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
+	my $percL = calcPerc($sci[-1],$cap[-1]);
+	$reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$percL];
       } elsif ($opt{includeSCANsat} && $scanTicker == 1) {
-	my $cleft = calcPerc($sci[-1],$cap[-1]);
-	$scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$cleft];
+	my $percL = calcPerc($sci[-1],$cap[-1]);
+	$scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$percL];
       }
     }
 
