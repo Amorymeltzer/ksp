@@ -511,7 +511,7 @@ foreach (0..scalar @test - 1) {
   next if $test[$_] =~ m/^SCANsat|^asteroid/;
   if ($biome[$_]) {
     if ($test[$_] !~ m/$recovery/i) {
-      my $cleft = calcPerc($sci[$_],$cap[$_]);
+      my $percL = calcPerc($sci[$_],$cap[$_]);
 
       if ($biome[$_] =~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
 	# KSC biomes *should* be SrfLanded-only, this ensures that we skip any
@@ -530,7 +530,7 @@ foreach (0..scalar @test - 1) {
       next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
       #  next if (!$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} && $biome[$_] !~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/);
 
-      $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$cleft];
+      $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$percL];
     }
   }
 }
