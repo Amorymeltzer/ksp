@@ -510,28 +510,27 @@ foreach (0..scalar @test - 1) {
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^$scansat|^asteroid/;
   if ($biome[$_]) {
-    if ($test[$_] !~ m/$recovery/i) {
-      my $percL = calcPerc($sci[$_],$cap[$_]);
+    next if $test[$_] =~ m/^$recovery/i;
+    my $percL = calcPerc($sci[$_],$cap[$_]);
 
-      if ($biome[$_] =~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
-	# KSC biomes *should* be SrfLanded-only, this ensures that we skip any
-	# anomalous data in persistent.sfs.  This complements the test below
-	# but saves some work given the KSC/Kerbin potential with the -k flag
-	next if $where[$_] ne 'Landed';
-	# Take KSC out of Kerbin
-	if (!$opt{ksckerbin}) {
-	  $spob[$_] = $ksc;
-	}
+    if ($biome[$_] =~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
+      # KSC biomes *should* be SrfLanded-only, this ensures that we skip any
+      # anomalous data in persistent.sfs.  This complements the test below
+      # but saves some work given the KSC/Kerbin potential with the -k flag
+      next if $where[$_] ne 'Landed';
+      # Take KSC out of Kerbin
+      if (!$opt{ksckerbin}) {
+	$spob[$_] = $ksc;
       }
-
-      # Skip over annoying "fake" science expts caused by ScienceAlert
-      # For more info see
-      # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
-      next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
-      #  next if (!$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} && $biome[$_] !~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/);
-
-      $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$percL];
     }
+
+    # Skip over annoying "fake" science expts caused by ScienceAlert
+    # For more info see
+    # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
+    next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
+    #  next if (!$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} && $biome[$_] !~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/);
+
+    $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$percL];
   }
 }
 
