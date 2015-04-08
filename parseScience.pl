@@ -162,6 +162,7 @@ if (!$opt{gamelocation}) {
   }
 } else {
   $path = $opt{gamelocation};
+  $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
 }
 
 if ($opt{username}) {
