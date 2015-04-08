@@ -15,9 +15,7 @@
 ## Incorporate multiplier?  Might look weird...
 ## Use Cwd even necessary for config processing?!
 ## Windows/linux path to Gamedata/pers/scidefs/etc.?
-### $^O for os name
-### darwin for mac, ??? for windows, ??? for linux
-### Windows errors at $home
+### Need to thoroughly replair windows paths?
 ## User-specified KSP location?
 ### -g
 ### Steam locations
