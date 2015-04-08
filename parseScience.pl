@@ -766,10 +766,6 @@ sub writeToCSV
   {
     my $rowRef = shift;
 
-    if (!$opt{moredata}) {
-      splice @{$rowRef}, 3, 3;
-    }
-
     print $csvOut join q{,} , @{$rowRef};
     print $csvOut "\n";
     return;
@@ -801,9 +797,14 @@ sub buildScienceData
     my ($key,$ind,$dataRef,$hashRef) = @_;
 
     # Sci, count, cap
-    ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
+    if ($opt{moredata}) {
+      ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
+      ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[7];
+    } else {
+      ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[5];
+      ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[4];
+    }
     ${$dataRef}{$ind}[1]++;
-    ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[7];
 
     return;
   }
