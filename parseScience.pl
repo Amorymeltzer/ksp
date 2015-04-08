@@ -800,6 +800,7 @@ sub buildScienceData
   {
     my ($key,$ind,$dataRef,$hashRef) = @_;
 
+    # Sci, count, cap
     ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
     ${$dataRef}{$ind}[1]++;
     ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[7];
