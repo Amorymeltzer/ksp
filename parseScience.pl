@@ -79,7 +79,10 @@ my $scriptDir = $FindBin::Bin;	# Directory of this script
 my $home = $ENV{HOME};		# MAGIC hash with user env variables for $home
 
 # Round up the usual suspects, all superseded by commandline flag
-my @dotLocales = ("$cwd/.$rc","$scriptDir/.$rc","$home/.$rc","$home/.config/parseScience/$rc");
+my @dotLocales = ("$cwd/.$rc","$scriptDir/.$rc");
+# Windows (XP anyway) complains about $home.  This probably has to change for
+# M$ anyway thanks to \ FIXME TODO
+@dotLocales = (@dotLocales,"$home/.$rc","$home/.config/parseScience/$rc") if $home;
 if ($opts{f} && -e $opts{f}) {
   $dotfile = $opts{f};
 } else {
