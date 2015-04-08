@@ -24,7 +24,7 @@ Users of this tool will almost certainly be running it repeatedly with the same 
 
 The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check, in order, the directory `parseScience.pl` is in, your $home directory, and then `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-f` flag.
 
-The file itself follows strict guidelines.  You can see a sample in [sample_parsesciencerc](./sample_parsesciencerc).  Each option must be in `key = value` format, one per line.  Only the following keys are available; `username` takes a savefile name, the rest take either `true` or `false`, lowercase.  Any corresponding options provided on the commandline will override options set here.
+The file itself follows strict guidelines.  You can see a sample in [sample_parsesciencerc](./sample_parsesciencerc).  Each option must be in `key = value` format, one per line.  Only the following keys are available: `username` takes a savefile name and `gamelocation` is the path a KSP folder; the rest take either `true` or `false`, lowercase.  Any corresponding options provided on the commandline will override options set here.
 
 Should the same key be given twice, the last one will be used.
 
@@ -40,13 +40,16 @@ includeSCANsat = true
 ksckerbin = true
 moredata = true
 outputdatatable = true
+gamelocation = /Applications/KSP_osx/
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
 ##### 3b. Full Options
-The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIKU) take precedence.
+The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIKUG) take precedence.
 ````
-Usage: parseScience.pl [-aAtTsSnNcCiIkKlLU -h -f path/to/dotfile -u <savefile_name>]
+Usage: parseScience.pl [-aAtTsSnNcCiIkKmMoOUG -h]
+       parseScience.pl [-f path/to/dotfile -g <game_location> -u <savefile_name>]
+
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -69,6 +72,8 @@ Usage: parseScience.pl [-aAtTsSnNcCiIkKlLU -h -f path/to/dotfile -u <savefile_na
       -M Turn off -m.
       -o Save the chosen average table to a file.
       -O Turn off -o.
+	  -g Specify the location of your KSP folder
+	  -G Turn off -g.
 	  -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.

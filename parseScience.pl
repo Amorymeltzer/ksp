@@ -907,7 +907,9 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-aAtTsSnNcCiIkKmMoOU -h -f path/to/dotfile -u <savefile_name>]
+Usage: $0 [-aAtTsSnNcCiIkKmMoOUG -h]
+       $0 [-f path/to/dotfile -g <game_location> -u <savefile_name>]
+
       -a Display average science left for each planet.
       -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
@@ -930,6 +932,8 @@ Usage: $0 [-aAtTsSnNcCiIkKmMoOU -h -f path/to/dotfile -u <savefile_name>]
       -M Turn off -m.
       -o Save the chosen average table to a file.
       -O Turn off -o.
+      -g Specify the location of your KSP folder
+      -G Turn off -g.
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -U Turn off -u.

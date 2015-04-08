@@ -21,3 +21,4 @@ includeSCANsat = true
 ksckerbin = true
 moredata = true
 outputdatatable = true
+gamelocation = /Applications/KSP_osx/
