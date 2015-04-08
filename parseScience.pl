@@ -12,6 +12,7 @@
 ### FIXES, TODOS
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Check SCANsat cap values for Jool, Kerbol?  Might be off.
+## Incorporate multiplier?  Might look weird...
 ## Use Cwd even necessary for config processing?!
 ## Windows/linux path to Gamedata/pers/scidefs/etc.?
 ### $^O for os name
