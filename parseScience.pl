@@ -164,6 +164,9 @@ if ($opt{gamelocation}) {
   }
 }
 
+if ($opt{gamelocation}) {
+  $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
+}
 if ($opt{username}) {
   $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
   $pers = $path."saves/$opt{username}/persistent.sfs";
