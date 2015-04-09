@@ -14,10 +14,7 @@
 ## Check SCANsat cap values for Jool, Kerbol?  Might be off.
 ## Incorporate multiplier?  Might look weird...
 ## Use Cwd even necessary for config processing?!
-## Windows/linux path to Gamedata/pers/scidefs/etc.?
-### Need to thoroughly replair windows paths?
-## User-specified KSP location?
-### -g
+## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
 ## Average table printing implies -a?  -ps implies -a?
 ## Incorporate InSpaceLow/High, etc. cutoffs somehow
