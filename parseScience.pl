@@ -561,22 +561,25 @@ if ($opt{moredata}) {
 }
 
 ## Prepare fancy-schmancy Excel workbook
-# Create new workbook
-my $workbook = Excel::Writer::XLSX->new( "$outfile" );
-#my $workbook = Excel::Writer::XLSX->new( "tmp" );
-# Bold for headers, red for science left, green for stupidly small values
-my $bold = $workbook->add_format();
-my $bgRed = $workbook->add_format();
-my $bgGreen = $workbook->add_format();
-
-# Turn off formatting if so desired
-if (!$opt{noformat}) {
-  $bold->set_bold();
-  $bgRed->set_bg_color( 'red' );
-  $bgGreen->set_bg_color( 'green' );
-}
+# Globals defined here so -e flag works properly
+my ($workbook,$bold,$bgRed,$bgGreen);
 
 if (!$opt{excludeexcel}) {
+  # Create new workbook
+  $workbook = Excel::Writer::XLSX->new( "$outfile" );
+  #my $workbook = Excel::Writer::XLSX->new( "tmp" );
+  # Bold for headers, red for science left, green for stupidly small values
+  $bold = $workbook->add_format();
+  $bgRed = $workbook->add_format();
+  $bgGreen = $workbook->add_format();
+
+  # Turn off formatting if so desired
+  if (!$opt{noformat}) {
+    $bold->set_bold();
+    $bgRed->set_bg_color( 'red' );
+    $bgGreen->set_bg_color( 'green' );
+  }
+
   # Generate each worksheet with proper header
   # Subroutine these ;;;;;; ##### FIXME TODO
   $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
