@@ -1,3 +1,31 @@
+Version 0.95 - 2015-04-08
+-------------------------
+
+Add -g gamelocation to specify where your KSP folder is
+ - Incorporate defaults by operating system (Mac, Linux, Win)
+  -- Probably still a WIP
+You can, indeed, do SCANsat on the Sun and Jool
+ - Known issue: Cap appears to be off for these by 1/2
+No SCANsat for KSC
+Fix major issue where -aM would fail do to incorrect number in average calculations and double-splicing of boring data
+
+Version 0.94.3 - 2015-04-05
+-------------------------
+
+Now defaults to leaving out dev-data (sbv, dsc, scv)
+ - Add -m moredata flag to reinsert them
+Add -o outputdatatable to save results from -a or -t to a file (average_table.txt)
+ - Update deltaVScience.pl to use correct file
+Add boundaries.pl
+ - New script that simply prints out InSpaceHigh, FlyingHigh, etc. cutoffs
+ 
+Version 0.94 - 2015-04-01
+-------------------------
+
+Fully incorporate KSC biomes into analysis
+ - Use -k flag to fold data under Kerbin instead of KSC
+Change dotfile flag to -f (was -k)
+
 Version 0.93.1 - 2015-03-25
 -------------------------
 
