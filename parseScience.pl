@@ -576,31 +576,35 @@ if (!$opt{noformat}) {
   $bgGreen->set_bg_color( 'green' );
 }
 
-# Generate each worksheet with proper header
-# Subroutine these ;;;;;; ##### FIXME TODO
-$workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
-$workVars{$recov}[0]->write( 0, 0, \@header, $bold );
-# Recovery widths, manually determined
-columnWidths($workVars{$recov}[0],9.17,6.5,9);
+if (!$opt{excludeexcel}) {
+  # Generate each worksheet with proper header
+  # Subroutine these ;;;;;; ##### FIXME TODO
+  $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
+  $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
+  # Recovery widths, manually determined
+  columnWidths($workVars{$recov}[0],9.17,6.5,9);
 
-if ($opt{includeSCANsat}) {
-  $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
-  $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
+  if ($opt{includeSCANsat}) {
+    $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
+    $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
 
-  # SCANsat widths, manually determined
-  columnWidths($workVars{$scansat}[0],9.17,6.5,11.83);
+    # SCANsat widths, manually determined
+    columnWidths($workVars{$scansat}[0],9.17,6.5,11.83);
+  }
 }
 
 $header[1] = 'Condition';
 $header[2] = 'Biome';
 
-foreach my $planet (0..$planetCount) {
-  # Interpolate via " instead of '
-  $workVars{$planets[$planet]} = [$workbook->add_worksheet( "$planets[$planet]" ), 1];
-  $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
+if (!$opt{excludeexcel}) {
+  foreach my $planet (0..$planetCount) {
+    # Interpolate via " instead of '
+    $workVars{$planets[$planet]} = [$workbook->add_worksheet( "$planets[$planet]" ), 1];
+    $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
 
-  # Stock science widths, manually determined
-  columnWidths($workVars{$planets[$planet]}[0],15.5,9.67,8.5);
+    # Stock science widths, manually determined
+    columnWidths($workVars{$planets[$planet]}[0],15.5,9.67,8.5);
+  }
 }
 
 
