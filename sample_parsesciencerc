@@ -11,6 +11,7 @@
 # Allowable keys:
 
 username = Zaphod
+gamelocation = /Applications/KSP_osx/
 average = true
 tests = true
 scienceleft = true
@@ -21,4 +22,3 @@ includeSCANsat = true
 ksckerbin = true
 moredata = true
 outputdatatable = true
-gamelocation = /Applications/KSP_osx/

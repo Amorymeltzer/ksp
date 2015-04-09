@@ -54,6 +54,7 @@ if ($opts{h}) {
 ### ENVIRONMENT VARIABLES
 # Replaced from the %opts table
 my %opt = (
+	   gamelocation => 0,
 	   username => 0,
 	   average => 0,
 	   tests => 0,
@@ -64,8 +65,7 @@ my %opt = (
 	   includeSCANsat => 0,
 	   ksckerbin => 0,
 	   moredata => 0,
-	   outputdatatable => 0,
-	   gamelocation => 0
+	   outputdatatable => 0
 	  );
 
 ## .parsesciencerc config file
