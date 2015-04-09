@@ -13,14 +13,11 @@
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Check SCANsat cap values for Jool, Kerbol?  Might be off.
 ## Incorporate multiplier?  Might look weird...
-## Use Cwd even necessary for config processing?!
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
-## Average table printing implies -a?  -ps implies -a?
-## Incorporate InSpaceLow/High, etc. cutoffs somehow
-### Print into excel?  New header/column?  Put in _DATA_ array
 
-## Turn cascading tmp1/2 elsifs into hash lookup?  Might revert above
+## Turn cascading tmp1/2 elsifs into hash lookup?
+## Given/while?
 ## Cleanup data/test hashes, the order of the data is unintuitive
 ## Cleanup var/vara/etc. crap.  Better commenting.
 ## Use POD for usage??
