@@ -720,6 +720,8 @@ sub columnWidths
     $sheet->set_column( 0, 0, $col1 );
     $sheet->set_column( 1, 1, $col2 );
     $sheet->set_column( 2, 2, $col3 );
+
+    return;
   }
 
 ## Custom sort order, adapted from:
