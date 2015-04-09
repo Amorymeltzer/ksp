@@ -38,7 +38,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCiIkKmMoOu:Ug:Gf:h', \%opts);
+getopts('aAtTsSpPnNcCeEiIkKmMoOu:Ug:Gf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -56,6 +56,7 @@ my %opt = (
 	   percentdone => 0,
 	   noformat => 0,
 	   csv => 0,
+	   excludeexcel => 0,
 	   includeSCANsat => 0,
 	   ksckerbin => 0,
 	   moredata => 0,
@@ -611,7 +612,7 @@ writeToCSV(\@header) if $opt{csv};
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
-  writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix);
+  writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix) if !$opt{excludeexcel};
 
   # Add in spob name to csv, only necessary for stock science
   $dataMatrix{$key}[1] .= "\@$planet";
@@ -625,7 +626,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 }
 # Recovery
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
-  writeToExcel($recov,\@{$reco{$key}},$key,\%reco);
+  writeToExcel($recov,\@{$reco{$key}},$key,\%reco) if !$opt{excludeexcel};
   writeToCSV(\@{$reco{$key}}) if $opt{csv};
 
   if ($opt{tests}) {
@@ -638,7 +639,7 @@ foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
 # SCANsat
 if ($opt{includeSCANsat}) {
   foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
-    writeToExcel($scansat,\@{$scan{$key}},$key,\%scan);
+    writeToExcel($scansat,\@{$scan{$key}},$key,\%scan) if !$opt{excludeexcel};
     writeToCSV(\@{$scan{$key}}) if $opt{csv};
 
     if ($opt{tests}) {
