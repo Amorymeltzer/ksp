@@ -909,7 +909,8 @@ sub usage
     print <<USAGE;
 Usage: $0 [-atsncikmo -h -f path/to/dotfile ]
        $0 [-g <game_location> -u <savefile_name>]
-       $0 [-ATSNCIKMO -G -U]
+
+       [-ATSNCIKMO -G -U] -> Turn off a given option
 
       -a Display average science left for each planet.
       -t Display average science left for each experiment type.  Supersedes
