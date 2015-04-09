@@ -72,8 +72,7 @@ my $home = $ENV{HOME};		# MAGIC hash with user env variables for $home
 
 # Round up the usual suspects, all superseded by commandline flag
 my @dotLocales = ("$cwd/.$rc","$scriptDir/.$rc");
-# Windows (XP anyway) complains about $home.  This probably has to change for
-# M$ anyway thanks to \ FIXME TODO
+# Windows (XP anyway) complains about $home
 @dotLocales = (@dotLocales,"$home/.$rc","$home/.config/parseScience/$rc") if $home;
 if ($opts{f} && -e $opts{f}) {
   $dotfile = $opts{f};
@@ -581,19 +580,14 @@ if (!$opt{noformat}) {
 $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
 $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
 # Recovery widths, manually determined
-# Subroutine these ;;;;;; ##### FIXME TODO
-$workVars{$recov}[0]->set_column( 0, 0, 9.17 );
-$workVars{$recov}[0]->set_column( 1, 1, 6.5 );
-$workVars{$recov}[0]->set_column( 2, 2, 9 );
+columnWidths($workVars{$recov}[0],9.17,6.5,9);
 
 if ($opt{includeSCANsat}) {
   $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
   $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
 
   # SCANsat widths, manually determined
-  $workVars{$scansat}[0]->set_column( 0, 0, 9.17 );
-  $workVars{$scansat}[0]->set_column( 1, 1, 6.5 );
-  $workVars{$scansat}[0]->set_column( 2, 2, 11.83 );
+  columnWidths($workVars{$scansat}[0],9.17,6.5,11.83);
 }
 
 $header[1] = 'Condition';
@@ -605,9 +599,7 @@ foreach my $planet (0..$planetCount) {
   $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
 
   # Stock science widths, manually determined
-  $workVars{$planets[$planet]}[0]->set_column( 0, 0, 15.5 );
-  $workVars{$planets[$planet]}[0]->set_column( 1, 1, 9.67 );
-  $workVars{$planets[$planet]}[0]->set_column( 2, 2, 8.5 );
+  columnWidths($workVars{$planets[$planet]}[0],15.5,9.67,8.5);
 }
 
 
@@ -719,6 +711,16 @@ sub calcPerc {
   my ($sciC,$capC) = @_;
   return sprintf '%.2f', 100*$sciC/$capC;
 }
+
+# Determine column header widths
+sub columnWidths
+  {
+    my ($sheet,$col1,$col2,$col3) = @_;
+
+    $sheet->set_column( 0, 0, $col1 );
+    $sheet->set_column( 1, 1, $col2 );
+    $sheet->set_column( 2, 2, $col3 );
+  }
 
 ## Custom sort order, adapted from:
 ## http://stackoverflow.com/a/8171591/2521092
