@@ -30,6 +30,7 @@ Should the same key be given twice, the last one will be used.
 
 ````shell
 username = Zaphod
+gamelocation = /Applications/KSP_osx/
 average = true
 tests = true
 scienceleft = true
@@ -40,43 +41,31 @@ includeSCANsat = true
 ksckerbin = true
 moredata = true
 outputdatatable = true
-gamelocation = /Applications/KSP_osx/
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
 ##### 3b. Full Options
 The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIKUG) take precedence.
 ````
-Usage: parseScience.pl [-aAtTsSnNcCiIkKmMoOUG -h]
-       parseScience.pl [-f path/to/dotfile -g <game_location> -u <savefile_name>]
-
+Usage: $0 [-atsncikmo -h -f path/to/dotfile ]
+       $0 [-g <game_location> -u <savefile_name>]
+       $0 [-ATSNCIKMO -G -U]
+	   
       -a Display average science left for each planet.
-      -A Turn off -a.
       -t Display average science left for each experiment type.  Supersedes
          the -a flag.
-      -T Turn off-T.
       -s Sort output by science left, including averages from -a and -t flags.
-      -S Turn off -S.
       -p Sort output by percent science accomplished, including averages from
          the -a and -t flags.  Supersedes the -s flag.
-      -P Turn off -P.
       -n Turn off formatted printing (i.e., colors and bolding).
-      -N Turn off -N.
       -c Output data to csv file as well.
-      -C Turn off -c.
 	  -i Include data from SCANsat.
-	  -I Turn off -i.
       -k List data from KSC biomes as being from Kerbin.
-      -K Turn off -k.
       -m Add some largely boring data to the output (dsc, sbv, scv).
-      -M Turn off -m.
       -o Save the chosen average table to a file.
-      -O Turn off -o.
 	  -g Specify the location of your KSP folder
-	  -G Turn off -g.
 	  -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
-      -U Turn off -u.
       -f Specify path to config file.  Supersedes a local .parsesciencerc file.
       -h Print this message.
 ````
