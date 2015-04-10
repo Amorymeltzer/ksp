@@ -134,6 +134,12 @@ foreach my $negate (@negatableOpts) {
   }
 }
 
+# Don't bother outputting average file if there ain't any averages to save
+if (!$opt{average} && !$opt{tests}) {
+  $opt{outputdatatable} = 0;
+  warnNicely('outputdatatable option given but no data table selected (-a or -t).  Skipping...');
+}
+
 
 ### FILE DEFINITIONS
 my $scidef = 'ScienceDefs.cfg';
