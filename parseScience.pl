@@ -563,7 +563,6 @@ my ($workbook,$bold,$bgRed,$bgGreen);
 if (!$opt{excludeexcel}) {
   # Create new workbook
   $workbook = Excel::Writer::XLSX->new( "$outfile" );
-  #my $workbook = Excel::Writer::XLSX->new( "tmp" );
   # Bold for headers, red for science left, green for stupidly small values
   $bold = $workbook->add_format();
   $bgRed = $workbook->add_format();
