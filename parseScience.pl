@@ -11,6 +11,7 @@
 
 ### FIXES, TODOS
 ## Can you do srfsplashed in every biome on other planets with water?
+## VABSouthComplex?
 ## Incorporate multiplier?  Might look weird...
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
