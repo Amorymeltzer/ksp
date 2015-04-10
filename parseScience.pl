@@ -59,7 +59,7 @@ my %opt = (
 	   csv => 0,
 	   noformat => 0,
 	   excludeexcel => 0,
-	   outputdatatable => 0
+	   outputavgtable => 0
 	  );
 
 ## .parsesciencerc config file
@@ -135,8 +135,8 @@ foreach my $negate (@negatableOpts) {
 
 # Don't bother outputting average file if there ain't any averages to save
 if (!$opt{average} && !$opt{tests}) {
-  $opt{outputdatatable} = 0;
-  warnNicely('outputdatatable option given but no data table selected (-a or -t).  Skipping...');
+  $opt{outputavgtable} = 0;
+  warnNicely('outputavgtable option given but no data table selected (-a or -t).  Skipping...');
 }
 
 
@@ -664,7 +664,7 @@ close $csvOut or die $! if  $opt{csv};
 
 
 ## Sorting of different average tables
-open my $avgOut, '>', "$avgFile" or die $! if  $opt{outputdatatable};
+open my $avgOut, '>', "$avgFile" or die $! if  $opt{outputavgtable};
 # Ensure the -t flag supersedes -a if both are given
 if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
@@ -682,7 +682,7 @@ if ($opt{average} || $opt{tests}) {
 
   $string .= "\tAvg/exp\tTotal\tCompleted\n";
   print "$string";
-  print $avgOut "$string"  if  $opt{outputdatatable};
+  print $avgOut "$string"  if  $opt{outputavgtable};
 
   if ($opt{percentdone}) {
     average3($tmpHashRef);
@@ -692,7 +692,7 @@ if ($opt{average} || $opt{tests}) {
     average1($tmpHashRef,$tmpArrayRef);
   }
 }
-close $avgOut or die $! if  $opt{outputdatatable};
+close $avgOut or die $! if  $opt{outputavgtable};
 
 
 ### SUBROUTINES
@@ -706,6 +706,8 @@ sub warnNicely
     }
     print "$err\n";
     exit if $ilynPayne;
+
+    return;
   }
 
 # Convert string to binary, pad to six digits
@@ -907,7 +909,7 @@ sub printAverageTable
     my $per = 100*$remains/$hash{$ind}[2];
 
     printf "%s\t%.0f\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0], $per;
-    if ($opt{outputdatatable}) {
+    if ($opt{outputavgtable}) {
       printf $avgOut "%s\t%.0f\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0], $per;
     }
 
