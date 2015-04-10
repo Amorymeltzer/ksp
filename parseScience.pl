@@ -38,7 +38,7 @@ use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPnNcCeEiIkKmMoOu:Ug:Gf:h', \%opts);
+getopts('aAtTsSpPiIkKmMcCnNeEoOg:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -54,12 +54,12 @@ my %opt = (
 	   tests => 0,
 	   scienceleft => 0,
 	   percentdone => 0,
-	   noformat => 0,
-	   csv => 0,
-	   excludeexcel => 0,
 	   includeSCANsat => 0,
 	   ksckerbin => 0,
 	   moredata => 0,
+	   csv => 0,
+	   noformat => 0,
+	   excludeexcel => 0,
 	   outputdatatable => 0
 	  );
 
@@ -912,29 +912,32 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-atsnceikmo -h -f path/to/dotfile ]
+Usage: $0 [-atspikmcneo -h -f path/to/dotfile ]
        $0 [-g <game_location> -u <savefile_name>]
 
-       [-ATSNCEIKMO -G -U] -> Turn off a given option
+       $0 [-ATSPIKMCNEO -G -U] -> Turn off a given option
 
-      -a Display average science left for each planet.
-      -t Display average science left for each experiment type.  Supersedes
-         the -a flag.
-      -s Sort output by science left, including averages from -a and -t flags.
-      -p Sort output by percent science accomplished, including averages from
-         the -a and -t flags.  Supersedes the -s flag.
-      -n Turn off formatted printing (i.e., colors and bolding).
-      -c Output data to csv file as well.
-      -e Don't output the Excel file.
-      -i Include data from SCANsat.
-      -k List data from KSC biomes as being from Kerbin.
-      -m Add some largely boring data to the output (dsc, sbv, scv).
-      -o Save the chosen average table to a file.
-      -g Specify the location of your KSP folder
+      -a Display average science left for each planet
+      -t Display average science left for each experiment type.  Supersedes -a.
+
+      -s Sort by science left, including output file(s) and averages from -a
+         and -t flags
+      -p Sort by percent science accomplished, including output file(s) and
+         averages from -a and -t flags.  Supersedes -s.
+
+      -i Include data from SCANsat
+      -k List data from KSC biomes as being from Kerbin (same Excel worksheet)
+      -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
+      -c Output data to csv file as well
+      -n Turn off formatted printing in Excel (i.e., colors and bolding)
+      -e Don't output the Excel file
+      -o Save the chosen average table to a file.  Requires -a or -t.
+
+      -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
          are present in the local directory will be used.
       -f Specify path to config file.  Supersedes a local .parsesciencerc file.
-      -h Print this message.
+      -h Print this message
 USAGE
     return;
   }
