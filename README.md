@@ -37,6 +37,7 @@ scienceleft = true
 percentdone = true
 noformat = true
 csv = true
+excludeexcel = true
 includeSCANsat = true
 ksckerbin = true
 moredata = true
@@ -47,10 +48,10 @@ Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 ##### 3b. Full Options
 The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSNCIKUG) take precedence.
 ````
-Usage: $0 [-atsncikmo -h -f path/to/dotfile ]
+Usage: $0 [-atsnceikmo -h -f path/to/dotfile ]
        $0 [-g <game_location> -u <savefile_name>]
 
-       [-ATSNCIKMO -G -U] -> Turn off a given option
+       [-ATSNCEIKMO -G -U] -> Turn off a given option
 	   
       -a Display average science left for each planet.
       -t Display average science left for each experiment type.  Supersedes
@@ -60,6 +61,7 @@ Usage: $0 [-atsncikmo -h -f path/to/dotfile ]
          the -a and -t flags.  Supersedes the -s flag.
       -n Turn off formatted printing (i.e., colors and bolding).
       -c Output data to csv file as well.
+      -e Don't output the Excel file.
 	  -i Include data from SCANsat.
       -k List data from KSC biomes as being from Kerbin.
       -m Add some largely boring data to the output (dsc, sbv, scv).

@@ -18,6 +18,7 @@ scienceleft = true
 percentdone = true
 noformat = true
 csv = true
+excludeexcel = true
 includeSCANsat = true
 ksckerbin = true
 moredata = true
