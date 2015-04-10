@@ -120,11 +120,6 @@ if ($dotfile) {
   close $dot or die $!;
 }
 
-
-### FILE DEFINITIONS
-my $scidef = 'ScienceDefs.cfg';
-my $pers = 'persistent.sfs';
-
 # Overwrite config file options if the corresponding flag is on the commandline
 # Negated options always take precedence
 my @negatableOpts = keys %opt;
@@ -138,6 +133,11 @@ foreach my $negate (@negatableOpts) {
     $opt{$negate} = $opts{$ng8};
   }
 }
+
+
+### FILE DEFINITIONS
+my $scidef = 'ScienceDefs.cfg';
+my $pers = 'persistent.sfs';
 
 my $path;
 if (!$opt{gamelocation}) {
