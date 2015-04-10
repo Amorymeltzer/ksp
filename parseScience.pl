@@ -11,7 +11,6 @@
 
 ### FIXES, TODOS
 ## Can you do srfsplashed in every biome on other planets with water?
-## Check SCANsat cap values for Jool, Kerbol?  Might be off.
 ## Incorporate multiplier?  Might look weird...
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
@@ -441,6 +440,11 @@ if ($opt{includeSCANsat}) {
 
       my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
       my $cleft = $sbVal*$scanCap;
+
+      # SCANsat results from Jool and Kerbol are reduced by half
+      # https://github.com/S-C-A-N/SCANsat/issues/125
+      $cleft /= 2 if $planets[$planet] =~ m/^Kerbol$|^Jool$/;
+
       $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
     }
   }
