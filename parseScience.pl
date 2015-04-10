@@ -407,7 +407,8 @@ foreach my $i (0..scalar @testdef - 1) {
   }
 }
 
-# UGLY as sin ;;;;;; ##### FIXME TODO
+# This is awkwardly saddled between the above and below, but it keeps everyone
+# running smoothly in the case of -k
 if ($opt{ksckerbin}) {
   splice @planets, 1, 1;
   $planetCount--;
@@ -527,9 +528,6 @@ while (<$file>) {
 	$scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$percL];
       }
     }
-
-    # Not sure what do?  ;;;;;; ##### FIXME TODO
-    next;
   }
 }
 close $file or die $!;
