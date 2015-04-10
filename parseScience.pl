@@ -554,11 +554,7 @@ foreach (0..scalar @test - 1) {
 ###
 ### Begin the printing process!
 ###
-my @header = qw [Experiment Spob Condition sci cap Left Perc.Accom];
-# Splice extra headings in
-if ($opt{moredata}) {
-  splice @header, 3, 0, qw (dsc scv sbv);
-}
+my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left Perc.Accom];
 
 ## Prepare fancy-schmancy Excel workbook
 # Globals defined here so -e flag works properly
@@ -795,6 +791,10 @@ sub writeToCSV
   {
     my $rowRef = shift;
 
+    if (!$opt{moredata}) {
+      splice @{$rowRef}, 3, 3;
+    }
+
     print $csvOut join q{,} , @{$rowRef};
     print $csvOut "\n";
     return;
@@ -804,7 +804,7 @@ sub writeToExcel
   {
     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
 
-    if (!$opt{moredata}) {
+    if (!$opt{moredata} && $opt{excludeexcel}) {
       splice @{$rowRef}, 3, 3;
     }
 
