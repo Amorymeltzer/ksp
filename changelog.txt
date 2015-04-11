@@ -1,3 +1,14 @@
+Version 0.95.1 - 2015-04-11
+-------------------------
+SCANsat gives half science data for Jool and Kerbol scans
+Add VABSouthComplex minibiome in KSC
+ - Previously undocumented but appears to exist only in stage 2
+Add -e/excludeexcel option to skip forming the .xlsx file
+The -o option now fails without -a or -t and gently notifies the user
+Rename -o option (outputavgtable instead of outputdatatable)
+The -i option now uses only lowercase (includescansat instead of includeSCANsat)
+Formatted help to be more helpful
+
 Version 0.95 - 2015-04-08
 -------------------------
 

@@ -1,7 +1,7 @@
 Perl scripts to help with Kerbal Space Program.
 
 
-### parseScience.pl (v0.95)
+### parseScience.pl (v0.95.1)
 Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon, including vessel recovery.  Supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
 #### 1. Requirements
@@ -80,7 +80,7 @@ Usage: parseScience.pl [-atspikmcneo -h -f path/to/dotfile ]
 - Incorporate Windows/Mac/Linux-appropriate paths to Gamedata
 
 ### deltaVScience.pl
-**Roughly** estimate science points per delta-V needed per planet/moon.  Uses [average table](./average_table.txt) output from `parseScience.pl` (-a or -as).  Very rough.
+**Roughly** estimate science points per delta-V needed per planet/moon.  Uses [average table](./average_table.txt) output from `parseScience.pl` (-a or -as).
 
 ### boundaries.pl
 Print known boundary heights of conditions for each space object.
