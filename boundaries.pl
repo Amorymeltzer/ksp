@@ -21,7 +21,7 @@ while (<DATA>) {
 
 print "Spob\tCondition\tAltitude (km))\n";
 
-foreach my $key (keys %boundData) {
+foreach my $key (sort keys %boundData) {
   my @tmp = split /@/, $key;
   print "$tmp[0]\t$tmp[1]\t$boundData{$key}\n";
 }
