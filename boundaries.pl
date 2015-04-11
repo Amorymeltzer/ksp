@@ -10,32 +10,54 @@ use warnings;
 use diagnostics;
 
 my %boundData;
-
+# Hacky, but avoids an error below
+my @universe = qw (Kerbin@FlyingHigh);
 
 # Construct deltaV hash
 while (<DATA>) {
   chomp;
   my @borders = split;
-  $boundData{$borders[0]."@".$borders[1]} = $borders[2];
+  my $key = $borders[0]."@".$borders[1];
+  $boundData{$key} = $borders[2];
+
+  # Build sorted list for reference when sorting later
+  @universe = (@universe, $key) if $key ne $universe[-1];
 }
 
 print "Spob\tCondition\tAltitude (km))\n";
 
-foreach my $key (sort keys %boundData) {
+foreach my $key (sort { specialSort($a, $b) } keys %boundData) {
   my @tmp = split /@/, $key;
   print "$tmp[0]\t$tmp[1]\t$boundData{$key}\n";
 }
+
+
+# Sort via order in _DATA_
+sub specialSort
+  {
+    my ($a,$b) = @_;
+    my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
+
+    my @specOrder = @universe;
+    my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
+    my $sord = join q{|}, @specOrder;
+
+    my ($x,$y) = map {/^($sord)/} @input;
+
+    $spec_order_map{$x} <=> $spec_order_map{$y};
+  }
+
 
 ## The lines below do not represent Perl code, and are not examined by the
 ## compiler.  Rather, they are the default boundary heights between different
 ## conditions for each space object
 __END__
-Kerbol InSpaceHigh 1000000
-  Kerbin FlyingHigh 18
+Kerbin FlyingHigh 18
   Kerbin InSpaceLow 69
   Kerbin InSpaceHigh 250
   Mun InSpaceHigh 60
   Minmus InSpaceHigh 30
+  Kerbol InSpaceHigh 1000000
   Moho InSpaceHigh 80
   Eve FlyingHigh 22
   Eve InSpaceLow 60?
