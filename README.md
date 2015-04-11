@@ -5,9 +5,10 @@ Perl scripts to help with Kerbal Space Program.
 Return a list of science points remaining and obtained so far, helpfully colored and organized by planet/moon, including vessel recovery.  Supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
 #### 1. Requirements
-- KSP v0.90 Beta
-- Perl (Comes installed on OSX and Linux, Windows users will need Raspberry perl)
-- Excel::Writer::XLSX (Install via the terminal: `cpan Excel::Writer::XLSX` (recommended) or get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
+- KSP (v0.90 Beta)
+- Perl (Comes with OSX and Linux; Windows users will need Raspberry perl)
+- Excel::Writer::XLSX, if you want your output in a spreadsheet
+    -  (Install via the terminal: `cpan Excel::Writer::XLSX` (recommended) or get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
 
 #### 2. Basic Usage
 ````shell
@@ -20,13 +21,11 @@ Alternatively, use a custom config file...
 
 #### 3. Advanced Usage
 ##### 3a. Config File (.parsesciencerc)
-Users of this tool will almost certainly be running it repeatedly with the same options, so `parseScience.pl` supports the use of a user config file to simplify things a bit.  This way, you can dump your favorite options in a file and just `path/to/parseScience.pl` without worrying about commandline options, location of the script, etc.  You can still, of course, pass commandline flags to `parseScience.pl`; they will always override any settings in your config file.
+Users of this tool will almost certainly be running it repeatedly with their favorite options, so `parseScience.pl` supports a user config file to simplify things a bit.  This way, you can dump your favorite options in a file and just `path/to/parseScience.pl` without worrying about commandline options, location of the script, local files, etc.  You can still, of course, pass commandline flags to `parseScience.pl`; they will always override any settings in your config file.
 
-The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check, in order, the directory `parseScience.pl` is in, your $home directory, and then `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-f` flag.
+The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check the directory `parseScience.pl` is actually in.  If you're using OSX or Linux, it wil also check your `$home` directory and `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-f` flag.
 
-The file itself follows strict guidelines.  You can see a sample in [sample_parsesciencerc](./sample_parsesciencerc).  Each option must be in `key = value` format, one per line.  Only the following keys are available: `username` takes a savefile name and `gamelocation` is the path a KSP folder; the rest take either `true` or `false`, lowercase.  Any corresponding options provided on the commandline will override options set here.
-
-Should the same key be given twice, the last one will be used.
+The file itself follows strict guidelines.  You can see an example in [sample_parsesciencerc](./sample_parsesciencerc).  Each option must follow `key = value` format, one per line.  Only the following keys are available: `username` takes a savefile name and `gamelocation` is the path a KSP folder; the rest take either `true` or `false`, lowercase.  Any corresponding options provided on the commandline will override the options set here.  Should the same key be given twice, the last one will be used.
 
 ````shell
 username = Zaphod
@@ -80,12 +79,11 @@ Usage: parseScience.pl [-atspikmcneo -h -f path/to/dotfile ]
 - Asteroids
 - Incorporate Windows/Mac/Linux-appropriate paths to Gamedata
 
-
-#### 5. deltaVScience.pl
+### deltaVScience.pl
 **Roughly** estimate science points per delta-V needed per planet/moon.  Uses [average table](./average_table.txt) output from `parseScience.pl` (-a or -as).  Very rough.
 
-#### 6. boundaries.pl
+### boundaries.pl
 Print known boundary heights of conditions for each space object.
 
-#### 7. License
+### License
 Licensed under the [BSD 2-Clause license](./LICENSE).
