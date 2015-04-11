@@ -7,14 +7,14 @@ Return a list of science points remaining and obtained so far, helpfully colored
 #### 1. Requirements
 - KSP v0.90 Beta
 - Perl (Comes installed on OSX and Linux, Windows users will need Raspberry perl)
-- Excel::Writer::XLSX (Get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
+- Excel::Writer::XLSX (Install via the terminal: `cpan Excel::Writer::XLSX` (recommended) or get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
 
 #### 2. Basic Usage
 ````shell
 perl parseScience.pl -<opts>
 ````
 
-Simply run the script and an Excel file named `scienceToDo.xlsx` shoud appear.  Use `-u` to specify the username of your savefile and it will use the files found in your install; otherwise, it will require local versions of `ScienceDefs.cfg` and `persistent.sfs`.  If you want it to calculate SCANsat data, pass the `-i` flag.
+Simply run this script and an Excel file named `scienceToDo.xlsx` shoud appear.  That's it!  There are plenty of other options, of course.  Use `-u` to specify the username of your savefile and it will use the files found in your install; use `-g` to specify the location of your KSP folder.  Otherwise, you'll need versions of `ScienceDefs.cfg` and `persistent.sfs` in the same folder as `parseScience.pl`.  Use `-s` or `-p` and it will sort the output; `-a` and `-t` will give you some averages.  If you want it to calculate SCANsat data, pass the `-i` flag.
 
 Alternatively, use a custom config file...
 
