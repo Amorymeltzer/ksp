@@ -2,7 +2,7 @@
 # deltaVScience.pl by Amory Meltzer
 # https://github.com/Amorymeltzer/ksp
 # Attempt to (roughly) estimate a ratio of science per deltaV for each spob
-# Takes in an average (-a or -as) table from parseScience.pl
+# Takes in an average (-a, -as, or -ap) table from parseScience.pl
 # Delta-V from http://mononyk.us/wherecanigo.php?dv=0&loc=orbit&figs=diff
 ## Use full output for situation-specific calculations?
 ## Merge recovery into planetary spob?  Eh, maybe doesn't make sense.
@@ -32,6 +32,11 @@ while (<$avg>) {
   # No delta-V for recovery, Kerbin, KSC, SCANsat
   next if /^R|^Kerbi|^KSC|^SCANsat/;
   my @avgs = split /\t/;
+
+  if (!$deltaVData{$avgs[0]}) {
+    print "average_table must be a result of -a, not -t\n";
+    exit;
+  }
 
   # Is this the best sclaing factor?
   my $effA = 1000*$avgs[1]/$deltaVData{$avgs[0]};
