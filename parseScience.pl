@@ -563,6 +563,7 @@ foreach (0..scalar @test - 1) {
 ### Begin the printing process!
 ###
 my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left Perc.Accom];
+dataSplice(\@header) if !$opt{moredata};
 
 ## Prepare fancy-schmancy Excel workbook
 # Globals defined here so -e flag works properly
@@ -622,6 +623,7 @@ writeToCSV(\@header) if $opt{csv};
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
+  dataSplice(\@{$dataMatrix{$key}}) if !$opt{moredata};
   writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix) if !$opt{excludeexcel};
 
   # Add in spob name to csv, only necessary for stock science
@@ -636,6 +638,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 }
 # Recovery
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
+  dataSplice(\@{$reco{$key}}) if !$opt{moredata};
   writeToExcel($recov,\@{$reco{$key}},$key,\%reco) if !$opt{excludeexcel};
   writeToCSV(\@{$reco{$key}}) if $opt{csv};
 
@@ -649,6 +652,7 @@ foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
 # SCANsat
 if ($opt{includescansat}) {
   foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
+    dataSplice(\@{$scan{$key}}) if !$opt{moredata};
     writeToExcel($scansat,\@{$scan{$key}},$key,\%scan) if !$opt{excludeexcel};
     writeToCSV(\@{$scan{$key}}) if $opt{csv};
 
@@ -796,13 +800,18 @@ sub sitSort
     }
   }
 
+
+# Separate subroutine so everybody works just fine
+sub dataSplice
+  {
+    my $rowRef = shift;
+    splice @{$rowRef}, 3, 3;
+    return;
+  }
+
 sub writeToCSV
   {
     my $rowRef = shift;
-
-    if (!$opt{moredata}) {
-      splice @{$rowRef}, 3, 3;
-    }
 
     print $csvOut join q{,} , @{$rowRef};
     print $csvOut "\n";
@@ -812,10 +821,6 @@ sub writeToCSV
 sub writeToExcel
   {
     my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
-
-    if (!$opt{moredata} && $opt{excludeexcel}) {
-      splice @{$rowRef}, 3, 3;
-    }
 
     $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
     if ($opt{moredata}) {
