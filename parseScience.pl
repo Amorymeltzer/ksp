@@ -559,7 +559,7 @@ foreach (0..scalar @test - 1) {
 ###
 ### Begin the printing process!
 ###
-my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Left Perc.Accom];
+my @header = qw [Experiment Spob Condition dsc scv sbv sci cap Sci.Left Perc.Accom];
 dataSplice(\@header) if !$opt{moredata};
 
 ## Prepare fancy-schmancy Excel workbook
