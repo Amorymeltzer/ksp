@@ -1,5 +1,14 @@
+Version 0.95.2 - 2015-04-13
+-------------------------
+
+Handle -M splicing in separate subroutine
+ - Fixes bug where -MC would produce erroneous results
+The red highlight now kicks in if less than 95% of science has been accomplished
+The column "Left" is now "Sci.Left"
+
 Version 0.95.1 - 2015-04-11
 -------------------------
+
 SCANsat gives half science data for Jool and Kerbol scans
 Add VABSouthComplex minibiome in KSC
  - Previously undocumented but appears to exist only in stage 2
