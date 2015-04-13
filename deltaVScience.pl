@@ -30,7 +30,7 @@ while (<$avg>) {
   next until $. > 3;		# Skip header lines
   chomp;
   # No delta-V for recovery, Kerbin, KSC, SCANsat
-  next if /^R|^Kerbi|^KSC|^SCANsat/;
+  next if /^R|^Kerb|^KSC|^SCANsat/;
   my @avgs = split /\t/;
 
   if (!$deltaVData{$avgs[0]}) {
@@ -56,12 +56,10 @@ close $avg or die $!;
 ## compiler.  Rather, they are estimated deltaV requirements to the lowest
 ## accesible spot on each spob from the surface of Kerbin.  In the future this
 ## may become situation specific, as that would be overwhelmingly more
-## exact. Right now Jool is to orbit, Eve is landing.  Not sure where the
-## Kerbol value comes from?
+## exact. Right now Jool is to orbit, Eve is landing.
 __END__
 Mun 6250
   Minmus 5790
-  Kerbol 38230
   Moho 9830
   Eve 18890
   Gilly 8785
