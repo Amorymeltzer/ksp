@@ -80,7 +80,7 @@ Usage: parseScience.pl [-atspikmcneo -h -f path/to/dotfile ]
 - Incorporate Windows/Mac/Linux-appropriate paths to Gamedata
 
 ### deltaVScience.pl
-**Roughly** estimate science points per delta-V needed per planet/moon.  Uses [average table](./average_table.txt) output from `parseScience.pl` (-a or -as).
+**Roughly** estimate science point ROI as science per delta-V needed per planet/moon.  Uses [average table](./average_table.txt) output from `parseScience.pl` (-a or -as).  Scaled semi-arbitrarily.
 
 ### boundaries.pl
 Print known boundary heights of conditions for each space object.

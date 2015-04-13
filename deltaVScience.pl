@@ -29,7 +29,7 @@ open my $avg, '<', "$avgData" or die $!;
 while (<$avg>) {
   next until $. > 3;		# Skip header lines
   chomp;
-  # No delta-V for recovery, Kerbin, KSC, SCANsat
+  # No delta-V for recovery, Kerbin, KSC, SCANsat, Kerbol (too vague)
   next if /^R|^Kerb|^KSC|^SCANsat/;
   my @avgs = split /\t/;
 
