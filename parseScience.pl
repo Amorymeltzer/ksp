@@ -21,9 +21,6 @@
 ## Cleanup var/vara/etc. crap.  Better commenting.
 ## Use POD for usage??
 
-## Biomes are hardcoded, would be nice to pull from somewhere
-## Same for sbv, multipliers, etc.
-
 
 use strict;
 use warnings;
