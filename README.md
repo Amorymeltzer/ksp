@@ -3,6 +3,7 @@ Perl scripts to help with Kerbal Space Program.
 
 ### parseScience.pl (v0.95.2)
 ![Kerbin science](./img/kerbin.png)
+
 Return a list of science points remaining and obtained so far, helpfully organized by planet/moon. Includes KSC and vessel recovery and supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
 #### 1. Requirements
@@ -16,7 +17,7 @@ Return a list of science points remaining and obtained so far, helpfully organiz
 perl parseScience.pl -<opts>
 ````
 
-Simply run this script and an Excel file named `scienceToDo.xlsx` shoud appear.  That's it!  There are plenty of other options, of course.  Use `-u` to specify the username of your savefile and it will use the files found in your install; use `-g` to specify the location of your KSP folder.  Otherwise, you'll need versions of `ScienceDefs.cfg` and `persistent.sfs` in the same folder as `parseScience.pl`.  Use `-s` or `-p` and it will sort the output; `-a` and `-t` will give you some averages.  If you want it to calculate SCANsat data, pass the `-i` flag.
+Simply run this script and an Excel file named `scienceToDo.xlsx` shoud appear.  **That's it!**  There are plenty of other options, of course.  Use `-u` to specify the username of your savefile and it will use the files found in your install; use `-g` to specify the location of your KSP folder.  Otherwise, you'll need versions of `ScienceDefs.cfg` and `persistent.sfs` in the same folder as `parseScience.pl`.  Use `-s` or `-p` and it will sort the output; `-a` and `-t` will give you some averages.  If you want it to calculate SCANsat data, pass the `-i` flag.
 
 Alternatively, use a custom config file...
 
