@@ -30,7 +30,6 @@ use Getopt::Std;
 use Cwd;
 use FindBin;
 use Config;
-use Excel::Writer::XLSX;
 
 # Parse command line options
 my %opts = ();
@@ -167,6 +166,10 @@ if ($opt{username}) {
 # Test files for existance
 warnNicely("No ScienceDefs.cfg file found at $scidef", 1) if !-e $scidef;
 warnNicely("No persistent.sfs file found at $pers\n", 1) if !-e $pers;
+
+if (!$opt{excludeexcel}) {
+  require Excel::Writer::XLSX;
+}
 
 my $outfile = 'scienceToDo.xlsx';
 my $csvFile = 'scienceToDo.csv';
