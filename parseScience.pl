@@ -587,12 +587,16 @@ if (!$opt{excludeexcel}) {
   # Subroutine these ;;;;;; ##### FIXME TODO
   $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
   $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
+
+  buildWorksheet($recov);
   # Recovery widths, manually determined
   columnWidths($workVars{$recov}[0],9.17,6.5,9);
 
   if ($opt{includescansat}) {
     $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
     $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
+
+    #  buildWorksheet($scansat);
 
     # SCANsat widths, manually determined
     columnWidths($workVars{$scansat}[0],9.17,6.5,11.83);
@@ -608,6 +612,7 @@ if (!$opt{excludeexcel}) {
     $workVars{$planets[$planet]} = [$workbook->add_worksheet( "$planets[$planet]" ), 1];
     $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
 
+    #  buildWorksheet($planets[$planet]);
     # Stock science widths, manually determined
     columnWidths($workVars{$planets[$planet]}[0],15.5,9.67,8.5);
   }
@@ -727,6 +732,16 @@ sub calcPerc {
   my ($sciC,$capC) = @_;
   return sprintf '%.2f', 100*$sciC/$capC;
 }
+
+sub buildWorksheet
+  {
+    my ($sheetName) = @_;
+
+    # $workVars{$sheetName} = [$workbook->add_worksheet( "$sheetName" ), 1];
+    # $workVars{$sheetName}[0]->write( 0, 0, \@header, $bold );
+
+    return;
+  }
 
 # Determine column header widths
 sub columnWidths
