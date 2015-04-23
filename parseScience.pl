@@ -18,7 +18,7 @@
 ## Turn cascading tmp1/2 elsifs into hash lookup?
 ## Given/while?
 ## Cleanup data/test hashes, the order of the data is unintuitive
-## Cleanup var/vara/etc. crap.  Better commenting.
+## Cleanup tmp1/tmp2/etc. crap.  Better commenting.
 
 
 use strict;
@@ -676,16 +676,16 @@ open my $avgOut, '>', "$avgFile" or die $! if  $opt{outputavgtable};
 # Ensure the -t flag supersedes -a if both are given
 if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
-  my ($tmpHashRef,$tmpArrayRef);
+  my ($hashRef,$arrayRef);
 
   if ($opt{tests}) {
     $string .= "Test\t";
-    $tmpHashRef = \%testData;
-    $tmpArrayRef = \@testdef if !$opt{scienceleft};
+    $hashRef = \%testData;
+    $arrayRef = \@testdef if !$opt{scienceleft};
   } elsif ($opt{average}) {
     $string .= 'Spob';
-    $tmpHashRef = \%spobData;
-    $tmpArrayRef = \@planets if !$opt{scienceleft};
+    $hashRef = \%spobData;
+    $arrayRef = \@planets if !$opt{scienceleft};
   }
 
   $string .= "\tAvg/exp\tTotal\tCompleted\n";
@@ -693,11 +693,11 @@ if ($opt{average} || $opt{tests}) {
   print $avgOut "$string"  if  $opt{outputavgtable};
 
   if ($opt{percentdone}) {
-    average3($tmpHashRef);
+    average3($hashRef);
   } elsif ($opt{scienceleft}) {
-    average2($tmpHashRef);
+    average2($hashRef);
   } else {
-    average1($tmpHashRef,$tmpArrayRef);
+    average1($hashRef,$arrayRef);
   }
 }
 close $avgOut or die $! if  $opt{outputavgtable};
