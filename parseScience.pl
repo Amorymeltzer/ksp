@@ -477,27 +477,27 @@ while (<$file>) {
   elsif ($ticker == 1) {
     next if m/^\t\t\{/;
     s/^\t\t\t//i;
-    my ($tmp1,$tmp2) = split /=/;
-    $tmp1 =~ s/\s+//g;		# Clean spaces
-    $tmp2 =~ s/\s+//g;
-    $tmp2 =~ s/Sun/Kerbol/g;
+    my ($key,$value) = split /=/;
+    $key =~ s/\s+//g;		# Clean spaces
+    $value =~ s/\s+//g;
+    $value =~ s/Sun/Kerbol/g;
 
-    if ($tmp1 eq 'id') {
+    if ($key eq 'id') {
       # Replace recovery and SCANsat data here, why not?
-      if ($tmp2 =~ m/^$recovery/) {
+      if ($value =~ m/^$recovery/) {
 	$recoTicker = 1;
-	$tmp2 =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
-	@pieces = (split /@/, $tmp2);
-      } elsif ($opt{includescansat} && $tmp2 =~ m/^$scansat/) {
+	$value =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
+	@pieces = (split /@/, $value);
+      } elsif ($opt{includescansat} && $value =~ m/^$scansat/) {
 	$scanTicker = 1;
-	$tmp2 =~ s/^$scansat(.*)\@(.*)InSpaceHighsurface$/$scansat\@$2\@$1/g;
-	@pieces = (split /@/, $tmp2);
+	$value =~ s/^$scansat(.*)\@(.*)InSpaceHighsurface$/$scansat\@$2\@$1/g;
+	@pieces = (split /@/, $value);
       } else {
 	($recoTicker,$scanTicker) = (0,0);
 	# Watch out for srf landed/splashed, InSpaceHigh/Low, FlyingHigh/Low
-	$tmp2 =~ s/Srf(Landed|Splashed)/\@$1\@/g;
-	$tmp2 =~ s/(InSpace|Flying)(Low|High)/\@$1$2\@/g;
-	@pieces = (split /@/, $tmp2);
+	$value =~ s/Srf(Landed|Splashed)/\@$1\@/g;
+	$value =~ s/(InSpace|Flying)(Low|High)/\@$1$2\@/g;
+	@pieces = (split /@/, $value);
       }
 
       # Ensure arrays are the same length
@@ -505,18 +505,18 @@ while (<$file>) {
       push @spob, $pieces[1];
       push @where, $pieces[2];
       push @biome, $pieces[3] // 'Global'; # global biomes
-    } elsif ($tmp1 =~ m/^title/) {
-      @title = (@title,$tmp2);
-    } elsif ($tmp1 =~ m/^dsc/) {
-      @dsc = (@dsc,$tmp2);
-    } elsif ($tmp1 =~ m/^scv/) {
-      @scv = (@scv,$tmp2);
-    } elsif ($tmp1 =~ m/^sbv/) {
-      @sbv = (@sbv,$tmp2);
-    } elsif ($tmp1 =~ m/^sci/) {
-      @sci = (@sci,$tmp2);
-    } elsif ($tmp1 =~ m/^cap/) {
-      @cap = (@cap,$tmp2);
+    } elsif ($key =~ m/^title/) {
+      @title = (@title,$value);
+    } elsif ($key =~ m/^dsc/) {
+      @dsc = (@dsc,$value);
+    } elsif ($key =~ m/^scv/) {
+      @scv = (@scv,$value);
+    } elsif ($key =~ m/^sbv/) {
+      @sbv = (@sbv,$value);
+    } elsif ($key =~ m/^sci/) {
+      @sci = (@sci,$value);
+    } elsif ($key =~ m/^cap/) {
+      @cap = (@cap,$value);
 
       # Build recovery and SCANsat data hashes
       if ($recoTicker == 1) {
