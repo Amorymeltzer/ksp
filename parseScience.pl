@@ -368,13 +368,13 @@ foreach my $i (0..scalar @testdef - 1) {
     if ($stavro eq $ksc) {
       @situations = qw (Landed);
     } else {
-      for (my $var = scalar @sits - 1;$var>=0;$var--) {
-	my $vara = abs $var-5;
-	if ($sits[$vara] == 0) {
-	  splice @situations, $var, 1;
-	  splice @biomes, $var, 1;
-	} elsif ($bins[$vara] == 0) {
-	  $biomes[$var] = [ qw (Global)];
+      for (my $binDex = scalar @sits - 1;$binDex>=0;$binDex--) {
+	my $zIndex = abs $binDex-5;
+	if ($sits[$zIndex] == 0) {
+	  splice @situations, $binDex, 1;
+	  splice @biomes, $binDex, 1;
+	} elsif ($bins[$zIndex] == 0) {
+	  $biomes[$binDex] = [ qw (Global)];
 	}
       }
     }
