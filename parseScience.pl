@@ -15,10 +15,9 @@
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
 
-## Turn cascading tmp1/2 elsifs into hash lookup?
+## Turn cascading key/value elsifs into hash lookup?
 ## Given/while?
 ## Cleanup data/test hashes, the order of the data is unintuitive
-## Cleanup tmp1/tmp2/etc. crap.  Better commenting.
 
 
 use strict;
