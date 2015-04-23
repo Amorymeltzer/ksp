@@ -324,25 +324,25 @@ while (<$defs>) {
     next if m/^\{|^\s+$/;	# Take into account blank lines
     s/^\t//i;
 
-    my ($tmp1,$tmp2) = split /=/;
-    $tmp1 =~ s/\s+//g;		# Clean spaces
-    $tmp2 =~ s/\s+//g;		# Also fix default spacing in ScienceDefs.cfg
+    my ($key,$value) = split /=/;
+    $key =~ s/\s+//g;		# Clean spaces
+    $value =~ s/\s+//g;		# Also fix default spacing in ScienceDefs.cfg
 
-    if ($tmp1 eq 'id') {
-      @testdef = (@testdef,$tmp2);
-    } elsif ($tmp1 eq 'situationMask') {
-      $tmp2 = binary($tmp2);
-      @sitmask = (@sitmask,$tmp2);
-    } elsif ($tmp1 eq 'biomeMask') {
-      $tmp2 = binary($tmp2);
-      @biomask = (@biomask,$tmp2);
-    } elsif ($tmp1 eq 'requireAtmosphere') {
-      @atmo = (@atmo,'1') if $tmp2 eq 'True'; # Waiting for fix to sciencedefs
-      @atmo = (@atmo,'0') if $tmp2 eq 'False';
-    } elsif ($tmp1 eq 'dataScale') {
-      @dataScale = (@dataScale,$tmp2);
-    } elsif ($tmp1 eq 'scienceCap') {
-      @scienceCap = (@scienceCap,$tmp2);
+    if ($key eq 'id') {
+      @testdef = (@testdef,$value);
+    } elsif ($key eq 'situationMask') {
+      $value = binary($value);
+      @sitmask = (@sitmask,$value);
+    } elsif ($key eq 'biomeMask') {
+      $value = binary($value);
+      @biomask = (@biomask,$value);
+    } elsif ($key eq 'requireAtmosphere') {
+      @atmo = (@atmo,'1') if $value eq 'True'; # Waiting for fix to sciencedefs
+      @atmo = (@atmo,'0') if $value eq 'False';
+    } elsif ($key eq 'dataScale') {
+      @dataScale = (@dataScale,$value);
+    } elsif ($key eq 'scienceCap') {
+      @scienceCap = (@scienceCap,$value);
     }
   }
 }
