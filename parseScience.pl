@@ -908,14 +908,14 @@ sub printAverageTable
     my $ind = $placeHolder[0];
     my %hash = %{$placeHolder[1]};
 
-    my $indL = substr $ind, 0, 14; # Neater spacing in test averages output
+    my $indShort = substr $ind, 0, 14; # Neater spacing in test averages output
     my $avg = $hash{$ind}[0]/($hash{$ind}[1]);
     my $remains = $hash{$ind}[2] - $hash{$ind}[0];
     my $per = 100*$remains/$hash{$ind}[2];
 
-    printf "%s\t%.0f\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0], $per;
+    printf "%s\t%.0f\t%.0f\t%.0f\n", $indShort, $avg, $hash{$ind}[0], $per;
     if ($opt{outputavgtable}) {
-      printf $avgOut "%s\t%.0f\t%.0f\t%.0f\n", $indL, $avg, $hash{$ind}[0], $per;
+      printf $avgOut "%s\t%.0f\t%.0f\t%.0f\n", $ind, $avg, $hash{$ind}[0], $per;
     }
 
     return;
