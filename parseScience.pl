@@ -19,7 +19,6 @@
 ## Given/while?
 ## Cleanup data/test hashes, the order of the data is unintuitive
 ## Cleanup var/vara/etc. crap.  Better commenting.
-## Use POD for usage??
 
 
 use strict;
@@ -177,13 +176,13 @@ my $avgFile = 'average_table.txt';
 
 
 ### GLOBAL VARIABLES
-my %dataMatrix;		      # Hold stock data
-my %reco;		      # Separate hash for craft recovery
-my %scan;		      # Separate hash for SCANsat
-my %sbvData;		      # Hold sbv values from END data
+my %dataMatrix;		      # Stock data
+my %reco;		      # Craft recovery data
+my %scan;		      # SCANsat data
+my %sbvData;		      # sbv values from END data
 my %workVars;		      # Hash of arrays to hold worksheets, current row
-my %spobData;		      # Hold data on science per spob
-my %testData;		      # Hold data on science per test
+my %spobData;		      # Science per spob
+my %testData;		      # Science per test
 
 # ScienceDefs.cfg variables
 my (
