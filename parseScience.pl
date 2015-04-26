@@ -91,7 +91,7 @@ if ($dotfile) {
     next if !$_;		# Ignore blank lines
 
     if (!m/^.+ = .+/) {		# Ignore and warn on malformed entries
-      warnNicely("Malformed entry '$_' at line $. of $dotfile.  Skipping...");
+      warnNicely("Malformed entry '$_' at line $NR of $dotfile.  Skipping...");
       next;
     }
 
@@ -107,7 +107,7 @@ if ($dotfile) {
     } elsif ($config[1] eq 'false') {
       $opt{$config[0]} = 0;
     } else {
-      warnNicely("Unknown option '$config[0]' at line $. of $dotfile.  Skipping...");
+      warnNicely("Unknown option '$config[0]' at line $NR of $dotfile.  Skipping...");
       next;
     }
   }
