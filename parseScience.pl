@@ -27,7 +27,7 @@ use warnings;
 use Getopt::Std;
 use Cwd;
 use FindBin;
-use English;
+use English qw( -no_match_vars );
 
 # Parse command line options
 my %opts = ();
