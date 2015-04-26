@@ -110,7 +110,7 @@ if ($dotfile) {
       next;
     }
   }
-  close $dot or die $ERRNO;
+  close $dot or warn $ERRNO;
 }
 
 # Overwrite config file options if the corresponding flag is on the commandline
@@ -341,7 +341,7 @@ while (<$defs>) {
     }
   }
 }
-close $defs or die $ERRNO;
+close $defs or warn $ERRNO;
 
 
 ## Iterate and decide on conditions, build matrix, gogogo
@@ -524,7 +524,7 @@ while (<$file>) {
     }
   }
 }
-close $file or die $ERRNO;
+close $file or warn $ERRNO;
 
 # Build the matrix
 foreach (0..scalar @test - 1) {
@@ -663,7 +663,7 @@ if ($opt{includescansat}) {
     }
   }
 }
-close $csvOut or die $ERRNO if  $opt{csv};
+close $csvOut or warn $ERRNO if  $opt{csv};
 
 
 ## Sorting of different average tables
@@ -695,7 +695,7 @@ if ($opt{average} || $opt{tests}) {
     average1($hashRef,$arrayRef);
   }
 }
-close $avgOut or die $ERRNO if  $opt{outputavgtable};
+close $avgOut or warn $ERRNO if  $opt{outputavgtable};
 
 
 ### SUBROUTINES
