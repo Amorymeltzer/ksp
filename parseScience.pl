@@ -936,10 +936,10 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $0 [-atspikmcneo -h -f path/to/dotfile ]
-       $0 [-g <game_location> -u <savefile_name>]
+Usage: $PROGRAM_NAME [-atspikmcneo -h -f path/to/dotfile ]
+       $PROGRAM_NAME [-g <game_location> -u <savefile_name>]
 
-       $0 [-ATSPIKMCNEO -G -U] -> Turn off a given option
+       $PROGRAM_NAME [-ATSPIKMCNEO -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
