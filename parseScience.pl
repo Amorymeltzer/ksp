@@ -27,7 +27,6 @@ use warnings;
 use Getopt::Std;
 use Cwd;
 use FindBin;
-use Config;
 use English;
 
 # Parse command line options
