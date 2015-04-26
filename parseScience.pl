@@ -16,7 +16,7 @@
 ### Steam locations
 
 ## Turn cascading key/value elsifs into hash lookup?
-## Given/while?
+## Given/while?  Requires 5.10.1 or 5.14 so maybe not ideal
 ## Cleanup data/test hashes, the order of the data is unintuitive
 
 
