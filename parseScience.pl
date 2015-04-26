@@ -28,6 +28,7 @@ use Getopt::Std;
 use Cwd;
 use FindBin;
 use Config;
+use English;
 
 # Parse command line options
 my %opts = ();
@@ -72,7 +73,7 @@ if ($opts{f} && -e $opts{f}) {
   $dotfile = $opts{f};
 } else {
   foreach my $place (@dotLocales) {
-    $place =~ s/\//\\/g if $Config{osname} eq 'MSWin32';
+    $place =~ s/\//\\/g if $OSNAME eq 'MSWin32';
     if (-e $place) {
       $dotfile = $place;
       last;
@@ -142,7 +143,7 @@ my $path;
 if (!$opt{gamelocation}) {
   # MAGIC hash with config variables - this saves having to use the still
   # magic but decidedly less-readable $^O
-  my $OS = $Config{osname};
+  my $OS = $OSNAME;
 
   if ($OS eq 'darwin') {
     $path = '/Applications/KSP_osx/';
