@@ -82,7 +82,7 @@ if ($opts{f} && -e $opts{f}) {
 
 # Parse config file
 if ($dotfile) {
-  open my $dot, '<', "$dotfile" or die $!;
+  open my $dot, '<', "$dotfile" or die $ERRNO;
   while (<$dot>) {
     chomp;
 
@@ -110,7 +110,7 @@ if ($dotfile) {
       next;
     }
   }
-  close $dot or die $!;
+  close $dot or die $ERRNO;
 }
 
 # Overwrite config file options if the corresponding flag is on the commandline
@@ -298,7 +298,7 @@ while (<DATA>) {
 }
 
 # Read in science defs to build prebuild datamatrix for each experiment
-open my $defs, '<', "$scidef" or die $!;
+open my $defs, '<', "$scidef" or die $ERRNO;
 while (<$defs>) {
   chomp;
 
@@ -341,7 +341,7 @@ while (<$defs>) {
     }
   }
 }
-close $defs or die $!;
+close $defs or die $ERRNO;
 
 
 ## Iterate and decide on conditions, build matrix, gogogo
@@ -452,7 +452,7 @@ if ($opt{includescansat}) {
   }
 }
 
-open my $file, '<', "$pers" or die $!;
+open my $file, '<', "$pers" or die $ERRNO;
 while (<$file>) {
   chomp;
 
@@ -524,7 +524,7 @@ while (<$file>) {
     }
   }
 }
-close $file or die $!;
+close $file or die $ERRNO;
 
 # Build the matrix
 foreach (0..scalar @test - 1) {
@@ -615,7 +615,7 @@ if (!$opt{excludeexcel}) {
 
 
 ## Actually print everybody!
-open my $csvOut, '>', "$csvFile" or die $! if $opt{csv};
+open my $csvOut, '>', "$csvFile" or die $ERRNO if $opt{csv};
 writeToCSV(\@header) if $opt{csv};
 
 # Stock science
@@ -663,11 +663,11 @@ if ($opt{includescansat}) {
     }
   }
 }
-close $csvOut or die $! if  $opt{csv};
+close $csvOut or die $ERRNO if  $opt{csv};
 
 
 ## Sorting of different average tables
-open my $avgOut, '>', "$avgFile" or die $! if  $opt{outputavgtable};
+open my $avgOut, '>', "$avgFile" or die $ERRNO if  $opt{outputavgtable};
 # Ensure the -t flag supersedes -a if both are given
 if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
@@ -695,7 +695,7 @@ if ($opt{average} || $opt{tests}) {
     average1($hashRef,$arrayRef);
   }
 }
-close $avgOut or die $! if  $opt{outputavgtable};
+close $avgOut or die $ERRNO if  $opt{outputavgtable};
 
 
 ### SUBROUTINES
