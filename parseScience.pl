@@ -814,7 +814,7 @@ sub sitSort
   }
 
 
-# Separate subroutine so everybody works just fine
+# Properly splice data
 sub dataSplice
   {
     my $rowRef = shift;
