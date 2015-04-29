@@ -346,6 +346,9 @@ close $defs or warn $ERRNO;
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0..scalar @testdef - 1) {
+  # Skip, for now
+  next if $testdef[$i] =~ /^asteroid/;
+
   # Array of binary values, only need to do once per test
   my @sits = split //,$sitmask[$i];
   my @bins = split //,$biomask[$i];
