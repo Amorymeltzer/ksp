@@ -139,6 +139,7 @@ my $scidefName = 'ScienceDefs.cfg';
 my $scidef = 'ScienceDefs.cfg';
 my $persName = 'persistent.sfs';
 my $pers = 'persistent.sfs';
+my $gdsr = 'GameData/Squad/Resources/';
 
 my $path;
 if (!$opt{gamelocation}) {
@@ -151,11 +152,11 @@ if (!$opt{gamelocation}) {
   }
 } else {
   $path = $opt{gamelocation};
-  $scidef = $path.'GameData/Squad/Resources/'.$scidefName;
+  $scidef = $path.$gdsr.$scidefName;
 }
 
 if ($opt{username}) {
-  $scidef = $path.'GameData/Squad/Resources/'.$scidefName;
+  $scidef = $path.$gdsr.$scidefName;
   $pers = $path."saves/$opt{username}/".$persName;
 }
 
