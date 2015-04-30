@@ -14,6 +14,7 @@
 ## Incorporate multiplier?  Might look weird...
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
+## Scidefs when in another folder, generic path stuff
 
 ## Given/while?  Requires 5.10.1 or 5.14 so maybe not ideal
 ## Cleanup data/test hashes, the order of the data is unintuitive
