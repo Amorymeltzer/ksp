@@ -135,7 +135,9 @@ if (!$opt{average} && !$opt{tests}) {
 
 
 ### FILE DEFINITIONS
+my $scidefName = 'ScienceDefs.cfg';
 my $scidef = 'ScienceDefs.cfg';
+my $persName = 'persistent.sfs';
 my $pers = 'persistent.sfs';
 
 my $path;
@@ -149,12 +151,12 @@ if (!$opt{gamelocation}) {
   }
 } else {
   $path = $opt{gamelocation};
-  $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
+  $scidef = $path.'GameData/Squad/Resources/'.$scidefName;
 }
 
 if ($opt{username}) {
-  $scidef = $path.'GameData/Squad/Resources/ScienceDefs.cfg';
-  $pers = $path."saves/$opt{username}/persistent.sfs";
+  $scidef = $path.'GameData/Squad/Resources/'.$scidefName;
+  $pers = $path."saves/$opt{username}/".$persName;
 }
 
 # Test files for existance
