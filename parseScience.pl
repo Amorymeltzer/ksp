@@ -270,6 +270,7 @@ my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
 # Reverse-engineered caps for recovery missions and SCANsat data.  SubOrbited and
 # Orbited are messed up - the default values from Kerbin are inverted
 # elsewhere.  All SCANsat caps are 20
+# FIXME TODO
 my %recoCap = (
 	       Flew => 6,
 	       FlewBy => 7.2,
