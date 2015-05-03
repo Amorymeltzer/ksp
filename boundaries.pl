@@ -69,7 +69,7 @@ Kerbin FlyingHigh 18
   Ike InSpaceHigh 50
   Dres InSpaceHigh 25
   Jool FlyingHigh 120?
-  Jool InSpaceLow 138?
+  Jool InSpaceLow 200?
   Jool InSpaceHigh 4000
   Laythe FlyingHigh 10?
   Laythe InSpaceLow 15?
