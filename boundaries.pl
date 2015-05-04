@@ -17,7 +17,8 @@ my @universe = qw (Kerbin@FlyingHigh);
 while (<DATA>) {
   chomp;
   my @borders = split;
-  my $key = $borders[0]."@".$borders[1];
+  my $key = $borders[0].q{@}.$borders[1];
+
   $boundData{$key} = $borders[2];
 
   # Build sorted list for reference when sorting later
