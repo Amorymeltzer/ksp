@@ -273,7 +273,7 @@ my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
 # for SubOrbited and Orbited are inverted on Kerbin - it is, after all, easier
 # to trigger suborbited on Kerbin than it is for another planet, and
 # harder/easier to get orbited.  Currently doesn't account for that fact.
-# All SCANsat caps are 20
+# All SCANsat caps are 20 FIXME TODO
 my %recoCap = (
 	       Flew => 6,
 	       FlewBy => 7.2,
