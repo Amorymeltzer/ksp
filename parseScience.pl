@@ -351,9 +351,6 @@ close $defs or warn $ERRNO;
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0..scalar @testdef - 1) {
-  # Skip, for now
-  #next if $testdef[$i] =~ /^asteroid/;
-
   # Array of binary values, only need to do once per test
   my @sits = split //,$sitmask[$i];
   my @bins = split //,$biomask[$i];
@@ -536,7 +533,6 @@ close $file or warn $ERRNO;
 # Build the matrix
 foreach (0..scalar @test - 1) {
   # Exclude tests stored in separate hashes
-  #  next if $test[$_] =~ m/^$scansat|^$recovery|^asteroid/;
   next if $test[$_] =~ m/^$scansat|^$recovery/;
   if ($biome[$_]) {
     my $percL = calcPerc($sci[$_],$cap[$_]);
