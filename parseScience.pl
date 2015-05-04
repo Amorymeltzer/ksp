@@ -269,15 +269,16 @@ my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh)
 my @recoSits = qw (Flew FlewBy SubOrbited Orbited Surfaced);
 my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
 
-# Reverse-engineered caps for recovery missions and SCANsat data.  SubOrbited and
-# Orbited are messed up - the default values from Kerbin are inverted
-# elsewhere.  All SCANsat caps are 20
-# FIXME TODO
+# Reverse-engineered caps for recovery missions and SCANsat data.  The values
+# for SubOrbited and Orbited are inverted on Kerbin - it is, after all, easier
+# to trigger suborbited on Kerbin than it is for another planet, and
+# harder/easier to get orbited.  Currently doesn't account for that fact.
+# All SCANsat caps are 20
 my %recoCap = (
 	       Flew => 6,
 	       FlewBy => 7.2,
-	       SubOrbited => 9.6,
-	       Orbited => 12,
+	       SubOrbited => 12,
+	       Orbited => 9.6,
 	       Surfaced => 18
 	      );
 my $scanCap = 20;
