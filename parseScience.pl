@@ -7,9 +7,11 @@
 # Leftover science in red, candidates for manual cleanup in green
 
 ### Add support for:
-## Asteroids
+## ISRU scanning
+### 10 science for scan?
 
 ### FIXES, TODOS
+## asteroidSamples landed at VAB, etc?
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Incorporate multiplier?  Might look weird...
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
