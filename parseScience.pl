@@ -12,6 +12,7 @@
 
 ### FIXES, TODOS
 ## asteroidSamples landed at VAB, etc?
+## Asteroids in separate sheet
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Incorporate multiplier?  Might look weird...
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
