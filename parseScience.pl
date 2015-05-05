@@ -258,7 +258,7 @@ my %universe = (
 		Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
 		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
 		Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater) ],
-		Bop => [ qw (Poles Slopes Peaks Valley Rodges) ],
+		Bop => [ qw (Poles Slopes Peaks Valley Ridges) ],
 		Pol => [ qw (Poles Lowlands Midlands Highlands) ],
 		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons
 			       Highlands Craters) ]
