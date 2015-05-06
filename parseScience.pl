@@ -14,6 +14,7 @@
 ## asteroidSamples landed at VAB, etc?
 ## Asteroids in separate sheet
 ## Can you do srfsplashed in every biome on other planets with water?
+## Check Major Crater triplication
 ## Incorporate multiplier?  Might look weird...
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
