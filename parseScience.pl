@@ -101,9 +101,7 @@ if ($dotfile) {
     s/ //g;
     my @config = split /=/;
 
-    if ($config[0] eq 'username') {
-      $opt{$config[0]} = $config[1];
-    } elsif ($config[0] eq 'gamelocation') {
+    if ($config[0] =~ /username|gamelocation/) {
       $opt{$config[0]} = $config[1];
     } elsif ($config[1] eq 'true') {
       $opt{$config[0]} = 1;
