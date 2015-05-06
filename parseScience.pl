@@ -271,7 +271,7 @@ my @recoSits = qw (Flew FlewBy SubOrbited Orbited Surfaced);
 my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
 
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
-# and Orbited are inverted on Kerbin, performed later.
+# and Orbited are inverted on Kerbin, handled later.
 my %recoCap = (
 	       Flew => 6,
 	       FlewBy => 7.2,
@@ -417,14 +417,13 @@ if ($opt{ksckerbin}) {
 # Build recovery hash
 foreach my $planet (0..$planetCount) {
   next if $planets[$planet] eq $ksc;
-  my @situations = @recoSits;
 
-  # Only one of Flew or FlewBy
-  shift @situations;
+  my @situations = @recoSits;
+  shift @situations;		# Either Flew or FlewBy, not both
   # Kerbin is special of course
   if ($planets[$planet] eq 'Kerbin') {
-    $situations[0] = 'Flew';
-    pop @situations;
+    $situations[0] = 'Flew';	# No FlewBy
+    pop @situations;		# No Surfaced
   }
 
   foreach my $sit (0..scalar @situations - 1) {
@@ -434,8 +433,8 @@ foreach my $planet (0..$planetCount) {
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
     my $cleft;
 
-    # Kerbin's values for (sub)orbital recovery are inverted, since you're
-    # coming from the other direction.  Probably a neater way to do this.
+    # Kerbin's values for (sub)orbital recovery are inverted elsewhere, since
+    # you're coming the other way.  Probably a neater way to do this.
     if ($planets[$planet] eq 'Kerbin' && $situations[$sit] eq 'Orbited') {
       $cleft = $sbVal*$recoCap{'SubOrbited'};
     } elsif ($planets[$planet] eq 'Kerbin' && $situations[$sit] eq 'SubOrbited') {
