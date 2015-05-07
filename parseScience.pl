@@ -132,17 +132,22 @@ my %negated = (
 	       e => 'excludeexcel',
 	       o => 'outputavgtable'
 	      );
-my @negatableOpts = keys %opt;
-foreach my $negate (@negatableOpts) {
-  my $ng8 = substr $negate, 0, 1; # Short key for %opts
-  my $Ung8 = uc $ng8;		  # Uppercase key for negated option
 
-  if ($opts{$Ung8}) {
-    $opt{$negate} = 0;
-  } elsif ($opts{$ng8}) {
-    $opt{$negate} = $opts{$ng8};
+# This serves two functions: Not only does it supersede commandline flags over
+# config values, but it properly negates any flags anywhere.  Ensures negation
+# precedence through the inverted sort
+foreach my $flag (sort {$b cmp $a} keys %opts) {
+  my $flagUC = uc $flag;
+  my $flagLC = lc $flag;
+  next if !$negated{$flagLC};
+
+  if ($flag eq $flagUC) {
+    $opt{$negated{$flagLC}} = 0;
+  } elsif ($opts{$flag}) {
+    $opt{$negated{$flagLC}} = $opts{$flag};
   }
 }
+
 
 # Don't bother outputting average file if there ain't any averages to save
 if (!$opt{average} && !$opt{tests}) {
