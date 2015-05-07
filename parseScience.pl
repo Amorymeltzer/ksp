@@ -117,6 +117,21 @@ if ($dotfile) {
 
 # Overwrite config file options if the corresponding flag is on the commandline
 # Negated options always take precedence
+my %negated = (
+	       g => 'gamelocation',
+	       u => 'username',
+	       a => 'average',
+	       t => 'tests',
+	       s => 'scienceleft',
+	       p => 'percentdone',
+	       i => 'includescansat',
+	       k => 'ksckerbin',
+	       m => 'moredata',
+	       c => 'csv',
+	       n => 'noformat',
+	       e => 'excludeexcel',
+	       o => 'outputavgtable'
+	      );
 my @negatableOpts = keys %opt;
 foreach my $negate (@negatableOpts) {
   my $ng8 = substr $negate, 0, 1; # Short key for %opts
