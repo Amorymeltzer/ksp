@@ -42,23 +42,29 @@ if ($opts{h}) {
   exit;
 }
 
+# Correlate commandline flags with their corresponding config options
+my %lookup = (
+	      g => 'gamelocation',
+	      u => 'username',
+	      a => 'average',
+	      t => 'tests',
+	      s => 'scienceleft',
+	      p => 'percentdone',
+	      i => 'includescansat',
+	      k => 'ksckerbin',
+	      m => 'moredata',
+	      c => 'csv',
+	      n => 'noformat',
+	      e => 'excludeexcel',
+	      o => 'outputavgtable'
+	     );
+
 ### ENVIRONMENT VARIABLES
-# Replaced from the %opts table
-my %opt = (
-	   gamelocation => 0,
-	   username => 0,
-	   average => 0,
-	   tests => 0,
-	   scienceleft => 0,
-	   percentdone => 0,
-	   includescansat => 0,
-	   ksckerbin => 0,
-	   moredata => 0,
-	   csv => 0,
-	   noformat => 0,
-	   excludeexcel => 0,
-	   outputavgtable => 0
-	  );
+## Build %opt hash, using above lookup table.  Replaced from the %opts table.
+my %opt;
+foreach my $key (keys %lookup) {
+  $opt{$lookup{$key}} = 0;
+}
 
 ## .parsesciencerc config file
 my $dotfile;
@@ -115,36 +121,19 @@ if ($dotfile) {
   close $dot or warn $ERRNO;
 }
 
-# Overwrite config file options if the corresponding flag is on the commandline
-# Negated options always take precedence
-my %negated = (
-	       g => 'gamelocation',
-	       u => 'username',
-	       a => 'average',
-	       t => 'tests',
-	       s => 'scienceleft',
-	       p => 'percentdone',
-	       i => 'includescansat',
-	       k => 'ksckerbin',
-	       m => 'moredata',
-	       c => 'csv',
-	       n => 'noformat',
-	       e => 'excludeexcel',
-	       o => 'outputavgtable'
-	      );
 
-# This serves two functions: Not only does it supersede commandline flags over
-# config values, but it properly negates any flags anywhere.  Ensures negation
-# precedence through the inverted sort
+# This serves two functions: Not only does it override config valyes with
+# commandline flags, but it properly negates any flags anywhere.  Ensures
+# negation precedence through the inverted sort
 foreach my $flag (sort {$b cmp $a} keys %opts) {
   my $flagUC = uc $flag;
   my $flagLC = lc $flag;
-  next if !$negated{$flagLC};
+  next if !$lookup{$flagLC};
 
   if ($flag eq $flagUC) {
-    $opt{$negated{$flagLC}} = 0;
+    $opt{$lookup{$flagLC}} = 0;
   } elsif ($opts{$flag}) {
-    $opt{$negated{$flagLC}} = $opts{$flag};
+    $opt{$lookup{$flagLC}} = $opts{$flag};
   }
 }
 
