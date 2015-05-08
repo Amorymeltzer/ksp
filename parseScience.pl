@@ -7,8 +7,8 @@
 # Leftover science in red, candidates for manual cleanup in green
 
 ### Add support for:
-## ISRU scanning
-### 10 science for scan?
+## ISRU scanning?
+### 10 science for scan*recovery multiplier?
 
 ### FIXES, TODOS
 ## asteroidSamples landed at VAB, etc?
