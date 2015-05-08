@@ -302,6 +302,8 @@ my $scansat = 'SCANsat';
 my $scansatMap = 'SCANsatMapping';
 my $ksc = 'KSC';
 
+# Only color science if below this threshold
+my $threshold = 95;
 
 ### Begin!
 # Construct sbv hash
@@ -844,10 +846,10 @@ sub writeToExcel
 
     $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
     if ($opt{moredata}) {
-      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[9] < 95;
-      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] >0));
+      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[9] < $threshold;
+      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] > 0));
     } else {
-      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed ) if ${$hashRef}{$matrixKey}[6] < 95;
+      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed ) if ${$hashRef}{$matrixKey}[6] < $threshold;
     }
 
     $workVars{$sheetName}[1]++;
