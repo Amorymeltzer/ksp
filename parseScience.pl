@@ -50,7 +50,7 @@ my %lookup = (
 	      t => 'tests',
 	      s => 'scienceleft',
 	      p => 'percentdone',
-	      i => 'includescansat',
+	      i => 'scansat',
 	      k => 'ksckerbin',
 	      m => 'moredata',
 	      c => 'csv',
@@ -456,7 +456,7 @@ foreach my $planet (0..$planetCount) {
 }
 
 # Build SCANsat hash
-if ($opt{includescansat}) {
+if ($opt{scansat}) {
   foreach my $planet (0..$planetCount) {
     # No scanning for KSC biomes
     # But *technically* you can scan Jool and Kerbol
@@ -508,7 +508,7 @@ while (<$file>) {
 	$recoTicker = 1;
 	$value =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
 	@pieces = (split /@/, $value);
-      } elsif ($opt{includescansat} && $value =~ m/^$scansat/) {
+      } elsif ($opt{scansat} && $value =~ m/^$scansat/) {
 	$scanTicker = 1;
 	$value =~ s/^$scansat(.*)\@(.*)InSpaceHighsurface$/$scansat\@$2\@$1/g;
 	@pieces = (split /@/, $value);
@@ -542,7 +542,7 @@ while (<$file>) {
       if ($recoTicker == 1) {
 	my $percL = calcPerc($sci[-1],$cap[-1]);
 	$reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$percL];
-      } elsif ($opt{includescansat} && $scanTicker == 1) {
+      } elsif ($opt{scansat} && $scanTicker == 1) {
 	my $percL = calcPerc($sci[-1],$cap[-1]);
 	$scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$percL];
       }
@@ -611,7 +611,7 @@ if (!$opt{excludeexcel}) {
   # Recovery widths, manually determined
   columnWidths($workVars{$recov}[0],9.17,6.5,9);
 
-  if ($opt{includescansat}) {
+  if ($opt{scansat}) {
     $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
     $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
 
@@ -670,7 +670,7 @@ foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
   }
 }
 # SCANsat
-if ($opt{includescansat}) {
+if ($opt{scansat}) {
   foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
     dataSplice(\@{$scan{$key}}) if !$opt{moredata};
     writeToExcel($scansat,\@{$scan{$key}},$key,\%scan) if !$opt{excludeexcel};
@@ -881,7 +881,7 @@ sub average1
 
     if ($opt{tests}) {
       push @{$arrayRef}, $recovery; # Neater spacing in test averages output
-      push @{$arrayRef}, $scansatMap if $opt{includescansat};
+      push @{$arrayRef}, $scansatMap if $opt{scansat};
       @{$arrayRef} = sort @{$arrayRef};
     }
 
@@ -891,7 +891,7 @@ sub average1
 
     if (!$opt{tests}) {
       printAverageTable($recov,$hashRef);
-      printAverageTable($scansat,$hashRef) if $opt{includescansat};
+      printAverageTable($scansat,$hashRef) if $opt{scansat};
     }
 
     return;
