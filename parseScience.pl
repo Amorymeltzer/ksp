@@ -147,9 +147,9 @@ if (!$opt{average} && !$opt{tests}) {
 
 ### FILE DEFINITIONS
 my $scidefName = 'ScienceDefs.cfg';
-my $scidef = 'ScienceDefs.cfg';
+my $scidef = $scidefName;
 my $persName = 'persistent.sfs';
-my $pers = 'persistent.sfs';
+my $pers = $persName;
 my $gdsr = 'GameData/Squad/Resources/';
 
 my $path;
