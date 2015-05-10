@@ -402,7 +402,7 @@ foreach my $i (0..scalar @testdef - 1) {
 	next if $atmo[$i] == 1;
       }
       # Fold KSC into Kerbin, if need be
-      # Inconvenient, ruined by the cleaning funciton later
+      # Inconvenient, ruined by the cleaning function later
       if ($stavro eq $ksc && $opt{ksckerbin}) {
 	$stavro = 'Kerbin';
       }
