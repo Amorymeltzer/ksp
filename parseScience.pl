@@ -12,7 +12,6 @@
 
 ### FIXES, TODOS
 ## asteroidSamples landed at VAB, etc?
-## Asteroids in separate sheet
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Check Major Crater triplication
 ## Incorporate multiplier?  Might look weird...
@@ -35,7 +34,7 @@ use English qw( -no_match_vars );
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPiIkKzZmMcCnNeEoOg:Gu:Uf:h', \%opts);
+getopts('aAtTsSpPiIkKmMcCnNeEoOg:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -52,7 +51,6 @@ my %lookup = (
 	      p => 'percentdone',
 	      i => 'scansat',
 	      k => 'ksckerbin',
-	      z => 'asteroidalone',
 	      m => 'moredata',
 	      c => 'csv',
 	      n => 'noformat',
@@ -950,10 +948,10 @@ sub printAverageTable
 sub usage
   {
     print <<USAGE;
-Usage: $PROGRAM_NAME [-atspikzmcneo -h -f path/to/dotfile ]
+Usage: $PROGRAM_NAME [-atspikmcneo -h -f path/to/dotfile ]
        $PROGRAM_NAME [-g <game_location> -u <savefile_name>]
 
-       $PROGRAM_NAME [-ATSPIKZMCNEO -G -U] -> Turn off a given option
+       $PROGRAM_NAME [-ATSPIKMCNEO -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
@@ -965,7 +963,6 @@ Usage: $PROGRAM_NAME [-atspikzmcneo -h -f path/to/dotfile ]
 
       -i Include data from SCANsat
       -k List data from KSC biomes as being from Kerbin (same Excel worksheet)
-      -z List asteroid samples in a separate Excel worksheet
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
       -c Output data to csv file as well
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
