@@ -174,36 +174,10 @@ if ($opt{username}) {
 }
 
 # Test files for existance
-# Should probably subroutine this FIXME TODO
-# ScienceDefs.cfg
-my $last_scidef = pop @scidefLocales;
-foreach my $place (@scidefLocales) {
-  $scidef = $place;
-  if (-e $scidef) {
-    last;
-  } else {
-    warnNicely("No ScienceDefs.cfg file found at $scidef");
-  }
-}
-if (!-e $scidef) {
-  $scidef = $last_scidef;
-  warnNicely("No ScienceDefs.cfg file found at $scidef", 1) if !-e $scidef;
-}
-# persistent.sfs
-my $last_pers = pop @persLocales;
-foreach my $place (@persLocales) {
-  $pers = $place;
-  if (-e $pers) {
-    last;
-  } else {
-    warnNicely("No persistent.sfs file found at $pers");
-  }
-}
-if (!-e $pers) {
-  $pers = $last_pers;
-  warnNicely("No persistent.sfs file found at $pers", 1) if !-e $pers;
-}
+$scidef = checkFiles($scidef,$scidefName,\@scidefLocales);
+$pers = checkFiles($pers,$persName,\@persLocales);
 
+# Only load if necessary
 if (!$opt{excludeexcel}) {
   require Excel::Writer::XLSX;
 }
@@ -763,6 +737,28 @@ sub warnNicely
     exit if $ilynPayne;
 
     return;
+  }
+
+sub checkFiles
+  {
+    my ($check,$name,$locRef) = @_;
+    my $lastOne = pop @{$locRef};
+
+    foreach my $place (@{$locRef}) {
+      $check = $place;
+      if (-e $check) {
+	last;
+      } else {
+	warnNicely("No $name file found at $check");
+      }
+    }
+
+    if (!-e $check) {
+      $check = $lastOne;
+      warnNicely("No $name file found at $check", 1) if !-e $check;
+    }
+
+    return $check;
   }
 
 # Convert string to binary, pad to six digits
