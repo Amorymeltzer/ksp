@@ -178,9 +178,8 @@ if ($opt{username}) {
 # ScienceDefs.cfg
 my $last_scidef = pop @scidefLocales;
 foreach my $place (@scidefLocales) {
-  print "$place\n";
-  if (-e $place) {
-    $scidef = $place;
+  $scidef = $place;
+  if (-e $scidef) {
     last;
   } else {
     warnNicely("No ScienceDefs.cfg file found at $scidef");
@@ -193,9 +192,8 @@ if (!-e $scidef) {
 # persistent.sfs
 my $last_pers = pop @persLocales;
 foreach my $place (@persLocales) {
-  print "$place\n";
-  if (-e $place) {
-    $pers = $place;
+  $pers = $place;
+  if (-e $pers) {
     last;
   } else {
     warnNicely("No persistent.sfs file found at $pers\n");
@@ -203,7 +201,7 @@ foreach my $place (@persLocales) {
 }
 if (!-e $pers) {
   $pers = $last_pers;
-  warnNicely("No persistent.sfs file found at $pers",1) if !-e $scidef;
+  warnNicely("No persistent.sfs file found at $pers",1) if !-e $pers;
 }
 
 if (!$opt{excludeexcel}) {
