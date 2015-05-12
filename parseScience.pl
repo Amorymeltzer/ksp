@@ -183,7 +183,7 @@ foreach my $place (@scidefLocales) {
     $scidef = $place;
     last;
   } else {
-    warnNicely("No ScienceDefs.cfg file found at $scidef", 0);
+    warnNicely("No ScienceDefs.cfg file found at $scidef");
   }
 }
 foreach my $place (@persLocales) {
@@ -192,7 +192,7 @@ foreach my $place (@persLocales) {
     $pers = $place;
     last;
   } else {
-    warnNicely("No persistent.sfs file found at $pers\n", 0);
+    warnNicely("No persistent.sfs file found at $pers\n");
   }
 }
 
