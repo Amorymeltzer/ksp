@@ -146,9 +146,9 @@ if (!$opt{average} && !$opt{tests}) {
 
 ### FILE DEFINITIONS
 my $scidefName = 'ScienceDefs.cfg';
-my $scidef = $scidefName;
+my $scidef;
 my $persName = 'persistent.sfs';
-my $pers = $persName;
+my $pers;
 my $gdsr = 'GameData/Squad/Resources/';
 
 my @scidefLocales = ("$cwd/$scidefName","$scriptDir/$scidefName");
@@ -165,14 +165,11 @@ if (!$opt{gamelocation}) {
   }
 } else {
   $path = $opt{gamelocation};
-  $scidef = $path.$gdsr.$scidefName;
   @scidefLocales = ($path.$gdsr.$scidefName,@scidefLocales);
 }
 
 if ($opt{username}) {
-  $scidef = $path.$gdsr.$scidefName;
   @scidefLocales = ($path.$gdsr.$scidefName,@scidefLocales);
-  $pers = $path."saves/$opt{username}/".$persName;
   @persLocales = ($path."saves/$opt{username}/".$persName,@persLocales);
 }
 
@@ -195,6 +192,7 @@ foreach my $place (@persLocales) {
     warnNicely("No persistent.sfs file found at $pers\n");
   }
 }
+
 
 if (!$opt{excludeexcel}) {
   require Excel::Writer::XLSX;
