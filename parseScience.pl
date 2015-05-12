@@ -151,6 +151,9 @@ my $persName = 'persistent.sfs';
 my $pers = $persName;
 my $gdsr = 'GameData/Squad/Resources/';
 
+my @scidefLocales = ("$cwd/$scidefName","$scriptDir/$scidefName");
+my @persLocales = ("$cwd/$persName","$scriptDir/$persName");
+
 my $path;
 if (!$opt{gamelocation}) {
   if ($OSNAME eq 'darwin') {
@@ -163,11 +166,14 @@ if (!$opt{gamelocation}) {
 } else {
   $path = $opt{gamelocation};
   $scidef = $path.$gdsr.$scidefName;
+  @scidefLocales = ($path.$gdsr.$scidefName,@scidefLocales);
 }
 
 if ($opt{username}) {
   $scidef = $path.$gdsr.$scidefName;
+  @scidefLocales = ($path.$gdsr.$scidefName,@scidefLocales);
   $pers = $path."saves/$opt{username}/".$persName;
+  @persLocales = ($path."saves/$opt{username}/".$persName,@persLocales);
 }
 
 # Test files for existance
