@@ -144,12 +144,12 @@ if (!$opt{average} && !$opt{tests}) {
 
 
 ### FILE DEFINITIONS
-my $scidefName = 'ScienceDefs.cfg';
 my $scidef;
-my $persName = 'persistent.sfs';
 my $pers;
-my $gdsr = 'GameData/Squad/Resources/';
 my $path;
+my $scidefName = 'ScienceDefs.cfg';
+my $persName = 'persistent.sfs';
+my $gdsr = 'GameData/Squad/Resources/';
 
 # Build and iterate through all potential options
 my @scidefLocales = ("$cwd/$scidefName","$scriptDir/$scidefName");
@@ -176,6 +176,7 @@ if ($opt{username}) {
 # Test files for existance
 # Should probably subroutine this FIXME TODO
 # ScienceDefs.cfg
+my $last_scidef = pop @scidefLocales;
 foreach my $place (@scidefLocales) {
   print "$place\n";
   if (-e $place) {
@@ -185,7 +186,12 @@ foreach my $place (@scidefLocales) {
     warnNicely("No ScienceDefs.cfg file found at $scidef");
   }
 }
+if (!-e $scidef) {
+  $scidef = $last_scidef;
+  warnNicely("No ScienceDefs.cfg file found at $scidef",1) if !-e $scidef;
+}
 # persistent.sfs
+my $last_pers = pop @persLocales;
 foreach my $place (@persLocales) {
   print "$place\n";
   if (-e $place) {
@@ -195,7 +201,10 @@ foreach my $place (@persLocales) {
     warnNicely("No persistent.sfs file found at $pers\n");
   }
 }
-
+if (!-e $pers) {
+  $pers = $last_pers;
+  warnNicely("No persistent.sfs file found at $pers",1) if !-e $scidef;
+}
 
 if (!$opt{excludeexcel}) {
   require Excel::Writer::XLSX;
