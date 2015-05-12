@@ -177,8 +177,24 @@ if ($opt{username}) {
 }
 
 # Test files for existance
-warnNicely("No ScienceDefs.cfg file found at $scidef", 1) if !-e $scidef;
-warnNicely("No persistent.sfs file found at $pers\n", 1) if !-e $pers;
+foreach my $place (@scidefLocales) {
+  print "$place\n";
+  if (-e $place) {
+    $scidef = $place;
+    last;
+  } else {
+    warnNicely("No ScienceDefs.cfg file found at $scidef", 0);
+  }
+}
+foreach my $place (@persLocales) {
+  print "$place\n";
+  if (-e $place) {
+    $pers = $place;
+    last;
+  } else {
+    warnNicely("No persistent.sfs file found at $pers\n", 0);
+  }
+}
 
 if (!$opt{excludeexcel}) {
   require Excel::Writer::XLSX;
