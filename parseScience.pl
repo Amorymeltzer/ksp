@@ -17,7 +17,6 @@
 ## Incorporate multiplier?  Might look weird...
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
-## Scidefs when in another folder, generic path stuff
 
 ## Given/while?  Requires 5.10.1 or 5.14 so maybe not ideal
 ## Cleanup data/test hashes, the order of the data is unintuitive
@@ -150,11 +149,12 @@ my $scidef;
 my $persName = 'persistent.sfs';
 my $pers;
 my $gdsr = 'GameData/Squad/Resources/';
+my $path;
 
+# Build and iterate through all potential options
 my @scidefLocales = ("$cwd/$scidefName","$scriptDir/$scidefName");
 my @persLocales = ("$cwd/$persName","$scriptDir/$persName");
 
-my $path;
 if (!$opt{gamelocation}) {
   if ($OSNAME eq 'darwin') {
     $path = '/Applications/KSP_osx/';
@@ -174,6 +174,8 @@ if ($opt{username}) {
 }
 
 # Test files for existance
+# Should probably subroutine this FIXME TODO
+# ScienceDefs.cfg
 foreach my $place (@scidefLocales) {
   print "$place\n";
   if (-e $place) {
@@ -183,6 +185,7 @@ foreach my $place (@scidefLocales) {
     warnNicely("No ScienceDefs.cfg file found at $scidef");
   }
 }
+# persistent.sfs
 foreach my $place (@persLocales) {
   print "$place\n";
   if (-e $place) {
