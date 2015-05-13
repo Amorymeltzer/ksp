@@ -137,13 +137,6 @@ foreach my $flag (sort {$b cmp $a} keys %opts) {
 }
 
 
-# Don't bother outputting average file if there ain't any averages to save
-if (!$opt{average} && !$opt{tests}) {
-  $opt{outputavgtable} = 0;
-  warnNicely('outputavgtable option given but no data table selected (-a or -t).  Skipping...');
-}
-
-
 ### FILE DEFINITIONS
 my ($scidef,$pers,$path);
 my $scidefName = 'ScienceDefs.cfg';
@@ -175,6 +168,13 @@ if ($opt{username}) {
 # Test files for existance
 $scidef = checkFiles($scidef,$scidefName,\@scidefLocales);
 $pers = checkFiles($pers,$persName,\@persLocales);
+
+
+# Don't bother outputting average file if there ain't any averages to save
+if (!$opt{average} && !$opt{tests}) {
+  $opt{outputavgtable} = 0;
+  warnNicely('outputavgtable option given but no data table selected (-a or -t).  Skipping...');
+}
 
 # Only load if necessary
 if (!$opt{excludeexcel}) {
