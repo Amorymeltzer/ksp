@@ -7,7 +7,7 @@ Perl scripts to help with Kerbal Space Program.
 Return a list of science points remaining and obtained so far, helpfully organized by planet/moon. Includes KSC and vessel recovery and supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
 #### 1. Requirements
-- KSP (v1.0.0)
+- KSP (v1.0.x)
 - Perl (Comes with OSX and Linux; Windows users will need [Strawberry Perl](http://strawberryperl.com/) or the like)
 - Excel::Writer::XLSX, if you want your output in a spreadsheet
     -  (Install via the terminal: `cpan Excel::Writer::XLSX` (recommended) or get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
@@ -36,7 +36,7 @@ average = true
 tests = true
 scienceleft = true
 percentdone = true
-escansat = true
+scansat = true
 ksckerbin = true
 moredata = true
 csv = true
@@ -78,7 +78,7 @@ Usage: parseScience.pl [-atspikmcneo -h -f path/to/dotfile ]
 ````
 
 #### 4. Todo
-- Asteroids
+- ISRU science, perhaps
 - More Windows/Mac/Linux-appropriate paths to Gamedata
 
 ### deltaVScience.pl
