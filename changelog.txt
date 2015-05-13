@@ -7,7 +7,7 @@ Correct handling of (Sub)Orbited values for Kerbin and the rest of the universe
 	- Only showed up before you orbited Kerbin
 Better handling of local(ish) persistent.sfs and ScienceDefs.cfg files
 Fix typo in Bop biome
-FIx missed Bop biome
+Fix missed Bop biome
 
 Version 0.95.3 - 2015-04-29
 -------------------------
