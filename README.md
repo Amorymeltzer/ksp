@@ -79,7 +79,7 @@ Usage: parseScience.pl [-atspikmcneo -h -f path/to/dotfile ]
 
 #### 4. Todo
 - ISRU science, perhaps
-- More Windows/Mac/Linux-appropriate paths to Gamedata
+- More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
 
 ### deltaVScience.pl
 **Roughly** estimate science point ROI as science per delta-V needed per planet/moon.  Uses [average table](./average_table.txt) output from `parseScience.pl` (-a or -as).  Scaled semi-arbitrarily.
