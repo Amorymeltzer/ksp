@@ -98,7 +98,7 @@ if ($dotfile) {
     next if m/^#/g;		# Ignore comments
     next if !$_;		# Ignore blank lines
 
-    if (!m/^.+ = .+/) {		# Ignore and warn on malformed entries
+    if (!m/^\w+ = \w+/) {		# Ignore and warn on malformed entries
       warnNicely("Malformed entry '$_' at line $NR of $dotfile.  Skipping...");
       next;
     }
