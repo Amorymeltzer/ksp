@@ -15,6 +15,7 @@
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Check Major Crater triplication
 ## Incorporate multiplier?  Might look weird...
+## Report data per spob/condition/test
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
 
