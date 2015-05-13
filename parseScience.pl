@@ -145,9 +145,7 @@ if (!$opt{average} && !$opt{tests}) {
 
 
 ### FILE DEFINITIONS
-my $scidef;
-my $pers;
-my $path;
+my ($scidef,$pers,$path);
 my $scidefName = 'ScienceDefs.cfg';
 my $persName = 'persistent.sfs';
 my $gdsr = 'GameData/Squad/Resources/';
@@ -295,9 +293,7 @@ my %recoCap = (
 my $scanCap = 20;
 
 # Am I in a science, recovery, or SCANsat loop?
-my $ticker = '0';
-my $recoTicker = '0';
-my $scanTicker = '0';
+my ($ticker,$recoTicker,$scanTicker) = (0,0,0);
 
 # Sometimes I use one versus the other, mainly for spacing in averages table
 my $recov = 'Recov';
