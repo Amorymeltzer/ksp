@@ -98,7 +98,7 @@ if ($dotfile) {
     next if m/^#/g;		# Ignore comments
     next if !$_;		# Ignore blank lines
 
-    if (!m/^\w+ = \w+/) {		# Ignore and warn on malformed entries
+    if (!m/^\w+ = \w+/) {	# Ignore and warn on malformed entries
       warnNicely("Malformed entry '$_' at line $NR of $dotfile.  Skipping...");
       next;
     }
@@ -348,8 +348,7 @@ while (<$defs>) {
       $value = binary($value);
       @biomask = (@biomask,$value);
     } elsif ($key eq 'requireAtmosphere') {
-      @atmo = (@atmo,'1') if $value eq 'True'; # Waiting for fix to sciencedefs
-      @atmo = (@atmo,'0') if $value eq 'False';
+      @atmo = (@atmo,$value);
     } elsif ($key eq 'dataScale') {
       @dataScale = (@dataScale,$value);
     } elsif ($key eq 'scienceCap') {
@@ -398,7 +397,7 @@ foreach my $i (0..scalar @testdef - 1) {
       # Atmosphere
       if ($stavro !~ m/^$ksc$|^Kerbin$|^Eve$|^Duna$|^Jool$|^Laythe$/) {
 	next if $situations[$sit] =~ m/^FlyingLow$|^FlyingHigh$/;
-	next if $atmo[$i] == 1;
+	next if $atmo[$i] eq 'True';
       }
       # Fold KSC into Kerbin, if need be
       # Inconvenient, ruined by the cleaning function later
