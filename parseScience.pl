@@ -432,13 +432,15 @@ foreach my $planet (0..$planetCount) {
   # Kerbin is special of course
   if ($planets[$planet] eq 'Kerbin') {
     $situations[0] = 'Flew';	# No FlewBy
-    pop @situations;		# No Surfaced
   }
 
-  foreach my $sit (0..scalar @situations - 1) {
-    # No surface
-    next if (($situations[$sit] eq 'Surfaced') && ($planets[$planet] =~ m/^Kerbol|^Jool/));
+  # No Surfaced
+  if ($planets[$planet] =~ m/^Kerbol|^Jool|^Kerbin/) {
+    pop @situations;
+  }
 
+
+  foreach my $sit (0..scalar @situations - 1) {
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
     my $cleft;
 
