@@ -43,6 +43,7 @@ csv = true
 noformat = true
 excludeexcel = true
 outputavgtable = true
+report = true
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 

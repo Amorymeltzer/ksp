@@ -34,7 +34,7 @@ use English qw( -no_match_vars );
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPiIkKmMcCnNeEoOg:Gu:Uf:h', \%opts);
+getopts('aAtTsSpPiIkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -55,7 +55,8 @@ my %lookup = (
 	      c => 'csv',
 	      n => 'noformat',
 	      e => 'excludeexcel',
-	      o => 'outputavgtable'
+	      o => 'outputavgtable',
+	      r => 'report'
 	     );
 
 ### ENVIRONMENT VARIABLES
