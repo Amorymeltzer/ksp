@@ -195,6 +195,7 @@ my %sbvData;		      # sbv values from END data
 my %workVars;		      # Hash of arrays to hold worksheets, current row
 my %spobData;		      # Science per spob
 my %testData;		      # Science per test
+my %report;		      # Hold basic report data
 
 # ScienceDefs.cfg variables
 my (
@@ -895,6 +896,12 @@ sub buildScienceData
     }
     ${$dataRef}{$ind}[1]++;
 
+    return;
+  }
+
+  # Build report
+sub buildReportData
+  {
     return;
   }
 
