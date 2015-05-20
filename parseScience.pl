@@ -663,7 +663,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
   if ($opt{report}) {
     # Just pull the spob
-    buildReportData($key,$dataMatrix{$key}[0],$planet,\%report,\%dataMatrix);
+    buildReportData($key,$planet, $dataMatrix{$key}[0],\%dataMatrix);
   }
 }
 # Recovery
@@ -728,6 +728,14 @@ if ($opt{average} || $opt{tests}) {
 }
 close $avgOut or warn $ERRNO if  $opt{outputavgtable};
 
+foreach my $key (sort keys %report) {
+  print "$key\t";
+  foreach my $subj (keys %{$report{$key}}) {
+    #print "\t$subj\na";
+    print "$report{$key}{$subj}\t";
+  }
+  print "\n";
+}
 
 ### SUBROUTINES
 sub warnNicely
@@ -907,11 +915,10 @@ sub buildScienceData
 # Build report
 sub buildReportData
   {
-    my ($key,$tes,$spo,$dataRef,$hashRef) = @_;
-    print "$key\t$spo\t$tes\n";
+    my ($key,$spo,$tes,$hashRef) = @_;
     if ($opt{moredata}) {
-      ${$dataRef}{$spo}{$tes} += ${$hashRef}{$key}[9];
-    } else {
+      $report{$spo}{$tes} += ${$hashRef}{$key}[9];
+    #} else {
       #${$dataRef}{$ind}[0] += ${$hashRef}{$key}[6];
     }
 
