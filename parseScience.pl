@@ -663,7 +663,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
   if ($opt{report}) {
     # Just pull the spob
-    buildReportData($key,$dataMatrix{$key}[0],$dataMatrix{$key}[1],\%report,\%dataMatrix);
+    buildReportData($key,$dataMatrix{$key}[0],$planet,\%report,\%dataMatrix);
   }
 }
 # Recovery
@@ -908,8 +908,6 @@ sub buildScienceData
 sub buildReportData
   {
     my ($key,$tes,$spo,$dataRef,$hashRef) = @_;
-    print "$key\t$spo\t$tes\n";
-    $spo =~ s/^.*@//;
     print "$key\t$spo\t$tes\n";
     if ($opt{moredata}) {
       ${$dataRef}{$spo}{$tes} += ${$hashRef}{$key}[9];
