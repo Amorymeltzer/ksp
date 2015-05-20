@@ -660,6 +660,11 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   } elsif ($opt{average}) {
     buildScienceData($key,$planet,\%spobData,\%dataMatrix);
   }
+
+  if ($opt{report}) {
+    # Just pull the spob
+    buildReportData($key,$dataMatrix{$key}[0],$dataMatrix{$key}[1],\%report,\%dataMatrix);
+  }
 }
 # Recovery
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
@@ -899,9 +904,19 @@ sub buildScienceData
     return;
   }
 
-  # Build report
+# Build report
 sub buildReportData
   {
+    my ($key,$tes,$spo,$dataRef,$hashRef) = @_;
+    print "$key\t$spo\t$tes\n";
+    $spo =~ s/^.*@//;
+    print "$key\t$spo\t$tes\n";
+    if ($opt{moredata}) {
+      ${$dataRef}{$spo}{$tes} += ${$hashRef}{$key}[9];
+    } else {
+      #${$dataRef}{$ind}[0] += ${$hashRef}{$key}[6];
+    }
+
     return;
   }
 
