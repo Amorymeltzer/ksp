@@ -731,7 +731,6 @@ close $avgOut or warn $ERRNO if  $opt{outputavgtable};
 foreach my $key (sort keys %report) {
   print "$key\t";
   foreach my $subj (keys %{$report{$key}}) {
-    #print "\t$subj\na";
     print "$report{$key}{$subj}\t";
   }
   print "\n";
@@ -918,8 +917,8 @@ sub buildReportData
     my ($key,$spo,$tes,$hashRef) = @_;
     if ($opt{moredata}) {
       $report{$spo}{$tes} += ${$hashRef}{$key}[9];
-    #} else {
-      #${$dataRef}{$ind}[0] += ${$hashRef}{$key}[6];
+    } else {
+      $report{$spo}{$tes} += ${$hashRef}{$key}[5];
     }
 
     return;
