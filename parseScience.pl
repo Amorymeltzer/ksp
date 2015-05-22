@@ -662,8 +662,11 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   }
 
   if ($opt{report}) {
-    # Just pull the spob
-    buildReportData($key,$planet, $dataMatrix{$key}[0],\%dataMatrix);
+    if ($opt{tests}) {
+      buildReportData($key,$dataMatrix{$key}[0],$dataMatrix{$key}[1],\%dataMatrix);
+    } elsif ($opt{average}) {
+      buildReportData($key,$planet,$dataMatrix{$key}[0],\%dataMatrix);
+    }
   }
 }
 # Recovery
