@@ -662,8 +662,10 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   }
 
   if ($opt{report}) {
+    # -t does spob V test instead of spob V condition, another option for
+    # condition V test (vice versa?)
     if ($opt{tests}) {
-      buildReportData($key,$dataMatrix{$key}[0],$dataMatrix{$key}[1],\%dataMatrix);
+      buildReportData($key,$planet,$dataMatrix{$key}[1],\%dataMatrix);
     } elsif ($opt{average}) {
       buildReportData($key,$planet,$dataMatrix{$key}[0],\%dataMatrix);
     }
