@@ -924,7 +924,7 @@ sub buildReportData
   {
     my ($key,$spo,$tes,$hashRef) = @_;
     if ($opt{moredata}) {
-      $report{$spo}{$tes} += ${$hashRef}{$key}[9];
+      $report{$spo}{$tes} += ${$hashRef}{$key}[8];
     } else {
       $report{$spo}{$tes} += ${$hashRef}{$key}[5];
     }
