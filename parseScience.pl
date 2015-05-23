@@ -738,10 +738,10 @@ print $reports "spob\t";
 foreach my $test (sort @testdef) {
   print $reports "$test\t";
 }
-print "\n";
+print $reports "\n";
 foreach my $key (sort keys %report) {
   print $reports "$key\t";
-  foreach my $subj (keys %{$report{$key}}) {
+  foreach my $subj (sort keys %{$report{$key}}) {
     print $reports "$report{$key}{$subj}\t";
   }
   print $reports "\n";
