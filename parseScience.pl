@@ -732,7 +732,10 @@ if ($opt{average} || $opt{tests}) {
   }
 }
 close $avgOut or warn $ERRNO if  $opt{outputavgtable};
-
+foreach my $test (sort @testdef) {
+  print "$test\t";
+}
+print "\n";
 foreach my $key (sort keys %report) {
   print "$key\t";
   foreach my $subj (keys %{$report{$key}}) {
