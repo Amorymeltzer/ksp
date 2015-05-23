@@ -731,19 +731,23 @@ if ($opt{average} || $opt{tests}) {
     average1($hashRef,$arrayRef);
   }
 }
-close $avgOut or warn $ERRNO if  $opt{outputavgtable};
+close $avgOut or warn $ERRNO if $opt{outputavgtable};
+
+open my $reports, '>', 'reports.csv' if $opt{report};
+print $reports "spob\t";
 foreach my $test (sort @testdef) {
-  print "$test\t";
+  print $reports "$test\t";
 }
 print "\n";
 foreach my $key (sort keys %report) {
-  print "$key\t";
+  print $reports "$key\t";
   foreach my $subj (keys %{$report{$key}}) {
-    print "$report{$key}{$subj}\t";
+    print $reports "$report{$key}{$subj}\t";
   }
-  print "\n";
+  print $reports "\n";
 }
-
+close $reports if $opt{report};
+  
 ### SUBROUTINES
 sub warnNicely
   {
