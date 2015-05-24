@@ -746,10 +746,11 @@ foreach my $key (sort keys %report) {
   foreach my $subj (sort keys %{$report{$key}}) {
     print $reports "$report{$key}{$subj}\t";
   }
-  print $reports "$report{$key}{$total}\n";
+  print $reports "\n";
 }
 close $reports if $opt{report};
-  
+
+
 ### SUBROUTINES
 sub warnNicely
   {
