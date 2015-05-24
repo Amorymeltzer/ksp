@@ -303,6 +303,7 @@ my $recovery = 'recovery';
 my $scansat = 'SCANsat';
 my $scansatMap = 'SCANsatMapping';
 my $ksc = 'KSC';
+my $total = 'total';
 
 # Only color science if below this threshold
 my $threshold = 95;
@@ -738,13 +739,14 @@ print $reports "spob\t";
 foreach my $test (sort @testdef) {
   print $reports "$test\t";
 }
-print $reports "\n";
+print $reports "$total\n";
+
 foreach my $key (sort keys %report) {
   print $reports "$key\t";
   foreach my $subj (sort keys %{$report{$key}}) {
     print $reports "$report{$key}{$subj}\t";
   }
-  print $reports "\n";
+  print $reports "$report{$key}{$total}\n";
 }
 close $reports if $opt{report};
   
@@ -929,8 +931,10 @@ sub buildReportData
     my ($key,$spo,$tes,$hashRef) = @_;
     if ($opt{moredata}) {
       $report{$spo}{$tes} += ${$hashRef}{$key}[8];
+      $report{$spo}{$total} += ${$hashRef}{$key}[8];
     } else {
       $report{$spo}{$tes} += ${$hashRef}{$key}[5];
+      $report{$spo}{$total} += ${$hashRef}{$key}[5];
     }
 
     return;
