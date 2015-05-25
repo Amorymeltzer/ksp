@@ -743,8 +743,14 @@ print $reports "$total\n";
 
 foreach my $key (sort keys %report) {
   print $reports "$key\t";
-  foreach my $subj (sort keys %{$report{$key}}) {
+  #  foreach my $subj (sort keys %{$report{$key}}) {
+  foreach my $subj (sort keys %{$report{'Kerbin'}}) {
+    if ($report{$key}{$subj}) {
     print $reports "$report{$key}{$subj}\t";
+  } else {
+    print $reports "\t";
+  }
+    #  print $reports "$report{$key}{$subj}\t";
   }
   print $reports "\n";
 }
