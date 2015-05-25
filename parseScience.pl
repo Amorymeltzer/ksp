@@ -663,10 +663,8 @@ foreach my $key (sort sitSort keys %dataMatrix) {
     # condition V test (vice versa?)
     if ($opt{tests}) {
       buildReportData($key,$planet,$dataMatrix{$key}[1],\%dataMatrix);
-      print "$key\t$dataMatrix{$key}[1]\n";
     } elsif ($opt{average}) {
       buildReportData($key,$planet,$dataMatrix{$key}[0],\%dataMatrix);
-      print "$key\t$dataMatrix{$key}[0]\n";
     }
   }
 
@@ -739,8 +737,14 @@ close $avgOut or warn $ERRNO if $opt{outputavgtable};
 
 open my $reports, '>', 'reports.csv' if $opt{report};
 print $reports "spob\t";
-foreach my $test (sort @testdef) {
-  print $reports "$test\t";
+if ($opt{tests}) {
+  foreach my $sit (sort @stockSits) {
+    print $reports "$sit\t";
+  }
+} elsif ($opt{average}) {
+  foreach my $test (sort @testdef) {
+    print $reports "$test\t";
+  }
 }
 print $reports "$total\n";
 
