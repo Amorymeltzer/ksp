@@ -652,10 +652,6 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   dataSplice(\@{$dataMatrix{$key}}) if !$opt{moredata};
   writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix) if !$opt{excludeexcel};
 
-  # Add in spob name to csv, only necessary for stock science
-  $dataMatrix{$key}[1] .= "\@$planet";
-  writeToCSV(\@{$dataMatrix{$key}}) if $opt{csv};
-
   if ($opt{tests}) {
     buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
   } elsif ($opt{average}) {
@@ -667,10 +663,17 @@ foreach my $key (sort sitSort keys %dataMatrix) {
     # condition V test (vice versa?)
     if ($opt{tests}) {
       buildReportData($key,$planet,$dataMatrix{$key}[1],\%dataMatrix);
+      print "$key\t$dataMatrix{$key}[1]\n";
     } elsif ($opt{average}) {
       buildReportData($key,$planet,$dataMatrix{$key}[0],\%dataMatrix);
+      print "$key\t$dataMatrix{$key}[0]\n";
     }
   }
+
+  # Add in spob name to csv, only necessary for stock science
+  $dataMatrix{$key}[1] .= "\@$planet";
+  writeToCSV(\@{$dataMatrix{$key}}) if $opt{csv};
+
 }
 # Recovery
 foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
