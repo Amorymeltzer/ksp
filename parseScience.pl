@@ -746,6 +746,7 @@ if ($opt{tests}) {
     print $reports "$test\t";
   }
 }
+# Totals going down as well? FIXME TODO
 print $reports "$total\n";
 
 foreach my $key (sort keys %report) {
