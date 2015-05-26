@@ -736,7 +736,7 @@ if ($opt{average} || $opt{tests}) {
 close $avgOut or warn $ERRNO if $opt{outputavgtable};
 
 ## Report matrix of some interesting totals
-open my $reports, '>', "$rptFile" if $opt{report};
+open my $reports, '>', "$rptFile" or die $ERRNO if $opt{report};
 print $reports "spob\t";
 if ($opt{tests}) {
   foreach my $sit (sort @stockSits) {
@@ -760,7 +760,7 @@ foreach my $key (sort keys %report) {
   }
   print $reports "\n";
 }
-close $reports if $opt{report};
+close $reports or warn $ERRNO if $opt{report};
 
 
 ### SUBROUTINES
