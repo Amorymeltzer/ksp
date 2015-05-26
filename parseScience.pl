@@ -185,7 +185,7 @@ if (!$opt{excludeexcel}) {
 my $outfile = 'scienceToDo.xlsx';
 my $csvFile = 'scienceToDo.csv';
 my $avgFile = 'average_table.txt';
-
+my $rptFile = 'reports.csv';
 
 ### GLOBAL VARIABLES
 my %dataMatrix;		      # Stock data
@@ -735,7 +735,8 @@ if ($opt{average} || $opt{tests}) {
 }
 close $avgOut or warn $ERRNO if $opt{outputavgtable};
 
-open my $reports, '>', 'reports.csv' if $opt{report};
+## Report matrix of some interesting totals
+open my $reports, '>', "$rptFile" if $opt{report};
 print $reports "spob\t";
 if ($opt{tests}) {
   foreach my $sit (sort @stockSits) {
