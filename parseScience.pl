@@ -662,9 +662,9 @@ foreach my $key (sort sitSort keys %dataMatrix) {
     # -t does spob V test instead of spob V condition, another option for
     # condition V test (vice versa?)
     if ($opt{tests}) {
-      buildReportData($key,$planet,$dataMatrix{$key}[1],\%dataMatrix);
-    } elsif ($opt{average}) {
       buildReportData($key,$planet,$dataMatrix{$key}[0],\%dataMatrix);
+    } elsif ($opt{average}) {
+      buildReportData($key,$planet,$dataMatrix{$key}[1],\%dataMatrix);
     }
   }
 
@@ -704,6 +704,15 @@ if ($opt{scansat}) {
 close $csvOut or warn $ERRNO if  $opt{csv};
 
 
+## Report matrix of some interesting totals
+open my $rptOut, '>', "$rptFile" or die $ERRNO if $opt{report};
+if ($opt{tests}) {
+  printReportTable(@testdef);
+} elsif ($opt{average}) {
+  printReportTable(@stockSits);
+}
+close $rptOut or warn $ERRNO if $opt{report};
+
 ## Sorting of different average tables
 open my $avgOut, '>', "$avgFile" or die $ERRNO if  $opt{outputavgtable};
 # Ensure the -t flag supersedes -a if both are given
@@ -734,15 +743,6 @@ if ($opt{average} || $opt{tests}) {
   }
 }
 close $avgOut or warn $ERRNO if $opt{outputavgtable};
-
-## Report matrix of some interesting totals
-open my $rptOut, '>', "$rptFile" or die $ERRNO if $opt{report};
-if ($opt{tests}) {
-  printReportTable(@stockSits);
-} elsif ($opt{average}) {
-  printReportTable(@testdef);
-}
-close $rptOut or warn $ERRNO if $opt{report};
 
 
 ### SUBROUTINES
@@ -1013,7 +1013,7 @@ sub printReportTable
     foreach my $place (sort @placeHolder) {
       print $rptOut "$place\t";
     }
-# Totals going down as well? FIXME TODO
+    # Totals going down as well? FIXME TODO
     print $rptOut "$total\n";
 
     foreach my $key (sort keys %report) {
