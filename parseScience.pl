@@ -736,13 +736,13 @@ if ($opt{average} || $opt{tests}) {
 close $avgOut or warn $ERRNO if $opt{outputavgtable};
 
 ## Report matrix of some interesting totals
-open my $reports, '>', "$rptFile" or die $ERRNO if $opt{report};
+open my $rptOut, '>', "$rptFile" or die $ERRNO if $opt{report};
 if ($opt{tests}) {
   printReportTable(@stockSits);
 } elsif ($opt{average}) {
   printReportTable(@testdef);
 }
-close $reports or warn $ERRNO if $opt{report};
+close $rptOut or warn $ERRNO if $opt{report};
 
 
 ### SUBROUTINES
@@ -1008,23 +1008,23 @@ sub printAverageTable
 sub printReportTable
   {
     my @placeHolder = @_;
-    print $reports "spob\t";
+    print $rptOut "spob\t";
 
     foreach my $place (sort @placeHolder) {
-      print $reports "$place\t";
+      print $rptOut "$place\t";
     }
 # Totals going down as well? FIXME TODO
-    print $reports "$total\n";
+    print $rptOut "$total\n";
 
     foreach my $key (sort keys %report) {
-      print $reports "$key\t";
+      print $rptOut "$key\t";
       foreach my $subj (sort keys %{$report{'Kerbin'}}) {
 	if ($report{$key}{$subj}) {
-	  print $reports "$report{$key}{$subj}";
+	  print $rptOut "$report{$key}{$subj}";
 	}
-	print $reports "\t";
+	print $rptOut "\t";
       }
-      print $reports "\n";
+      print $rptOut "\n";
     }
 
     return;
