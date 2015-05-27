@@ -737,28 +737,10 @@ close $avgOut or warn $ERRNO if $opt{outputavgtable};
 
 ## Report matrix of some interesting totals
 open my $reports, '>', "$rptFile" or die $ERRNO if $opt{report};
-print $reports "spob\t";
 if ($opt{tests}) {
-  foreach my $sit (sort @stockSits) {
-    print $reports "$sit\t";
-  }
+  printReportTable(@stockSits);
 } elsif ($opt{average}) {
-  foreach my $test (sort @testdef) {
-    print $reports "$test\t";
-  }
-}
-# Totals going down as well? FIXME TODO
-print $reports "$total\n";
-
-foreach my $key (sort keys %report) {
-  print $reports "$key\t";
-  foreach my $subj (sort keys %{$report{'Kerbin'}}) {
-    if ($report{$key}{$subj}) {
-      print $reports "$report{$key}{$subj}";
-    }
-    print $reports "\t";
-  }
-  print $reports "\n";
+  printReportTable(@testdef);
 }
 close $reports or warn $ERRNO if $opt{report};
 
@@ -1017,6 +999,32 @@ sub printAverageTable
     printf "%s\t%.0f\t%.0f\t%.0f\n", $indShort, $avg, $hash{$ind}[0], $per;
     if ($opt{outputavgtable}) {
       printf $avgOut "%s\t%.0f\t%.0f\t%.0f\n", $ind, $avg, $hash{$ind}[0], $per;
+    }
+
+    return;
+  }
+
+# Handle printing of the report table
+sub printReportTable
+  {
+    my @placeHolder = @_;
+    print $reports "spob\t";
+
+    foreach my $place (sort @placeHolder) {
+      print $reports "$place\t";
+    }
+# Totals going down as well? FIXME TODO
+    print $reports "$total\n";
+
+    foreach my $key (sort keys %report) {
+      print $reports "$key\t";
+      foreach my $subj (sort keys %{$report{'Kerbin'}}) {
+	if ($report{$key}{$subj}) {
+	  print $reports "$report{$key}{$subj}";
+	}
+	print $reports "\t";
+      }
+      print $reports "\n";
     }
 
     return;
