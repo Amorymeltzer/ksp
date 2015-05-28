@@ -1012,21 +1012,21 @@ sub printAverageTable
 sub printReportTable
   {
     my @placeHolder = @_;
-    print $rptOut "spob\t";
+    print $rptOut "spob,";
 
     foreach my $place (sort @placeHolder) {
-      print $rptOut "$place\t";
+      print $rptOut "$place,";
     }
     # Totals going down as well? FIXME TODO
     print $rptOut "$total\n";
 
     foreach my $key (sort keys %report) {
-      print $rptOut "$key\t";
+      print $rptOut "$key,";
       foreach my $subj (sort keys %{$report{'Kerbin'}}) {
 	if ($report{$key}{$subj}) {
 	  print $rptOut "$report{$key}{$subj}";
 	}
-	print $rptOut "\t";
+	print $rptOut ",";
       }
       print $rptOut "\n";
     }
