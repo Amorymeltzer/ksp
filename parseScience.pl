@@ -928,10 +928,12 @@ sub buildReportData
       $report{$spo}{$tes} += ${$hashRef}{$key}[8];
       $report{$spo}{$total} += ${$hashRef}{$key}[8];
       $report{$total}{$tes} += ${$hashRef}{$key}[8];
+      $report{$total}{$total} += ${$hashRef}{$key}[8];
     } else {
       $report{$spo}{$tes} += ${$hashRef}{$key}[5];
       $report{$spo}{$total} += ${$hashRef}{$key}[5];
       $report{$total}{$tes} += ${$hashRef}{$key}[5];
+      $report{$total}{$total} += ${$hashRef}{$key}[5];
     }
 
     return;
