@@ -1021,12 +1021,12 @@ sub printReportTable
     print $rptOut "$total\n";
 
     foreach my $key (sort keys %report) {
-      print $rptOut "$key,";
+      print $rptOut "$key";
       foreach my $subj (sort keys %{$report{'Kerbin'}}) {
+	print $rptOut ',';
 	if ($report{$key}{$subj}) {
 	  print $rptOut "$report{$key}{$subj}";
 	}
-	print $rptOut ",";
       }
       print $rptOut "\n";
     }
