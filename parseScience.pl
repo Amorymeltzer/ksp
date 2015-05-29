@@ -185,7 +185,7 @@ if (!$opt{excludeexcel}) {
 my $outfile = 'scienceToDo.xlsx';
 my $csvFile = 'scienceToDo.csv';
 my $avgFile = 'average_table.txt';
-my $rptFile = 'reports.csv';
+my $rptFile = 'report.csv';
 
 ### GLOBAL VARIABLES
 my %dataMatrix;		      # Stock data
