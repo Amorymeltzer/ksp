@@ -1025,7 +1025,7 @@ sub printReportTable
       foreach my $subj (sort keys %{$report{'Kerbin'}}) {
 	print $rptOut ',';
 	if ($report{$key}{$subj}) {
-	  print $rptOut "$report{$key}{$subj}";
+	  printf $rptOut '%.0f', $report{$key}{$subj};
 	}
       }
       print $rptOut "\n";
