@@ -1012,7 +1012,7 @@ sub printAverageTable
 sub printReportTable
   {
     my @placeHolder = @_;
-    print $rptOut "spob,";
+    print $rptOut 'spob,';
 
     foreach my $place (sort @placeHolder) {
       print $rptOut "$place,";
