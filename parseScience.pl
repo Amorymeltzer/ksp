@@ -15,7 +15,7 @@
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Check Major Crater triplication
 ## Incorporate multiplier?  Might look weird...
-## Report data per spob/condition/test
+## Report data test by condition?
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
 
@@ -1040,10 +1040,10 @@ sub printReportTable
 sub usage
   {
     print <<USAGE;
-Usage: $PROGRAM_NAME [-atspikmcneo -h -f path/to/dotfile ]
+Usage: $PROGRAM_NAME [-atspikmcneor -h -f path/to/dotfile ]
        $PROGRAM_NAME [-g <game_location> -u <savefile_name>]
 
-       $PROGRAM_NAME [-ATSPIKMCNEO -G -U] -> Turn off a given option
+       $PROGRAM_NAME [-ATSPIKMCNEOR -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
@@ -1060,6 +1060,7 @@ Usage: $PROGRAM_NAME [-atspikmcneo -h -f path/to/dotfile ]
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
+      -r Save a matrix of per-planet test or condition data.  Require -a or -t.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
