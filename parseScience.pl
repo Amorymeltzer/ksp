@@ -174,8 +174,14 @@ $pers = checkFiles($pers,$persName,\@persLocales);
 
 # Don't bother outputting average file if there ain't any averages to save
 if (!$opt{average} && !$opt{tests}) {
-  $opt{outputavgtable} = 0;
-  warnNicely('outputavgtable option given but no data table selected (-a or -t).  Skipping...');
+  if ($opt{outputavgtable}) {
+    $opt{outputavgtable} = 0;
+    warnNicely('outputavgtable option given but no data table selected (-a or -t).  Skipping...');
+  }
+  if ($opt{report}) {
+    $opt{report} = 0;
+    warnNicely('report option given but no data table selected (-a or -t).  Skipping...');
+  }
 }
 
 # Only load if necessary
