@@ -19,6 +19,7 @@
 ## Let report be not stock-only
 ## -a/-t Always print, what if just want report?  Non-parallel behavior with
 ## -a/-t printing and -o/-r file output?
+### Add -r report handling to buildScienceData??
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
 
@@ -663,16 +664,12 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
   if ($opt{tests}) {
     buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
+    if ($opt{report}) {
+      buildReportData($key,$planet,$dataMatrix{$key}[0],\%dataMatrix);
+    }
   } elsif ($opt{average}) {
     buildScienceData($key,$planet,\%spobData,\%dataMatrix);
-  }
-
-  if ($opt{report}) {
-    # -t does spob V test instead of spob V condition, another option for
-    # condition V test (vice versa?)
-    if ($opt{tests}) {
-      buildReportData($key,$planet,$dataMatrix{$key}[0],\%dataMatrix);
-    } elsif ($opt{average}) {
+    if ($opt{report}) {
       buildReportData($key,$planet,$dataMatrix{$key}[1],\%dataMatrix);
     }
   }
