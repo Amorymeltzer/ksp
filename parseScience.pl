@@ -16,6 +16,7 @@
 ## Check Major Crater triplication
 ## Incorporate multiplier?  Might look weird...
 ## Report data test by condition?
+## Let report be not stock-only
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
 
@@ -1017,7 +1018,6 @@ sub printReportTable
     foreach my $place (sort @placeHolder) {
       print $rptOut "$place,";
     }
-    # Totals going down as well? FIXME TODO
     print $rptOut "$total\n";
 
     foreach my $key (sort keys %report) {
