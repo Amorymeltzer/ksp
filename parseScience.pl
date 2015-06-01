@@ -17,6 +17,8 @@
 ## Incorporate multiplier?  Might look weird...
 ## Report data test by condition?
 ## Let report be not stock-only
+## -a/-t Always print, what if just want report?  Non-parallel behavior with
+## -a/-t printing and -o/-r file output?
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
 
