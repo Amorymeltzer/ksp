@@ -44,16 +44,17 @@ noformat = true
 excludeexcel = true
 outputavgtable = true
 report = true
+ignoreasteroids = true
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
 ##### 3b. Full Options
 The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSPIKMCNEOUG) take precedence.
 ````
-Usage: parseScience.pl [-atspikmcneor -h -f path/to/dotfile ]
+Usage: parseScience.pl [-atspikmcneorj -h -f path/to/dotfile ]
        parseScience.pl [-g <game_location> -u <savefile_name>]
 
-       parseScience.pl [-ATSPIKMCNEOR -G -U] -> Turn off a given option
+       parseScience.pl [-ATSPIKMCNEORJ -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
@@ -71,6 +72,7 @@ Usage: parseScience.pl [-atspikmcneor -h -f path/to/dotfile ]
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
       -r Save a matrix of per-planet test or condition data.  Require -a or -t.
+      -j Ignore and don't consider asteroids.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
