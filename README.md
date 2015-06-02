@@ -37,6 +37,7 @@ tests = true
 scienceleft = true
 percentdone = true
 scansat = true
+ignoreasteroids = true
 ksckerbin = true
 moredata = true
 csv = true
@@ -44,17 +45,16 @@ noformat = true
 excludeexcel = true
 outputavgtable = true
 report = true
-ignoreasteroids = true
 ````
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
 ##### 3b. Full Options
 The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSPIKMCNEOUG) take precedence.
 ````
-Usage: parseScience.pl [-atspikmcneorj -h -f path/to/dotfile ]
+Usage: parseScience.pl [-atspijkmcneor -h -f path/to/dotfile ]
        parseScience.pl [-g <game_location> -u <savefile_name>]
 
-       parseScience.pl [-ATSPIKMCNEORJ -G -U] -> Turn off a given option
+       parseScience.pl [-ATSPIJKMCNEOR -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
@@ -65,6 +65,7 @@ Usage: parseScience.pl [-atspikmcneorj -h -f path/to/dotfile ]
          averages from -a and -t flags.  Supersedes -s.
 
       -i Include data from SCANsat
+      -j Ignore and don't consider asteroids.
       -k List data from KSC biomes as being from Kerbin (same Excel worksheet)
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
       -c Output data to csv file as well
@@ -72,7 +73,6 @@ Usage: parseScience.pl [-atspikmcneorj -h -f path/to/dotfile ]
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
       -r Save a matrix of per-planet test or condition data.  Require -a or -t.
-      -j Ignore and don't consider asteroids.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
