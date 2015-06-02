@@ -38,7 +38,7 @@ use English qw( -no_match_vars );
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPiIkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
+getopts('aAtTsSpPiIkKmMcCnNeEoOrRgjJ:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -60,7 +60,8 @@ my %lookup = (
 	      n => 'noformat',
 	      e => 'excludeexcel',
 	      o => 'outputavgtable',
-	      r => 'report'
+	      r => 'report',
+	      j => 'ignoreasteroids'
 	     );
 
 ### ENVIRONMENT VARIABLES
@@ -375,6 +376,8 @@ close $defs or warn $ERRNO;
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0..scalar @testdef - 1) {
+  next if ($opt{ignoreasteroids} && $testdef[$i] =~ /^asteroid/);
+
   # Array of binary values, only need to do once per test
   my @sits = split //,$sitmask[$i];
   my @bins = split //,$biomask[$i];
@@ -569,6 +572,7 @@ close $file or warn $ERRNO;
 
 # Build the matrix
 foreach (0..scalar @test - 1) {
+  next if ($opt{ignoreasteroids} && $test[$_] =~ /^asteroid/);
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^$scansat|^$recovery/;
   if ($biome[$_]) {
@@ -959,6 +963,7 @@ sub average1
     }
 
     foreach my $index (0..scalar @{$arrayRef} - 1) {
+      next if ($opt{ignoreasteroids} && ${$arrayRef}[$index] =~ /^asteroid/);
       printAverageTable(${$arrayRef}[$index],$hashRef);
     }
 
@@ -1021,6 +1026,7 @@ sub printReportTable
     print $rptOut 'spob,';
 
     foreach my $place (sort @placeHolder) {
+      next if ($opt{ignoreasteroids} && $place =~ /^asteroid/);
       print $rptOut "$place,";
     }
     print $rptOut "$total\n";
