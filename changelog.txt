@@ -1,10 +1,18 @@
+Version 0.97 - 2015-06-03
+-------------------------
+
+New report option (-r) gives a matrix of total test or condition per planet/moon
+ - Stock only (for the time being)
+Add -j option to ignore asteroids completely
+Better handling of erroneous config options
+
 Version 0.96 - 2015-05-12
 -------------------------
 
 Asteroid samples enabled!
 The includescansat -i option is now just scansat
 Correct handling of (Sub)Orbited values for Kerbin and the rest of the universe
-	- Only showed up before you orbited Kerbin
+ - Only showed up before you orbited Kerbin
 Better handling of local(ish) persistent.sfs and ScienceDefs.cfg files
 Fix typo in Bop biome
 Fix missed Bop biome

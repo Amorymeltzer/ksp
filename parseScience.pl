@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # parseScience.pl by Amory Meltzer
-# v0.96
+# v0.97
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Sun represented as Kerbol
@@ -1072,7 +1072,7 @@ Usage: $PROGRAM_NAME [-atspijkmcneor -h -f path/to/dotfile ]
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
-      -r Save a matrix of per-planet test or condition data.  Require -a or -t.
+      -r Save a matrix of per-planet test or condition data.  Require -a or -t.  Stock only.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files

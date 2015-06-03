@@ -1,7 +1,7 @@
 Perl scripts to help with Kerbal Space Program.
 
 
-### parseScience.pl (v0.96)
+### parseScience.pl (v0.97)
 ![Kerbin science](./img/kerbin.png)
 
 Return a list of science points remaining and obtained so far, helpfully organized by planet/moon. Includes KSC, vessel recovery, and asteroids!  Also supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
@@ -72,7 +72,7 @@ Usage: parseScience.pl [-atspijkmcneor -h -f path/to/dotfile ]
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
-      -r Save a matrix of per-planet test or condition data.  Require -a or -t.
+      -r Save a matrix of per-planet test or condition data.  Require -a or -t.  Stock only.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
