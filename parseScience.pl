@@ -6,10 +6,6 @@
 # Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
 
-### Add support for:
-## ISRU scanning?
-### 10 science for scan*recovery multiplier?
-
 ### FIXES, TODOS
 ## asteroidSamples landed at VAB, etc?
 ## Can you do srfsplashed in every biome on other planets with water?
@@ -945,10 +941,8 @@ sub buildReportData
       $report{$total}{$tes} += ${$hashRef}{$key}[5];
       $report{$total}{$total} += ${$hashRef}{$key}[5];
     }
-
     return;
   }
-
 
 # Alphabeticalish averages
 sub average1
