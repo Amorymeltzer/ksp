@@ -25,10 +25,16 @@ while (<DATA>) {
   @universe = (@universe, $key) if $key ne $universe[-1];
 }
 
+my $joined;
+$joined = join '|', @ARGV if @ARGV;
+
 print "Spob\tCondition\tAltitude (km))\n";
 
 foreach my $key (sort { specialSort($a, $b) } keys %boundData) {
   my @tmp = split /@/, $key;
+  if ($joined) {
+    next unless $tmp[0] =~ /$joined\|?/i;
+  }
   print "$tmp[0]\t$tmp[1]\t$boundData{$key}\n";
 }
 
