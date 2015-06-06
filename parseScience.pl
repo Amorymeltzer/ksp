@@ -11,6 +11,8 @@
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Check Major Crater triplication
 ## Incorporate multiplier?  Might look weird...
+## Biome sort
+## Better threshold
 ## Report data test by condition?
 ## Let report be not stock-only
 ## -a/-t Always print, what if just want report?  Non-parallel behavior with
