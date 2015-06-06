@@ -28,7 +28,7 @@ while (<DATA>) {
 my $joined;
 $joined = join '|', @ARGV if @ARGV;
 
-print "Spob\tCondition\tAltitude (km))\n";
+print "Spob\tCondition\tAltitude (km)\n";
 
 foreach my $key (sort { specialSort($a, $b) } keys %boundData) {
   my @tmp = split /@/, $key;
