@@ -36,7 +36,7 @@ use English qw( -no_match_vars );
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPiIjJkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
+getopts('aAtTsSpPbBiIjJkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -51,6 +51,7 @@ my %lookup = (
 	      t => 'tests',
 	      s => 'scienceleft',
 	      p => 'percentdone',
+	      b => 'biome',
 	      i => 'scansat',
 	      j => 'ignoreasteroids',
 	      k => 'ksckerbin',
@@ -874,6 +875,12 @@ sub sitSort
     } else {
       $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     }
+  }
+
+# Sort alphabetically by biome
+sub biomeSort
+  {
+    return;
   }
 
 
