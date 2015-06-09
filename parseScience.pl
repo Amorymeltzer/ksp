@@ -872,15 +872,11 @@ sub sitSort
       $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     } elsif ($opt{scienceleft}) {
       $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
+    } elsif ($opt{biome}) {
+      $t cmp $u || $sit_order_map{$x} <=> $sit_order_map{$y} || $v cmp $w;
     } else {
       $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     }
-  }
-
-# Sort alphabetically by biome
-sub biomeSort
-  {
-    return;
   }
 
 
