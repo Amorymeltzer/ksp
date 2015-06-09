@@ -14,6 +14,7 @@ username = Zaphod
 gamelocation = /Applications/KSP_osx/
 average = true
 tests = true
+biome = true
 scienceleft = true
 percentdone = true
 scansat = true

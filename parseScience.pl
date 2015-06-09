@@ -36,7 +36,7 @@ use English qw( -no_match_vars );
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTsSpPbBiIjJkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
+getopts('aAtTbBsSpPiIjJkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -49,9 +49,9 @@ my %lookup = (
 	      u => 'username',
 	      a => 'average',
 	      t => 'tests',
+	      b => 'biome',
 	      s => 'scienceleft',
 	      p => 'percentdone',
-	      b => 'biome',
 	      i => 'scansat',
 	      j => 'ignoreasteroids',
 	      k => 'ksckerbin',
@@ -1050,18 +1050,19 @@ sub printReportTable
 sub usage
   {
     print <<USAGE;
-Usage: $PROGRAM_NAME [-atspijkmcneor -h -f path/to/dotfile ]
+Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
        $PROGRAM_NAME [-g <game_location> -u <savefile_name>]
 
-       $PROGRAM_NAME [-ATSPIJKMCNEOR -G -U] -> Turn off a given option
+       $PROGRAM_NAME [-ATBSPIJKMCNEOR -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
 
+      -b Sort by biome, only output data file(s).
       -s Sort by science left, including output file(s) and averages from -a
-         and -t flags
+         and -t flags.  Supersedes -b.
       -p Sort by percent science accomplished, including output file(s) and
-         averages from -a and -t flags.  Supersedes -s.
+         averages from -a and -t flags.  Supersedes -b and -s.
 
       -i Include data from SCANsat
       -j Ignore and don't consider asteroids.

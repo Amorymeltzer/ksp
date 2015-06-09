@@ -34,6 +34,7 @@ username = Zaphod
 gamelocation = /Applications/KSP_osx/
 average = true
 tests = true
+biome = true
 scienceleft = true
 percentdone = true
 scansat = true
@@ -51,14 +52,15 @@ Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 ##### 3b. Full Options
 The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSPIKMCNEOUG) take precedence.
 ````
-Usage: parseScience.pl [-atspijkmcneor -h -f path/to/dotfile ]
+Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
        parseScience.pl [-g <game_location> -u <savefile_name>]
 
-       parseScience.pl [-ATSPIJKMCNEOR -G -U] -> Turn off a given option
+       parseScience.pl [-ATBSPIJKMCNEOR -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
 
+      -b Sort by biome, only output data file(s).
       -s Sort by science left, including output file(s) and averages from -a
          and -t flags
       -p Sort by percent science accomplished, including output file(s) and
