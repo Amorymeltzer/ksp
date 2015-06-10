@@ -3,15 +3,15 @@
 # v0.97
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
-# Sun represented as Kerbol
 # Leftover science in red, candidates for manual cleanup in green
+# Sun represented as Kerbol
+# MajorCrater triplication hack is dirty but that's on Squad!
 
 ### FIXES, TODOS
 ## asteroidSamples landed at VAB, etc?
 ## Can you do srfsplashed in every biome on other planets with water?
-## Check Major Crater triplication
 ## Incorporate multiplier?  Might look weird...
-## Biome sort
+## Biome sort incorporated better?  Elsewhere?  With -a or -t options?
 ## Better threshold
 ## Report data test by condition?
 ## Let report be not stock-only
@@ -280,7 +280,7 @@ my %universe = (
 		Jool => [ qw (Global) ],
 		Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
 		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
-		Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater) ],
+		Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater1 MajorCrater2 MajorCrater3) ],
 		Bop => [ qw (Poles Slopes Peaks Mara Valley Ridges) ],
 		Pol => [ qw (Poles Lowlands Midlands Highlands) ],
 		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons
