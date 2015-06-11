@@ -280,7 +280,8 @@ my %universe = (
 		Jool => [ qw (Global) ],
 		Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
 		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
-		Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater1 MajorCrater2 MajorCrater3) ],
+		Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater1
+			      MajorCrater2 MajorCrater3) ],
 		Bop => [ qw (Poles Slopes Peaks Mara Valley Ridges) ],
 		Pol => [ qw (Poles Lowlands Midlands Highlands) ],
 		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons
@@ -869,12 +870,16 @@ sub sitSort
     my ($x,$y) = map {/($sord)/} @input;
 
     if ($opt{percentdone}) {
+      # Percent done, test, situation
       $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     } elsif ($opt{scienceleft}) {
+      # Science left, test, situation
       $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     } elsif ($opt{biome}) {
+      # Biome, situation, test
       $t cmp $u || $sit_order_map{$x} <=> $sit_order_map{$y} || $v cmp $w;
     } else {
+      # Test, situation, biome
       $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
     }
   }
