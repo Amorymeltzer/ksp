@@ -50,7 +50,7 @@ report = true
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
 ##### 3b. Full Options
-The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATSPIKMCNEOUG) take precedence.
+The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATBSPIJKMCNEORUG) take precedence.
 ````
 Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
        parseScience.pl [-g <game_location> -u <savefile_name>]
