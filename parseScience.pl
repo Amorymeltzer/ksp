@@ -251,7 +251,7 @@ my %universe = (
 			     R&DWindTunnel Runway SPH SPHMainBuilding
 			     SPHRoundTank SPHTanks SPHWaterTower
 			     TrackingStation TrackingStationDishEast
-			     TrackingStationDishNorth TrackingStationSouth
+			     TrackingStationDishNorth TrackingStationDishSouth
 			     TrackingStationHub VAB VABMainBuilding
 			     VABPodMemorial VABRoundTank VABSouthComplex
 			     VABTanks) ],
