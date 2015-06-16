@@ -1,7 +1,7 @@
 Perl scripts to help with Kerbal Space Program.
 
 
-### parseScience.pl (v0.97)
+### parseScience.pl (v0.97.1)
 ![Kerbin science](./img/kerbin.png)
 
 Return a list of science points remaining and obtained so far, helpfully organized by planet/moon. Includes KSC, vessel recovery, and asteroids!  Also supports [SCANsat](https://github.com/S-C-A-N/SCANsat).

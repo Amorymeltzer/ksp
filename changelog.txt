@@ -1,3 +1,11 @@
+Version 0.97.1 - 2015-06-16
+-------------------------
+Add -b option to sort CSV and XLSX files by biome
+More properly handle dumb Tylo triplicate biomes
+ - There are three MajorCrater biomes, now accounted for
+Fix KSC biome name
+ - TrackingStationDishSouth, not TrackingStationSouth
+
 Version 0.97 - 2015-06-03
 -------------------------
 
