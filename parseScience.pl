@@ -22,7 +22,6 @@
 
 ### [X] Science FIXES
 ## No VABSouth
-## Bop no Mara
 ## Laythe CresentBay biome
 ## Flying high/low at Sun, see also multipliers
 
@@ -287,7 +286,7 @@ my %universe = (
 		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
 		Tylo => [ qw (Highlands Midlands Lowlands Mara MinorCraters
 			      MajorCrater1 MajorCrater2 MajorCrater3) ],
-		Bop => [ qw (Poles Slopes Peaks Mara Valley Ridges) ],
+		Bop => [ qw (Poles Slopes Peaks Valley Ridges) ],
 		Pol => [ qw (Poles Lowlands Midlands Highlands) ],
 		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons
 			       Highlands Craters) ]
