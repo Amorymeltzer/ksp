@@ -20,6 +20,13 @@
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
 
+### [X] Science FIXES
+## No VABSouth
+## Bop no Mara
+## Tylo MinorCraters biome
+## Laythe CrescentBay biome
+## Flying high/low at Sun, see also multipliers
+
 ## Given/while?  Requires 5.10.1 or 5.14 so maybe not ideal
 ## Cleanup data/test hashes, the order of the data is unintuitive
 
