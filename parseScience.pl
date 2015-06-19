@@ -23,8 +23,7 @@
 ### [X] Science FIXES
 ## No VABSouth
 ## Bop no Mara
-## Tylo MinorCraters biome
-## Laythe CrescentBay biome
+## Laythe CresentBay biome
 ## Flying high/low at Sun, see also multipliers
 
 ## Given/while?  Requires 5.10.1 or 5.14 so maybe not ideal
@@ -286,8 +285,8 @@ my %universe = (
 		Jool => [ qw (Global) ],
 		Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
 		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
-		Tylo => [ qw (Highlands Midlands Lowlands Mara MajorCrater1
-			      MajorCrater2 MajorCrater3) ],
+		Tylo => [ qw (Highlands Midlands Lowlands Mara MinorCraters
+			      MajorCrater1 MajorCrater2 MajorCrater3) ],
 		Bop => [ qw (Poles Slopes Peaks Mara Valley Ridges) ],
 		Pol => [ qw (Poles Lowlands Midlands Highlands) ],
 		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons
