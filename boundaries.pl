@@ -67,11 +67,11 @@ Kerbin FlyingHigh 18
   Kerbol InSpaceHigh 1000000
   Moho InSpaceHigh 80
   Eve FlyingHigh 22
-  Eve InSpaceLow 60?
+  Eve InSpaceLow 90?
   Eve InSpaceHigh 400
   Gilly InSpaceHigh 6
   Duna FlyingHigh 12
-  Duna InSpaceLow ???
+  Duna InSpaceLow 50?
   Duna InSpaceHigh 140
   Ike InSpaceHigh 50
   Dres InSpaceHigh 25
@@ -79,7 +79,7 @@ Kerbin FlyingHigh 18
   Jool InSpaceLow 200?
   Jool InSpaceHigh 4000
   Laythe FlyingHigh 10?
-  Laythe InSpaceLow 15?
+  Laythe InSpaceLow 50?
   Laythe InSpaceHigh 200
   Vall InSpaceHigh 90
   Tylo InSpaceHigh 250
