@@ -6,6 +6,7 @@
 # Leftover science in red, candidates for manual cleanup in green
 # Sun represented as Kerbol
 # MajorCrater triplication hack is dirty but that's on Squad!
+# CresentBay actually real?  Doubtful but giving Squad benefit of the doubt
 
 ### FIXES, TODOS
 ## asteroidSamples landed at VAB, etc?
@@ -19,11 +20,8 @@
 ### Add -r report handling to buildScienceData??
 ## Default windows/linux path to Gamedata/pers/scidefs/etc.?
 ### Steam locations
-
-### [X] Science FIXES
-## No VABSouth
-## Laythe CresentBay biome
 ## Flying high/low at Sun, see also multipliers
+### Game might think possible but it's not actually real...
 
 ## Given/while?  Requires 5.10.1 or 5.14 so maybe not ideal
 ## Cleanup data/test hashes, the order of the data is unintuitive
@@ -282,7 +280,7 @@ my %universe = (
 		Dres => [ qw (Poles Highlands Midlands Lowlands Ridges
 			      ImpactEjecta ImpactCraters Canyons) ],
 		Jool => [ qw (Global) ],
-		Laythe => [ qw (Poles Shores Dunes TheSagenSea) ],
+		Laythe => [ qw (Poles Shores Dunes CresentBay TheSagenSea) ],
 		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
 		Tylo => [ qw (Highlands Midlands Lowlands Mara MinorCraters
 			      MajorCrater1 MajorCrater2 MajorCrater3) ],
