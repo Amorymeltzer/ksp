@@ -9,6 +9,7 @@
 # CresentBay actually real?  Doubtful but giving Squad benefit of the doubt
 
 ### FIXES, TODOS
+## New Asteroid Scanner mod thingy?
 ## asteroidSamples landed at VAB, etc?
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Incorporate multiplier?  Might look weird...
