@@ -10,7 +10,7 @@ Return a list of science points remaining and obtained so far, helpfully organiz
 - KSP (v1.0.x)
 - Perl (Comes with OSX and Linux; Windows users will need [Strawberry Perl](http://strawberryperl.com/) or the like)
 - Excel::Writer::XLSX, if you want your output in a spreadsheet
-    -  (Install via the terminal: `cpan Excel::Writer::XLSX` (recommended) or get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.78/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
+    -  (Install via the terminal: `cpan Excel::Writer::XLSX` (recommended) or get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.85/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
 
 #### 2. Basic Usage
 ````shell
