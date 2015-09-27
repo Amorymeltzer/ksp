@@ -1,3 +1,8 @@
+Version 0.97.3 - 2015-09-22
+-------------------------
+Minor bugfix for regex matching on Windows-formatted files
+ - Thanks oabs2!
+
 Version 0.97.2 - 2015-06-22
 -------------------------
 

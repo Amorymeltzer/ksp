@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # parseScience.pl by Amory Meltzer
-# v0.97.2
+# v0.97.3
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Leftover science in red, candidates for manual cleanup in green
@@ -504,7 +504,7 @@ while (<$file>) {
   chomp;
 
   # Find all the science loops
-  if (m/^\t\tScience$/) {
+  if (m/^\t\tScience\s?$/m) {
     $ticker = 1;
     next;
   }
