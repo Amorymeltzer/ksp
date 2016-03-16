@@ -715,7 +715,7 @@ if ($opt{scansat}) {
     }
   }
 }
-close $csvOut or warn $ERRNO if  $opt{csv};
+close $csvOut or warn $ERRNO if $opt{csv};
 
 
 ## Report matrix of some interesting totals
@@ -728,7 +728,7 @@ if ($opt{tests}) {
 close $rptOut or warn $ERRNO if $opt{report};
 
 ## Sorting of different average tables
-open my $avgOut, '>', "$avgFile" or die $ERRNO if  $opt{outputavgtable};
+open my $avgOut, '>', "$avgFile" or die $ERRNO if $opt{outputavgtable};
 # Ensure the -t flag supersedes -a if both are given
 if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
@@ -746,7 +746,7 @@ if ($opt{average} || $opt{tests}) {
 
   $string .= "\tAvg/exp\tTotal\tCompleted\n";
   print "$string";
-  print $avgOut "$string"  if  $opt{outputavgtable};
+  print $avgOut "$string"  if $opt{outputavgtable};
 
   if ($opt{percentdone}) {
     average3($hashRef);
