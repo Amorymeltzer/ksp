@@ -12,6 +12,7 @@
 ### UPDATE FOR 1.1
 ## New Asteroid Scanner mod thingy?
 ## asteroidSamples landed at VAB, etc?
+## Fix infraredTelescope at KSC biomes
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Incorporate multiplier?  Might look weird...
 ## Biome sort incorporated better?  Elsewhere?  With -a or -t options?
