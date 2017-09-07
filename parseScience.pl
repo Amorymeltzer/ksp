@@ -381,7 +381,7 @@ close $defs or warn $ERRNO;
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0..scalar @testdef - 1) {
-  next if ($opt{ignoreasteroids} && $testdef[$i] =~ /^asteroid/);
+  next if ($opt{ignoreasteroids} && $testdef[$i] =~ /^asteroid|^infrared/);
 
   # Array of binary values, only need to do once per test
   my @sits = split //,$sitmask[$i];
@@ -577,7 +577,7 @@ close $file or warn $ERRNO;
 
 # Build the matrix
 foreach (0..scalar @test - 1) {
-  next if ($opt{ignoreasteroids} && $test[$_] =~ /^asteroid/);
+  next if ($opt{ignoreasteroids} && $test[$_] =~ /^asteroid|^infrared/);
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^$scansat|^$recovery/;
   if ($biome[$_]) {
@@ -973,7 +973,7 @@ sub average1
     }
 
     foreach my $index (0..scalar @{$arrayRef} - 1) {
-      next if ($opt{ignoreasteroids} && ${$arrayRef}[$index] =~ /^asteroid/);
+      next if ($opt{ignoreasteroids} && ${$arrayRef}[$index] =~ /^asteroid|^infrared/);
       printAverageTable(${$arrayRef}[$index],$hashRef);
     }
 
@@ -1036,7 +1036,7 @@ sub printReportTable
     print $rptOut 'spob,';
 
     foreach my $place (sort @placeHolder) {
-      next if ($opt{ignoreasteroids} && $place =~ /^asteroid/);
+      next if ($opt{ignoreasteroids} && $place =~ /^asteroid|^infrared/);
       print $rptOut "$place,";
     }
     print $rptOut "$total\n";
