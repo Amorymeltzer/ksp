@@ -1084,7 +1084,7 @@ Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
-      -r Save a matrix of per-planet test or condition data.  Require -a or -t.  Stock only.
+      -r Save a matrix of per-planet condition or test  data.  Require -a or -t.  Stock only.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
