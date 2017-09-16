@@ -248,7 +248,8 @@ my $planetCount = scalar @planets - 1; # Use this a bunch
 # Different spobs, different biomes
 my %universe = (
 		Kerbin => [ qw (Water Shores Grasslands Highlands Mountains
-				Deserts Badlands Tundra IceCaps) ],
+				Deserts Badlands Tundra SouthernIceShelf
+				NorthernIceShelf IceCaps) ],
 		KSC => [ qw (KSC Administration AstronautComplex Crawlerway
 			     FlagPole LaunchPad MissionControl R&D
 			     R&DCentralBuilding R&DCornerLab R&DMainBuilding
@@ -748,7 +749,7 @@ if ($opt{average} || $opt{tests}) {
 
   $string .= "\tAvg/exp\tTotal\tCompleted\n";
   print "$string";
-  print $avgOut "$string"  if $opt{outputavgtable};
+  print $avgOut "$string" if $opt{outputavgtable};
 
   if ($opt{percentdone}) {
     average3($hashRef);
