@@ -11,6 +11,7 @@
 ### FIXES, TODOS
 ### UPDATE FOR 1.1
 ## New Asteroid Scanner mod thingy?
+## Option SCANsat resources?
 ## asteroidSamples landed at VAB, etc?
 ## Fix infraredTelescope at KSC biomes
 ## Can you do srfsplashed in every biome on other planets with water?
@@ -297,7 +298,7 @@ my %universe = (
 # Various situations you may find yourself in
 my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);
 my @recoSits = qw (Flew FlewBy SubOrbited Orbited Surfaced);
-my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly);
+my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources);
 
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
@@ -535,7 +536,7 @@ while (<$file>) {
 	@pieces = (split /@/, $value);
       } elsif ($opt{scansat} && $value =~ m/^$scansat/) {
 	$scanTicker = 1;
-	$value =~ s/^$scansat(.*)\@(.*)InSpaceHighsurface$/$scansat\@$2\@$1/g;
+	$value =~ s/^$scansat(.*)\@(.*)InSpaceHigh$/$scansat\@$2\@$1/g;
 	@pieces = (split /@/, $value);
       } else {
 	($recoTicker,$scanTicker) = (0,0);
