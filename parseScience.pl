@@ -399,8 +399,8 @@ foreach my $i (0..scalar @testdef - 1) {
     my @biomes = ([@{$universe{$stavro}}])x6;
     # KSC biomes are SrfLanded only
     if ($stavro eq $ksc) {
-      @situations = qw (Landed);
       next if $bins[-1] == 0;
+      @situations = qw (Landed);
     } else {
       for (my $binDex = scalar @sits - 1;$binDex>=0;$binDex--) {
 	my $zIndex = abs $binDex-5;
