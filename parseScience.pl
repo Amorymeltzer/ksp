@@ -13,7 +13,6 @@
 ## New Asteroid Scanner mod thingy?
 ## Option SCANsat resources?
 ## asteroidSamples landed at VAB, etc?
-## Fix infraredTelescope at KSC biomes
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Incorporate multiplier?  Might look weird...
 ## Biome sort incorporated better?  Elsewhere?  With -a or -t options?
@@ -1080,13 +1079,13 @@ Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
 
       -i Include data from SCANsat
       -j Ignore and don't consider asteroids.
-      -k List data from KSC biomes as being from Kerbin (same Excel worksheet)
+      -k List data from KSC biomes as being from Kerbin (in the same Excel worksheet)
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
       -c Output data to csv file as well
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
-      -r Save a matrix of per-planet condition or test  data.  Require -a or -t.  Stock only.
+      -r Save a matrix of per-planet condition or test data.  Require -a or -t.  Stock only.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
