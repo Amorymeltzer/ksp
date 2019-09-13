@@ -764,51 +764,48 @@ close $avgOut or warn $ERRNO if $opt{outputavgtable};
 
 
 ### SUBROUTINES
-sub warnNicely
-  {
-    my ($err,$ilynPayne) = @_;
-    if ($ilynPayne) {
-      print 'ERROR: ';
+sub warnNicely {
+  my ($err,$ilynPayne) = @_;
+  if ($ilynPayne) {
+    print 'ERROR: ';
+  } else {
+    print 'Warning: ';
+  }
+  print "$err\n";
+  exit if $ilynPayne;
+
+  return;
+}
+
+sub checkFiles {
+  my ($check,$name,$locRef) = @_;
+  my $lastOne = pop @{$locRef};
+
+  foreach my $place (@{$locRef}) {
+    $check = $place;
+    if (-e $check) {
+      last;
     } else {
-      print 'Warning: ';
+      warnNicely("No $name file found at $check");
     }
-    print "$err\n";
-    exit if $ilynPayne;
-
-    return;
   }
 
-sub checkFiles
-  {
-    my ($check,$name,$locRef) = @_;
-    my $lastOne = pop @{$locRef};
-
-    foreach my $place (@{$locRef}) {
-      $check = $place;
-      if (-e $check) {
-	last;
-      } else {
-	warnNicely("No $name file found at $check");
-      }
-    }
-
-    if (!-e $check) {
-      $check = $lastOne;
-      warnNicely("No $name file found at $check", 1) if !-e $check;
-    }
-
-    return $check;
+  if (!-e $check) {
+    $check = $lastOne;
+    warnNicely("No $name file found at $check", 1) if !-e $check;
   }
+
+  return $check;
+}
 
 # Convert string to binary, pad to six digits
-sub binary
-  {
-    my $ones = sprintf '%b',shift;
-    while (length($ones)<6) {
-      $ones = '0'.$ones;
-    }
-    return $ones;
+sub binary {
+  my $ones = sprintf '%b',shift;
+  while (length($ones)<6) {
+    $ones = '0'.$ones;
   }
+  return $ones;
+}
 
 sub calcPerc {
   my ($sciC,$capC) = @_;
@@ -816,253 +813,239 @@ sub calcPerc {
 }
 
 # Determine column header widths
-sub columnWidths
-  {
-    my ($sheet,$col1,$col2,$col3) = @_;
+sub columnWidths {
+  my ($sheet,$col1,$col2,$col3) = @_;
 
-    $sheet->set_column( 0, 0, $col1 );
-    $sheet->set_column( 1, 1, $col2 );
-    $sheet->set_column( 2, 2, $col3 );
+  $sheet->set_column( 0, 0, $col1 );
+  $sheet->set_column( 1, 1, $col2 );
+  $sheet->set_column( 2, 2, $col3 );
 
-    return;
-  }
+  return;
+}
 
 ## Custom sort order, adapted from:
 ## http://stackoverflow.com/a/8171591/2521092
 # Kerbin, KSC, and its moons come first, then Kerbol, then proper sorting of
 # conditions
 # matches worksheets
-sub specialSort
-  {
-    my ($a,$b,$specRef) = @_;
-    my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
+sub specialSort {
+  my ($a,$b,$specRef) = @_;
+  my @input = ($a, $b);		# Keep 'em separate, avoid expr version of map
 
-    my @specOrder = @planets;
-    my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
-    my $sord = join q{|}, @specOrder;
-    my @condOrder = (@recoSits, @scanSits);
-    my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
-    my $cord = join q{|}, @condOrder;
+  my @specOrder = @planets;
+  my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
+  my $sord = join q{|}, @specOrder;
+  my @condOrder = (@recoSits, @scanSits);
+  my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
+  my $cord = join q{|}, @condOrder;
 
-    my ($x,$y) = map {/^($sord)/} @input;
-    my ($v,$w) = map {/($cord)/} @input;
+  my ($x,$y) = map {/^($sord)/} @input;
+  my ($v,$w) = map {/($cord)/} @input;
 
-    if ($opt{percentdone}) {
-      ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
-    } elsif ($opt{scienceleft}) {
-      ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
-    } else {
-      $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
-    }
+  if ($opt{percentdone}) {
+    ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
+  } elsif ($opt{scienceleft}) {
+    ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
+  } else {
+    $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
   }
+}
 
 # Sort alphabetically by test, then specifically by situation, then
 # alphabetically by biome
-sub sitSort
-  {
-    my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
+sub sitSort {
+  my @input = ($a, $b);		# Keep 'em separate, avoid expr version of map
 
-    my @sitOrder = @stockSits;
-    my %sit_order_map = map { $sitOrder[$_] => $_ } 0..$#sitOrder;
-    my $sord = join q{|}, @sitOrder;
+  my @sitOrder = @stockSits;
+  my %sit_order_map = map { $sitOrder[$_] => $_ } 0..$#sitOrder;
+  my $sord = join q{|}, @sitOrder;
 
-    # Test
-    my ($v,$w) = ($a,$b);
-    $v =~ s/^(.*)(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh).*/$1/i;
-    $w =~ s/^(.*)(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh).*/$1/i;
-    # Biome
-    my ($t,$u) = ($a,$b);
-    $t =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
-    $u =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
+  # Test
+  my ($v,$w) = ($a,$b);
+  $v =~ s/^(.*)(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh).*/$1/i;
+  $w =~ s/^(.*)(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh).*/$1/i;
+  # Biome
+  my ($t,$u) = ($a,$b);
+  $t =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
+  $u =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
 
-    my ($x,$y) = map {/($sord)/} @input;
+  my ($x,$y) = map {/($sord)/} @input;
 
-    if ($opt{percentdone}) {
-      # Percent done, test, situation
-      $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
-    } elsif ($opt{scienceleft}) {
-      # Science left, test, situation
-      $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
-    } elsif ($opt{biome}) {
-      # Biome, situation, test
-      $t cmp $u || $sit_order_map{$x} <=> $sit_order_map{$y} || $v cmp $w;
-    } else {
-      # Test, situation, biome
-      $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
-    }
+  if ($opt{percentdone}) {
+    # Percent done, test, situation
+    $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
+  } elsif ($opt{scienceleft}) {
+    # Science left, test, situation
+    $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
+  } elsif ($opt{biome}) {
+    # Biome, situation, test
+    $t cmp $u || $sit_order_map{$x} <=> $sit_order_map{$y} || $v cmp $w;
+  } else {
+    # Test, situation, biome
+    $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
   }
+}
 
 
 # Properly splice data
-sub dataSplice
-  {
-    my $rowRef = shift;
-    splice @{$rowRef}, 3, 3;
-    return;
+sub dataSplice {
+  my $rowRef = shift;
+  splice @{$rowRef}, 3, 3;
+  return;
+}
+
+sub writeToCSV {
+  my $rowRef = shift;
+
+  print $csvOut join q{,} , @{$rowRef};
+  print $csvOut "\n";
+  return;
+}
+
+sub writeToExcel {
+  my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
+
+  $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
+  if ($opt{moredata}) {
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[9] < $threshold;
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] > 0));
+  } else {
+    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed ) if ${$hashRef}{$matrixKey}[6] < $threshold;
   }
 
-sub writeToCSV
-  {
-    my $rowRef = shift;
-
-    print $csvOut join q{,} , @{$rowRef};
-    print $csvOut "\n";
-    return;
-  }
-
-sub writeToExcel
-  {
-    my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
-
-    $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
-    if ($opt{moredata}) {
-      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[9] < $threshold;
-      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] > 0));
-    } else {
-      $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed ) if ${$hashRef}{$matrixKey}[6] < $threshold;
-    }
-
-    $workVars{$sheetName}[1]++;
-    return;
-  }
+  $workVars{$sheetName}[1]++;
+  return;
+}
 
 # Build data hashes for averages
-sub buildScienceData
-  {
-    my ($key,$ind,$dataRef,$hashRef) = @_;
+sub buildScienceData {
+  my ($key,$ind,$dataRef,$hashRef) = @_;
 
-    # Sci, count, cap
-    if ($opt{moredata}) {
-      ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
-      ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[7];
-    } else {
-      ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[5];
-      ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[4];
-    }
-    ${$dataRef}{$ind}[1]++;
-
-    return;
+  # Sci, count, cap
+  if ($opt{moredata}) {
+    ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
+    ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[7];
+  } else {
+    ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[5];
+    ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[4];
   }
+  ${$dataRef}{$ind}[1]++;
+
+  return;
+}
 
 # Build report
-sub buildReportData
-  {
-    my ($key,$spo,$tes,$hashRef) = @_;
-    if ($opt{moredata}) {
-      $report{$spo}{$tes} += ${$hashRef}{$key}[8];
-      $report{$spo}{$total} += ${$hashRef}{$key}[8];
-      $report{$total}{$tes} += ${$hashRef}{$key}[8];
-      $report{$total}{$total} += ${$hashRef}{$key}[8];
-    } else {
-      $report{$spo}{$tes} += ${$hashRef}{$key}[5];
-      $report{$spo}{$total} += ${$hashRef}{$key}[5];
-      $report{$total}{$tes} += ${$hashRef}{$key}[5];
-      $report{$total}{$total} += ${$hashRef}{$key}[5];
-    }
-    return;
+sub buildReportData {
+  my ($key,$spo,$tes,$hashRef) = @_;
+  if ($opt{moredata}) {
+    $report{$spo}{$tes} += ${$hashRef}{$key}[8];
+    $report{$spo}{$total} += ${$hashRef}{$key}[8];
+    $report{$total}{$tes} += ${$hashRef}{$key}[8];
+    $report{$total}{$total} += ${$hashRef}{$key}[8];
+  } else {
+    $report{$spo}{$tes} += ${$hashRef}{$key}[5];
+    $report{$spo}{$total} += ${$hashRef}{$key}[5];
+    $report{$total}{$tes} += ${$hashRef}{$key}[5];
+    $report{$total}{$total} += ${$hashRef}{$key}[5];
   }
+  return;
+}
 
 # Alphabeticalish averages
-sub average1
-  {
-    my $hashRef = shift;
-    my $arrayRef = shift;
+sub average1 {
+  my $hashRef = shift;
+  my $arrayRef = shift;
 
-    if ($opt{tests}) {
-      push @{$arrayRef}, $recovery; # Neater spacing in test averages output
-      push @{$arrayRef}, $scansatMap if $opt{scansat};
-      @{$arrayRef} = sort @{$arrayRef};
-    }
-
-    foreach my $index (0..scalar @{$arrayRef} - 1) {
-      next if ($opt{ignoreasteroids} && ${$arrayRef}[$index] =~ /^asteroid|^infrared/);
-      printAverageTable(${$arrayRef}[$index],$hashRef);
-    }
-
-    if (!$opt{tests}) {
-      printAverageTable($recov,$hashRef);
-      printAverageTable($scansat,$hashRef) if $opt{scansat};
-    }
-
-    return;
+  if ($opt{tests}) {
+    push @{$arrayRef}, $recovery; # Neater spacing in test averages output
+    push @{$arrayRef}, $scansatMap if $opt{scansat};
+    @{$arrayRef} = sort @{$arrayRef};
   }
+
+  foreach my $index (0..scalar @{$arrayRef} - 1) {
+    next if ($opt{ignoreasteroids} && ${$arrayRef}[$index] =~ /^asteroid|^infrared/);
+    printAverageTable(${$arrayRef}[$index],$hashRef);
+  }
+
+  if (!$opt{tests}) {
+    printAverageTable($recov,$hashRef);
+    printAverageTable($scansat,$hashRef) if $opt{scansat};
+  }
+
+  return;
+}
 
 # Averages sorted by total remaining science
-sub average2
-  {
-    my $hashRef = shift;
+sub average2 {
+  my $hashRef = shift;
 
-    foreach my $key (sort {${$hashRef}{$b}[0] <=> ${$hashRef}{$a}[0] || $a cmp $b} keys %{$hashRef}) {
-      printAverageTable($key,$hashRef);
-    }
-
-    return;
+  foreach my $key (sort {${$hashRef}{$b}[0] <=> ${$hashRef}{$a}[0] || $a cmp $b} keys %{$hashRef}) {
+    printAverageTable($key,$hashRef);
   }
+
+  return;
+}
 
 # Averages sorted by percent accomplished
-sub average3
-  {
-    my $hashRef = shift;
+sub average3 {
+  my $hashRef = shift;
 
-    foreach my $key (sort {((${$hashRef}{$b}[2]-${$hashRef}{$b}[0])/${$hashRef}{$b}[2]) <=> ((${$hashRef}{$a}[2]-${$hashRef}{$a}[0])/${$hashRef}{$a}[2]) || $a cmp $b} keys %{$hashRef}) {
-      printAverageTable($key,$hashRef);
-    }
-
-    return;
+  foreach my $key (sort {((${$hashRef}{$b}[2]-${$hashRef}{$b}[0])/${$hashRef}{$b}[2]) <=> ((${$hashRef}{$a}[2]-${$hashRef}{$a}[0])/${$hashRef}{$a}[2]) || $a cmp $b} keys %{$hashRef}) {
+    printAverageTable($key,$hashRef);
   }
+
+  return;
+}
 
 # Handle printing of the averages table
-sub printAverageTable
-  {
-    my @placeHolder = @_;
-    my $ind = $placeHolder[0];
-    my %hash = %{$placeHolder[1]};
+sub printAverageTable {
+  my @placeHolder = @_;
+  my $ind = $placeHolder[0];
+  my %hash = %{$placeHolder[1]};
 
-    my $indShort = substr $ind, 0, 14; # Neater spacing in test averages output
-    my $avg = $hash{$ind}[0]/($hash{$ind}[1]);
-    my $remains = $hash{$ind}[2] - $hash{$ind}[0];
-    my $per = 100*$remains/$hash{$ind}[2];
+  my $indShort = substr $ind, 0, 14; # Neater spacing in test averages output
+  my $avg = $hash{$ind}[0]/($hash{$ind}[1]);
+  my $remains = $hash{$ind}[2] - $hash{$ind}[0];
+  my $per = 100*$remains/$hash{$ind}[2];
 
-    printf "%s\t%.0f\t%.0f\t%.0f\n", $indShort, $avg, $hash{$ind}[0], $per;
-    if ($opt{outputavgtable}) {
-      printf $avgOut "%s\t%.0f\t%.0f\t%.0f\n", $ind, $avg, $hash{$ind}[0], $per;
-    }
-
-    return;
+  printf "%s\t%.0f\t%.0f\t%.0f\n", $indShort, $avg, $hash{$ind}[0], $per;
+  if ($opt{outputavgtable}) {
+    printf $avgOut "%s\t%.0f\t%.0f\t%.0f\n", $ind, $avg, $hash{$ind}[0], $per;
   }
+
+  return;
+}
 
 # Handle printing of the report table
-sub printReportTable
-  {
-    my @placeHolder = @_;
-    print $rptOut 'spob,';
+sub printReportTable {
+  my @placeHolder = @_;
+  print $rptOut 'spob,';
 
-    foreach my $place (sort @placeHolder) {
-      next if ($opt{ignoreasteroids} && $place =~ /^asteroid|^infrared/);
-      print $rptOut "$place,";
-    }
-    print $rptOut "$total\n";
-
-    foreach my $key (sort keys %report) {
-      print $rptOut "$key";
-      foreach my $subj (sort keys %{$report{'Kerbin'}}) {
-	print $rptOut q{,};
-	if ($report{$key}{$subj}) {
-	  printf $rptOut '%.0f', $report{$key}{$subj};
-	}
-      }
-      print $rptOut "\n";
-    }
-
-    return;
+  foreach my $place (sort @placeHolder) {
+    next if ($opt{ignoreasteroids} && $place =~ /^asteroid|^infrared/);
+    print $rptOut "$place,";
   }
+  print $rptOut "$total\n";
+
+  foreach my $key (sort keys %report) {
+    print $rptOut "$key";
+    foreach my $subj (sort keys %{$report{'Kerbin'}}) {
+      print $rptOut q{,};
+      if ($report{$key}{$subj}) {
+	printf $rptOut '%.0f', $report{$key}{$subj};
+      }
+    }
+    print $rptOut "\n";
+  }
+
+  return;
+}
 
 #### Usage statement ####
 # Escapes not necessary but ensure pretty colors
 # Final line must be unindented?
-sub usage
-  {
-    print <<USAGE;
+sub usage {
+  print <<USAGE;
 Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
        $PROGRAM_NAME [-g <game_location> -u <savefile_name>]
 
@@ -1093,8 +1076,8 @@ Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
       -f Specify path to config file.  Supersedes a local .parsesciencerc file.
       -h Print this message
 USAGE
-    return;
-  }
+  return;
+}
 
 
 ## The lines below do not represent Perl code, and are not examined by the
