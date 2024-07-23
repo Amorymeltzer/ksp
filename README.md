@@ -1,18 +1,20 @@
-Perl scripts to help with Kerbal Space Program.
+# Perl scripts to help with Kerbal Space Program
 
+## parseScience.pl (v0.97.3)
 
-### parseScience.pl (v0.97.3)
 ![Kerbin science](./img/kerbin.png)
 
-Return a list of science points remaining and obtained so far, helpfully organized by planet/moon. Includes KSC, vessel recovery, and asteroids!  Also supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
+Return a list of science points remaining and obtained so far, helpfully organized by planet/moon.  Includes KSC, vessel recovery, and asteroids!  Also supports [SCANsat](https://github.com/S-C-A-N/SCANsat).
 
-#### 1. Requirements
+### Requirements
+
 - KSP (v1.0.x)
 - Perl (Comes with OSX and Linux; Windows users will need [Strawberry Perl](http://strawberryperl.com/) or the like)
 - Excel::Writer::XLSX, if you want your output in a spreadsheet
-    -  (Install via the terminal: `cpan Excel::Writer::XLSX` (recommended) or get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.85/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
+  - (Install via the terminal: `cpan Excel::Writer::XLSX` (recommended) or get it from [CPAN](http://search.cpan.org/~jmcnamara/Excel-Writer-XLSX-0.85/lib/Excel/Writer/XLSX.pm) or [GitHub](https://github.com/jmcnamara/excel-writer-xlsx))
 
-#### 2. Basic Usage
+### Basic Usage
+
 ````shell
 perl parseScience.pl -<opts>
 ````
@@ -21,8 +23,10 @@ Simply run this script and an Excel file named `scienceToDo.xlsx` shoud appear. 
 
 Alternatively, use a custom config file...
 
-#### 3. Advanced Usage
-##### 3a. Config File (.parsesciencerc)
+### Advanced Usage
+
+#### Config File (.parsesciencerc)
+
 Users of this tool will almost certainly be running it repeatedly with their favorite options, so `parseScience.pl` supports a user config file to simplify things a bit.  This way, you can dump your favorite options in a file and just `path/to/parseScience.pl` without worrying about commandline options, location of the script, local files, etc.  You can still, of course, pass commandline flags to `parseScience.pl`; they will always override any settings in your config file.
 
 The default file name is `.parsesciencerc`, found in whatever diretory you were in when you ran parseScience.pl.  Failing that, it will check the directory `parseScience.pl` is actually in.  If you're using OSX or Linux, it wil also check your `$home` directory and `~/.config/parseScience/parsesciencerc` (note the lack of a leading . in that last one).  You can at any time supply your own path via the `-f` flag.
@@ -47,11 +51,15 @@ excludeexcel = true
 outputavgtable = true
 report = true
 ````
+
 Any deviations will be ignored and (hopefully) result in (gentle) notifications.
 
-##### 3b. Full Options
-The commandline options here will always override any settings in your `.parsesciencerc`; moreover, the negation options (-ATBSPIJKMCNEORUG) take precedence.
-````
+#### Full Options
+
+The commandline options here will always override any settings in your `.parsesciencerc`; moreover, th
+e negation options (-ATBSPIJKMCNEORUG) take precedence.
+
+````shell
 Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
        parseScience.pl [-g <game_location> -u <savefile_name>]
 
@@ -83,15 +91,24 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
       -h Print this message
 ````
 
-#### 4. Todo
+### Todo
+
+- UPDATE:
+  - Latest defs and science
+  - Expansion
+  - ScanSAT
+  - Check data (like dV, etc.)
 - ISRU science, perhaps
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
 
-### deltaVScience.pl
+## deltaVScience.pl
+
 **Roughly** estimate science point ROI as science per delta-V needed per planet/moon.  Uses [average table](./average_table.txt) output from `parseScience.pl` (-a or -as).  Scaled semi-arbitrarily.
 
-### boundaries.pl
+## boundaries.pl
+
 Print known boundary heights of conditions for each space object.
 
-### License
+## License
+
 Licensed under the [BSD 2-Clause license](./LICENSE).
