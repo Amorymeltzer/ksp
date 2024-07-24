@@ -75,7 +75,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
          averages from -a and -t flags.  Supersedes -s.
 
       -i Include data from SCANsat
-      -j Ignore and don't consider asteroids.
+      -j Ignore and don't consider asteroids or comets.
       -k List data from KSC biomes as being from Kerbin (same Excel worksheet)
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
       -c Output data to csv file as well
@@ -95,9 +95,10 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 
 - UPDATE:
   - Latest defs and science
-  - Expansion
+  - Expansion (deployed)
   - ScanSAT
   - Check data (like dV, etc.)
+  - Better regex, cleanup, etc.
 - ISRU science, perhaps
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
 

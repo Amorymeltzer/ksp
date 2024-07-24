@@ -12,7 +12,7 @@
 ### UPDATE FOR 1.1
 ## New Asteroid Scanner mod thingy?
 ## Option SCANsat resources?
-## asteroidSamples landed at VAB, etc?
+## asteroid and cometSamples landed at VAB, etc?
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Incorporate multiplier?  Might look weird...
 ## Biome sort incorporated better?  Elsewhere?  With -a or -t options?
@@ -382,7 +382,7 @@ close $defs or warn $ERRNO;
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0..scalar @testdef - 1) {
-  next if ($opt{ignoreasteroids} && $testdef[$i] =~ /^asteroid|^infrared/);
+  next if ($opt{ignoreasteroids} && $testdef[$i] =~ /^asteroid|^infrared|^cometS/);
 
   # Array of binary values, only need to do once per test
   my @sits = split //,$sitmask[$i];
@@ -579,7 +579,7 @@ close $file or warn $ERRNO;
 
 # Build the matrix
 foreach (0..scalar @test - 1) {
-  next if ($opt{ignoreasteroids} && $test[$_] =~ /^asteroid|^infrared/);
+  next if ($opt{ignoreasteroids} && $test[$_] =~ /^asteroid|^infrared|^cometS/);
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^$scansat|^$recovery/;
   if ($biome[$_]) {
@@ -963,7 +963,7 @@ sub average1 {
   }
 
   foreach my $index (0..scalar @{$arrayRef} - 1) {
-    next if ($opt{ignoreasteroids} && ${$arrayRef}[$index] =~ /^asteroid|^infrared/);
+    next if ($opt{ignoreasteroids} && ${$arrayRef}[$index] =~ /^asteroid|^infrared|^cometS/);
     printAverageTable(${$arrayRef}[$index],$hashRef);
   }
 
@@ -1022,7 +1022,7 @@ sub printReportTable {
   print $rptOut 'spob,';
 
   foreach my $place (sort @placeHolder) {
-    next if ($opt{ignoreasteroids} && $place =~ /^asteroid|^infrared/);
+    next if ($opt{ignoreasteroids} && $place =~ /^asteroid|^infrared|^cometS/);
     print $rptOut "$place,";
   }
   print $rptOut "$total\n";
@@ -1061,7 +1061,7 @@ Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
          averages from -a and -t flags.  Supersedes -b and -s.
 
       -i Include data from SCANsat
-      -j Ignore and don't consider asteroids.
+      -j Ignore and don't consider asteroids or comets.
       -k List data from KSC biomes as being from Kerbin (in the same Excel worksheet)
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
       -c Output data to csv file as well
