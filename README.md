@@ -94,8 +94,8 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 ### Todo
 
 - UPDATE:
-  - Latest defs and science
-  - Expansion (deployed)
+  - Latest defs and science (`evaScience` landed or space(???63), magnetometer space low or high)
+  - Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
   - ScanSAT
   - Check data (like dV, etc.)
   - Better regex, cleanup, etc.
