@@ -96,7 +96,8 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - UPDATE:
   - Latest defs and science (`evaScience` landed or space(???63), magnetometer space low or high)
   - Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
-  - ScanSAT
+  - SCANsat (visual, caps are different???)
+    - Maybe parse SCANsat scidefs (and expansion) via sub, so use itself
   - Check data (like dV, etc.)
   - Better regex, cleanup, etc.
 - ISRU science, perhaps
