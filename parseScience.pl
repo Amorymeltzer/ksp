@@ -261,11 +261,11 @@ my %universe = (
 			     TrackingStationHub VAB VABMainBuilding
 			     VABPodMemorial VABRoundTank VABSouthComplex
 			     VABTanks) ],
-		Mun => [ qw (FarsideCrater HighlandCraters Highlands
-			     MidlandCraters Midlands NorthernBasin
+		Mun => [ qw (Canyons EastCrater EastFarsideCrater FarsideBasin
+			     FarsideCrater HighlandCraters Highlands Lowlands
+			     MidlandCraters Midlands NortheastBasin
 			     NorthwestCrater PolarCrater PolarLowlands Poles
-			     SouthwestCrater TwinCraters Canyons EastCrater
-			     EastFarsideCrater) ],
+			     SouthwestCrater TwinCraters) ],
 		Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands
 				LesserFlats Lowlands Midlands Poles Slopes) ],
 		Kerbol => [ qw (Global) ],

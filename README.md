@@ -94,13 +94,14 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 ### Todo
 
 - UPDATE:
-  - Latest defs and science (`evaScience` landed or space(???63) only, magnetometer space low or high, Mun has FarsideBasin instead of... ???  Check others.)
+  - Latest defs and science (`evaScience` landed or space(???63) only, magnetometer space low or high)
   - Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
   - SCANsat (visual, caps are different???)
     - Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
   - Check data (like dV, etc.)
   - Better regex, cleanup, etc.
 - Option to ignore KSC science
+- Check biome list
 - `Argument "48//Onlyvalidinspacelowandinspacehigh." isn't numeric in sprintf at parseScience.pl line 803, <$defs> line 905.`
 - `Use of uninitialized value $w in hash element at parseScience.pl line 850.`
 - `Use of uninitialized value in numeric comparison (<=>) at parseScience.pl line 850.`
