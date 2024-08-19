@@ -261,9 +261,10 @@ my %universe = (
 			     TrackingStationHub VAB VABMainBuilding
 			     VABPodMemorial VABRoundTank VABSouthComplex
 			     VABTanks) ],
+		# Northeast Basin is displayed, but listed as Northern Basin
 		Mun => [ qw (Canyons EastCrater EastFarsideCrater FarsideBasin
 			     FarsideCrater HighlandCraters Highlands Lowlands
-			     MidlandCraters Midlands NortheastBasin
+			     MidlandCraters Midlands NorthernBasin
 			     NorthwestCrater PolarCrater PolarLowlands Poles
 			     SouthwestCrater TwinCraters) ],
 		Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands
