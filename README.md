@@ -102,7 +102,6 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Better regex, cleanup, etc.
 - Option to ignore KSC science
 - Check biome list
-- `Argument "48//Onlyvalidinspacelowandinspacehigh." isn't numeric in sprintf at parseScience.pl line 798, <$defs> line 905.`
 - `Use of uninitialized value $w in hash element at parseScience.pl line 846.`
 - `Use of uninitialized value in numeric comparison (<=>) at parseScience.pl line 846.`
 - Option to not include finished experiments

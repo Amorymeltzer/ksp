@@ -354,8 +354,10 @@ while (<$defs>) {
     s/^\t//i;
 
     my ($key, $value) = split /=/;
-    $key   =~ s/\s+//g;      # Clean spaces
-    $value =~ s/\s+//g;      # Also fix default spacing in ScienceDefs.cfg
+    for ($key, $value) {
+      s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
+      s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
+    }
 
     if ($key eq 'id') {
       @testdef = (@testdef, $value);
