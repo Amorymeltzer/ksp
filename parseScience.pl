@@ -399,7 +399,7 @@ foreach my $i (0 .. scalar @testdef - 1) {
       next if $bins[-1] == 0;
       @situations = qw (Landed);
     } else {
-      for (my $binDex = scalar @sits - 1; $binDex >= 0; $binDex--) {
+      for my $binDex (reverse 0 .. $#sits) {
 	my $zIndex = abs $binDex - 5;
 	if ($sits[$zIndex] == 0) {
 	  splice @situations, $binDex, 1;

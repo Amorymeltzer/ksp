@@ -107,6 +107,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - `Use of uninitialized value in numeric comparison (<=>) at parseScience.pl line 846.`
 - Option to not include finished experiments
 - Possible to sort by more than one thing??
+- Check `cmp` usage?
 - ISRU science(?), perhaps
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
 
