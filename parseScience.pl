@@ -4,8 +4,7 @@
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Leftover science in red, candidates for manual cleanup in green
-# Sun represented as Kerbol
-# MajorCrater triplication hack is dirty but that's on Squad!
+# Sun represented as Kerbol# MajorCrater triplication hack is dirty but that's on Squad!
 # CresentBay actually real?  Doubtful but giving Squad benefit of the doubt
 
 ### FIXES, TODOS
@@ -242,20 +241,19 @@ my @planets = qw (Kerbin KSC Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
 my $planetCount = scalar @planets - 1;    # Use this a bunch
 
 # Different spobs, different biomes
-my %universe = (Kerbin => [qw (Water Shores Grasslands Highlands Mountains
-			   Deserts Badlands Tundra SouthernIceShelf
-			   NorthernIceShelf IceCaps)],
+my %universe = (Kerbin => [qw (Badlands Deserts Grasslands Highlands IceCaps
+			   Mountains NorthernIceShelf Shores SouthernIceShelf
+			   Tundra Water)],
 		KSC => [qw (KSC Administration AstronautComplex Crawlerway
-			FlagPole LaunchPad MissionControl R&D
+			FlagPole LaunchPad MissionControl Runway SPH
+			SPHMainBuilding SPHRoundTank SPHTanks SPHWaterTower
 			R&DCentralBuilding R&DCornerLab R&DMainBuilding
 			R&DObservatory R&DSideLab R&DSmallLab R&DTanks
-			R&DWindTunnel Runway SPH SPHMainBuilding
-			SPHRoundTank SPHTanks SPHWaterTower
-			TrackingStation TrackingStationDishEast
-			TrackingStationDishNorth TrackingStationDishSouth
-			TrackingStationHub VAB VABMainBuilding
-			VABPodMemorial VABRoundTank VABSouthComplex
-			VABTanks)],
+			R&DWindTunnel TrackingStation
+			TrackingStationDishEast TrackingStationDishNorth
+			TrackingStationDishSouth TrackingStationHub VAB
+			VABMainBuilding VABPodMemorial VABRoundTank
+			VABSouthComplex VABTanks)],
 		# Northeast Basin is displayed, but listed as Northern Basin
 		Mun => [qw (Canyons EastCrater EastFarsideCrater FarsideBasin
 			FarsideCrater HighlandCraters Highlands Lowlands
@@ -265,30 +263,40 @@ my %universe = (Kerbin => [qw (Water Shores Grasslands Highlands Mountains
 		Minmus => [qw (Flats GreatFlats GreaterFlats Highlands
 			   LesserFlats Lowlands Midlands Poles Slopes)],
 		Kerbol => [qw (Global)],
-		Moho   => [qw (NorthPole NorthernSinkholeRidge NorthernSinkhole
-			 Highlands Midlands MinorCraters CentralLowlands
-			 WesternLowlands SouthWesternLowlands
-			 SouthEasternLowlands Canyon SouthPole)],
-		Eve => [qw (Poles ExplodiumSea Lowlands Midlands Highlands
-			Peaks ImpactEjecta)],
-		Gilly => [qw (Lowlands Midlands Highlands)],
-		Duna  => [qw (Poles Highlands Midlands Lowlands Craters)],
-		Ike   => [qw (PolarLowlands Midlands Lowlands
-			EasternMountainRidge WesternMountainRidge
-			CentralMountainRidge SouthEasternMountainRange
-			SouthPole)],
-		Dres => [qw (Poles Highlands Midlands Lowlands Ridges
-			 ImpactEjecta ImpactCraters Canyons)],
+		Moho   => [qw (Canyon CentralLowlands Highlands Midlands
+			 MinorCraters NorthPole NorthernSinkhole
+			 NorthernSinkholeRidge SouthEasternLowlands
+			 SouthPole SouthWesternLowlands WesternLowlands)],
+		Eve => [qw (AkatsukiLake CraterLake Craters EasternSea
+			ExplodiumSea Foothills Highlands ImpactEjecta
+			Lowlands Midlands Olympus Peaks Poles Shallows
+			WesternSea)],
+		Gilly => [qw (Highlands Lowlands Midlands)],
+		Duna  => [qw (Craters EasternCanyon Highlands Lowlands
+			 MidlandCanyon MidlandSea Midlands NortheastBasin
+			 NorthernShelf PolarCraters PolarHighlands Poles
+			 SouthernBasin WesternCanyon)],
+		Ike => [qw (CentralMountainRidge EasternMountainRidge Lowlands
+			Midlands PolarLowlands SouthEasternMountainRange
+			SouthPole WesternMountainRidge)],
+		Dres => [qw (Canyons Highlands ImpactCraters ImpactEjecta
+			 Lowlands Midlands Poles Ridges)],
 		Jool   => [qw (Global)],
-		Laythe => [qw (Poles Shores Dunes CresentBay TheSagenSea)],
-		Vall   => [qw (Poles Highlands Midlands Lowlands)],
-		Tylo   => [qw (Highlands Midlands Lowlands Mara MinorCraters
-			 MajorCrater1 MajorCrater2 MajorCrater3)],
-		Bop   => [qw (Poles Slopes Peaks Valley Ridges)],
-		Pol   => [qw (Poles Lowlands Midlands Highlands)],
-		Eeloo => [qw (Poles Glaciers Midlands Lowlands IceCanyons
-			  Highlands Craters)]
+		Laythe => [qw (CraterBay CraterIsland CresentBay DegrasseSea
+			   Dunes Peaks Poles Shallows Shores TheSagenSea)],
+		Vall => [qw (Highlands Lowlands Midlands Mountains
+			 NortheastBasin NorthwestBasin Poles SouthernBasin
+			 SouthernValleys)],
+		Tylo => [qw (GagarinCrater GalileioCrater GrissomCrater
+			 Highlands Lowlands Mara Midlands MinorCraters
+			 TychoCrater)],
+		Bop   => [qw (Peaks Poles Ridges Slopes Valley)],
+		Pol   => [qw (Highlands Lowlands Midlands Poles)],
+		Eeloo => [qw (BabbagePatch Craters Fragipan Highlands IceCanyons
+			  Lowlands Midlands Mu NorthernGlaciers Poles
+			  SouthernGlaciers)]
 	       );
+
 
 # Various situations you may find yourself in
 my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);

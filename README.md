@@ -101,9 +101,10 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Check data (like dV, etc.)
   - Better regex, cleanup, etc.
 - Option to ignore KSC science
-- Check biome list
-- `Use of uninitialized value $w in hash element at parseScience.pl line 846.`
-- `Use of uninitialized value in numeric comparison (<=>) at parseScience.pl line 846.`
+- Other "KSC" biomes (Baikerbanur, Baikerbanur LaunchPad, Island Airfield, Woomerang Launch Site (Making History))
+- Put global biome first?  Last?
+- `Use of uninitialized value $w in hash element at parseScience.pl line 859.`
+- `Use of uninitialized value in numeric comparison (<=>) at parseScience.pl line 859.`
 - Option to not include finished experiments
 - Possible to sort by more than one thing??
 - Check `cmp` usage?
