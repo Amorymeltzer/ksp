@@ -26,9 +26,9 @@
 ## Flying high/low at Sun, see also multipliers
 ### Game might think possible but it's not actually real...
 
-## Given/while?  Requires 5.10.1 or 5.14 so maybe not ideal
 ## Cleanup data/test hashes, the order of the data is unintuitive
 
+use 5.010;
 
 use strict;
 use warnings;
