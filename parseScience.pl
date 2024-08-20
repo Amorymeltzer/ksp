@@ -751,11 +751,11 @@ if ($opt{average} || $opt{tests}) {
   print $avgOut "$string" if $opt{outputavgtable};
 
   if ($opt{percentdone}) {
-    average3($hashRef);
+    averagePercent($hashRef);
   } elsif ($opt{scienceleft}) {
-    average2($hashRef);
+    averageRemaining($hashRef);
   } else {
-    average1($hashRef, $arrayRef);
+    averageAlphabetical($hashRef, $arrayRef);
   }
 }
 close $avgOut or warn $ERRNO if $opt{outputavgtable};
@@ -952,7 +952,7 @@ sub buildReportData {
 }
 
 # Alphabeticalish averages
-sub average1 {
+sub averageAlphabetical {
   my $hashRef  = shift;
   my $arrayRef = shift;
 
@@ -976,7 +976,7 @@ sub average1 {
 }
 
 # Averages sorted by total remaining science
-sub average2 {
+sub averageRemaining {
   my $hashRef = shift;
 
   foreach my $key (sort {${$hashRef}{$b}[0] <=> ${$hashRef}{$a}[0] || $a cmp $b} keys %{$hashRef}) {
@@ -987,7 +987,7 @@ sub average2 {
 }
 
 # Averages sorted by percent accomplished
-sub average3 {
+sub averagePercent {
   my $hashRef = shift;
 
   foreach my $key (sort {((${$hashRef}{$b}[2] - ${$hashRef}{$b}[0]) / ${$hashRef}{$b}[2]) <=> ((${$hashRef}{$a}[2] - ${$hashRef}{$a}[0]) / ${$hashRef}{$a}[2]) || $a cmp $b} keys %{$hashRef}) {
