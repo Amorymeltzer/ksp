@@ -1046,7 +1046,7 @@ sub printReportTable {
 # Escapes not necessary but ensure pretty colors
 # Final line must be unindented?
 sub usage {
-  print <<USAGE;
+  print <<"USAGE";
 Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
        $PROGRAM_NAME [-g <game_location> -u <savefile_name>]
 
