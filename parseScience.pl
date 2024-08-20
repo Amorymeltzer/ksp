@@ -295,6 +295,9 @@ my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh)
 my @recoSits  = qw (Flew FlewBy SubOrbited Orbited Surfaced);
 my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources);
 
+# Common regex used in sitSort
+my $SIT_RE = join q{|}, @stockSits;
+
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
 my %recoCap = (Flew       => 6,
@@ -859,12 +862,12 @@ sub sitSort {
 
   # Test
   my ($v, $w) = ($a, $b);
-  $v =~ s/^(.*)(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh).*/$1/i;
-  $w =~ s/^(.*)(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh).*/$1/i;
+  $v =~ s/^(.*)($SIT_RE).*/$1/i;
+  $w =~ s/^(.*)($SIT_RE).*/$1/i;
   # Biome
   my ($t, $u) = ($a, $b);
-  $t =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
-  $u =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
+  $t =~ s/^.*($SIT_RE)(.*)/$2/i;
+  $u =~ s/^.*($SIT_RE)(.*)/$2/i;
 
   my ($x, $y) = map {/($sord)/} @input;
 
