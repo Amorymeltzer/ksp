@@ -49,8 +49,7 @@ if ($opts{h}) {
 }
 
 # Correlate commandline flags with their corresponding config options
-my %lookup = (
-	      g => 'gamelocation',
+my %lookup = (g => 'gamelocation',
 	      u => 'username',
 	      a => 'average',
 	      t => 'tests',
@@ -78,15 +77,15 @@ foreach my $key (keys %lookup) {
 ## .parsesciencerc config file
 my $dotfile;
 # Useful shorthands for finding files
-my $rc = 'parsesciencerc';	# Config dotfile name of choice.  Wordy.
-my $cwd = cwd();		# Current working directory
-my $scriptDir = $FindBin::Bin;	# Directory of this script
-my $home = $ENV{HOME};		# MAGIC hash with user env variables for $home
+my $rc        = 'parsesciencerc';    # Config dotfile name of choice.  Wordy.
+my $cwd       = cwd();               # Current working directory
+my $scriptDir = $FindBin::Bin;       # Directory of this script
+my $home      = $ENV{HOME};          # MAGIC hash with user env variables for $home
 
 # Round up the usual suspects, all superseded by commandline flag
-my @dotLocales = ("$cwd/.$rc","$scriptDir/.$rc");
+my @dotLocales = ("$cwd/.$rc", "$scriptDir/.$rc");
 # Windows (XP anyway) complains about $home
-@dotLocales = (@dotLocales,"$home/.$rc","$home/.config/parseScience/$rc") if $home;
+@dotLocales = (@dotLocales, "$home/.$rc", "$home/.config/parseScience/$rc") if $home;
 if ($opts{f} && -e $opts{f}) {
   $dotfile = $opts{f};
 } else {
@@ -105,10 +104,10 @@ if ($dotfile) {
   while (<$dot>) {
     chomp;
 
-    next if m/^#/g;		# Ignore comments
-    next if !$_;		# Ignore blank lines
+    next if m/^#/g;    # Ignore comments
+    next if !$_;       # Ignore blank lines
 
-    if (!m/^\w+ = \w+/) {	# Ignore and warn on malformed entries
+    if (!m/^\w+ = \w+/) {    # Ignore and warn on malformed entries
       warnNicely("Malformed entry '$_' at line $NR of $dotfile.  Skipping...");
       next;
     }
@@ -148,14 +147,14 @@ foreach my $flag (sort {$b cmp $a} keys %opts) {
 
 
 ### FILE DEFINITIONS
-my ($scidef,$pers,$path);
+my ($scidef, $pers, $path);
 my $scidefName = 'ScienceDefs.cfg';
-my $persName = 'persistent.sfs';
-my $gdsr = 'GameData/Squad/Resources/';
+my $persName   = 'persistent.sfs';
+my $gdsr       = 'GameData/Squad/Resources/';
 
 # Build and iterate through all potential options
-my @scidefLocales = ("$cwd/$scidefName","$scriptDir/$scidefName");
-my @persLocales = ("$cwd/$persName","$scriptDir/$persName");
+my @scidefLocales = ("$cwd/$scidefName", "$scriptDir/$scidefName");
+my @persLocales   = ("$cwd/$persName",   "$scriptDir/$persName");
 
 if (!$opt{gamelocation}) {
   if ($OSNAME eq 'darwin') {
@@ -166,18 +165,18 @@ if (!$opt{gamelocation}) {
     $path = 'C:/Program Files/KSP-win/';
   }
 } else {
-  $path = $opt{gamelocation};
-  @scidefLocales = ($path.$gdsr.$scidefName,@scidefLocales);
+  $path          = $opt{gamelocation};
+  @scidefLocales = ($path.$gdsr.$scidefName, @scidefLocales);
 }
 
 if ($opt{username}) {
-  @scidefLocales = ($path.$gdsr.$scidefName,@scidefLocales);
-  @persLocales = ($path."saves/$opt{username}/".$persName,@persLocales);
+  @scidefLocales = ($path.$gdsr.$scidefName, @scidefLocales);
+  @persLocales   = ($path."saves/$opt{username}/".$persName, @persLocales);
 }
 
 # Test files for existance
-$scidef = checkFiles($scidef,$scidefName,\@scidefLocales);
-$pers = checkFiles($pers,$persName,\@persLocales);
+$scidef = checkFiles($scidef, $scidefName, \@scidefLocales);
+$pers   = checkFiles($pers,   $persName,   \@persLocales);
 
 
 # Don't bother outputting average file if there ain't any averages to save
@@ -203,125 +202,120 @@ my $avgFile = 'average_table.txt';
 my $rptFile = 'report.csv';
 
 ### GLOBAL VARIABLES
-my %dataMatrix;		      # Stock data
-my %reco;		      # Craft recovery data
-my %scan;		      # SCANsat data
-my %sbvData;		      # sbv values from END data
-my %workVars;		      # Hash of arrays to hold worksheets, current row
-my %spobData;		      # Science per spob
-my %testData;		      # Science per test
-my %report;		      # Hold basic report data
+my %dataMatrix;    # Stock data
+my %reco;          # Craft recovery data
+my %scan;          # SCANsat data
+my %sbvData;       # sbv values from END data
+my %workVars;      # Hash of arrays to hold worksheets, current row
+my %spobData;      # Science per spob
+my %testData;      # Science per test
+my %report;        # Hold basic report data
 
 # ScienceDefs.cfg variables
-my (
-    @testdef,			# Basic test names
-    @sitmask,			# Where test is valid
-    @biomask,			# Where biomes for test matter
-    @atmo,			# Check if atmosphere required or not
-    @dataScale,			# dataScale, same as dsc in persistent.sfs
-    @scienceCap			# Base experiment cap, multiplied by sbv
+my (@testdef,      # Basic test names
+    @sitmask,      # Where test is valid
+    @biomask,      # Where biomes for test matter
+    @atmo,         # Check if atmosphere required or not
+    @dataScale,    # dataScale, same as dsc in persistent.sfs
+    @scienceCap    # Base experiment cap, multiplied by sbv
    );
 
 # persistent.sfs variables
-my (
-    @title,			# Long, displayed name
-    @dsc,			# Data scale
-    @scv,			# Percent left to research
-    @sbv,			# Base balue multiplier to reach cap
-    @sci,			# Science researched so far
-    @cap			# Max science
+my (@title,        # Long, displayed name
+    @dsc,          # Data scale
+    @scv,          # Percent left to research
+    @sbv,          # Base balue multiplier to reach cap
+    @sci,          # Science researched so far
+    @cap           # Max science
    );
 
 # Store details from split id
 my @pieces;
-my (
-    @test,			# Which test
-    @spob,			# Which planet/moon
-    @where,			# What activity
-    @biome			# What biome
+my (@test,         # Which test
+    @spob,         # Which planet/moon
+    @where,        # What activity
+    @biome         # What biome
    );
 
 my @planets = qw (Kerbin KSC Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
-		  Jool Laythe Vall Tylo Bop Pol Eeloo);
-my $planetCount = scalar @planets - 1; # Use this a bunch
+  Jool Laythe Vall Tylo Bop Pol Eeloo);
+my $planetCount = scalar @planets - 1;    # Use this a bunch
 
 # Different spobs, different biomes
-my %universe = (
-		Kerbin => [ qw (Water Shores Grasslands Highlands Mountains
-				Deserts Badlands Tundra SouthernIceShelf
-				NorthernIceShelf IceCaps) ],
-		KSC => [ qw (KSC Administration AstronautComplex Crawlerway
-			     FlagPole LaunchPad MissionControl R&D
-			     R&DCentralBuilding R&DCornerLab R&DMainBuilding
-			     R&DObservatory R&DSideLab R&DSmallLab R&DTanks
-			     R&DWindTunnel Runway SPH SPHMainBuilding
-			     SPHRoundTank SPHTanks SPHWaterTower
-			     TrackingStation TrackingStationDishEast
-			     TrackingStationDishNorth TrackingStationDishSouth
-			     TrackingStationHub VAB VABMainBuilding
-			     VABPodMemorial VABRoundTank VABSouthComplex
-			     VABTanks) ],
+my %universe = (Kerbin => [qw (Water Shores Grasslands Highlands Mountains
+			   Deserts Badlands Tundra SouthernIceShelf
+			   NorthernIceShelf IceCaps)],
+		KSC => [qw (KSC Administration AstronautComplex Crawlerway
+			FlagPole LaunchPad MissionControl R&D
+			R&DCentralBuilding R&DCornerLab R&DMainBuilding
+			R&DObservatory R&DSideLab R&DSmallLab R&DTanks
+			R&DWindTunnel Runway SPH SPHMainBuilding
+			SPHRoundTank SPHTanks SPHWaterTower
+			TrackingStation TrackingStationDishEast
+			TrackingStationDishNorth TrackingStationDishSouth
+			TrackingStationHub VAB VABMainBuilding
+			VABPodMemorial VABRoundTank VABSouthComplex
+			VABTanks)],
 		# Northeast Basin is displayed, but listed as Northern Basin
-		Mun => [ qw (Canyons EastCrater EastFarsideCrater FarsideBasin
-			     FarsideCrater HighlandCraters Highlands Lowlands
-			     MidlandCraters Midlands NorthernBasin
-			     NorthwestCrater PolarCrater PolarLowlands Poles
-			     SouthwestCrater TwinCraters) ],
-		Minmus => [ qw (Flats GreatFlats GreaterFlats Highlands
-				LesserFlats Lowlands Midlands Poles Slopes) ],
-		Kerbol => [ qw (Global) ],
-		Moho => [ qw (NorthPole NorthernSinkholeRidge NorthernSinkhole
-			      Highlands Midlands MinorCraters CentralLowlands
-			      WesternLowlands SouthWesternLowlands
-			      SouthEasternLowlands Canyon SouthPole) ],
-		Eve => [ qw (Poles ExplodiumSea Lowlands Midlands Highlands
-			     Peaks ImpactEjecta) ],
-		Gilly => [ qw (Lowlands Midlands Highlands) ],
-		Duna => [ qw (Poles Highlands Midlands Lowlands Craters) ],
-		Ike => [ qw (PolarLowlands Midlands Lowlands
-			     EasternMountainRidge WesternMountainRidge
-			     CentralMountainRidge SouthEasternMountainRange
-			     SouthPole) ],
-		Dres => [ qw (Poles Highlands Midlands Lowlands Ridges
-			      ImpactEjecta ImpactCraters Canyons) ],
-		Jool => [ qw (Global) ],
-		Laythe => [ qw (Poles Shores Dunes CresentBay TheSagenSea) ],
-		Vall => [ qw (Poles Highlands Midlands Lowlands) ],
-		Tylo => [ qw (Highlands Midlands Lowlands Mara MinorCraters
-			      MajorCrater1 MajorCrater2 MajorCrater3) ],
-		Bop => [ qw (Poles Slopes Peaks Valley Ridges) ],
-		Pol => [ qw (Poles Lowlands Midlands Highlands) ],
-		Eeloo => [ qw (Poles Glaciers Midlands Lowlands IceCanyons
-			       Highlands Craters) ]
+		Mun => [qw (Canyons EastCrater EastFarsideCrater FarsideBasin
+			FarsideCrater HighlandCraters Highlands Lowlands
+			MidlandCraters Midlands NorthernBasin
+			NorthwestCrater PolarCrater PolarLowlands Poles
+			SouthwestCrater TwinCraters)],
+		Minmus => [qw (Flats GreatFlats GreaterFlats Highlands
+			   LesserFlats Lowlands Midlands Poles Slopes)],
+		Kerbol => [qw (Global)],
+		Moho   => [qw (NorthPole NorthernSinkholeRidge NorthernSinkhole
+			 Highlands Midlands MinorCraters CentralLowlands
+			 WesternLowlands SouthWesternLowlands
+			 SouthEasternLowlands Canyon SouthPole)],
+		Eve => [qw (Poles ExplodiumSea Lowlands Midlands Highlands
+			Peaks ImpactEjecta)],
+		Gilly => [qw (Lowlands Midlands Highlands)],
+		Duna  => [qw (Poles Highlands Midlands Lowlands Craters)],
+		Ike   => [qw (PolarLowlands Midlands Lowlands
+			EasternMountainRidge WesternMountainRidge
+			CentralMountainRidge SouthEasternMountainRange
+			SouthPole)],
+		Dres => [qw (Poles Highlands Midlands Lowlands Ridges
+			 ImpactEjecta ImpactCraters Canyons)],
+		Jool   => [qw (Global)],
+		Laythe => [qw (Poles Shores Dunes CresentBay TheSagenSea)],
+		Vall   => [qw (Poles Highlands Midlands Lowlands)],
+		Tylo   => [qw (Highlands Midlands Lowlands Mara MinorCraters
+			 MajorCrater1 MajorCrater2 MajorCrater3)],
+		Bop   => [qw (Poles Slopes Peaks Valley Ridges)],
+		Pol   => [qw (Poles Lowlands Midlands Highlands)],
+		Eeloo => [qw (Poles Glaciers Midlands Lowlands IceCanyons
+			  Highlands Craters)]
 	       );
 
 # Various situations you may find yourself in
 my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);
-my @recoSits = qw (Flew FlewBy SubOrbited Orbited Surfaced);
-my @scanSits = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources);
+my @recoSits  = qw (Flew FlewBy SubOrbited Orbited Surfaced);
+my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources);
 
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
-my %recoCap = (
-	       Flew => 6,
-	       FlewBy => 7.2,
+my %recoCap = (Flew       => 6,
+	       FlewBy     => 7.2,
 	       SubOrbited => 12,
-	       Orbited => 9.6,
-	       Surfaced => 18
+	       Orbited    => 9.6,
+	       Surfaced   => 18
 	      );
 # All SCANsat caps are 20
 my $scanCap = 20;
 
 # Am I in a science, recovery, or SCANsat loop?
-my ($ticker,$recoTicker,$scanTicker) = (0,0,0);
+my ($ticker, $recoTicker, $scanTicker) = (0, 0, 0);
 
 # Sometimes I use one versus the other, mainly for spacing in averages table
-my $recov = 'Recov';
-my $recovery = 'recovery';
-my $scansat = 'SCANsat';
+my $recov      = 'Recov';
+my $recovery   = 'recovery';
+my $scansat    = 'SCANsat';
 my $scansatMap = 'SCANsatMapping';
-my $ksc = 'KSC';
-my $total = 'total';
+my $ksc        = 'KSC';
+my $total      = 'total';
 
 # Only color science if below this threshold
 my $threshold = 95;
@@ -353,27 +347,27 @@ while (<$defs>) {
 
   # Skip the first line, remove leading tabs, and assign arrays
   elsif ($ticker == 1) {
-    next if m/^\{|^\s+$/;	# Take into account blank lines
+    next if m/^\{|^\s+$/;    # Take into account blank lines
     s/^\t//i;
 
-    my ($key,$value) = split /=/;
-    $key =~ s/\s+//g;		# Clean spaces
-    $value =~ s/\s+//g;		# Also fix default spacing in ScienceDefs.cfg
+    my ($key, $value) = split /=/;
+    $key   =~ s/\s+//g;      # Clean spaces
+    $value =~ s/\s+//g;      # Also fix default spacing in ScienceDefs.cfg
 
     if ($key eq 'id') {
-      @testdef = (@testdef,$value);
+      @testdef = (@testdef, $value);
     } elsif ($key eq 'situationMask') {
-      $value = binary($value);
-      @sitmask = (@sitmask,$value);
+      $value   = binary($value);
+      @sitmask = (@sitmask, $value);
     } elsif ($key eq 'biomeMask') {
-      $value = binary($value);
-      @biomask = (@biomask,$value);
+      $value   = binary($value);
+      @biomask = (@biomask, $value);
     } elsif ($key eq 'requireAtmosphere') {
-      @atmo = (@atmo,$value);
+      @atmo = (@atmo, $value);
     } elsif ($key eq 'dataScale') {
-      @dataScale = (@dataScale,$value);
+      @dataScale = (@dataScale, $value);
     } elsif ($key eq 'scienceCap') {
-      @scienceCap = (@scienceCap,$value);
+      @scienceCap = (@scienceCap, $value);
     }
   }
 }
@@ -382,38 +376,38 @@ close $defs or warn $ERRNO;
 
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
-foreach my $i (0..scalar @testdef - 1) {
+foreach my $i (0 .. scalar @testdef - 1) {
   next if ($opt{ignoreasteroids} && $testdef[$i] =~ /^asteroid|^infrared|^cometS/);
 
   # Array of binary values, only need to do once per test
-  my @sits = split //,$sitmask[$i];
-  my @bins = split //,$biomask[$i];
+  my @sits = split //, $sitmask[$i];
+  my @bins = split //, $biomask[$i];
 
-  foreach my $planet (0..$planetCount) {
+  foreach my $planet (0 .. $planetCount) {
     # Avoid replacing official planet list, thus duplicating Kerbin
     my $stavro = $planets[$planet];
     # Build list of potential situations
     my @situations = @stockSits;
 
     # Array of arrays for spob-specific biomes, nullify alongside @situations
-    my @biomes = ([@{$universe{$stavro}}])x6;
+    my @biomes = ([@{$universe{$stavro}}]) x 6;
     # KSC biomes are SrfLanded only
     if ($stavro eq $ksc) {
       next if $bins[-1] == 0;
       @situations = qw (Landed);
     } else {
-      for (my $binDex = scalar @sits - 1;$binDex>=0;$binDex--) {
-	my $zIndex = abs $binDex-5;
+      for (my $binDex = scalar @sits - 1; $binDex >= 0; $binDex--) {
+	my $zIndex = abs $binDex - 5;
 	if ($sits[$zIndex] == 0) {
 	  splice @situations, $binDex, 1;
-	  splice @biomes, $binDex, 1;
+	  splice @biomes,     $binDex, 1;
 	} elsif ($bins[$zIndex] == 0) {
-	  $biomes[$binDex] = [ qw (Global)];
+	  $biomes[$binDex] = [qw (Global)];
 	}
       }
     }
 
-    foreach my $sit (0..scalar @situations - 1) {
+    foreach my $sit (0 .. scalar @situations - 1) {
       # No surface
       next if (($situations[$sit] eq 'Landed') && ($stavro =~ m/^Kerbol$|^Jool$/));
       # Water
@@ -429,12 +423,12 @@ foreach my $i (0..scalar @testdef - 1) {
 	$stavro = 'Kerbin';
       }
 
-      foreach my $bin (0..scalar @{$biomes[$sit]} - 1) {
+      foreach my $bin (0 .. scalar @{$biomes[$sit]} - 1) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
 	my $sbVal = $sbvData{$stavro.$situations[$sit]};
-	my $cleft = $sbVal*$scienceCap[$i];
-	$dataMatrix{$testdef[$i].$stavro.$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i],$stavro,$situations[$sit],$biomes[$sit][$bin],$dataScale[$i],'1',$sbVal,'0',$cleft,$cleft,'0'];
+	my $cleft = $sbVal * $scienceCap[$i];
+	$dataMatrix{$testdef[$i].$stavro.$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i], $stavro, $situations[$sit], $biomes[$sit][$bin], $dataScale[$i], '1', $sbVal, '0', $cleft, $cleft, '0'];
       }
     }
   }
@@ -448,14 +442,14 @@ if ($opt{ksckerbin}) {
 }
 
 # Build recovery hash
-foreach my $planet (0..$planetCount) {
+foreach my $planet (0 .. $planetCount) {
   next if $planets[$planet] eq $ksc;
 
   my @situations = @recoSits;
-  shift @situations;		# Either Flew or FlewBy, not both
-  # Kerbin is special of course
+  shift @situations;    # Either Flew or FlewBy, not both
+			# Kerbin is special of course
   if ($planets[$planet] eq 'Kerbin') {
-    $situations[0] = 'Flew';	# No FlewBy
+    $situations[0] = 'Flew';    # No FlewBy
   }
 
   # No Surfaced
@@ -464,42 +458,42 @@ foreach my $planet (0..$planetCount) {
   }
 
 
-  foreach my $sit (0..scalar @situations - 1) {
+  foreach my $sit (0 .. scalar @situations - 1) {
     my $sbVal = $sbvData{$planets[$planet].'Recovery'};
     my $cleft;
 
     # Kerbin's values for (sub)orbital recovery are inverted elsewhere, since
     # you're coming the other way.  Probably a neater way to do this.
     if ($planets[$planet] eq 'Kerbin' && $situations[$sit] eq 'Orbited') {
-      $cleft = $sbVal*$recoCap{'SubOrbited'};
+      $cleft = $sbVal * $recoCap{'SubOrbited'};
     } elsif ($planets[$planet] eq 'Kerbin' && $situations[$sit] eq 'SubOrbited') {
-      $cleft = $sbVal*$recoCap{'Orbited'};
+      $cleft = $sbVal * $recoCap{'Orbited'};
     } else {
-      $cleft = $sbVal*$recoCap{$situations[$sit]};
+      $cleft = $sbVal * $recoCap{$situations[$sit]};
     }
 
-    $reco{$planets[$planet].$situations[$sit]} = [$recovery,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
+    $reco{$planets[$planet].$situations[$sit]} = [$recovery, $planets[$planet], $situations[$sit], '1', '1', $sbVal, '0', $cleft, $cleft, '0'];
   }
 }
 
 # Build SCANsat hash
 if ($opt{scansat}) {
-  foreach my $planet (0..$planetCount) {
+  foreach my $planet (0 .. $planetCount) {
     # No scanning for KSC biomes
     # But *technically* you can scan Jool and Kerbol
     next if ($planets[$planet] eq $ksc);
 
     my @situations = @scanSits;
-    foreach my $sit (0..scalar @situations - 1) {
+    foreach my $sit (0 .. scalar @situations - 1) {
 
       my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
-      my $cleft = $sbVal*$scanCap;
+      my $cleft = $sbVal * $scanCap;
 
       # SCANsat results from Jool and Kerbol are reduced by half
       # https://github.com/S-C-A-N/SCANsat/issues/125
       $cleft /= 2 if $planets[$planet] =~ m/^Kerbol$|^Jool$/;
 
-      $scan{$planets[$planet].$situations[$sit]} = [$scansat,$planets[$planet],$situations[$sit],'1','1',$sbVal,'0',$cleft,$cleft,'0'];
+      $scan{$planets[$planet].$situations[$sit]} = [$scansat, $planets[$planet], $situations[$sit], '1', '1', $sbVal, '0', $cleft, $cleft, '0'];
     }
   }
 }
@@ -524,8 +518,8 @@ while (<$file>) {
   elsif ($ticker == 1) {
     next if m/^\t\t\{/;
     s/^\t\t\t//i;
-    my ($key,$value) = split /=/;
-    $key =~ s/\s+//g;		# Clean spaces
+    my ($key, $value) = split /=/;
+    $key   =~ s/\s+//g;         # Clean spaces
     $value =~ s/\s+//g;
     $value =~ s/Sun/Kerbol/g;
 
@@ -540,7 +534,7 @@ while (<$file>) {
 	$value =~ s/^$scansat(.*)\@(.*)InSpaceHigh$/$scansat\@$2\@$1/g;
 	@pieces = (split /@/, $value);
       } else {
-	($recoTicker,$scanTicker) = (0,0);
+	($recoTicker, $scanTicker) = (0, 0);
 	# Watch out for srf landed/splashed, InSpaceHigh/Low, FlyingHigh/Low
 	$value =~ s/Srf(Landed|Splashed)/\@$1\@/g;
 	$value =~ s/(InSpace|Flying)(Low|High)/\@$1$2\@/g;
@@ -548,30 +542,30 @@ while (<$file>) {
       }
 
       # Ensure arrays are the same length
-      push @test, $pieces[0];
-      push @spob, $pieces[1];
+      push @test,  $pieces[0];
+      push @spob,  $pieces[1];
       push @where, $pieces[2];
-      push @biome, $pieces[3] // 'Global'; # global biomes
+      push @biome, $pieces[3] // 'Global';    # global biomes
     } elsif ($key =~ m/^title/) {
-      @title = (@title,$value);
+      @title = (@title, $value);
     } elsif ($key =~ m/^dsc/) {
-      @dsc = (@dsc,$value);
+      @dsc = (@dsc, $value);
     } elsif ($key =~ m/^scv/) {
-      @scv = (@scv,$value);
+      @scv = (@scv, $value);
     } elsif ($key =~ m/^sbv/) {
-      @sbv = (@sbv,$value);
+      @sbv = (@sbv, $value);
     } elsif ($key =~ m/^sci/) {
-      @sci = (@sci,$value);
+      @sci = (@sci, $value);
     } elsif ($key =~ m/^cap/) {
-      @cap = (@cap,$value);
+      @cap = (@cap, $value);
 
       # Build recovery and SCANsat data hashes
       if ($recoTicker == 1) {
-	my $percL = calcPerc($sci[-1],$cap[-1]);
-	$reco{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$percL];
+	my $percL = calcPerc($sci[-1], $cap[-1]);
+	$reco{$pieces[1].$pieces[2]} = [$pieces[0], $pieces[1], $pieces[2], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
       } elsif ($opt{scansat} && $scanTicker == 1) {
-	my $percL = calcPerc($sci[-1],$cap[-1]);
-	$scan{$pieces[1].$pieces[2]} = [$pieces[0],$pieces[1],$pieces[2],$dsc[-1],$scv[-1],$sbv[-1],$sci[-1],$cap[-1],$cap[-1]-$sci[-1],$percL];
+	my $percL = calcPerc($sci[-1], $cap[-1]);
+	$scan{$pieces[1].$pieces[2]} = [$pieces[0], $pieces[1], $pieces[2], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
       }
     }
   }
@@ -579,12 +573,12 @@ while (<$file>) {
 close $file or warn $ERRNO;
 
 # Build the matrix
-foreach (0..scalar @test - 1) {
+foreach (0 .. scalar @test - 1) {
   next if ($opt{ignoreasteroids} && $test[$_] =~ /^asteroid|^infrared|^cometS/);
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^$scansat|^$recovery/;
   if ($biome[$_]) {
-    my $percL = calcPerc($sci[$_],$cap[$_]);
+    my $percL = calcPerc($sci[$_], $cap[$_]);
 
     if ($biome[$_] =~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
       # KSC biomes *should* be SrfLanded-only, this ensures that we skip any
@@ -603,7 +597,7 @@ foreach (0..scalar @test - 1) {
     # Still present (especially @ KSC (see above) but not much elsewhere)
     next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
 
-    $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_],$spob[$_],$where[$_],$biome[$_],$dsc[$_],$scv[$_],$sbv[$_],$sci[$_],$cap[$_],$cap[$_]-$sci[$_],$percL];
+    $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_], $spob[$_], $where[$_], $biome[$_], $dsc[$_], $scv[$_], $sbv[$_], $sci[$_], $cap[$_], $cap[$_] - $sci[$_], $percL];
   }
 }
 
@@ -615,37 +609,37 @@ dataSplice(\@header) if !$opt{moredata};
 
 ## Prepare fancy-schmancy Excel workbook
 # Globals defined here so -e flag works properly
-my ($workbook,$bold,$bgRed,$bgGreen);
+my ($workbook, $bold, $bgRed, $bgGreen);
 
 if (!$opt{excludeexcel}) {
   # Create new workbook
-  $workbook = Excel::Writer::XLSX->new( "$outfile" );
+  $workbook = Excel::Writer::XLSX->new("$outfile");
   # Bold for headers, red for science left, green for stupidly small values
-  $bold = $workbook->add_format();
-  $bgRed = $workbook->add_format();
+  $bold    = $workbook->add_format();
+  $bgRed   = $workbook->add_format();
   $bgGreen = $workbook->add_format();
 
   # Turn off formatting if so desired
   if (!$opt{noformat}) {
     $bold->set_bold();
-    $bgRed->set_bg_color( 'red' );
-    $bgGreen->set_bg_color( 'green' );
+    $bgRed->set_bg_color('red');
+    $bgGreen->set_bg_color('green');
   }
 
   # Generate each worksheet with proper header
   # Subroutine these ;;;;;; ##### FIXME TODO
-  $workVars{$recov} = [$workbook->add_worksheet( 'Recovery' ), 1];
-  $workVars{$recov}[0]->write( 0, 0, \@header, $bold );
+  $workVars{$recov} = [$workbook->add_worksheet('Recovery'), 1];
+  $workVars{$recov}[0]->write(0, 0, \@header, $bold);
 
   # Recovery widths, manually determined
-  columnWidths($workVars{$recov}[0],9.17,6.5,9);
+  columnWidths($workVars{$recov}[0], 9.17, 6.5, 9);
 
   if ($opt{scansat}) {
-    $workVars{$scansat} = [$workbook->add_worksheet( 'SCANsat' ), 1];
-    $workVars{$scansat}[0]->write( 0, 0, \@header, $bold );
+    $workVars{$scansat} = [$workbook->add_worksheet('SCANsat'), 1];
+    $workVars{$scansat}[0]->write(0, 0, \@header, $bold);
 
     # SCANsat widths, manually determined
-    columnWidths($workVars{$scansat}[0],9.17,6.5,11.83);
+    columnWidths($workVars{$scansat}[0], 9.17, 6.5, 11.83);
   }
 }
 
@@ -653,13 +647,13 @@ $header[1] = 'Condition';
 $header[2] = 'Biome';
 
 if (!$opt{excludeexcel}) {
-  foreach my $planet (0..$planetCount) {
+  foreach my $planet (0 .. $planetCount) {
     # Interpolate via " instead of '
-    $workVars{$planets[$planet]} = [$workbook->add_worksheet( "$planets[$planet]" ), 1];
-    $workVars{$planets[$planet]}[0]->write( 0, 0, \@header, $bold );
+    $workVars{$planets[$planet]} = [$workbook->add_worksheet("$planets[$planet]"), 1];
+    $workVars{$planets[$planet]}[0]->write(0, 0, \@header, $bold);
 
     # Stock science widths, manually determined
-    columnWidths($workVars{$planets[$planet]}[0],15.5,9.67,8.5);
+    columnWidths($workVars{$planets[$planet]}[0], 15.5, 9.67, 8.5);
   }
 }
 
@@ -672,18 +666,18 @@ writeToCSV(\@header) if $opt{csv};
 foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
-  dataSplice(\@{$dataMatrix{$key}}) if !$opt{moredata};
-  writeToExcel($planet,\@{$dataMatrix{$key}},$key,\%dataMatrix) if !$opt{excludeexcel};
+  dataSplice(\@{$dataMatrix{$key}})                                if !$opt{moredata};
+  writeToExcel($planet, \@{$dataMatrix{$key}}, $key, \%dataMatrix) if !$opt{excludeexcel};
 
   if ($opt{tests}) {
-    buildScienceData($key,$dataMatrix{$key}[0],\%testData,\%dataMatrix);
+    buildScienceData($key, $dataMatrix{$key}[0], \%testData, \%dataMatrix);
     if ($opt{report}) {
-      buildReportData($key,$planet,$dataMatrix{$key}[0],\%dataMatrix);
+      buildReportData($key, $planet, $dataMatrix{$key}[0], \%dataMatrix);
     }
   } elsif ($opt{average}) {
-    buildScienceData($key,$planet,\%spobData,\%dataMatrix);
+    buildScienceData($key, $planet, \%spobData, \%dataMatrix);
     if ($opt{report}) {
-      buildReportData($key,$planet,$dataMatrix{$key}[1],\%dataMatrix);
+      buildReportData($key, $planet, $dataMatrix{$key}[1], \%dataMatrix);
     }
   }
 
@@ -693,30 +687,30 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
 }
 # Recovery
-foreach my $key (sort { specialSort($a, $b, \%reco) } keys %reco) {
-  dataSplice(\@{$reco{$key}}) if !$opt{moredata};
-  writeToExcel($recov,\@{$reco{$key}},$key,\%reco) if !$opt{excludeexcel};
-  writeToCSV(\@{$reco{$key}}) if $opt{csv};
+foreach my $key (sort {specialSort($a, $b, \%reco)} keys %reco) {
+  dataSplice(\@{$reco{$key}})                         if !$opt{moredata};
+  writeToExcel($recov, \@{$reco{$key}}, $key, \%reco) if !$opt{excludeexcel};
+  writeToCSV(\@{$reco{$key}})                         if $opt{csv};
 
   if ($opt{tests}) {
     # Neater spacing in test averages output
-    buildScienceData($key,$recovery,\%testData,\%reco);
+    buildScienceData($key, $recovery, \%testData, \%reco);
   } elsif ($opt{average}) {
-    buildScienceData($key,$recov,\%spobData,\%reco);
+    buildScienceData($key, $recov, \%spobData, \%reco);
   }
 }
 # SCANsat
 if ($opt{scansat}) {
-  foreach my $key (sort { specialSort($a, $b, \%scan) } keys %scan) {
-    dataSplice(\@{$scan{$key}}) if !$opt{moredata};
-    writeToExcel($scansat,\@{$scan{$key}},$key,\%scan) if !$opt{excludeexcel};
-    writeToCSV(\@{$scan{$key}}) if $opt{csv};
+  foreach my $key (sort {specialSort($a, $b, \%scan)} keys %scan) {
+    dataSplice(\@{$scan{$key}})                           if !$opt{moredata};
+    writeToExcel($scansat, \@{$scan{$key}}, $key, \%scan) if !$opt{excludeexcel};
+    writeToCSV(\@{$scan{$key}})                           if $opt{csv};
 
     if ($opt{tests}) {
       # Neater spacing in test averages output
-      buildScienceData($key,$scansatMap,\%testData,\%scan);
+      buildScienceData($key, $scansatMap, \%testData, \%scan);
     } elsif ($opt{average}) {
-      buildScienceData($key,$scansat,\%spobData,\%scan);
+      buildScienceData($key, $scansat, \%spobData, \%scan);
     }
   }
 }
@@ -737,15 +731,15 @@ open my $avgOut, '>', "$avgFile" or die $ERRNO if $opt{outputavgtable};
 # Ensure the -t flag supersedes -a if both are given
 if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
-  my ($hashRef,$arrayRef);
+  my ($hashRef, $arrayRef);
 
   if ($opt{tests}) {
     $string .= "Test\t";
-    $hashRef = \%testData;
+    $hashRef  = \%testData;
     $arrayRef = \@testdef if !$opt{scienceleft};
   } elsif ($opt{average}) {
     $string .= 'Spob';
-    $hashRef = \%spobData;
+    $hashRef  = \%spobData;
     $arrayRef = \@planets if !$opt{scienceleft};
   }
 
@@ -758,7 +752,7 @@ if ($opt{average} || $opt{tests}) {
   } elsif ($opt{scienceleft}) {
     average2($hashRef);
   } else {
-    average1($hashRef,$arrayRef);
+    average1($hashRef, $arrayRef);
   }
 }
 close $avgOut or warn $ERRNO if $opt{outputavgtable};
@@ -766,7 +760,7 @@ close $avgOut or warn $ERRNO if $opt{outputavgtable};
 
 ### SUBROUTINES
 sub warnNicely {
-  my ($err,$ilynPayne) = @_;
+  my ($err, $ilynPayne) = @_;
   if ($ilynPayne) {
     print 'ERROR: ';
   } else {
@@ -779,7 +773,7 @@ sub warnNicely {
 }
 
 sub checkFiles {
-  my ($check,$name,$locRef) = @_;
+  my ($check, $name, $locRef) = @_;
   my $lastOne = pop @{$locRef};
 
   foreach my $place (@{$locRef}) {
@@ -801,25 +795,25 @@ sub checkFiles {
 
 # Convert string to binary, pad to six digits
 sub binary {
-  my $ones = sprintf '%b',shift;
-  while (length($ones)<6) {
+  my $ones = sprintf '%b', shift;
+  while (length($ones) < 6) {
     $ones = '0'.$ones;
   }
   return $ones;
 }
 
 sub calcPerc {
-  my ($sciC,$capC) = @_;
-  return sprintf '%.2f', 100*$sciC/$capC;
+  my ($sciC, $capC) = @_;
+  return sprintf '%.2f', 100 * $sciC / $capC;
 }
 
 # Determine column header widths
 sub columnWidths {
-  my ($sheet,$col1,$col2,$col3) = @_;
+  my ($sheet, $col1, $col2, $col3) = @_;
 
-  $sheet->set_column( 0, 0, $col1 );
-  $sheet->set_column( 1, 1, $col2 );
-  $sheet->set_column( 2, 2, $col3 );
+  $sheet->set_column(0, 0, $col1);
+  $sheet->set_column(1, 1, $col2);
+  $sheet->set_column(2, 2, $col3);
 
   return;
 }
@@ -830,18 +824,19 @@ sub columnWidths {
 # conditions
 # matches worksheets
 sub specialSort {
-  my ($a,$b,$specRef) = @_;
-  my @input = ($a, $b);		# Keep 'em separate, avoid expr version of map
 
-  my @specOrder = @planets;
-  my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
-  my $sord = join q{|}, @specOrder;
-  my @condOrder = (@recoSits, @scanSits);
-  my %cond_order_map = map { $condOrder[$_] => $_ } 0 .. $#condOrder;
-  my $cord = join q{|}, @condOrder;
+  my ($a, $b, $specRef) = @_;
+  my @input = ($a, $b);    # Keep 'em separate, avoid expr version of map
 
-  my ($x,$y) = map {/^($sord)/} @input;
-  my ($v,$w) = map {/($cord)/} @input;
+  my @specOrder      = @planets;
+  my %spec_order_map = map {$specOrder[$_] => $_} 0 .. $#specOrder;
+  my $sord           = join q{|}, @specOrder;
+  my @condOrder      = (@recoSits, @scanSits);
+  my %cond_order_map = map {$condOrder[$_] => $_} 0 .. $#condOrder;
+  my $cord           = join q{|}, @condOrder;
+
+  my ($x, $y) = map {/^($sord)/} @input;
+  my ($v, $w) = map {/($cord)/} @input;
 
   if ($opt{percentdone}) {
     ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
@@ -855,22 +850,23 @@ sub specialSort {
 # Sort alphabetically by test, then specifically by situation, then
 # alphabetically by biome
 sub sitSort {
-  my @input = ($a, $b);		# Keep 'em separate, avoid expr version of map
 
-  my @sitOrder = @stockSits;
-  my %sit_order_map = map { $sitOrder[$_] => $_ } 0..$#sitOrder;
-  my $sord = join q{|}, @sitOrder;
+  my @input = ($a, $b);    # Keep 'em separate, avoid expr version of map
+
+  my @sitOrder      = @stockSits;
+  my %sit_order_map = map {$sitOrder[$_] => $_} 0 .. $#sitOrder;
+  my $sord          = join q{|}, @sitOrder;
 
   # Test
-  my ($v,$w) = ($a,$b);
+  my ($v, $w) = ($a, $b);
   $v =~ s/^(.*)(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh).*/$1/i;
   $w =~ s/^(.*)(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh).*/$1/i;
   # Biome
-  my ($t,$u) = ($a,$b);
+  my ($t, $u) = ($a, $b);
   $t =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
   $u =~ s/^.*(Landed|Splashed|FlyingLow|FlyingHigh|InSpaceLow|InSpaceHigh)(.*)/$2/i;
 
-  my ($x,$y) = map {/($sord)/} @input;
+  my ($x, $y) = map {/($sord)/} @input;
 
   if ($opt{percentdone}) {
     # Percent done, test, situation
@@ -898,20 +894,20 @@ sub dataSplice {
 sub writeToCSV {
   my $rowRef = shift;
 
-  print $csvOut join q{,} , @{$rowRef};
+  print $csvOut join q{,}, @{$rowRef};
   print $csvOut "\n";
   return;
 }
 
 sub writeToExcel {
-  my ($sheetName,$rowRef,$matrixKey,$hashRef) = @_;
+  my ($sheetName, $rowRef, $matrixKey, $hashRef) = @_;
 
-  $workVars{$sheetName}[0]->write_row( $workVars{$sheetName}[1], 0, $rowRef );
+  $workVars{$sheetName}[0]->write_row($workVars{$sheetName}[1], 0, $rowRef);
   if ($opt{moredata}) {
-    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed ) if ${$hashRef}{$matrixKey}[9] < $threshold;
-    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen ) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] > 0));
+    $workVars{$sheetName}[0]->write($workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed)   if ${$hashRef}{$matrixKey}[9] < $threshold;
+    $workVars{$sheetName}[0]->write($workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] > 0));
   } else {
-    $workVars{$sheetName}[0]->write( $workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed ) if ${$hashRef}{$matrixKey}[6] < $threshold;
+    $workVars{$sheetName}[0]->write($workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed) if ${$hashRef}{$matrixKey}[6] < $threshold;
   }
 
   $workVars{$sheetName}[1]++;
@@ -920,7 +916,7 @@ sub writeToExcel {
 
 # Build data hashes for averages
 sub buildScienceData {
-  my ($key,$ind,$dataRef,$hashRef) = @_;
+  my ($key, $ind, $dataRef, $hashRef) = @_;
 
   # Sci, count, cap
   if ($opt{moredata}) {
@@ -937,16 +933,16 @@ sub buildScienceData {
 
 # Build report
 sub buildReportData {
-  my ($key,$spo,$tes,$hashRef) = @_;
+  my ($key, $spo, $tes, $hashRef) = @_;
   if ($opt{moredata}) {
-    $report{$spo}{$tes} += ${$hashRef}{$key}[8];
-    $report{$spo}{$total} += ${$hashRef}{$key}[8];
-    $report{$total}{$tes} += ${$hashRef}{$key}[8];
+    $report{$spo}{$tes}     += ${$hashRef}{$key}[8];
+    $report{$spo}{$total}   += ${$hashRef}{$key}[8];
+    $report{$total}{$tes}   += ${$hashRef}{$key}[8];
     $report{$total}{$total} += ${$hashRef}{$key}[8];
   } else {
-    $report{$spo}{$tes} += ${$hashRef}{$key}[5];
-    $report{$spo}{$total} += ${$hashRef}{$key}[5];
-    $report{$total}{$tes} += ${$hashRef}{$key}[5];
+    $report{$spo}{$tes}     += ${$hashRef}{$key}[5];
+    $report{$spo}{$total}   += ${$hashRef}{$key}[5];
+    $report{$total}{$tes}   += ${$hashRef}{$key}[5];
     $report{$total}{$total} += ${$hashRef}{$key}[5];
   }
   return;
@@ -954,23 +950,23 @@ sub buildReportData {
 
 # Alphabeticalish averages
 sub average1 {
-  my $hashRef = shift;
+  my $hashRef  = shift;
   my $arrayRef = shift;
 
   if ($opt{tests}) {
-    push @{$arrayRef}, $recovery; # Neater spacing in test averages output
+    push @{$arrayRef}, $recovery;                      # Neater spacing in test averages output
     push @{$arrayRef}, $scansatMap if $opt{scansat};
     @{$arrayRef} = sort @{$arrayRef};
   }
 
-  foreach my $index (0..scalar @{$arrayRef} - 1) {
+  foreach my $index (0 .. scalar @{$arrayRef} - 1) {
     next if ($opt{ignoreasteroids} && ${$arrayRef}[$index] =~ /^asteroid|^infrared|^cometS/);
-    printAverageTable(${$arrayRef}[$index],$hashRef);
+    printAverageTable(${$arrayRef}[$index], $hashRef);
   }
 
   if (!$opt{tests}) {
-    printAverageTable($recov,$hashRef);
-    printAverageTable($scansat,$hashRef) if $opt{scansat};
+    printAverageTable($recov,   $hashRef);
+    printAverageTable($scansat, $hashRef) if $opt{scansat};
   }
 
   return;
@@ -981,7 +977,7 @@ sub average2 {
   my $hashRef = shift;
 
   foreach my $key (sort {${$hashRef}{$b}[0] <=> ${$hashRef}{$a}[0] || $a cmp $b} keys %{$hashRef}) {
-    printAverageTable($key,$hashRef);
+    printAverageTable($key, $hashRef);
   }
 
   return;
@@ -991,8 +987,8 @@ sub average2 {
 sub average3 {
   my $hashRef = shift;
 
-  foreach my $key (sort {((${$hashRef}{$b}[2]-${$hashRef}{$b}[0])/${$hashRef}{$b}[2]) <=> ((${$hashRef}{$a}[2]-${$hashRef}{$a}[0])/${$hashRef}{$a}[2]) || $a cmp $b} keys %{$hashRef}) {
-    printAverageTable($key,$hashRef);
+  foreach my $key (sort {((${$hashRef}{$b}[2] - ${$hashRef}{$b}[0]) / ${$hashRef}{$b}[2]) <=> ((${$hashRef}{$a}[2] - ${$hashRef}{$a}[0]) / ${$hashRef}{$a}[2]) || $a cmp $b} keys %{$hashRef}) {
+    printAverageTable($key, $hashRef);
   }
 
   return;
@@ -1000,14 +996,15 @@ sub average3 {
 
 # Handle printing of the averages table
 sub printAverageTable {
-  my @placeHolder = @_;
-  my $ind = $placeHolder[0];
-  my %hash = %{$placeHolder[1]};
 
-  my $indShort = substr $ind, 0, 14; # Neater spacing in test averages output
-  my $avg = $hash{$ind}[0]/($hash{$ind}[1]);
-  my $remains = $hash{$ind}[2] - $hash{$ind}[0];
-  my $per = 100*$remains/$hash{$ind}[2];
+  my @placeHolder = @_;
+  my $ind         = $placeHolder[0];
+  my %hash        = %{$placeHolder[1]};
+
+  my $indShort = substr $ind, 0, 14;    # Neater spacing in test averages output
+  my $avg      = $hash{$ind}[0] / ($hash{$ind}[1]);
+  my $remains  = $hash{$ind}[2] - $hash{$ind}[0];
+  my $per      = 100 * $remains / $hash{$ind}[2];
 
   printf "%s\t%.0f\t%.0f\t%.0f\n", $indShort, $avg, $hash{$ind}[0], $per;
   if ($opt{outputavgtable}) {

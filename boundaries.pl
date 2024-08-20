@@ -17,7 +17,7 @@ my @universe = qw (Kerbin@FlyingHigh);
 while (<DATA>) {
   chomp;
   my @borders = split;
-  my $key = $borders[0].q{@}.$borders[1];
+  my $key     = $borders[0].q{@}.$borders[1];
 
   $boundData{$key} = $borders[2];
 
@@ -30,7 +30,7 @@ $joined = join '|', @ARGV if @ARGV;
 
 print "Spob\tCondition\tAltitude (km)\n";
 
-foreach my $key (sort { specialSort($a, $b) } keys %boundData) {
+foreach my $key (sort {specialSort($a, $b)} keys %boundData) {
   my @tmp = split /@/, $key;
   if ($joined) {
     next unless $tmp[0] =~ /$joined\|?/i;
@@ -40,19 +40,19 @@ foreach my $key (sort { specialSort($a, $b) } keys %boundData) {
 
 
 # Sort via order in _DATA_
-sub specialSort
-  {
-    my ($a,$b) = @_;
-    my @input = ($a, $b);	# Keep 'em separate, avoid expr version of map
+sub specialSort {
 
-    my @specOrder = @universe;
-    my %spec_order_map = map { $specOrder[$_] => $_ } 0 .. $#specOrder;
-    my $sord = join q{|}, @specOrder;
+  my ($a, $b) = @_;
+  my @input = ($a, $b);    # Keep 'em separate, avoid expr version of map
 
-    my ($x,$y) = map {/^($sord)/} @input;
+  my @specOrder      = @universe;
+  my %spec_order_map = map {$specOrder[$_] => $_} 0 .. $#specOrder;
+  my $sord           = join q{|}, @specOrder;
 
-    $spec_order_map{$x} <=> $spec_order_map{$y};
-  }
+  my ($x, $y) = map {/^($sord)/} @input;
+
+  $spec_order_map{$x} <=> $spec_order_map{$y};
+}
 
 
 ## The lines below do not represent Perl code, and are not examined by the

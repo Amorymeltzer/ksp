@@ -13,7 +13,7 @@ use diagnostics;
 
 
 my $avgData = 'average_table.txt';
-my %deltaVData;			# Hold delta-V values from END data
+my %deltaVData;    # Hold delta-V values from END data
 
 
 # Construct deltaV hash
@@ -27,7 +27,7 @@ print "Spob\tdV avg\tdV tot\n";
 # Read in averages
 open my $avg, '<', "$avgData" or die $!;
 while (<$avg>) {
-  next until $. > 3;		# Skip header lines
+  next until $. > 3;    # Skip header lines
   chomp;
   # No delta-V for recovery, Kerbin, KSC, SCANsat, Kerbol (too vague)
   next if /^R|^Kerb|^KSC|^SCANsat/;
@@ -39,16 +39,12 @@ while (<$avg>) {
   }
 
   # Is this the best sclaing factor?
-  my $effA = 1000*$avgs[1]/$deltaVData{$avgs[0]};
-  my $effT = 1000*$avgs[2]/$deltaVData{$avgs[0]};
+  my $effA = 1000 * $avgs[1] / $deltaVData{$avgs[0]};
+  my $effT = 1000 * $avgs[2] / $deltaVData{$avgs[0]};
 
   printf "%s\t%0.f\t%0.f\n", $avgs[0], $effA, $effT;
 }
 close $avg or die $!;
-
-
-
-
 
 
 
