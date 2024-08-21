@@ -367,7 +367,6 @@ while (<$defs>) {
       s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
     }
 
-    # Can probably remove the binary assignments FIXME TODO
     if ($key eq 'id') {
       @testdef = (@testdef, $value);
     } elsif ($key eq 'situationMask') {
@@ -377,11 +376,9 @@ while (<$defs>) {
       if ($testdef[-1] eq 'evaScience') {
 	$value = 49;
       }
-      $value   = binary($value);
-      @sitmask = (@sitmask, $value);
+      @sitmask = (@sitmask, binary($value));
     } elsif ($key eq 'biomeMask') {
-      $value   = binary($value);
-      @biomask = (@biomask, $value);
+      @biomask = (@biomask, binary($value));
     } elsif ($key eq 'requireAtmosphere') {
       @atmo = (@atmo, $value);
     } elsif ($key eq 'dataScale') {
