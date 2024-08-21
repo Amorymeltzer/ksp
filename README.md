@@ -94,12 +94,14 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 ### Todo
 
 - UPDATE:
-  - Latest defs and science (`evaScience` landed or space(???63) only, magnetometer space low or high)
+  - Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)
   - Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
+    - Will require atmosphere or not (data's in the script, just handle differently) and the different rover stuff for each spob (do in their own or separate page?)
   - SCANsat (visual, caps are different???)
     - Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
   - Check data (like dV, etc.)
   - Better regex, cleanup, etc.
+  - SCANsat: Not showing Kerbin AltimetryHiRes even though finished??
 - Option to ignore KSC science
 - Other "KSC" biomes (Baikerbanur, Baikerbanur LaunchPad, Island Airfield, Woomerang Launch Site (Making History))
 - Put global biome first?  Last?
@@ -109,6 +111,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - Possible to sort by more than one thing??
 - Check `cmp` usage?
 - ISRU science(?), perhaps
+- Check via <https://github.com/bigorangemachine/ksp_js_career_sci_list>
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
 
 ## deltaVScience.pl

@@ -314,7 +314,7 @@ my %recoCap = (Flew       => 6,
 	       Orbited    => 9.6,
 	       Surfaced   => 18
 	      );
-# All SCANsat caps are 20
+# All SCANsat caps are 20 FIXME TODO CHECK THIS
 my $scanCap = 20;
 
 # Am I in a science, recovery, or SCANsat loop?
@@ -367,9 +367,16 @@ while (<$defs>) {
       s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
     }
 
+    # Can probably remove the binary assignments FIXME TODO
     if ($key eq 'id') {
       @testdef = (@testdef, $value);
     } elsif ($key eq 'situationMask') {
+      # evaScience is weird.  It's a part that kerbals use, and they can only do
+      # so when landed or in space, but the ScienceDefs.cfg entry lists the
+      # situationMask as 63; it should be 49
+      if ($testdef[-1] eq 'evaScience') {
+	$value = 49;
+      }
       $value   = binary($value);
       @sitmask = (@sitmask, $value);
     } elsif ($key eq 'biomeMask') {
@@ -409,6 +416,8 @@ foreach my $i (0 .. scalar @testdef - 1) {
       next if $bins[-1] == 0;
       @situations = qw (Landed);
     } else {
+      # Would be good to include something here that handles 0 instead of 1..63,
+      # mainly because SCANsat does that.  Annoyingly.  FIXME TODO
       for my $binDex (reverse 0 .. $#sits) {
 	my $zIndex = abs $binDex - 5;
 	if ($sits[$zIndex] == 0) {
@@ -499,6 +508,8 @@ if ($opt{scansat}) {
     my @situations = @scanSits;
     foreach my $sit (0 .. scalar @situations - 1) {
 
+      # All SCANsat is just one run of a test, and uses InSpaceHigh as far as I
+      # am concerned, but in its own ScienceDefs.cfg the situationMask is 0.
       my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
       my $cleft = $sbVal * $scanCap;
 
