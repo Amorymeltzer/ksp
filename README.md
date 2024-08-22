@@ -97,13 +97,12 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)
   - Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
     - Will require atmosphere or not (data's in the script, just handle differently; see also `requireAtmosphere`) and the different rover stuff for each spob (do in their own or separate page?)
-  - SCANsat (Are caps different???)
-    - Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
   - Check data (like dV, etc.)
   - Better regex, cleanup, etc.
-- SCANsat: Not showing Kerbin AltimetryHiRes/Visual even though finished??
-  - Related to showing up in recovery?!  No idea.
+- SCANsat:
   - How do Visual HiRes vs LoRes??
+  - Are caps different?
+- Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
 - Option to ignore KSC science
 - Other "KSC" biomes (Baikerbanur, Baikerbanur LaunchPad, Island Airfield, Woomerang Launch Site (Making History))
 - Put global biome first?  Last?

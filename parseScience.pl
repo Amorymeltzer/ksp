@@ -555,6 +555,7 @@ while (<$file>) {
 	$value =~ s/^$scansat(.*)\@(.*)InSpaceHigh$/$scansat\@$2\@$1/g;
 	@pieces = (split /@/, $value);
       } else {
+	# Just in case...
 	($recoTicker, $scanTicker) = (0, 0);
 	# Watch out for srf landed/splashed, InSpaceHigh/Low, FlyingHigh/Low
 	$value =~ s/Srf(Landed|Splashed)/\@$1\@/g;
@@ -584,9 +585,11 @@ while (<$file>) {
       if ($recoTicker == 1) {
 	my $percL = calcPerc($sci[-1], $cap[-1]);
 	$reco{$pieces[1].$pieces[2]} = [$pieces[0], $pieces[1], $pieces[2], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
+	$recoTicker = 0;
       } elsif ($opt{scansat} && $scanTicker == 1) {
 	my $percL = calcPerc($sci[-1], $cap[-1]);
 	$scan{$pieces[1].$pieces[2]} = [$pieces[0], $pieces[1], $pieces[2], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
+	$scanTicker = 0;
       }
     }
   }
