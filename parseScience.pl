@@ -28,15 +28,13 @@
 ## Cleanup data/test hashes, the order of the data is unintuitive
 
 use 5.010;
+use English;
 
 use strict;
 use warnings;
 # use diagnostics;
 
 use Getopt::Std;
-use Cwd;
-use FindBin;
-use English qw( -no_match_vars );
 
 # Parse command line options
 my %opts = ();
@@ -73,13 +71,23 @@ foreach my $key (keys %lookup) {
   $opt{$lookup{$key}} = 0;
 }
 
+
+# Figure out where this script is, for proper reading/writing of files
+my $scriptDir;                  # Directory of this script
+# use Cwd 'abs_path';
+use Cwd qw(abs_path cwd);
+use File::Basename 'dirname';
+# Other useful shorthands for finding files
+my $rc   = 'parsesciencerc';    # Config dotfile name of choice.  Wordy.
+my $cwd  = cwd();               # Current working directory
+my $home = $ENV{HOME};          # MAGIC hash with user env variables for $home
+
+BEGIN {
+  $scriptDir = dirname abs_path __FILE__;
+}
+
 ## .parsesciencerc config file
 my $dotfile;
-# Useful shorthands for finding files
-my $rc        = 'parsesciencerc';    # Config dotfile name of choice.  Wordy.
-my $cwd       = cwd();               # Current working directory
-my $scriptDir = $FindBin::Bin;       # Directory of this script
-my $home      = $ENV{HOME};          # MAGIC hash with user env variables for $home
 
 # Round up the usual suspects, all superseded by commandline flag
 my @dotLocales = ("$cwd/.$rc", "$scriptDir/.$rc");
@@ -894,10 +902,10 @@ sub sitSort {
   my ($x, $y) = map {/($sord)/} @input;
 
   if ($opt{percentdone}) {
-    # Percent done, test, situation
+    # Percent done, test, situation, biome
     $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
   } elsif ($opt{scienceleft}) {
-    # Science left, test, situation
+    # Science left, test, situation, biome
     $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
   } elsif ($opt{biome}) {
     # Biome, situation, test
