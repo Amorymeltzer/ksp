@@ -99,9 +99,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
     - Will require atmosphere or not (data's in the script, just handle differently; see also `requireAtmosphere`) and the different rover stuff for each spob (do in their own or separate page?)
   - Check data (like dV, etc.)
   - Better regex, cleanup, etc.
-- SCANsat:
-  - How do Visual HiRes vs LoRes??
-  - Are caps different?
+- SCANsat: Are caps different?
 - Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
 - Option to ignore KSC science
 - Other "KSC" biomes (Baikerbanur, Baikerbanur LaunchPad, Island Airfield, Woomerang Launch Site (Making History))
