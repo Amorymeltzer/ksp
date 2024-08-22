@@ -301,7 +301,7 @@ my %universe = (Kerbin => [qw (Badlands Deserts Grasslands Highlands IceCaps
 # Various situations you may find yourself in
 my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);
 my @recoSits  = qw (Flew FlewBy SubOrbited Orbited Surfaced);
-my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources);
+my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources Visual);
 
 # Common regex used in sitSort
 my $SIT_RE = join q{|}, @stockSits;
@@ -707,6 +707,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   writeToCSV(\@{$dataMatrix{$key}}) if $opt{csv};
 
 }
+## These can be combined with a subroutine FIXME TODO
 # Recovery
 foreach my $key (sort {specialSort($a, $b, \%reco)} keys %reco) {
   dataSplice(\@{$reco{$key}})                         if !$opt{moredata};
@@ -841,9 +842,9 @@ sub columnWidths {
 
 ## Custom sort order, adapted from:
 ## http://stackoverflow.com/a/8171591/2521092
-# Kerbin, KSC, and its moons come first, then Kerbol, then proper sorting of
-# conditions
-# matches worksheets
+# Things with no biomes (recovery, SCANsat) but planet-wide: Kerbin, KSC, and
+# its moons come first, then Kerbol, then proper sorting of conditions
+# matches worksheets (What does that mean?)
 sub specialSort {
 
   my ($a, $b, $specRef) = @_;
