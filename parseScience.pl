@@ -435,6 +435,7 @@ foreach my $i (0 .. scalar @testdef - 1) {
     }
 
     foreach my $sit (0 .. scalar @situations - 1) {
+      ## Most of these can/should be lookup hashes FIXME TODO
       # No surface
       next if (($situations[$sit] eq 'Landed') && ($stavro =~ m/^Kerbol$|^Jool$/));
       # Water
@@ -606,6 +607,7 @@ close $file or warn $ERRNO;
 
 # Build the matrix
 foreach (0 .. scalar @test - 1) {
+  # Can this be faster with grep/map? FIXME TODO
   next if ($opt{ignoreasteroids} && $test[$_] =~ /^asteroid|^infrared|^cometS/);
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^$scansat|^$recovery/;

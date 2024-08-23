@@ -99,7 +99,9 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
     - Will require atmosphere or not (data's in the script, just handle differently; see also `requireAtmosphere`) and the different rover stuff for each spob (do in their own or separate page?)
   - Check data (like dV, etc.)
   - Better regex, cleanup, etc.
-- SCANsat: Are caps different?
+- SCANsat:
+  - Are caps different?
+  - Swap experiment and condition?  Or just high?  Or no condition?
 - Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
 - Option to ignore KSC science
 - Other "KSC" biomes (Baikerbanur, Baikerbanur LaunchPad, Island Airfield, Woomerang Launch Site (Making History))
@@ -110,6 +112,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - ISRU science(?), perhaps
 - Check via <https://github.com/bigorangemachine/ksp_js_career_sci_list>
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
+- Put all column widths in one place, lookup hash
 
 ## deltaVScience.pl
 
