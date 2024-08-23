@@ -82,7 +82,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
-      -r Save a report csv of per-planet test or condition data.  Require -a or -t.  Stock only.
+      -r Save a report csv of per-planet test or condition data.  Require -a or -t.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
@@ -93,7 +93,6 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 
 ### Todo
 
-- Include scansat and recovery in the report (-r)
 - Include stock in `processData`, probably by having another wrapper sub
 - UPDATE:
   - Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)
