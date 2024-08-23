@@ -28,7 +28,9 @@
 ## Cleanup data/test hashes, the order of the data is unintuitive
 
 use 5.010;
+
 use English;
+use autodie qw(open close);
 
 use strict;
 use warnings;
@@ -107,7 +109,7 @@ if ($opts{f} && -e $opts{f}) {
 
 # Parse config file
 if ($dotfile) {
-  open my $dot, '<', "$dotfile" or die $ERRNO;
+  open my $dot, '<', "$dotfile";
   while (<$dot>) {
     chomp;
 
@@ -133,7 +135,7 @@ if ($dotfile) {
       next;
     }
   }
-  close $dot or warn $ERRNO;
+  close $dot;
 }
 
 
@@ -348,7 +350,7 @@ while (<DATA>) {
 }
 
 # Read in science defs to build prebuild datamatrix for each experiment
-open my $defs, '<', "$scidef" or die $ERRNO;
+open my $defs, '<', "$scidef";
 while (<$defs>) {
   chomp;
 
@@ -396,7 +398,7 @@ while (<$defs>) {
     }
   }
 }
-close $defs or warn $ERRNO;
+close $defs;
 
 
 ## Iterate and decide on conditions, build matrix, gogogo
@@ -528,7 +530,7 @@ if ($opt{scansat}) {
   }
 }
 
-open my $file, '<', "$pers" or die $ERRNO;
+open my $file, '<', "$pers";
 while (<$file>) {
   chomp;
 
@@ -603,7 +605,7 @@ while (<$file>) {
     }
   }
 }
-close $file or warn $ERRNO;
+close $file;
 
 # Build the matrix
 foreach (0 .. scalar @test - 1) {
@@ -693,7 +695,7 @@ if (!$opt{excludeexcel}) {
 
 
 ## Actually print everybody!
-open my $csvOut, '>', "$csvFile" or die $ERRNO if $opt{csv};
+open my $csvOut, '>', "$csvFile" if $opt{csv};
 writeToCSV(\@header) if $opt{csv};
 
 # Stock science
@@ -726,20 +728,20 @@ processData(\%reco, $recov, $recovery);
 if ($opt{scansat}) {
   processData(\%scan, $scansat, $scansatMap);
 }
-close $csvOut or warn $ERRNO if $opt{csv};
+close $csvOut if $opt{csv};
 
 
 ## Report matrix of some interesting totals
-open my $rptOut, '>', "$rptFile" or die $ERRNO if $opt{report};
+open my $rptOut, '>', "$rptFile" if $opt{report};
 if ($opt{tests}) {
   printReportTable(@testdef);
 } elsif ($opt{average}) {
   printReportTable(@stockSits);
 }
-close $rptOut or warn $ERRNO if $opt{report};
+close $rptOut if $opt{report};
 
 ## Sorting of different average tables
-open my $avgOut, '>', "$avgFile" or die $ERRNO if $opt{outputavgtable};
+open my $avgOut, '>', "$avgFile" if $opt{outputavgtable};
 # Ensure the -t flag supersedes -a if both are given
 if ($opt{average} || $opt{tests}) {
   my $string = "Average science left:\n\n";
@@ -767,7 +769,7 @@ if ($opt{average} || $opt{tests}) {
     averageAlphabetical($hashRef, $arrayRef);
   }
 }
-close $avgOut or warn $ERRNO if $opt{outputavgtable};
+close $avgOut if $opt{outputavgtable};
 
 
 ### SUBROUTINES
