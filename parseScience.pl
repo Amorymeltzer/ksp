@@ -720,34 +720,11 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   writeToCSV(\@{$dataMatrix{$key}}) if $opt{csv};
 
 }
-## These can be combined with a subroutine FIXME TODO
 # Recovery
-foreach my $key (sort {specialSort($a, $b, \%reco)} keys %reco) {
-  dataSplice(\@{$reco{$key}})                         if !$opt{moredata};
-  writeToExcel($recov, \@{$reco{$key}}, $key, \%reco) if !$opt{excludeexcel};
-  writeToCSV(\@{$reco{$key}})                         if $opt{csv};
-
-  if ($opt{tests}) {
-    # Neater spacing in test averages output
-    buildScienceData($key, $recovery, \%testData, \%reco);
-  } elsif ($opt{average}) {
-    buildScienceData($key, $recov, \%spobData, \%reco);
-  }
-}
+processData(\%reco, $recov, $recovery);
 # SCANsat
 if ($opt{scansat}) {
-  foreach my $key (sort {specialSort($a, $b, \%scan)} keys %scan) {
-    dataSplice(\@{$scan{$key}})                           if !$opt{moredata};
-    writeToExcel($scansat, \@{$scan{$key}}, $key, \%scan) if !$opt{excludeexcel};
-    writeToCSV(\@{$scan{$key}})                           if $opt{csv};
-
-    if ($opt{tests}) {
-      # Neater spacing in test averages output
-      buildScienceData($key, $scansatMap, \%testData, \%scan);
-    } elsif ($opt{average}) {
-      buildScienceData($key, $scansat, \%spobData, \%scan);
-    }
-  }
+  processData(\%scan, $scansat, $scansatMap);
 }
 close $csvOut or warn $ERRNO if $opt{csv};
 
@@ -852,6 +829,25 @@ sub columnWidths {
 
   return;
 }
+
+# Build report data
+sub processData {
+  my ($dataRef, $shortName, $longName) = @_;
+
+  foreach my $key (sort {specialSort($a, $b, $dataRef)} keys $dataRef->%*) {
+    dataSplice($dataRef->{$key})                               if !$opt{moredata};
+    writeToExcel($shortName, $dataRef->{$key}, $key, $dataRef) if !$opt{excludeexcel};
+    writeToCSV($dataRef->{$key})                               if $opt{csv};
+
+    if ($opt{tests}) {
+      # Neater spacing in test averages output
+      buildScienceData($key, $longName, \%testData, $dataRef);
+    } elsif ($opt{average}) {
+      buildScienceData($key, $shortName, \%spobData, $dataRef);
+    }
+  }
+}
+
 
 ## Custom sort order, adapted from:
 ## http://stackoverflow.com/a/8171591/2521092
@@ -1101,7 +1097,7 @@ Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
       -o Save the chosen average table to a file.  Requires -a or -t.
-      -r Save a matrix of per-planet condition or test data.  Require -a or -t.  Stock only.
+      -r Save a report csv of per-planet condition or test data.  Require -a or -t.  Stock only.
 
       -g Specify path to your KSP folder
       -u Enter the username of your KSP save folder; otherwise, whatever files
