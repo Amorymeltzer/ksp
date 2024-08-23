@@ -875,9 +875,10 @@ sub specialSort {
   my $cord           = join q{|}, @condOrder;
 
   my ($x, $y) = map {/^($sord)/} @input;
-  my ($v, $w) = map {/($cord)/} @input;
+  my ($v, $w) = map {/($cord)$/} @input;
 
   if ($opt{percentdone}) {
+    # Percent done, test, situation/test
     ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
   } elsif ($opt{scienceleft}) {
     ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
@@ -896,15 +897,17 @@ sub sitSort {
   my %sit_order_map = map {$sitOrder[$_] => $_} 0 .. $#sitOrder;
   my $sord          = join q{|}, @sitOrder;
 
-  # Test
+  # Test; remove condition and biome
   my ($v, $w) = ($a, $b);
-  $v =~ s/^(.*)($SIT_RE).*/$1/i;
-  $w =~ s/^(.*)($SIT_RE).*/$1/i;
-  # Biome
-  my ($t, $u) = ($a, $b);
-  $t =~ s/^.*($SIT_RE)(.*)/$2/i;
-  $u =~ s/^.*($SIT_RE)(.*)/$2/i;
+  $v =~ s/(?:$SIT_RE).*$//i;
+  $w =~ s/(?:$SIT_RE).*$//i;
 
+  # Biome; remove test, spob, and condition
+  my ($t, $u) = ($a, $b);
+  $t =~ s/^.*(?:$SIT_RE)//i;
+  $u =~ s/^.*(?:$SIT_RE)//i;
+
+  # Situation
   my ($x, $y) = map {/($sord)/} @input;
 
   if ($opt{percentdone}) {
