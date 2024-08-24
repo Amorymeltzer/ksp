@@ -355,7 +355,7 @@ while (<$defs>) {
   chomp;
 
   # Find all the science loops
-  if (m/^EXPERIMENT_DEFINITION/) {
+  if ($_ eq 'EXPERIMENT_DEFINITION') {
     $ticker = 1;
     next;
   }
