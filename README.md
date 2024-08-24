@@ -93,13 +93,19 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 
 ### Todo
 
+- Better regex, cleanup, etc.
+  - Lookup hashes instead of regex for asteroids, atmospheres, etc.
+  - More tidying of sorting
+	- Don't run things if we don't need to, try to limit number of items
+  - Better regex for blank lines
+  - Everything after `$ticker == 1` is slow, like cleaning spaces, etc.
+  - Don't understand `buildData` (and likewise `buildScienceData`)
 - Include stock in `processData`, probably by having another wrapper sub
 - UPDATE:
   - Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)
   - Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
     - Will require atmosphere or not (data's in the script, just handle differently; see also `requireAtmosphere`) and the different rover stuff for each spob (do in their own or separate page?)
   - Check data (like dV, etc.)
-  - Better regex, cleanup, etc.
 - SCANsat:
   - Are caps different?
   - Swap experiment and condition?  Or just high?  Or no condition?
