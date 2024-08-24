@@ -901,7 +901,12 @@ sub sitSort {
   ## v/w: test (and spob)
   ## x/y: situation (in order)
   ## t/u: biome
-  my ($v, $x, $t, $w, $y, $u) = map {/^(.+)($SIT_RE)(.+)$/} @input;
+  # Apparently, using split here speeds things up a bit.  Profiling via NYTProf
+  # misses some info--no calls to CORE::match but still an appreciable time on
+  # line--but it's a little faster regardless, at leas in time spent on the
+  # line.  Because I'm using split, though, that means the first result is the
+  # empty string for each set of inputs, so toss 'em.
+  my ($trash, $v, $x, $t, $toss, $w, $y, $u) = map {split /^(.+)($SIT_RE)(.+)$/} @input;
 
   if ($opt{percentdone}) {
     # Percent done, test, situation, biome
