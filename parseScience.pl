@@ -897,12 +897,11 @@ sub sitSort {
   my %sit_order_map = map {$sitOrder[$_] => $_} 0 .. $#sitOrder;
   my $sord          = join q{|}, @sitOrder;
 
-  # Test; remove condition and biome
-  my ($v, $w) = map {s/(?:$SIT_RE)//ir} @input;
-  # Biome; remove test, spob, and condition
-  my ($t, $u) = map {s/^.*(?:$SIT_RE)//ir} @input;
-  # Situation; match situations in order
-  my ($x, $y) = map {/($SIT_RE)/} @input;
+  # Grab all the pieces we need:
+  ## v/w: test (and spob)
+  ## x/y: situation (in order)
+  ## t/u: biome
+  my ($v, $x, $t, $w, $y, $u) = map {/^(.+)($SIT_RE)(.+)$/} @input;
 
   if ($opt{percentdone}) {
     # Percent done, test, situation, biome
