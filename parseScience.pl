@@ -863,28 +863,28 @@ sub processData {
 # its moons come first, then Kerbol, then proper sorting of conditions
 # matches worksheets (What does that mean?)
 sub specialSort {
-
   my ($a, $b, $specRef) = @_;
-  my @input = ($a, $b);    # Keep 'em separate, avoid expr version of map
 
+  # Grab all the pieces we need from the inputs:
+  ## x/y: spob
   my @specOrder      = @planets;
   my %spec_order_map = map {$specOrder[$_] => $_} 0 .. $#specOrder;
   my $sord           = join q{|}, @specOrder;
+  my ($x, $y) = map {/^($sord)/} ($a, $b);
+  # v/w: situation (meaningless for recovery and actually the test for SCANsat)
   my @condOrder      = (@recoSits, @scanSits);
   my %cond_order_map = map {$condOrder[$_] => $_} 0 .. $#condOrder;
   my $cord           = join q{|}, @condOrder;
-
-  my ($x, $y) = map {/^($sord)/} @input;
-  my ($v, $w) = map {/($cord)$/} @input;
+  my ($v, $w) = map {/($cord)$/} ($a, $b);
 
   if ($opt{percentdone}) {
     # Percent done, test, situation/test
-    ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
-  } elsif ($opt{scienceleft}) {
-    ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
-  } else {
-    $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
+    return ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
   }
+  if ($opt{scienceleft}) {
+    return ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
+  }
+  return $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
 }
 
 # Sort alphabetically by test, then specifically by situation, then
@@ -908,10 +908,12 @@ sub sitSort {
   if ($opt{percentdone}) {
     # Percent done, test, situation, biome
     return $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
-  } elsif ($opt{scienceleft}) {
+  }
+  if ($opt{scienceleft}) {
     # Science left, test, situation, biome
     return $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
-  } elsif ($opt{biome}) {
+  }
+  if ($opt{biome}) {
     # Biome, situation, test
     return $t cmp $u || $sit_order_map{$x} <=> $sit_order_map{$y} || $v cmp $w;
   }
