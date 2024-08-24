@@ -890,37 +890,33 @@ sub specialSort {
 # Sort alphabetically by test, then specifically by situation, then
 # alphabetically by biome
 sub sitSort {
-
-  my @input = ($a, $b);    # Keep 'em separate, avoid expr version of map
-
-  my @sitOrder      = @stockSits;
-  my %sit_order_map = map {$sitOrder[$_] => $_} 0 .. $#sitOrder;
-  my $sord          = join q{|}, @sitOrder;
-
-  # Grab all the pieces we need:
+  # Grab all the pieces we need from the inputs:
   ## v/w: test (and spob)
   ## x/y: situation (in order)
   ## t/u: biome
+
   # Apparently, using split here speeds things up a bit.  Profiling via NYTProf
   # misses some info--no calls to CORE::match but still an appreciable time on
   # line--but it's a little faster regardless, at leas in time spent on the
   # line.  Because I'm using split, though, that means the first result is the
   # empty string for each set of inputs, so toss 'em.
-  my ($trash, $v, $x, $t, $toss, $w, $y, $u) = map {split /^(.+)($SIT_RE)(.+)$/} @input;
+  my ($trash, $v, $x, $t, $toss, $w, $y, $u) = map {split /^(.+)($SIT_RE)(.+)$/} ($a, $b);
+
+  my @sitOrder      = @stockSits;
+  my %sit_order_map = map {$sitOrder[$_] => $_} 0 .. $#sitOrder;
 
   if ($opt{percentdone}) {
     # Percent done, test, situation, biome
-    $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
+    return $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
   } elsif ($opt{scienceleft}) {
     # Science left, test, situation, biome
-    $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
+    return $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
   } elsif ($opt{biome}) {
     # Biome, situation, test
-    $t cmp $u || $sit_order_map{$x} <=> $sit_order_map{$y} || $v cmp $w;
-  } else {
-    # Test, situation, biome
-    $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
+    return $t cmp $u || $sit_order_map{$x} <=> $sit_order_map{$y} || $v cmp $w;
   }
+  # Test, situation, biome
+  return $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
 }
 
 
