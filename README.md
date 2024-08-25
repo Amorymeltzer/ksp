@@ -94,7 +94,6 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 ### Todo
 
 - Better regex, cleanup, etc.
-  - Lookup hashes instead of regex for asteroids, atmospheres, etc.
   - More tidying of sorting
     - Don't run things if we don't need to, try to limit number of items
   - Better regex for blank lines
@@ -102,6 +101,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Everything after `$ticker == 1` is slow, like cleaning spaces, etc.
   - Don't understand `buildData` (and likewise `buildScienceData`)
   - Consider `use builtin 'trim'`
+  - Don't use `planetCount` and `0..$planetCount`, can just use the items in the array directly?
 - Include stock in `processData`, probably by having another wrapper sub
 - UPDATE:
   - Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)

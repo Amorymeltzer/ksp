@@ -316,6 +316,12 @@ my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources Visual)
 # Common regex used in sitSort
 my $SIT_RE = join q{|}, @stockSits;
 
+# Some lookup hashes
+my %noLandLookup = makeMap([qw (Kerbol Jool)]);
+my %waterLookup = makeMap([qw (Kerbin Eve Laythe)]);
+my %kscLookup = makeMap($universe{KSC});
+my %atmosphereLookup = makeMap([$universe{KSC}->@*, qw (Kerbin Eve Duna Jool Laythe)]);
+
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
 my %recoCap = (Flew       => 6,
@@ -440,16 +446,15 @@ foreach my $i (0 .. scalar @testdef - 1) {
     }
 
     foreach my $sit (0 .. scalar @situations - 1) {
-      ## Most of these can/should be lookup hashes FIXME TODO
-      # No surface
-      next if (($situations[$sit] eq 'Landed') && ($stavro =~ m/^Kerbol$|^Jool$/));
       # Water
-      next if (($situations[$sit] eq 'Splashed') && ($stavro !~ m/^Kerbin$|^Eve$|^Laythe$/));
+      next if (($situations[$sit] eq 'Splashed') && (!$waterLookup{$stavro}));
       # Atmosphere
-      if ($stavro !~ m/^$ksc$|^Kerbin$|^Eve$|^Duna$|^Jool$|^Laythe$/) {
-	next if $situations[$sit] =~ m/^FlyingLow$|^FlyingHigh$/;
+      if (!$atmosphereLookup{$stavro}) {
+	next if ($situations[$sit] eq 'FlyingLow' || $situations[$sit] eq 'FlyingHigh');
 	next if $atmo[$i] eq 'True';
       }
+      # No surface
+      next if (($situations[$sit] eq 'Landed') && ($noLandLookup{$stavro}));
       # Fold KSC into Kerbin, if need be
       # Inconvenient, ruined by the cleaning function later
       if ($stavro eq $ksc && $opt{ksckerbin}) {
@@ -617,7 +622,7 @@ foreach (0 .. scalar @test - 1) {
   if ($biome[$_]) {
     my $percL = calcPerc($sci[$_], $cap[$_]);
 
-    if ($biome[$_] =~ m/^$ksc|^Runway|^LaunchPad|^VAB|^SPH|^R&D|^Astronaut|^FlagPole|^Mission|^Tracking|^Crawler|^Administration/) {
+    if ($kscLookup{$biome[$_]}) {
       # KSC biomes *should* be SrfLanded-only, this ensures that we skip any
       # anomalous data in persistent.sfs.  This complements the test below
       # but saves some work given the KSC/Kerbin potential with the -k flag
@@ -774,6 +779,9 @@ close $avgOut if $opt{outputavgtable};
 
 
 ### SUBROUTINES
+sub makeMap {
+  return map {$_ => 1} $_[0]->@*;
+}
 sub warnNicely {
   my ($err, $ilynPayne) = @_;
   if ($ilynPayne) {
