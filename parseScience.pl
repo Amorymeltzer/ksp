@@ -318,9 +318,9 @@ my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources Visual)
 my $SIT_RE = join q{|}, @stockSits;
 
 # Some lookup hashes
-my %noLandLookup = makeMap([qw (Kerbol Jool)]);
-my %waterLookup = makeMap([qw (Kerbin Eve Laythe)]);
-my %kscLookup = makeMap($universe{KSC});
+my %noLandLookup     = makeMap([qw (Kerbol Jool)]);
+my %waterLookup      = makeMap([qw (Kerbin Eve Laythe)]);
+my %kscLookup        = makeMap($universe{KSC});
 my %atmosphereLookup = makeMap([$universe{KSC}->@*, qw (Kerbin Eve Duna Jool Laythe)]);
 
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
@@ -368,14 +368,14 @@ while (<$defs>) {
   }
 
   # Note when we close out of a loop, nothing valuable after that
-  elsif (m/RESULTS/) {
+  elsif (m/^\tRESULTS/) {
     $ticker = 0;
     next;
   }
 
   # Skip the first line, remove leading tabs, and assign arrays
   elsif ($ticker == 1) {
-    next if m/^\{|^\s+$/;    # Take into account blank lines
+    next if m/^[\{\s]+$/;    # Take into account blank lines
     s/^\t//i;
 
     my ($key, $value) = split /=/;
@@ -484,15 +484,16 @@ if ($opt{ksckerbin}) {
 foreach my $planet (0 .. $planetCount) {
   next if $planets[$planet] eq $ksc;
 
-  my @situations = @recoSits;
-  shift @situations;    # Either Flew or FlewBy, not both
-			# Kerbin is special of course
+  # Either Flew or FlewBy, not both
+  my @situations = @recoSits[1 .. $#recoSits];
+
+  # Kerbin is special of course
   if ($planets[$planet] eq 'Kerbin') {
     $situations[0] = 'Flew';    # No FlewBy
+    pop @situations;            # and no surfaced
   }
-
   # No Surfaced
-  if ($planets[$planet] =~ m/^Kerbol|^Jool|^Kerbin/) {
+  if ($noLandLookup{$planets[$planet]}) {
     pop @situations;
   }
 
@@ -532,7 +533,7 @@ if ($opt{scansat}) {
 
       # SCANsat results from Jool and Kerbol are reduced by half
       # https://github.com/S-C-A-N/SCANsat/issues/125
-      $cleft /= 2 if $planets[$planet] =~ m/^Kerbol$|^Jool$/;
+      $cleft /= 2 if $noLandLookup{$planets[$planet]};
 
       $scan{$planets[$planet].$situations[$sit]} = [$scansat, $planets[$planet], $situations[$sit], '1', '1', $sbVal, '0', $cleft, $cleft, '0'];
     }
@@ -558,10 +559,8 @@ while (<$file>) {
   # Skip the first line, remove leading tabs, and assign arrays
   elsif ($ticker == 1) {
     next if m/^\t\t\{/;
-    s/^\t\t\t//i;
+    s/\s+//g;    # Clean whitespace
     my ($key, $value) = split /=/;
-    $key   =~ s/\s+//g;         # Clean spaces
-    $value =~ s/\s+//g;
 
     if ($key eq 'id') {
       $value =~ s/Sun/Kerbol/g;
@@ -570,7 +569,7 @@ while (<$file>) {
 	$recoTicker = 1;
 	$value =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
 	@pieces = (split /@/, $value);
-      } elsif ($opt{scansat} && $value =~ m/^$scansat/) {
+      } elsif ($value =~ m/^$scansat/ && $opt{scansat}) {
 	$scanTicker = 1;
 	$value =~ s/^$scansat(.*)\@(.*)InSpaceHigh$/$scansat\@$2\@$1/g;
 	@pieces = (split /@/, $value);
@@ -588,17 +587,17 @@ while (<$file>) {
       push @spob,  $pieces[1];
       push @where, $pieces[2];
       push @biome, $pieces[3] // 'Global';    # global biomes
-    } elsif ($key =~ m/^title/) {
+    } elsif ($key eq 'title') {
       @title = (@title, $value);
-    } elsif ($key =~ m/^dsc/) {
+    } elsif ($key eq 'dsc') {
       @dsc = (@dsc, $value);
-    } elsif ($key =~ m/^scv/) {
+    } elsif ($key eq 'scv') {
       @scv = (@scv, $value);
-    } elsif ($key =~ m/^sbv/) {
+    } elsif ($key eq 'sbv') {
       @sbv = (@sbv, $value);
-    } elsif ($key =~ m/^sci/) {
+    } elsif ($key eq 'sci') {
       @sci = (@sci, $value);
-    } elsif ($key =~ m/^cap/) {
+    } elsif ($key eq 'cap') {
       @cap = (@cap, $value);
 
       # Build recovery and SCANsat data hashes
@@ -784,6 +783,7 @@ close $avgOut if $opt{outputavgtable};
 sub makeMap {
   return map {$_ => 1} $_[0]->@*;
 }
+
 sub warnNicely {
   my ($err, $ilynPayne) = @_;
   if ($ilynPayne) {
