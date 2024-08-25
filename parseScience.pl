@@ -4,7 +4,8 @@
 # https://github.com/Amorymeltzer/ksp
 # Parse a KSP persistent.sfs file, report science information
 # Leftover science in red, candidates for manual cleanup in green
-# Sun represented as Kerbol# MajorCrater triplication hack is dirty but that's on Squad!
+# Sun represented as Kerbol
+# MajorCrater triplication hack is dirty but that's on Squad!
 # CresentBay actually real?  Doubtful but giving Squad benefit of the doubt
 
 ### FIXES, TODOS
@@ -561,9 +562,9 @@ while (<$file>) {
     my ($key, $value) = split /=/;
     $key   =~ s/\s+//g;         # Clean spaces
     $value =~ s/\s+//g;
-    $value =~ s/Sun/Kerbol/g;
 
     if ($key eq 'id') {
+      $value =~ s/Sun/Kerbol/g;
       # Replace recovery and SCANsat data here, why not?
       if ($value =~ m/^$recovery/) {
 	$recoTicker = 1;
@@ -615,10 +616,11 @@ while (<$file>) {
 }
 close $file;
 
-# Build the matrix
+# Build the matrix.  recovery and scansat are handled above, could this be
+# handled there?  Or could those be handled here?  FIXME TODO
 foreach (0 .. scalar @test - 1) {
   # Exclude tests stored in separate hashes
-  next if $test[$_] =~ m/^$scansat|^$recovery/;
+  next if ($test[$_] eq $scansat || $test[$_] eq $recovery);
   if ($biome[$_]) {
     my $percL = calcPerc($sci[$_], $cap[$_]);
 
@@ -633,7 +635,7 @@ foreach (0 .. scalar @test - 1) {
       }
     }
 
-    # Skip over annoying "fake" science expts caused by ScienceAlert
+    # Skip over annoying "fake" science expts caused by ScienceAlert, etc.
     # For more info see
     # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
     # Still present (especially @ KSC (see above) but not much elsewhere)
