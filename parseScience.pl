@@ -545,42 +545,42 @@ while (<$file>) {
   chomp;
 
   # Find all the science loops
-  if (m/^\t\tScience\s?$/m) {
+  if (/^\t\tScience\s?$/) {
     $ticker = 1;
     next;
   }
 
   # Note when we close out of a loop
-  elsif (m/\t\t\}/) {
+  if (/\t\t\}/) {
     $ticker = 0;
     next;
   }
 
   # Skip the first line, remove leading tabs, and assign arrays
-  elsif ($ticker == 1) {
+  if ($ticker == 1) {
     next if m/^\t\t\{/;
-    s/\s+//g;    # Clean whitespace
+    s/\s+//g;    # Remove whitespace
     my ($key, $value) = split /=/;
 
     if ($key eq 'id') {
       $value =~ s/Sun/Kerbol/g;
       # Replace recovery and SCANsat data here, why not?
-      if ($value =~ m/^$recovery/) {
+      if ($value =~ /^$recovery/) {
 	$recoTicker = 1;
 	$value =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
-	@pieces = (split /@/, $value);
       } elsif ($value =~ m/^$scansat/ && $opt{scansat}) {
 	$scanTicker = 1;
 	$value =~ s/^$scansat(.*)\@(.*)InSpaceHigh$/$scansat\@$2\@$1/g;
-	@pieces = (split /@/, $value);
       } else {
 	# Just in case...
 	($recoTicker, $scanTicker) = (0, 0);
 	# Watch out for srf landed/splashed, InSpaceHigh/Low, FlyingHigh/Low
-	$value =~ s/Srf(Landed|Splashed)/\@$1\@/g;
-	$value =~ s/(InSpace|Flying)(Low|High)/\@$1$2\@/g;
-	@pieces = (split /@/, $value);
+	my $asd = $value =~ s/Srf(Landed|Splashed)/\@$1\@/g;
+	if (!$asd) {
+	  $value =~ s/((?:InSpace|Flying)(?:Low|High))/\@$1\@/g;
+	}
       }
+      @pieces = (split /@/, $value);
 
       # Ensure arrays are the same length
       push @test,  $pieces[0];
