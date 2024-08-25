@@ -316,9 +316,6 @@ my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources Visual)
 # Common regex used in sitSort
 my $SIT_RE = join q{|}, @stockSits;
 
-# Lookup hash for asteroids and comets, frequently used
-my %asteroidLookup = map {$_ => 1} qw(asteroidSample infraredTelescope cometSample_short cometSample_intermediate cometSample_long cometSample_interstellar);
-
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
 my %recoCap = (Flew       => 6,
@@ -381,6 +378,11 @@ while (<$defs>) {
     }
 
     if ($key eq 'id') {
+      # Special case, skip them entirely and reset
+      if ($value =~ /^asteroid|^infrared|^cometS/ && $opt{ignoreasteroids}) {
+	$ticker = 0;
+	next;
+      }
       @testdef = (@testdef, $value);
     } elsif ($key eq 'situationMask') {
       # evaScience is weird.  It's a part that kerbals use, and they can only do
@@ -407,8 +409,6 @@ close $defs;
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0 .. scalar @testdef - 1) {
-  next if ($opt{ignoreasteroids} && $asteroidLookup{$testdef[$i]});
-
   # Array of binary values, only need to do once per test
   my @sits = split //, $sitmask[$i];
   my @bins = split //, $biomask[$i];
@@ -612,7 +612,6 @@ close $file;
 
 # Build the matrix
 foreach (0 .. scalar @test - 1) {
-  next if ($opt{ignoreasteroids} && $asteroidLookup{$test[$_]});
   # Exclude tests stored in separate hashes
   next if $test[$_] =~ m/^$scansat|^$recovery/;
   if ($biome[$_]) {
@@ -1000,7 +999,6 @@ sub averageAlphabetical {
   }
 
   foreach my $index (0 .. scalar @{$arrayRef} - 1) {
-    next if ($opt{ignoreasteroids} && $asteroidLookup{${$arrayRef}[$index]});
     printAverageTable(${$arrayRef}[$index], $hashRef);
   }
 
@@ -1060,7 +1058,6 @@ sub printReportTable {
   print $rptOut 'spob,';
 
   foreach my $place (sort @placeHolder) {
-    next if ($opt{ignoreasteroids} && $asteroidLookup{$place});
     print $rptOut "$place,";
   }
   print $rptOut "$total\n";
