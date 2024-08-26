@@ -323,7 +323,7 @@ my %waterLookup      = makeMap([qw (Kerbin Eve Laythe)]);
 my %kscLookup        = makeMap($universe{KSC});
 my %atmosphereLookup = makeMap([$universe{KSC}->@*, qw (Kerbin Eve Duna Jool Laythe)]);
 
-# Help speed up sorting in specialSort
+# Help speed up sorting
 my %memoized_situation = ();
 my %memoized_spob = ();
 
@@ -919,13 +919,10 @@ sub sitSort {
   ## v/w: test (and spob)
   ## x/y: situation (in order)
   ## t/u: biome
-
-  # Apparently, using split here speeds things up a bit.  Profiling via NYTProf
-  # misses some info--no calls to CORE::match but still an appreciable time on
-  # line--but it's a little faster regardless, at leas in time spent on the
-  # line.  Because I'm using split, though, that means the first result is the
-  # empty string for each set of inputs, so toss 'em.
-  my ($trash, $v, $x, $t, $toss, $w, $y, $u) = map {split /^(.+)($SIT_RE)(.+)$/} ($a, $b);
+  # As above, values stored to speed things up
+  $memoized_situation{$a} //= $a =~ /^(.+)($SIT_RE)(.+)$/ ? [$1, $2, $3] : undef;
+  $memoized_situation{$b} //= $b =~ /^(.+)($SIT_RE)(.+)$/ ? [$1, $2, $3] : undef;
+  my ($v, $x, $t, $w, $y, $u) = ($memoized_situation{$a}->@*, $memoized_situation{$b}->@*);
 
   my %sit_order_map = map {$stockSits[$_] => $_} 0 .. $#stockSits;
 
