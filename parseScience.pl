@@ -323,6 +323,10 @@ my %waterLookup      = makeMap([qw (Kerbin Eve Laythe)]);
 my %kscLookup        = makeMap($universe{KSC});
 my %atmosphereLookup = makeMap([$universe{KSC}->@*, qw (Kerbin Eve Duna Jool Laythe)]);
 
+# Help speed up sorting in specialSort
+my %memoized_situation = ();
+my %memoized_spob = ();
+
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
 my %recoCap = (Flew       => 6,
@@ -882,7 +886,12 @@ sub specialSort {
   my @condOrder      = (@recoSits, @scanSits);
   my %cond_order_map = map {$condOrder[$_] => $_} 0 .. $#condOrder;
   my $cord           = join q{|}, @condOrder;
-  my ($v, $w) = map {/($cord)$/} ($a, $b);
+
+  # Store lookup for each, as we don't need to repeat the regex each time we see
+  # a given item.
+  $memoized_situation{$a} //= $a =~ /($cord)$/ ? $1 : undef;
+  $memoized_situation{$b} //= $b =~ /($cord)$/ ? $1 : undef;
+  my ($v, $w) = ($memoized_situation{$a}, $memoized_situation{$b});
 
   # Percent done, test, situation/test
   if ($opt{percentdone}) {
@@ -894,8 +903,11 @@ sub specialSort {
   }
   ## x/y: spob
   my %spec_order_map = map {$planets[$_] => $_} 0 .. $#planets;
-  my $sord           = join q{|}, @planets;
-  my ($x, $y) = map {/^($sord)/} ($a, $b);
+  my $sord = join q{|}, @planets;
+  # As above
+  $memoized_spob{$a} //= $a =~ /^($sord)/ ? $1 : undef;
+  $memoized_spob{$b} //= $b =~ /^($sord)/ ? $1 : undef;
+  my ($x, $y) = ($memoized_spob{$a}, $memoized_spob{$b});
   # Spob, situation/test
   return $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
 }
