@@ -600,49 +600,49 @@ while (<$file>) {
     } elsif ($key eq 'cap') {
       @cap = (@cap, $value);
 
-      # Build recovery and SCANsat data hashes
+      # Build data matrix for each piece.  recovery and SCANsat get their own
+      # data hashes, and the main, stock science gets some extra pieces below.
+      # First, define some common parts.
+      my $percL = calcPerc($sci[-1], $cap[-1]);
+      my $dataKey = $spob[-1].$where[-1];
+      my $dataValue = [$test[-1], $spob[-1], $where[-1], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
+
       if ($recoTicker == 1) {
-	my $percL = calcPerc($sci[-1], $cap[-1]);
-	$reco{$pieces[1].$pieces[2]} = [$pieces[0], $pieces[1], $pieces[2], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
+	$reco{$dataKey} = $dataValue;
 	$recoTicker = 0;
       } elsif ($opt{scansat} && $scanTicker == 1) {
-	my $percL = calcPerc($sci[-1], $cap[-1]);
-	$scan{$pieces[1].$pieces[2]} = [$pieces[0], $pieces[1], $pieces[2], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
+	$scan{$dataKey} = $dataValue;
 	$scanTicker = 0;
+      } else {
+
+	if ($kscLookup{$biome[-1]}) {
+	  # KSC biomes *should* be SrfLanded-only, this ensures that we skip any
+	  # anomalous data in persistent.sfs.  This complements the test below
+	  # but saves some work given the KSC/Kerbin potential with the -k flag
+	  next if $where[-1] ne 'Landed';
+	  # Take KSC out of Kerbin
+	  if (!$opt{ksckerbin}) {
+	    $spob[-1] = $ksc;
+	    $dataKey = $ksc.$where[-1];
+	    ${$dataValue}[1] = $ksc;
+	  }
+	}
+	# Stock science gets bigger keys and gets the biome added in the value
+	$dataKey = $test[-1].$dataKey.$biome[-1];
+	# Skip over annoying "fake" science expts caused by ScienceAlert, etc.
+	# For more info see
+	# http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
+	# Still present (especially @ KSC (see above) but not much elsewhere)
+	next if !$dataMatrix{$dataKey};
+
+	splice $dataValue->@*, 3, 0, $biome[-1];
+	$dataMatrix{$dataKey} = $dataValue;
       }
     }
   }
 }
 close $file;
 
-# Build the matrix.  recovery and scansat are handled above, could this be
-# handled there?  Or could those be handled here?  FIXME TODO
-foreach (0 .. scalar @test - 1) {
-  # Exclude tests stored in separate hashes
-  next if ($test[$_] eq $scansat || $test[$_] eq $recovery);
-  if ($biome[$_]) {
-    my $percL = calcPerc($sci[$_], $cap[$_]);
-
-    if ($kscLookup{$biome[$_]}) {
-      # KSC biomes *should* be SrfLanded-only, this ensures that we skip any
-      # anomalous data in persistent.sfs.  This complements the test below
-      # but saves some work given the KSC/Kerbin potential with the -k flag
-      next if $where[$_] ne 'Landed';
-      # Take KSC out of Kerbin
-      if (!$opt{ksckerbin}) {
-	$spob[$_] = $ksc;
-      }
-    }
-
-    # Skip over annoying "fake" science expts caused by ScienceAlert, etc.
-    # For more info see
-    # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
-    # Still present (especially @ KSC (see above) but not much elsewhere)
-    next if !$dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]};
-
-    $dataMatrix{$test[$_].$spob[$_].$where[$_].$biome[$_]} = [$test[$_], $spob[$_], $where[$_], $biome[$_], $dsc[$_], $scv[$_], $sbv[$_], $sci[$_], $cap[$_], $cap[$_] - $sci[$_], $percL];
-  }
-}
 
 ###
 ### Begin the printing process!
