@@ -314,9 +314,6 @@ my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh)
 my @recoSits  = qw (Flew FlewBy SubOrbited Orbited Surfaced);
 my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources Visual);
 
-# Common regex used in sitSort
-my $SIT_RE = join q{|}, @stockSits;
-
 # Some lookup hashes
 my %noLandLookup     = makeMap([qw (Kerbol Jool)]);
 my %waterLookup      = makeMap([qw (Kerbin Eve Laythe)]);
@@ -326,6 +323,13 @@ my %atmosphereLookup = makeMap([$universe{KSC}->@*, qw (Kerbin Eve Duna Jool Lay
 # Help speed up sorting
 my %memoized_situation = ();
 my %memoized_spob = ();
+# Common regex used in specialSort
+my @condOrder      = (@recoSits, @scanSits);
+my %cond_order_map = map {$condOrder[$_] => $_} 0 .. $#condOrder;
+my $COND_RE           = join q{|}, @condOrder;
+# Common regex used in sitSort
+my $SIT_RE = join q{|}, @stockSits;
+my %sit_order_map = map {$stockSits[$_] => $_} 0 .. $#stockSits;
 
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
@@ -883,14 +887,10 @@ sub specialSort {
 
   # Grab all the pieces we need from the inputs:
   ## v/w: situation (meaningless for recovery and actually the test for SCANsat)
-  my @condOrder      = (@recoSits, @scanSits);
-  my %cond_order_map = map {$condOrder[$_] => $_} 0 .. $#condOrder;
-  my $cord           = join q{|}, @condOrder;
-
   # Store lookup for each, as we don't need to repeat the regex each time we see
   # a given item.
-  $memoized_situation{$a} //= $a =~ /($cord)$/ ? $1 : undef;
-  $memoized_situation{$b} //= $b =~ /($cord)$/ ? $1 : undef;
+  $memoized_situation{$a} //= $a =~ /($COND_RE)$/ ? $1 : undef;
+  $memoized_situation{$b} //= $b =~ /($COND_RE)$/ ? $1 : undef;
   my ($v, $w) = ($memoized_situation{$a}, $memoized_situation{$b});
 
   # Percent done, test, situation/test
@@ -902,11 +902,13 @@ sub specialSort {
     return ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
   }
   ## x/y: spob
+  # Can't be pulled out yet without reworking the ksckerbin option, which
+  # rewrites @planets FIXME TODO
   my %spec_order_map = map {$planets[$_] => $_} 0 .. $#planets;
-  my $sord = join q{|}, @planets;
+  my $SPOB_RE = join q{|}, @planets;
   # As above
-  $memoized_spob{$a} //= $a =~ /^($sord)/ ? $1 : undef;
-  $memoized_spob{$b} //= $b =~ /^($sord)/ ? $1 : undef;
+  $memoized_spob{$a} //= $a =~ /^($SPOB_RE)/ ? $1 : undef;
+  $memoized_spob{$b} //= $b =~ /^($SPOB_RE)/ ? $1 : undef;
   my ($x, $y) = ($memoized_spob{$a}, $memoized_spob{$b});
   # Spob, situation/test
   return $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
@@ -923,8 +925,6 @@ sub sitSort {
   $memoized_situation{$a} //= $a =~ /^(.+)($SIT_RE)(.+)$/ ? [$1, $2, $3] : undef;
   $memoized_situation{$b} //= $b =~ /^(.+)($SIT_RE)(.+)$/ ? [$1, $2, $3] : undef;
   my ($v, $x, $t, $w, $y, $u) = ($memoized_situation{$a}->@*, $memoized_situation{$b}->@*);
-
-  my %sit_order_map = map {$stockSits[$_] => $_} 0 .. $#stockSits;
 
   # Percent done, test, situation, biome
   if ($opt{percentdone}) {
