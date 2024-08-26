@@ -480,6 +480,7 @@ if ($opt{ksckerbin}) {
   $planetCount--;
 }
 
+# Combine these two?? FIXME TODO
 # Build recovery hash
 foreach my $planet (0 .. $planetCount) {
   next if $planets[$planet] eq $ksc;
@@ -877,24 +878,25 @@ sub specialSort {
   my ($a, $b, $specRef) = @_;
 
   # Grab all the pieces we need from the inputs:
-  ## x/y: spob
-  my @specOrder      = @planets;
-  my %spec_order_map = map {$specOrder[$_] => $_} 0 .. $#specOrder;
-  my $sord           = join q{|}, @specOrder;
-  my ($x, $y) = map {/^($sord)/} ($a, $b);
-  # v/w: situation (meaningless for recovery and actually the test for SCANsat)
+  ## v/w: situation (meaningless for recovery and actually the test for SCANsat)
   my @condOrder      = (@recoSits, @scanSits);
   my %cond_order_map = map {$condOrder[$_] => $_} 0 .. $#condOrder;
   my $cord           = join q{|}, @condOrder;
   my ($v, $w) = map {/($cord)$/} ($a, $b);
 
+  # Percent done, test, situation/test
   if ($opt{percentdone}) {
-    # Percent done, test, situation/test
     return ${$specRef}{$b}[9] <=> ${$specRef}{$a}[9] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
   }
+  # Science left, test, situation/test
   if ($opt{scienceleft}) {
     return ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
   }
+  ## x/y: spob
+  my %spec_order_map = map {$planets[$_] => $_} 0 .. $#planets;
+  my $sord           = join q{|}, @planets;
+  my ($x, $y) = map {/^($sord)/} ($a, $b);
+  # Spob, situation/test
   return $spec_order_map{$x} <=> $spec_order_map{$y} || $cond_order_map{$v} <=> $cond_order_map{$w};
 }
 
@@ -913,19 +915,18 @@ sub sitSort {
   # empty string for each set of inputs, so toss 'em.
   my ($trash, $v, $x, $t, $toss, $w, $y, $u) = map {split /^(.+)($SIT_RE)(.+)$/} ($a, $b);
 
-  my @sitOrder      = @stockSits;
-  my %sit_order_map = map {$sitOrder[$_] => $_} 0 .. $#sitOrder;
+  my %sit_order_map = map {$stockSits[$_] => $_} 0 .. $#stockSits;
 
+  # Percent done, test, situation, biome
   if ($opt{percentdone}) {
-    # Percent done, test, situation, biome
     return $dataMatrix{$b}[10] <=> $dataMatrix{$a}[10] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
   }
+  # Science left, test, situation, biome
   if ($opt{scienceleft}) {
-    # Science left, test, situation, biome
     return $dataMatrix{$b}[9] <=> $dataMatrix{$a}[9] || $v cmp $w || $sit_order_map{$x} <=> $sit_order_map{$y} || $t cmp $u;
   }
+  # Biome, situation, test
   if ($opt{biome}) {
-    # Biome, situation, test
     return $t cmp $u || $sit_order_map{$x} <=> $sit_order_map{$y} || $v cmp $w;
   }
   # Test, situation, biome
