@@ -103,7 +103,6 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Everything after `$ticker == 1` is slow, like cleaning spaces, etc.
   - Don't understand `buildData` (and likewise `buildScienceData`)
   - Consider `use builtin 'trim'`
-  - Don't use `planetCount` and `0..$planetCount`, can just use the items in the array directly?
 - Include stock in `processData`, probably by having another wrapper sub
 - UPDATE:
   - Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)

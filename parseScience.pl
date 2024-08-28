@@ -249,7 +249,6 @@ my (@test,         # Which test
 
 my @planets = qw (Kerbin KSC Mun Minmus Kerbol Moho Eve Gilly Duna Ike Dres
   Jool Laythe Vall Tylo Bop Pol Eeloo);
-my $planetCount = scalar @planets - 1;    # Use this a bunch
 
 # Different spobs, different biomes
 my %universe = (Kerbin => [qw (Badlands Deserts Grasslands Highlands IceCaps
@@ -322,13 +321,13 @@ my %atmosphereLookup = makeMap([$universe{KSC}->@*, qw (Kerbin Eve Duna Jool Lay
 
 # Help speed up sorting
 my %memoized_situation = ();
-my %memoized_spob = ();
+my %memoized_spob      = ();
 # Common regex used in specialSort
 my @condOrder      = (@recoSits, @scanSits);
 my %cond_order_map = map {$condOrder[$_] => $_} 0 .. $#condOrder;
-my $COND_RE           = join q{|}, @condOrder;
+my $COND_RE        = join q{|}, @condOrder;
 # Common regex used in sitSort
-my $SIT_RE = join q{|}, @stockSits;
+my $SIT_RE        = join q{|}, @stockSits;
 my %sit_order_map = map {$stockSits[$_] => $_} 0 .. $#stockSits;
 
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
@@ -428,9 +427,9 @@ foreach my $i (0 .. scalar @testdef - 1) {
   my @sits = split //, $sitmask[$i];
   my @bins = split //, $biomask[$i];
 
-  foreach my $planet (0 .. $planetCount) {
+  foreach my $planet (@planets) {
     # Avoid replacing official planet list, thus duplicating Kerbin
-    my $stavro = $planets[$planet];
+    my $stavro = $planet;
     # Build list of potential situations
     my @situations = @stockSits;
 
@@ -485,66 +484,65 @@ foreach my $i (0 .. scalar @testdef - 1) {
 # running smoothly in the case of -k
 if ($opt{ksckerbin}) {
   splice @planets, 1, 1;
-  $planetCount--;
 }
 
 # Combine these two?? FIXME TODO
 # Build recovery hash
-foreach my $planet (0 .. $planetCount) {
-  next if $planets[$planet] eq $ksc;
+foreach my $planet (@planets) {
+  next if $planet eq $ksc;
 
   # Either Flew or FlewBy, not both
   my @situations = @recoSits[1 .. $#recoSits];
 
   # Kerbin is special of course
-  if ($planets[$planet] eq 'Kerbin') {
+  if ($planet eq 'Kerbin') {
     $situations[0] = 'Flew';    # No FlewBy
     pop @situations;            # and no surfaced
   }
   # No Surfaced
-  if ($noLandLookup{$planets[$planet]}) {
+  if ($noLandLookup{$planet}) {
     pop @situations;
   }
 
 
   foreach my $sit (0 .. scalar @situations - 1) {
-    my $sbVal = $sbvData{$planets[$planet].'Recovery'};
+    my $sbVal = $sbvData{$planet.'Recovery'};
     my $cleft;
 
     # Kerbin's values for (sub)orbital recovery are inverted elsewhere, since
     # you're coming the other way.  Probably a neater way to do this.
-    if ($planets[$planet] eq 'Kerbin' && $situations[$sit] eq 'Orbited') {
+    if ($planet eq 'Kerbin' && $situations[$sit] eq 'Orbited') {
       $cleft = $sbVal * $recoCap{'SubOrbited'};
-    } elsif ($planets[$planet] eq 'Kerbin' && $situations[$sit] eq 'SubOrbited') {
+    } elsif ($planet eq 'Kerbin' && $situations[$sit] eq 'SubOrbited') {
       $cleft = $sbVal * $recoCap{'Orbited'};
     } else {
       $cleft = $sbVal * $recoCap{$situations[$sit]};
     }
 
-    $reco{$planets[$planet].$situations[$sit]} = [$recovery, $planets[$planet], $situations[$sit], '1', '1', $sbVal, '0', $cleft, $cleft, '0'];
+    $reco{$planet.$situations[$sit]} = [$recovery, $planet, $situations[$sit], '1', '1', $sbVal, '0', $cleft, $cleft, '0'];
   }
 }
 
 # Build SCANsat hash
 if ($opt{scansat}) {
-  foreach my $planet (0 .. $planetCount) {
+  foreach my $planet (@planets) {
     # No scanning for KSC biomes
     # But *technically* you can scan Jool and Kerbol
-    next if ($planets[$planet] eq $ksc);
+    next if ($planet eq $ksc);
 
     my @situations = @scanSits;
     foreach my $sit (0 .. scalar @situations - 1) {
 
       # All SCANsat is just one run of a test, and uses InSpaceHigh as far as I
       # am concerned, but in its own ScienceDefs.cfg the situationMask is 0.
-      my $sbVal = $sbvData{$planets[$planet].'InSpaceHigh'};
+      my $sbVal = $sbvData{$planet.'InSpaceHigh'};
       my $cleft = $sbVal * $scanCap;
 
       # SCANsat results from Jool and Kerbol are reduced by half
       # https://github.com/S-C-A-N/SCANsat/issues/125
-      $cleft /= 2 if $noLandLookup{$planets[$planet]};
+      $cleft /= 2 if $noLandLookup{$planet};
 
-      $scan{$planets[$planet].$situations[$sit]} = [$scansat, $planets[$planet], $situations[$sit], '1', '1', $sbVal, '0', $cleft, $cleft, '0'];
+      $scan{$planet.$situations[$sit]} = [$scansat, $planet, $situations[$sit], '1', '1', $sbVal, '0', $cleft, $cleft, '0'];
     }
   }
 }
@@ -612,8 +610,8 @@ while (<$file>) {
       # Build data matrix for each piece.  recovery and SCANsat get their own
       # data hashes, and the main, stock science gets some extra pieces below.
       # First, define some common parts.
-      my $percL = calcPerc($sci[-1], $cap[-1]);
-      my $dataKey = $spob[-1].$where[-1];
+      my $percL     = calcPerc($sci[-1], $cap[-1]);
+      my $dataKey   = $spob[-1].$where[-1];
       my $dataValue = [$test[-1], $spob[-1], $where[-1], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
 
       if ($recoTicker == 1) {
@@ -699,13 +697,13 @@ $header[1] = 'Condition';
 $header[2] = 'Biome';
 
 if (!$opt{excludeexcel}) {
-  foreach my $planet (0 .. $planetCount) {
+  foreach my $planet (@planets) {
     # Interpolate via " instead of '
-    $workVars{$planets[$planet]} = [$workbook->add_worksheet("$planets[$planet]"), 1];
-    $workVars{$planets[$planet]}[0]->write(0, 0, \@header, $bold);
+    $workVars{$planet} = [$workbook->add_worksheet("$planet"), 1];
+    $workVars{$planet}[0]->write(0, 0, \@header, $bold);
 
     # Stock science widths, manually determined
-    columnWidths($workVars{$planets[$planet]}[0], 15.5, 9.67, 8.5);
+    columnWidths($workVars{$planet}[0], 15.5, 9.67, 8.5);
   }
 }
 
@@ -905,7 +903,7 @@ sub specialSort {
   # Can't be pulled out yet without reworking the ksckerbin option, which
   # rewrites @planets FIXME TODO
   my %spec_order_map = map {$planets[$_] => $_} 0 .. $#planets;
-  my $SPOB_RE = join q{|}, @planets;
+  my $SPOB_RE        = join q{|}, @planets;
   # As above
   $memoized_spob{$a} //= $a =~ /^($SPOB_RE)/ ? $1 : undef;
   $memoized_spob{$b} //= $b =~ /^($SPOB_RE)/ ? $1 : undef;
