@@ -915,7 +915,7 @@ sub specialSort {
 }
 
 # Sort alphabetically by test, then specifically by situation, then
-# alphabetically by biome
+# alphabetically by biome.  Should probably include spob order FIXME TODO
 sub sitSort {
   # Grab all the pieces we need from the inputs:
   ## v/w: test (and spob)

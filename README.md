@@ -97,6 +97,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - More tidying of sorting
     - Don't run things if we don't need to, try to limit number of items
 	- Sorting: maps and regexes out of subs
+	  - New sorting (-f?) for `sit_order_map` first?  Useful.  Put global first.
   - Better regex for blank lines
   - Don't need to remove the leading tabs?
   - Everything after `$ticker == 1` is slow, like cleaning spaces, etc.
