@@ -354,6 +354,11 @@ my $total      = 'total';
 
 # Only color science if below this percentage
 my $colorThreshold = 95;
+# Excel column widths, manually determined
+my %columnSizes = ($recov   => [9.17, 6.5,  9],
+		   $scansat => [9.17, 6.5,  11.83],
+		   spob     => [15.5, 9.67, 8.5]
+		  );
 
 ### Begin!
 # Construct sbv hash
@@ -660,7 +665,7 @@ dataSplice(\@header) if !$opt{moredata};
 ## Prepare fancy-schmancy Excel workbook
 # Globals defined here so -e flag works properly
 my ($workbook, $bold, $bgRed, $bgGreen);
-
+# Can be combined FIXME TODO
 if (!$opt{excludeexcel}) {
   # Create new workbook
   $workbook = Excel::Writer::XLSX->new("$outfile");
@@ -681,15 +686,13 @@ if (!$opt{excludeexcel}) {
   $workVars{$recov} = [$workbook->add_worksheet('Recovery'), 1];
   $workVars{$recov}[0]->write(0, 0, \@header, $bold);
 
-  # Recovery widths, manually determined
-  columnWidths($workVars{$recov}[0], 9.17, 6.5, 9);
+  columnWidths($workVars{$recov}[0], $columnSizes{$recov});
 
   if ($opt{scansat}) {
     $workVars{$scansat} = [$workbook->add_worksheet('SCANsat'), 1];
     $workVars{$scansat}[0]->write(0, 0, \@header, $bold);
 
-    # SCANsat widths, manually determined
-    columnWidths($workVars{$scansat}[0], 9.17, 6.5, 11.83);
+    columnWidths($workVars{$scansat}[0], $columnSizes{$scansat});
   }
 }
 
@@ -702,8 +705,7 @@ if (!$opt{excludeexcel}) {
     $workVars{$planet} = [$workbook->add_worksheet("$planet"), 1];
     $workVars{$planet}[0]->write(0, 0, \@header, $bold);
 
-    # Stock science widths, manually determined
-    columnWidths($workVars{$planet}[0], 15.5, 9.67, 8.5);
+    columnWidths($workVars{$planet}[0], $columnSizes{spob});
   }
 }
 
@@ -841,15 +843,14 @@ sub calcPerc {
 
 # Determine column header widths
 sub columnWidths {
-  my ($sheet, $col1, $col2, $col3) = @_;
+  my ($sheet, $colRef) = @_;
 
-  $sheet->set_column(0, 0, $col1);
-  $sheet->set_column(1, 1, $col2);
-  $sheet->set_column(2, 2, $col3);
+  foreach (0 .. scalar @{$colRef} - 1) {
+    $sheet->set_column($_, $_, ${$colRef}[$_]);
+  }
 
   return;
 }
-
 # Build report data
 sub processData {
   my ($dataRef, $shortName, $longName) = @_;
