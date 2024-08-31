@@ -231,10 +231,9 @@ my (@testdef,      # Basic test names
    );
 
 # persistent.sfs variables
-my (@title,        # Long, displayed name
-    @dsc,          # Data scale
+my (@dsc,          # Data scale
     @scv,          # Percent left to research
-    @sbv,          # Base balue multiplier to reach cap
+    @sbv,          # Base value multiplier to reach cap
     @sci,          # Science researched so far
     @cap           # Max science
    );
@@ -390,6 +389,14 @@ while (<$defs>) {
       s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
       s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
     }
+
+    # Unnecessary, unused.  baseValue is NOT the same as sbv later, but seems
+    # like it should be!
+    next if ($key eq 'title' || $key eq 'baseValue');
+    # Just surface sample
+    next if $key eq 'requiredExperimentLevel';
+    # Unused atm, probably will FIXME TODO
+    next if $key eq 'requireNoAtmosphere';
 
     if ($key eq 'id') {
       # Special case, skip them entirely and reset
@@ -569,6 +576,9 @@ while (<$file>) {
     s/\s+//g;    # Remove whitespace
     my ($key, $value) = split /=/;
 
+    # Unnecessary, unused
+    next if $key eq 'title';
+
     if ($key eq 'id') {
       $value =~ s/Sun/Kerbol/g;
       # Replace recovery and SCANsat data here, why not?
@@ -594,8 +604,6 @@ while (<$file>) {
       push @spob,  $pieces[1];
       push @where, $pieces[2];
       push @biome, $pieces[3] // 'Global';    # global biomes
-    } elsif ($key eq 'title') {
-      @title = (@title, $value);
     } elsif ($key eq 'dsc') {
       @dsc = (@dsc, $value);
     } elsif ($key eq 'scv') {
