@@ -359,15 +359,10 @@ my %columnSizes = ($recov   => [9.17, 6.5,  9],
 		   $scansat => [9.17, 6.5,  11.83],
 		   spob     => [15.5, 9.67, 8.5]
 		  );
+# Construct sbv hash
+%sbvData = map {my ($spob, $sit, $val) = split; $spob.$sit => $val} <DATA>;
 
 ### Begin!
-# Construct sbv hash
-while (<DATA>) {
-  chomp;
-  my @sbvs = split;
-  $sbvData{$sbvs[0].$sbvs[1]} = $sbvs[2];
-}
-
 # Read in science defs to build prebuild datamatrix for each experiment
 open my $defs, '<', "$scidef";
 while (<$defs>) {
