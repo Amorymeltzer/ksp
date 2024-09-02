@@ -386,6 +386,7 @@ while (<$defs>) {
 
     my ($key, $value) = split /=/;
     for ($key, $value) {
+      # Move this up?  FIXME TODO
       s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
       s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
     }
@@ -559,13 +560,13 @@ while (<$file>) {
   chomp;
 
   # Find all the science loops
-  if (/^\t\tScience\s?$/) {
+  if (/^\t\tScience$/) {
     $ticker = 1;
     next;
   }
 
   # Note when we close out of a loop
-  if (/\t\t\}/) {
+  if (/^\t\t\}$/) {
     $ticker = 0;
     next;
   }
