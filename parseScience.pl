@@ -385,8 +385,11 @@ while (<$defs>) {
     s/^\t//i;
 
     my ($key, $value) = split /=/;
-    for ($key, $value) {
-      # Move this up?  FIXME TODO
+    # Just process the key for now, we're gonna skip a few, so save the value
+    # processing for later.  The whitespace could be moved up, but doesn't
+    # really save time.  Should probably just skip everything that *isn't* one
+    # of the keys we want. FIXME TODO
+    for ($key) {
       s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
       s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
     }
@@ -398,6 +401,11 @@ while (<$defs>) {
     next if $key eq 'requiredExperimentLevel';
     # Unused atm, probably will FIXME TODO
     next if $key eq 'requireNoAtmosphere';
+
+    for ($value) {
+      s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
+      s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
+    }
 
     if ($key eq 'id') {
       # Special case, skip them entirely and reset
