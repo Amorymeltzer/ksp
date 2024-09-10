@@ -660,7 +660,21 @@ while (<$file>) {
 	# Skip over annoying "fake" science expts caused by ScienceAlert, etc.
 	# For more info see
 	# http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
-	# Still present (especially @ KSC (see above) but not much elsewhere)
+	# Still present (especially @ KSC (see above) but not much elsewhere).
+	# Has the annoying side effect of removing any science that *belongs*
+	# that I haven't manually included (alternate KSC sites, for example).
+	# Would presumably mean issues with science from other mods.  Would be
+	# better if I could explicitly remove the clearly wrong things and then
+	# just include anything I haven't accounted for, without also limiting
+	# things we've intentionally left out (e.g. infraredTelescope).  One
+	# idea is to check each item in the persistent.sfs field against the
+	# testdefs (for science we don't know about) and biomes against places
+	# we might not know about (although that one seems more tedious than is
+	# worthwhile).  If there's something we don't know about, and it's not
+	# 0, maybe store it and report?  It would help if I inserted recovery
+	# and SCANsat into testdefs (well, or properly process SCANsat's scidefs
+	# file); likewise, I should *NOT* skip asteroids/comets/etc. for @testdef
+	# and just limit the skipping to the printing FIXME TODO
 	next if !$dataMatrix{$dataKey};
 
 	splice $dataValue->@*, 3, 0, $biome[-1];

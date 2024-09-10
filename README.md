@@ -109,12 +109,14 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
     - Will require atmosphere or not (data's in the script, just handle differently; see also `requireAtmosphere`) and the different rover stuff for each spob (do in their own or separate page?)
   - Check data (like dV, etc.)
+- Other "KSC" biomes (Baikerbanur, Baikerbanur LaunchPad, Island Airfield, Woomerang Launch Site (Making History), Dessert Launch Site (Making History), Dessert Airfield (Making History))
+- Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
+- Rework recovery into the same definitions as scidefs
+- Better handling of erroneous data for handling of real but missed science (see note about ScienceAlert)
 - SCANsat:
   - Are caps different?
   - Swap experiment and condition?  Or just high?  Or no condition?
-- Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
-- Option to ignore KSC science
-- Other "KSC" biomes (Baikerbanur, Baikerbanur LaunchPad, Island Airfield, Woomerang Launch Site (Making History))
+- Option to ignore KSC science entirely
 - Put global biome first?  Last?
 - Option to not include finished experiments
 - Possible to sort by more than one thing??
