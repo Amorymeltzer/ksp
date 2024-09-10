@@ -354,10 +354,12 @@ my $total      = 'total';
 # Only color science if below this percentage
 my $colorThreshold = 95;
 # Excel column widths, manually determined
+## no critic (ProhibitMagicNumbers)
 my %columnSizes = ($recov   => [9.17, 6.5,  9],
 		   $scansat => [9.17, 6.5,  11.83],
 		   spob     => [15.5, 9.67, 8.5]
 		  );
+## use critic
 # Construct sbv hash
 %sbvData = map {my ($spob, $sit, $val) = split; $spob.$sit => $val} <DATA>;
 
@@ -367,20 +369,22 @@ open my $defs, '<', "$scidef";
 while (<$defs>) {
   chomp;
 
-  # Find all the science loops
+  # Only care about science loops
+  next if ($ticker == 0 && $_ ne 'EXPERIMENT_DEFINITION');
+  # So find them!
   if ($_ eq 'EXPERIMENT_DEFINITION') {
     $ticker = 1;
     next;
   }
 
   # Note when we close out of a loop, nothing valuable after that
-  elsif (m/^\tRESULTS/) {
+  if (m/^\tRESULTS/) {
     $ticker = 0;
     next;
   }
 
   # Skip the first line, remove leading tabs, and assign arrays
-  elsif ($ticker == 1) {
+  if ($ticker == 1) {
     next if m/^[\{\s]+$/;    # Take into account blank lines
     s/^\t//i;
 
