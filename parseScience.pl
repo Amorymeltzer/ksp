@@ -366,77 +366,7 @@ my %columnSizes = ($recov   => [9.17, 6.5,  9],
 ### Begin!
 # Read in science defs to build prebuild datamatrix for each experiment
 open my $defs, '<', "$scidef";
-while (<$defs>) {
-  chomp;
-
-  # Only care about science loops
-  next if ($ticker == 0 && $_ ne 'EXPERIMENT_DEFINITION');
-  # So find them!
-  if ($_ eq 'EXPERIMENT_DEFINITION') {
-    $ticker = 1;
-    next;
-  }
-
-  # Note when we close out of a loop, nothing valuable after that
-  if (m/^\tRESULTS/) {
-    $ticker = 0;
-    next;
-  }
-
-  # Skip the first line, remove leading tabs, and assign arrays
-  if ($ticker == 1) {
-    next if m/^[\{\s]+$/;    # Take into account blank lines
-    s/^\t//i;
-
-    my ($key, $value) = split /=/;
-    # Just process the key for now, we're gonna skip a few, so save the value
-    # processing for later.  The whitespace could be moved up, but doesn't
-    # really save time.  Should probably just skip everything that *isn't* one
-    # of the keys we want. FIXME TODO
-    for ($key) {
-      s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
-      s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
-    }
-
-    # Unnecessary, unused.  baseValue is NOT the same as sbv later, but seems
-    # like it should be!
-    next if ($key eq 'title' || $key eq 'baseValue');
-    # Just surface sample
-    next if $key eq 'requiredExperimentLevel';
-    # Unused atm, probably will FIXME TODO
-    next if $key eq 'requireNoAtmosphere';
-
-    for ($value) {
-      s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
-      s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
-    }
-
-    if ($key eq 'id') {
-      # Special case, skip them entirely and reset
-      if ($value =~ /^asteroid|^infrared|^cometS/ && $opt{ignoreasteroids}) {
-	$ticker = 0;
-	next;
-      }
-      @testdef = (@testdef, $value);
-    } elsif ($key eq 'situationMask') {
-      # evaScience is weird.  It's a part that kerbals use, and they can only do
-      # so when landed or in space, but the ScienceDefs.cfg entry lists the
-      # situationMask as 63; it should be 49
-      if ($testdef[-1] eq 'evaScience') {
-	$value = 49;
-      }
-      @sitmask = (@sitmask, binary($value));
-    } elsif ($key eq 'biomeMask') {
-      @biomask = (@biomask, binary($value));
-    } elsif ($key eq 'requireAtmosphere') {
-      @atmo = (@atmo, $value);
-    } elsif ($key eq 'dataScale') {
-      @dataScale = (@dataScale, $value);
-    } elsif ($key eq 'scienceCap') {
-      @scienceCap = (@scienceCap, $value);
-    }
-  }
-}
+readSciDefs($defs);
 close $defs;
 
 
@@ -568,124 +498,7 @@ if ($opt{scansat}) {
 }
 
 open my $file, '<', "$pers";
-while (<$file>) {
-  chomp;
-
-  # Comes after all the science, saves a ton of time in large files
-  last if /^\t\tname = VesselRecovery$/;
-
-  # Find all the science loops
-  if (/^\t\tScience$/) {
-    $ticker = 1;
-    next;
-  }
-
-  # Note when we close out of a loop
-  if (/^\t\t\}$/) {
-    $ticker = 0;
-    next;
-  }
-
-  # Skip the first line, remove leading tabs, and assign arrays
-  if ($ticker == 1) {
-    next if m/^\t\t\{/;
-    s/\s+//g;    # Remove whitespace
-    my ($key, $value) = split /=/;
-
-    # Unnecessary, unused
-    next if $key eq 'title';
-
-    if ($key eq 'id') {
-      $value =~ s/Sun/Kerbol/g;
-      # Replace recovery and SCANsat data here, why not?
-      if ($value =~ /^$recovery/) {
-	$recoTicker = 1;
-	$value =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
-      } elsif ($value =~ m/^$scansat/ && $opt{scansat}) {
-	$scanTicker = 1;
-	$value =~ s/^$scansat(.*)\@(.*)InSpaceHigh$/$scansat\@$2\@$1/g;
-      } else {
-	# Just in case...
-	($recoTicker, $scanTicker) = (0, 0);
-	# Watch out for srf landed/splashed, InSpaceHigh/Low, FlyingHigh/Low
-	my $asd = $value =~ s/Srf(Landed|Splashed)/\@$1\@/g;
-	if (!$asd) {
-	  $value =~ s/((?:InSpace|Flying)(?:Low|High))/\@$1\@/g;
-	}
-      }
-      @pieces = (split /@/, $value);
-
-      # Ensure arrays are the same length
-      push @test,  $pieces[0];
-      push @spob,  $pieces[1];
-      push @where, $pieces[2];
-      push @biome, $pieces[3] // 'Global';    # global biomes
-    } elsif ($key eq 'dsc') {
-      @dsc = (@dsc, $value);
-    } elsif ($key eq 'scv') {
-      @scv = (@scv, $value);
-    } elsif ($key eq 'sbv') {
-      @sbv = (@sbv, $value);
-    } elsif ($key eq 'sci') {
-      @sci = (@sci, $value);
-    } elsif ($key eq 'cap') {
-      @cap = (@cap, $value);
-
-      # Build data matrix for each piece.  recovery and SCANsat get their own
-      # data hashes, and the main, stock science gets some extra pieces below.
-      # First, define some common parts.
-      my $percL     = calcPerc($sci[-1], $cap[-1]);
-      my $dataKey   = $spob[-1].$where[-1];
-      my $dataValue = [$test[-1], $spob[-1], $where[-1], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
-
-      if ($recoTicker == 1) {
-	$reco{$dataKey} = $dataValue;
-	$recoTicker = 0;
-      } elsif ($opt{scansat} && $scanTicker == 1) {
-	$scan{$dataKey} = $dataValue;
-	$scanTicker = 0;
-      } else {
-
-	if ($kscLookup{$biome[-1]}) {
-	  # KSC biomes *should* be SrfLanded-only, this ensures that we skip any
-	  # anomalous data in persistent.sfs.  This complements the test below
-	  # but saves some work given the KSC/Kerbin potential with the -k flag
-	  next if $where[-1] ne 'Landed';
-	  # Take KSC out of Kerbin
-	  if (!$opt{ksckerbin}) {
-	    $spob[-1] = $ksc;
-	    $dataKey = $ksc.$where[-1];
-	    ${$dataValue}[1] = $ksc;
-	  }
-	}
-	# Stock science gets bigger keys and gets the biome added in the value
-	$dataKey = $test[-1].$dataKey.$biome[-1];
-	# Skip over annoying "fake" science expts caused by ScienceAlert, etc.
-	# For more info see
-	# http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
-	# Still present (especially @ KSC (see above) but not much elsewhere).
-	# Has the annoying side effect of removing any science that *belongs*
-	# that I haven't manually included (alternate KSC sites, for example).
-	# Would presumably mean issues with science from other mods.  Would be
-	# better if I could explicitly remove the clearly wrong things and then
-	# just include anything I haven't accounted for, without also limiting
-	# things we've intentionally left out (e.g. infraredTelescope).  One
-	# idea is to check each item in the persistent.sfs field against the
-	# testdefs (for science we don't know about) and biomes against places
-	# we might not know about (although that one seems more tedious than is
-	# worthwhile).  If there's something we don't know about, and it's not
-	# 0, maybe store it and report?  It would help if I inserted recovery
-	# and SCANsat into testdefs (well, or properly process SCANsat's scidefs
-	# file); likewise, I should *NOT* skip asteroids/comets/etc. for @testdef
-	# and just limit the skipping to the printing FIXME TODO
-	next if !$dataMatrix{$dataKey};
-
-	splice $dataValue->@*, 3, 0, $biome[-1];
-	$dataMatrix{$dataKey} = $dataValue;
-      }
-    }
-  }
-}
+readPers($file);
 close $file;
 
 
@@ -860,6 +673,84 @@ sub checkFiles {
   return $check;
 }
 
+# Read in science defs to prebuild the data matrix for each experiment
+sub readSciDefs {
+  my $fh = shift;
+
+  while (<$fh>) {
+    chomp;
+
+    # Only care about science loops
+    next if ($ticker == 0 && $_ ne 'EXPERIMENT_DEFINITION');
+    # So find them!
+    if ($_ eq 'EXPERIMENT_DEFINITION') {
+      $ticker = 1;
+      next;
+    }
+
+    # Note when we close out of a loop, nothing valuable after that
+    if (m/^\tRESULTS/) {
+      $ticker = 0;
+      next;
+    }
+
+    # Skip the first line, remove leading tabs, and assign arrays
+    if ($ticker == 1) {
+      next if m/^[\{\s]+$/;	# Take into account blank lines
+      s/^\t//i;
+
+      my ($key, $value) = split /=/;
+      # Just process the key for now, we're gonna skip a few, so save the value
+      # processing for later.  The whitespace could be moved up, but doesn't
+      # really save time.  Should probably just skip everything that *isn't* one
+      # of the keys we want. FIXME TODO
+      for ($key) {
+	s/\s+//g;     # Clean spaces and fix default spacing in ScienceDefs.cfg
+	s/\/\/.*//g;  # Remove any comments, currently only magnetometer sitmask
+      }
+
+      # Unnecessary, unused.  baseValue is NOT the same as sbv later, but seems
+      # like it should be!
+      next if ($key eq 'title' || $key eq 'baseValue');
+      # Just surface sample
+      next if $key eq 'requiredExperimentLevel';
+      # Unused atm, probably will FIXME TODO
+      next if $key eq 'requireNoAtmosphere';
+
+      for ($value) {
+	s/\s+//g;     # Clean spaces and fix default spacing in ScienceDefs.cfg
+	s/\/\/.*//g;  # Remove any comments, currently only magnetometer sitmask
+      }
+
+      if ($key eq 'id') {
+	# Special case, skip them entirely and reset
+	if ($value =~ /^asteroid|^infrared|^cometS/ && $opt{ignoreasteroids}) {
+	  $ticker = 0;
+	  next;
+	}
+	@testdef = (@testdef, $value);
+      } elsif ($key eq 'situationMask') {
+	# evaScience is weird.  It's a part that kerbals use, and they can only do
+	# so when landed or in space, but the ScienceDefs.cfg entry lists the
+	# situationMask as 63; it should be 49
+	if ($testdef[-1] eq 'evaScience') {
+	  $value = 49;
+	}
+	@sitmask = (@sitmask, binary($value));
+      } elsif ($key eq 'biomeMask') {
+	@biomask = (@biomask, binary($value));
+      } elsif ($key eq 'requireAtmosphere') {
+	@atmo = (@atmo, $value);
+      } elsif ($key eq 'dataScale') {
+	@dataScale = (@dataScale, $value);
+      } elsif ($key eq 'scienceCap') {
+	@scienceCap = (@scienceCap, $value);
+      }
+    }
+  }
+}
+
+
 # Convert string to binary, pad to six digits
 sub binary {
   my $ones = sprintf '%b', shift;
@@ -867,6 +758,130 @@ sub binary {
     $ones = '0'.$ones;
   }
   return $ones;
+}
+
+# Read in persistent.sfs save file
+sub readPers {
+  my $fh = shift;
+
+  while (<$fh>) {
+    chomp;
+
+    # Comes after all the science, saves a ton of time in large files
+    last if /^\t\tname = VesselRecovery$/;
+
+    # Find all the science loops
+    if (/^\t\tScience$/) {
+      $ticker = 1;
+      next;
+    }
+
+    # Note when we close out of a loop
+    if (/^\t\t\}$/) {
+      $ticker = 0;
+      next;
+    }
+
+    # Skip the first line, remove leading tabs, and assign arrays
+    if ($ticker == 1) {
+      next if m/^\t\t\{/;
+      s/\s+//g;			# Remove whitespace
+      my ($key, $value) = split /=/;
+
+      # Unnecessary, unused
+      next if $key eq 'title';
+
+      if ($key eq 'id') {
+	$value =~ s/Sun/Kerbol/g;
+	# Replace recovery and SCANsat data here, why not?
+	if ($value =~ /^$recovery/) {
+	  $recoTicker = 1;
+	  $value =~ s/(Flew[By]?|SubOrbited|Orbited|Surfaced)/\@$1/g;
+	} elsif ($value =~ m/^$scansat/ && $opt{scansat}) {
+	  $scanTicker = 1;
+	  $value =~ s/^$scansat(.*)\@(.*)InSpaceHigh$/$scansat\@$2\@$1/g;
+	} else {
+	  # Just in case...
+	  ($recoTicker, $scanTicker) = (0, 0);
+	  # Watch out for srf landed/splashed, InSpaceHigh/Low, FlyingHigh/Low
+	  my $asd = $value =~ s/Srf(Landed|Splashed)/\@$1\@/g;
+	  if (!$asd) {
+	    $value =~ s/((?:InSpace|Flying)(?:Low|High))/\@$1\@/g;
+	  }
+	}
+	@pieces = (split /@/, $value);
+
+	# Ensure arrays are the same length
+	push @test,  $pieces[0];
+	push @spob,  $pieces[1];
+	push @where, $pieces[2];
+	push @biome, $pieces[3] // 'Global'; # global biomes
+      } elsif ($key eq 'dsc') {
+	@dsc = (@dsc, $value);
+      } elsif ($key eq 'scv') {
+	@scv = (@scv, $value);
+      } elsif ($key eq 'sbv') {
+	@sbv = (@sbv, $value);
+      } elsif ($key eq 'sci') {
+	@sci = (@sci, $value);
+      } elsif ($key eq 'cap') {
+	@cap = (@cap, $value);
+
+	# Build data matrix for each piece.  recovery and SCANsat get their own
+	# data hashes, and the main, stock science gets some extra pieces below.
+	# First, define some common parts.
+	my $percL     = calcPerc($sci[-1], $cap[-1]);
+	my $dataKey   = $spob[-1].$where[-1];
+	my $dataValue = [$test[-1], $spob[-1], $where[-1], $dsc[-1], $scv[-1], $sbv[-1], $sci[-1], $cap[-1], $cap[-1] - $sci[-1], $percL];
+
+	if ($recoTicker == 1) {
+	  $reco{$dataKey} = $dataValue;
+	  $recoTicker = 0;
+	} elsif ($opt{scansat} && $scanTicker == 1) {
+	  $scan{$dataKey} = $dataValue;
+	  $scanTicker = 0;
+	} else {
+
+	  if ($kscLookup{$biome[-1]}) {
+	    # KSC biomes *should* be SrfLanded-only, this ensures that we skip any
+	    # anomalous data in persistent.sfs.  This complements the test below
+	    # but saves some work given the KSC/Kerbin potential with the -k flag
+	    next if $where[-1] ne 'Landed';
+	    # Take KSC out of Kerbin
+	    if (!$opt{ksckerbin}) {
+	      $spob[-1] = $ksc;
+	      $dataKey = $ksc.$where[-1];
+	      ${$dataValue}[1] = $ksc;
+	    }
+	  }
+	  # Stock science gets bigger keys and gets the biome added in the value
+	  $dataKey = $test[-1].$dataKey.$biome[-1];
+	  # Skip over annoying "fake" science expts caused by ScienceAlert, etc.
+	  # For more info see
+	  # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
+	  # Still present (especially @ KSC (see above) but not much elsewhere).
+	  # Has the annoying side effect of removing any science that *belongs*
+	  # that I haven't manually included (alternate KSC sites, for example).
+	  # Would presumably mean issues with science from other mods.  Would be
+	  # better if I could explicitly remove the clearly wrong things and then
+	  # just include anything I haven't accounted for, without also limiting
+	  # things we've intentionally left out (e.g. infraredTelescope).  One
+	  # idea is to check each item in the persistent.sfs field against the
+	  # testdefs (for science we don't know about) and biomes against places
+	  # we might not know about (although that one seems more tedious than is
+	  # worthwhile).  If there's something we don't know about, and it's not
+	  # 0, maybe store it and report?  It would help if I inserted recovery
+	  # and SCANsat into testdefs (well, or properly process SCANsat's scidefs
+	  # file); likewise, I should *NOT* skip asteroids/comets/etc. for @testdef
+	  # and just limit the skipping to the printing FIXME TODO
+	  next if !$dataMatrix{$dataKey};
+
+	  splice $dataValue->@*, 3, 0, $biome[-1];
+	  $dataMatrix{$dataKey} = $dataValue;
+	}
+      }
+    }
+  }
 }
 
 sub calcPerc {
