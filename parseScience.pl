@@ -571,6 +571,9 @@ open my $file, '<', "$pers";
 while (<$file>) {
   chomp;
 
+  # Comes after all the science, saves a ton of time in large files
+  last if /^\t\tname = VesselRecovery$/;
+
   # Find all the science loops
   if (/^\t\tScience$/) {
     $ticker = 1;

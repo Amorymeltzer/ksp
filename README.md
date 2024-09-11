@@ -95,7 +95,6 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 
 - Better regex, cleanup, etc.
   - More tidying of sorting
-    - Don't run things if we don't need to, try to limit number of items
 	- Sorting: maps and regexes out of subs
 	  - New sorting (-f?) for `sit_order_map` first?  Useful.  Put global first.
   - Better regex for blank lines
@@ -121,7 +120,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - Option to not include finished experiments
 - Possible to sort by more than one thing??
 - Check `cmp` usage?
-- ISRU science(?), perhaps
+- ISRU science isn't in scidefs or in a `Science` block, but rather under `PLANET_SCAN_DATA` with planet ids (InSpaceHigh, except for Kerbin which is 1)
 - Check via <https://github.com/bigorangemachine/ksp_js_career_sci_list>
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
 - Put all column widths in one place, lookup hash
