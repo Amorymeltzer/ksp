@@ -262,7 +262,8 @@ my %universe = (Kerbin => [qw (Badlands Deserts Grasslands Highlands IceCaps
 			TrackingStationDishEast TrackingStationDishNorth
 			TrackingStationDishSouth TrackingStationHub VAB
 			VABMainBuilding VABPodMemorial VABRoundTank
-			VABSouthComplex VABTanks)],
+			VABSouthComplex VABTanks IslandAirfield Baikerbanur
+			BaikerbanurLaunchpad)],
 		# Northeast Basin is displayed, but listed as Northern Basin
 		Mun => [qw (Canyons EastCrater EastFarsideCrater FarsideBasin
 			FarsideCrater HighlandCraters Highlands Lowlands

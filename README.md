@@ -105,10 +105,13 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - Include stock in `processData`, probably by having another wrapper sub
 - UPDATE:
   - Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)
-  - Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
+  - Breaking Ground Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
     - Will require atmosphere or not (data's in the script, just handle differently; see also `requireAtmosphere`) and the different rover stuff for each spob (do in their own or separate page?)
+	- Detect presence of Breaking Ground data, notify if present and not turned on
   - Check data (like dV, etc.)
-- Other "KSC" biomes (Baikerbanur, Baikerbanur LaunchPad, Island Airfield, Woomerang Launch Site (Making History), Dessert Launch Site (Making History), Dessert Airfield (Making History))
+- Other "KSC" biomes:
+  - Confirm glacier lake, cove, mahi mahi, crater
+  - Making History: Woomerang Launch Site, Dessert Launch Site, Dessert Airfield
 - Maybe parse SCANsat scidefs (and expansion) via sub, so use itself (see also <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#Science_Definitions_Configuration_Files>)
 - Rework recovery into the same definitions as scidefs
 - Better handling of erroneous data for handling of real but missed science (see note about ScienceAlert)
@@ -120,10 +123,12 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - Option to not include finished experiments
 - Possible to sort by more than one thing??
 - Check `cmp` usage?
+- Avg/exp in average table is for all experiments, not just those to be completed.  Should it be?
 - ISRU science isn't in scidefs or in a `Science` block, but rather under `PLANET_SCAN_DATA` with planet ids (InSpaceHigh, except for Kerbin which is 1)
 - Check via <https://github.com/bigorangemachine/ksp_js_career_sci_list>
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
 - Put all column widths in one place, lookup hash
+- Round long decimals (handle floats)
 
 ## deltaVScience.pl
 
