@@ -396,36 +396,35 @@ if ($opt{breakingground}) {
 # DON'T RECREATE SPOB_RE FIXME TODO
 my $SPOB_RE = join q{|}, @planets;
 my ($rocSpob, $rocName);
+my @tempPlanets;
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0 .. $#testdef) {
   next if ($testdef[$i] =~ /^asteroid|^infrared|^cometS/ && $opt{ignoreasteroids});
 
+  # Deal with planet-specific science from Breaking Ground, and avoid replacing
+  # the official planet list
+  if ($testdef[$i] =~ /^ROCScience/) {
+    ($rocSpob, $rocName) = $testdef[$i] =~ /^ROCScience_($SPOB_RE)(.+)/;
+    @tempPlanets = ($rocSpob);
+    # Give it a good name
+    $testdef[$i] = $rocName;
+  } else {
+    @tempPlanets = @planets;
+  }
+
   # Array of binary values, only need to do once per test
   my @sits = split //, $sitmask[$i];
   my @bins = split //, $biomask[$i];
 
-  foreach my $planet (@planets) {
-    # Avoid replacing official planet list, thus duplicating Kerbin
-    my $stavro = $planet;
-
-    # Deal with planet-specific science from Breaking Ground.  In theory, if I
-    # use a copy of @planets above each time, I could just make @planets be just
-    # the spob for this one.  Might not be worth it.  FIXME TODO
-    if ($testdef[$i] =~ /^ROCScience/) {
-      ($rocSpob, $rocName) = $testdef[$i] =~ /^ROCScience_($SPOB_RE)(.+)/;
-      next if $rocSpob ne $planet;
-      # Give it a good name
-      $testdef[$i] = $rocName;
-    }
-
+  foreach my $planet (@tempPlanets) {
     # Build list of potential situations
     my @situations = @stockSits;
     # Array of arrays for spob-specific biomes, nullify alongside @situations
-    my @biomes = ([@{$universe{$stavro}}]) x 6;
+    my @biomes = ([@{$universe{$planet}}]) x 6;
 
     # KSC biomes are SrfLanded only
-    if ($stavro eq $ksc) {
+    if ($planet eq $ksc) {
       next if $bins[-1] == 0;
       @situations = qw (Landed);
     } else {
@@ -444,28 +443,28 @@ foreach my $i (0 .. $#testdef) {
 
     foreach my $sit (0 .. $#situations) {
       # Water
-      next if (($situations[$sit] eq 'Splashed') && (!$waterLookup{$stavro}));
+      next if (($situations[$sit] eq 'Splashed') && (!$waterLookup{$planet}));
       # Atmosphere
-      if (!$atmosphereLookup{$stavro}) {
+      if (!$atmosphereLookup{$planet}) {
 	next if ($situations[$sit] eq 'FlyingLow' || $situations[$sit] eq 'FlyingHigh');
 	next if $atmo[$i] eq 'True';
       } elsif ($noAtmo[$i] eq 'True') {
 	next;
       }
       # No surface
-      next if (($situations[$sit] eq 'Landed') && ($noLandLookup{$stavro}));
+      next if (($situations[$sit] eq 'Landed') && ($noLandLookup{$planet}));
       # Fold KSC into Kerbin, if need be
       # Inconvenient, ruined by the cleaning function later
-      if ($stavro eq $ksc && $opt{ksckerbin}) {
-	$stavro = 'Kerbin';
+      if ($planet eq $ksc && $opt{ksckerbin}) {
+	$planet = 'Kerbin';
       }
 
       foreach my $bin (0 .. $#{$biomes[$sit]}) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
-	my $sbVal = $sbvData{$stavro.$situations[$sit]};
+	my $sbVal = $sbvData{$planet.$situations[$sit]};
 	my $cleft = $sbVal * $scienceCap[$i];
-	$dataMatrix{$testdef[$i].$stavro.$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i], $stavro, $situations[$sit], $biomes[$sit][$bin], $dataScale[$i], '1', $sbVal, '0', $cleft, $cleft, '0'];
+	$dataMatrix{$testdef[$i].$planet.$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i], $planet, $situations[$sit], $biomes[$sit][$bin], $dataScale[$i], '1', $sbVal, '0', $cleft, $cleft, '0'];
       }
     }
 
