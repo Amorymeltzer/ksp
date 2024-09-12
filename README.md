@@ -103,7 +103,6 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Don't understand `buildData` (and likewise `buildScienceData`)
   - Consider `use builtin 'trim'`
 - Include stock in `processData`, probably by having another wrapper sub
-- Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)
 - Breaking Ground Expansion:
 	- Detect presence of Breaking Ground data, notify if present and not turned on
 	- Clean up handling of `ROCScience_`, etc.; lots of redundancy atm

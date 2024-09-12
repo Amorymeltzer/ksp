@@ -396,7 +396,7 @@ my $SPOB_RE = join q{|}, @planets;
 my ($rocSpob, $rocName);
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
-foreach my $i (0 .. scalar @testdef - 1) {
+foreach my $i (0 .. $#testdef) {
   # Array of binary values, only need to do once per test
   my @sits = split //, $sitmask[$i];
   my @bins = split //, $biomask[$i];
@@ -436,7 +436,7 @@ foreach my $i (0 .. scalar @testdef - 1) {
       }
     }
 
-    foreach my $sit (0 .. scalar @situations - 1) {
+    foreach my $sit (0 .. $#situations) {
       # Water
       next if (($situations[$sit] eq 'Splashed') && (!$waterLookup{$stavro}));
       # Atmosphere
@@ -454,7 +454,7 @@ foreach my $i (0 .. scalar @testdef - 1) {
 	$stavro = 'Kerbin';
       }
 
-      foreach my $bin (0 .. scalar @{$biomes[$sit]} - 1) {
+      foreach my $bin (0 .. $#{$biomes[$sit]}) {
 	# Use specific data (test, spob, sit, biome) as key to allow specific
 	# references and unique overwriting
 	my $sbVal = $sbvData{$stavro.$situations[$sit]};
@@ -494,7 +494,7 @@ foreach my $planet (@planets) {
   }
 
 
-  foreach my $sit (0 .. scalar @situations - 1) {
+  foreach my $sit (0 .. $#situations) {
     my $sbVal = $sbvData{$planet.'Recovery'};
     my $cleft;
 
@@ -520,7 +520,7 @@ if ($opt{scansat}) {
     next if ($planet eq $ksc);
 
     my @situations = @scanSits;
-    foreach my $sit (0 .. scalar @situations - 1) {
+    foreach my $sit (0 .. $#situations) {
 
       # All SCANsat is just one run of a test, and uses InSpaceHigh as far as I
       # am concerned, but in its own ScienceDefs.cfg the situationMask is 0.
@@ -954,7 +954,7 @@ sub calcPerc {
 sub columnWidths {
   my ($sheet, $colRef) = @_;
 
-  foreach (0 .. scalar @{$colRef} - 1) {
+  foreach (0 .. $#{$colRef}) {
     $sheet->set_column($_, $_, ${$colRef}[$_]);
   }
 
@@ -1126,7 +1126,7 @@ sub averageAlphabetical {
     @{$arrayRef} = sort @{$arrayRef};
   }
 
-  foreach my $index (0 .. scalar @{$arrayRef} - 1) {
+  foreach my $index (0 .. $#{$arrayRef}) {
     printAverageTable(${$arrayRef}[$index], $hashRef);
   }
 
