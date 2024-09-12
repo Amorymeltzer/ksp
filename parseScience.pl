@@ -399,6 +399,8 @@ my ($rocSpob, $rocName);
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0 .. $#testdef) {
+  next if ($testdef[$i] =~ /^asteroid|^infrared|^cometS/ && $opt{ignoreasteroids});
+
   # Array of binary values, only need to do once per test
   my @sits = split //, $sitmask[$i];
   my @bins = split //, $biomask[$i];
@@ -407,7 +409,9 @@ foreach my $i (0 .. $#testdef) {
     # Avoid replacing official planet list, thus duplicating Kerbin
     my $stavro = $planet;
 
-    # Deal with planet-specific science from Breaking Ground
+    # Deal with planet-specific science from Breaking Ground.  In theory, if I
+    # use a copy of @planets above each time, I could just make @planets be just
+    # the spob for this one.  Might not be worth it.  FIXME TODO
     if ($testdef[$i] =~ /^ROCScience/) {
       ($rocSpob, $rocName) = $testdef[$i] =~ /^ROCScience_($SPOB_RE)(.+)/;
       next if $rocSpob ne $planet;
@@ -774,11 +778,6 @@ sub readSciDefs {
       }
 
       if ($key eq 'id') {
-	# Special case, skip them entirely and reset
-	if ($value =~ /^asteroid|^infrared|^cometS/ && $opt{ignoreasteroids}) {
-	  $ticker = 0;
-	  next;
-	}
 	@testdef = (@testdef, $value);
       } elsif ($key eq 'situationMask') {
 	# evaScience is weird.  It's a part that kerbals use, and they can only do
@@ -935,8 +934,7 @@ sub readPers {
 	  # worthwhile).  If there's something we don't know about, and it's not
 	  # 0, maybe store it and report?  It would help if I inserted recovery
 	  # and SCANsat into testdefs (well, or properly process SCANsat's scidefs
-	  # file); likewise, I should *NOT* skip asteroids/comets/etc. for @testdef
-	  # and just limit the skipping to the printing FIXME TODO
+	  # file) FIXME TODO
 	  next if !$dataMatrix{$dataKey};
 
 	  splice $dataValue->@*, 3, 0, $biome[-1];
