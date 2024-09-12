@@ -103,11 +103,10 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Don't understand `buildData` (and likewise `buildScienceData`)
   - Consider `use builtin 'trim'`
 - Include stock in `processData`, probably by having another wrapper sub
-- UPDATE:
-  - Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)
-  - Breaking Ground Expansion (`deployedSeismicSensor`, `deployedWeatherReport`, `deployedGooObservation`, `deployedIONCollector`, `ROCScience_*`; in SquadExpansion/Serentiy/Resources/ScienceDefs.cfg)
-    - Will require atmosphere or not (data's in the script, just handle differently; see also `requireAtmosphere`) and the different rover stuff for each spob (do in their own or separate page?)
+- Latest defs and science (`cometSample_` is `short`, `intermediate`, `long`, and `interstellar`)
+- Breaking Ground Expansion:
 	- Detect presence of Breaking Ground data, notify if present and not turned on
+	- Clean up handling of `ROCScience_`, etc.; lots of redundancy atm
   - Check data (like dV, etc.)
 - Other "KSC" biomes:
   - Confirm glacier lake, cove, mahi mahi, crater
@@ -122,6 +121,7 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - Put global biome first?  Last?
 - Option to not include finished experiments
 - Possible to sort by more than one thing??
+- Probably make some of the `if`/`else` chains hash lookups to call specific subs depending on the line
 - Check `cmp` usage?
 - Avg/exp in average table is for all experiments, not just those to be completed.  Should it be?
 - ISRU science isn't in scidefs or in a `Science` block, but rather under `PLANET_SCAN_DATA` with planet ids (InSpaceHigh, except for Kerbin which is 1)

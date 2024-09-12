@@ -41,7 +41,7 @@ use Getopt::Std;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTbBsSpPiIjJkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
+getopts('aAtTbBsSpPiIjJdDkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -58,6 +58,7 @@ my %lookup = (g => 'gamelocation',
 	      p => 'percentdone',
 	      i => 'scansat',
 	      j => 'ignoreasteroids',
+	      d => 'breakingground',
 	      k => 'ksckerbin',
 	      m => 'moredata',
 	      c => 'csv',
@@ -157,10 +158,11 @@ foreach my $flag (sort {$b cmp $a} keys %opts) {
 
 
 ### FILE DEFINITIONS
-my ($scidef, $pers, $path);
+my ($scidef, $pers, $breakingScidef, $path);
 my $scidefName = 'ScienceDefs.cfg';
 my $persName   = 'persistent.sfs';
 my $gdsr       = 'GameData/Squad/Resources/';
+my $serenityr  = 'GameData/SquadExpansion/Serenity/Resources/';
 
 # Build and iterate through all potential options
 my @scidefLocales = ("$cwd/$scidefName", "$scriptDir/$scidefName");
@@ -187,6 +189,14 @@ if ($opt{username}) {
 # Test files for existance
 $scidef = checkFiles($scidef, $scidefName, \@scidefLocales);
 $pers   = checkFiles($pers,   $persName,   \@persLocales);
+
+if ($opt{breakingground}) {
+  # Can't process multiple files with the same name in the sample place
+  warnNicely('breakingground option selected but no username or gamelocation given (-u or -g)', 1) if (!$opt{username} && !$opt{gamelocation});
+
+  $breakingScidef = checkFiles($breakingScidef, $scidefName, [$path.$serenityr.$scidefName]);
+}
+
 
 
 # Don't bother outputting average file if there ain't any averages to save
@@ -226,6 +236,7 @@ my (@testdef,      # Basic test names
     @sitmask,      # Where test is valid
     @biomask,      # Where biomes for test matter
     @atmo,         # Check if atmosphere required or not
+    @noAtmo,       # Check if NO atmosphere required or not
     @dataScale,    # dataScale, same as dsc in persistent.sfs
     @scienceCap    # Base experiment cap, multiplied by sbv
    );
@@ -329,6 +340,10 @@ my $COND_RE        = join q{|}, @condOrder;
 # Common regex used in sitSort
 my $SIT_RE        = join q{|}, @stockSits;
 my %sit_order_map = map {$stockSits[$_] => $_} 0 .. $#stockSits;
+# Common regex for finding science loops.  The Breaking Ground expansion
+# SciencesDefs.cfg has some weird characters, so we have to use a regex rather
+# than matching the line exactly, which slows us down quite a bit.
+my $SCI_RE = '^EXPERIMENT_DEFINITION';
 
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
@@ -369,8 +384,16 @@ my %columnSizes = ($recov   => [9.17, 6.5,  9],
 open my $defs, '<', "$scidef";
 readSciDefs($defs);
 close $defs;
+if ($opt{breakingground}) {
+  open my $bdefs, '<', "$breakingScidef";
+  readSciDefs($bdefs);
+  close $bdefs;
+}
 
 
+# DON'T RECREATE SPOB_RE FIXME TODO
+my $SPOB_RE = join q{|}, @planets;
+my ($rocSpob, $rocName);
 ## Iterate and decide on conditions, build matrix, gogogo
 # Build stock science hash
 foreach my $i (0 .. scalar @testdef - 1) {
@@ -381,11 +404,20 @@ foreach my $i (0 .. scalar @testdef - 1) {
   foreach my $planet (@planets) {
     # Avoid replacing official planet list, thus duplicating Kerbin
     my $stavro = $planet;
+
+    # Deal with planet-specific science from Breaking Ground
+    if ($testdef[$i] =~ /^ROCScience/) {
+      ($rocSpob, $rocName) = $testdef[$i] =~ /^ROCScience_($SPOB_RE)(.+)/;
+      next if $rocSpob ne $planet;
+      # Give it a good name
+      $testdef[$i] = $rocName;
+    }
+
     # Build list of potential situations
     my @situations = @stockSits;
-
     # Array of arrays for spob-specific biomes, nullify alongside @situations
     my @biomes = ([@{$universe{$stavro}}]) x 6;
+
     # KSC biomes are SrfLanded only
     if ($stavro eq $ksc) {
       next if $bins[-1] == 0;
@@ -411,6 +443,8 @@ foreach my $i (0 .. scalar @testdef - 1) {
       if (!$atmosphereLookup{$stavro}) {
 	next if ($situations[$sit] eq 'FlyingLow' || $situations[$sit] eq 'FlyingHigh');
 	next if $atmo[$i] eq 'True';
+      } elsif ($noAtmo[$i] eq 'True') {
+	next;
       }
       # No surface
       next if (($situations[$sit] eq 'Landed') && ($noLandLookup{$stavro}));
@@ -428,6 +462,10 @@ foreach my $i (0 .. scalar @testdef - 1) {
 	$dataMatrix{$testdef[$i].$stavro.$situations[$sit].$biomes[$sit][$bin]} = [$testdef[$i], $stavro, $situations[$sit], $biomes[$sit][$bin], $dataScale[$i], '1', $sbVal, '0', $cleft, $cleft, '0'];
       }
     }
+
+    # Don't go applying planet-specific science from Breaking Ground, especially
+    # now that we've renamed the test names
+    last if $rocSpob;
   }
 }
 
@@ -657,17 +695,20 @@ sub checkFiles {
   my ($check, $name, $locRef) = @_;
   my $lastOne = pop @{$locRef};
 
-  foreach my $place (@{$locRef}) {
-    $check = $place;
-    if (-e $check) {
-      last;
-    } else {
-      warnNicely("No $name file found at $check");
+  if (scalar @{$locRef}) {
+    foreach my $place (@{$locRef}) {
+      $check = $place;
+      if (-e $check) {
+	last;
+      } else {
+	warnNicely("No $name file found at $check");
+      }
     }
+  } else {
+    $check = $lastOne;
   }
 
   if (!-e $check) {
-    $check = $lastOne;
     warnNicely("No $name file found at $check", 1) if !-e $check;
   }
 
@@ -682,22 +723,31 @@ sub readSciDefs {
     chomp;
 
     # Only care about science loops
-    next if ($ticker == 0 && $_ ne 'EXPERIMENT_DEFINITION');
+    next if ($ticker == 0 && !/$SCI_RE/);
+
     # So find them!
-    if ($_ eq 'EXPERIMENT_DEFINITION') {
+    if (/$SCI_RE/) {
       $ticker = 1;
       next;
     }
 
-    # Note when we close out of a loop, nothing valuable after that
+    # Note when we close out of a loop, nothing valuable after that, so reset
+    # and move on
     if (m/^\tRESULTS/) {
+      # Confirm proper length of items in case some definitions are missing a
+      # key/value pair; right now, it's just requireNoAtmosphere in Breaking
+      # Ground
+      if ($#noAtmo < $#testdef) {
+	@noAtmo = (@noAtmo, 'False');
+      }
+
       $ticker = 0;
       next;
     }
 
     # Skip the first line, remove leading tabs, and assign arrays
     if ($ticker == 1) {
-      next if m/^[\{\s]+$/;	# Take into account blank lines
+      next if m/^[\{\s]+$/;    # Take into account blank lines
       s/^\t//i;
 
       my ($key, $value) = split /=/;
@@ -706,8 +756,8 @@ sub readSciDefs {
       # really save time.  Should probably just skip everything that *isn't* one
       # of the keys we want. FIXME TODO
       for ($key) {
-	s/\s+//g;     # Clean spaces and fix default spacing in ScienceDefs.cfg
-	s/\/\/.*//g;  # Remove any comments, currently only magnetometer sitmask
+	s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
+	s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
       }
 
       # Unnecessary, unused.  baseValue is NOT the same as sbv later, but seems
@@ -715,12 +765,10 @@ sub readSciDefs {
       next if ($key eq 'title' || $key eq 'baseValue');
       # Just surface sample
       next if $key eq 'requiredExperimentLevel';
-      # Unused atm, probably will FIXME TODO
-      next if $key eq 'requireNoAtmosphere';
 
       for ($value) {
-	s/\s+//g;     # Clean spaces and fix default spacing in ScienceDefs.cfg
-	s/\/\/.*//g;  # Remove any comments, currently only magnetometer sitmask
+	s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
+	s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
       }
 
       if ($key eq 'id') {
@@ -742,6 +790,8 @@ sub readSciDefs {
 	@biomask = (@biomask, binary($value));
       } elsif ($key eq 'requireAtmosphere') {
 	@atmo = (@atmo, $value);
+      } elsif ($key eq 'requireNoAtmosphere') {
+	@noAtmo = (@noAtmo, $value);
       } elsif ($key eq 'dataScale') {
 	@dataScale = (@dataScale, $value);
       } elsif ($key eq 'scienceCap') {
@@ -765,6 +815,9 @@ sub binary {
 sub readPers {
   my $fh = shift;
 
+  # DON'T RECREATE SPOB_RE FIXME TODO
+  my $SPOB_RE = join q{|}, @planets;
+
   while (<$fh>) {
     chomp;
 
@@ -786,7 +839,7 @@ sub readPers {
     # Skip the first line, remove leading tabs, and assign arrays
     if ($ticker == 1) {
       next if m/^\t\t\{/;
-      s/\s+//g;			# Remove whitespace
+      s/\s+//g;    # Remove whitespace
       my ($key, $value) = split /=/;
 
       # Unnecessary, unused
@@ -816,7 +869,7 @@ sub readPers {
 	push @test,  $pieces[0];
 	push @spob,  $pieces[1];
 	push @where, $pieces[2];
-	push @biome, $pieces[3] // 'Global'; # global biomes
+	push @biome, $pieces[3] // 'Global';    # global biomes
       } elsif ($key eq 'dsc') {
 	@dsc = (@dsc, $value);
       } elsif ($key eq 'scv') {
@@ -827,6 +880,12 @@ sub readPers {
 	@sci = (@sci, $value);
       } elsif ($key eq 'cap') {
 	@cap = (@cap, $value);
+
+	# Rename Breaking Ground planet-specific tests, as done previously when
+	# building the dataMatrix from ScienceDefs.cfg
+	if ($test[-1] =~ /ROCS/) {
+	  $test[-1] =~ s/^ROCScience_(?:$SPOB_RE)(.+)$/$1/;
+	}
 
 	# Build data matrix for each piece.  recovery and SCANsat get their own
 	# data hashes, and the main, stock science gets some extra pieces below.
@@ -857,6 +916,7 @@ sub readPers {
 	  }
 	  # Stock science gets bigger keys and gets the biome added in the value
 	  $dataKey = $test[-1].$dataKey.$biome[-1];
+
 	  # Skip over annoying "fake" science expts caused by ScienceAlert, etc.
 	  # For more info see
 	  # http://forum.kerbalspaceprogram.com/threads/76793-0-90-ScienceAlert-1-8-4-Experiment-availability-feedback-%28December-23%29?p=1671187&viewfull=1#post1671187
@@ -1165,6 +1225,7 @@ Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
 
       -i Include data from SCANsat
       -j Ignore and don't consider asteroids or comets.
+      -d Include science from the Breaking Ground expansion.
       -k List data from KSC biomes as being from Kerbin (in the same Excel worksheet)
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
       -c Output data to csv file as well
