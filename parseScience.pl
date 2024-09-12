@@ -369,6 +369,8 @@ my $total      = 'total';
 
 # Only color science if below this percentage
 my $colorThreshold = 95;
+# Index for printing out data
+my $dataIdx = $opt{moredata} ? 8 : 5;
 # Excel column widths, manually determined
 ## no critic (ProhibitMagicNumbers)
 my %columnSizes = ($recov   => [9.17, 6.5,  9],
@@ -1070,11 +1072,10 @@ sub writeToExcel {
   my ($sheetName, $rowRef, $matrixKey, $hashRef) = @_;
 
   $workVars{$sheetName}[0]->write_row($workVars{$sheetName}[1], 0, $rowRef);
+  $workVars{$sheetName}[0]->write($workVars{$sheetName}[1], $dataIdx, ${$hashRef}{$matrixKey}[$dataIdx], $bgRed) if ${$hashRef}{$matrixKey}[$dataIdx + 1] < $colorThreshold;
+
   if ($opt{moredata}) {
-    $workVars{$sheetName}[0]->write($workVars{$sheetName}[1], 8, ${$hashRef}{$matrixKey}[8], $bgRed)   if ${$hashRef}{$matrixKey}[9] < $colorThreshold;
     $workVars{$sheetName}[0]->write($workVars{$sheetName}[1], 4, ${$hashRef}{$matrixKey}[4], $bgGreen) if ((${$hashRef}{$matrixKey}[4] < 0.001) && (${$hashRef}{$matrixKey}[4] > 0));
-  } else {
-    $workVars{$sheetName}[0]->write($workVars{$sheetName}[1], 5, ${$hashRef}{$matrixKey}[5], $bgRed) if ${$hashRef}{$matrixKey}[6] < $colorThreshold;
   }
 
   $workVars{$sheetName}[1]++;
@@ -1086,13 +1087,8 @@ sub buildScienceData {
   my ($key, $ind, $dataRef, $hashRef) = @_;
 
   # Sci, count, cap
-  if ($opt{moredata}) {
-    ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[8];
-    ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[7];
-  } else {
-    ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[5];
-    ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[4];
-  }
+  ${$dataRef}{$ind}[0] += ${$hashRef}{$key}[$dataIdx];
+  ${$dataRef}{$ind}[2] += ${$hashRef}{$key}[$dataIdx - 1];
   ${$dataRef}{$ind}[1]++;
 
   return;
@@ -1101,17 +1097,10 @@ sub buildScienceData {
 # Build report
 sub buildReportData {
   my ($key, $spo, $tes, $hashRef) = @_;
-  if ($opt{moredata}) {
-    $report{$spo}{$tes}     += ${$hashRef}{$key}[8];
-    $report{$spo}{$total}   += ${$hashRef}{$key}[8];
-    $report{$total}{$tes}   += ${$hashRef}{$key}[8];
-    $report{$total}{$total} += ${$hashRef}{$key}[8];
-  } else {
-    $report{$spo}{$tes}     += ${$hashRef}{$key}[5];
-    $report{$spo}{$total}   += ${$hashRef}{$key}[5];
-    $report{$total}{$tes}   += ${$hashRef}{$key}[5];
-    $report{$total}{$total} += ${$hashRef}{$key}[5];
-  }
+  $report{$spo}{$tes}     += ${$hashRef}{$key}[$dataIdx];
+  $report{$spo}{$total}   += ${$hashRef}{$key}[$dataIdx];
+  $report{$total}{$tes}   += ${$hashRef}{$key}[$dataIdx];
+  $report{$total}{$total} += ${$hashRef}{$key}[$dataIdx];
   return;
 }
 
