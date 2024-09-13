@@ -117,6 +117,8 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - SCANsat:
   - Are caps different?
   - Swap experiment and condition?  Or just high?  Or no condition?
+  - Make parallel with other experiments (sits not names, etc.)
+- sbv values for recovery (partially done?) seem weird.  Maybe double check the math throughout?  The go up and down...
 - Option to ignore KSC science entirely
 - Put global biome first?  Last?
 - Option to not include finished experiments
@@ -124,7 +126,6 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 - Probably make some of the `if`/`else` chains hash lookups to call specific subs depending on the line
 - Check `cmp` usage?
 - Avg/exp in average table is for all experiments, not just those to be completed.  Should it be?
-- ISRU science isn't in scidefs or in a `Science` block, but rather under `PLANET_SCAN_DATA` with planet ids (InSpaceHigh, except for Kerbin which is 1)
 - Check via <https://github.com/bigorangemachine/ksp_js_career_sci_list>
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
 - Put all column widths in one place, lookup hash

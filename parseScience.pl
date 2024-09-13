@@ -10,9 +10,7 @@
 
 ### FIXES, TODOS
 ### UPDATE FOR 1.1
-## New Asteroid Scanner mod thingy?
-## Option SCANsat resources?
-## asteroid and cometSamples landed at VAB, etc?
+## asteroid and cometSamples: can they be landed at KSC biomes??
 ## Can you do srfsplashed in every biome on other planets with water?
 ## Incorporate multiplier?  Might look weird...
 ## Biome sort incorporated better?  Elsewhere?  With -a or -t options?
@@ -318,11 +316,17 @@ my %universe = (Kerbin => [qw (Badlands Deserts Grasslands Highlands IceCaps
 			  SouthernGlaciers)]
 	       );
 
-
 # Various situations you may find yourself in
 my @stockSits = qw (Landed Splashed FlyingLow FlyingHigh InSpaceLow InSpaceHigh);
 my @recoSits  = qw (Flew FlewBy SubOrbited Orbited Surfaced);
 my @scanSits  = qw (AltimetryLoRes AltimetryHiRes BiomeAnomaly Resources Visual);
+
+# Stupid resource scan earns science for each spob, but *isn't* a science
+# definition, so we need to look it up by PlanetId.  Toss an undef in there to
+# make it easier.
+my @planetID = qw(Kerbin Mun Minmus Moho Eve Duna Ike Jool Laythe Vall Bop Tylo Gilly Pol Dres Eeloo);
+unshift @planetID, undef;
+
 
 # Some lookup hashes
 my %noLandLookup     = makeMap([qw (Kerbol Jool)]);
@@ -474,6 +478,26 @@ foreach my $i (0 .. $#testdef) {
   }
 }
 
+# Manually add resource scans.  Can this be part of the above loop? FIXME TODO
+foreach my $planet (@planets) {
+  # No scanning KSC or the sun
+  next if ($planet eq $ksc || $planet eq 'Kerbol');
+
+  # Only one!  Annoyingly, resource scans make sense as InSpaceHigh, but Kerbin
+  # is a holdout: every spob has Recovery matching InSpaceHigh, except Kerbin,
+  # where it matches InSpaceLow.  So, technically, the situation *value* is
+  # Recovery, but I'll be using InSpaceHigh for meaningfulness.
+  my $sit = 'Recovery';
+
+  # ScienceCap is 10
+  my $sbVal = $sbvData{$planet.'Recovery'};
+  my $cleft = $sbVal * 10;
+
+  # Invented datascale, but should actually figure it out... It's the size of
+  # what is transmitted, which isn't shown... FIXME TODO
+  $dataMatrix{'resourceScan'.$planet.'InSpaceHigh'.'Global'} = ['resourceScan', $planet, 'InSpaceHigh', 'Global', 10, '1', $sbVal, '0', $cleft, $cleft, '0'];
+}
+
 # This is awkwardly saddled between the above and below, but it keeps everyone
 # running smoothly in the case of -k
 if ($opt{ksckerbin}) {
@@ -541,6 +565,8 @@ if ($opt{scansat}) {
   }
 }
 
+
+# Read in the science we have!  Woo!
 open my $file, '<', "$pers";
 readPers($file);
 close $file;
@@ -824,8 +850,8 @@ sub readPers {
     # Comes after all the science, saves a ton of time in large files
     last if /^\t\tname = VesselRecovery$/;
 
-    # Find all the science loops
-    if (/^\t\tScience$/) {
+    # Find all the science loops, and also resource scan data
+    if (/^\t\tScience$/ || /^\t\t\tPLANET_SCAN_DATA$/) {
       $ticker = 1;
       next;
     }
@@ -845,7 +871,16 @@ sub readPers {
       # Unnecessary, unused
       next if $key eq 'title';
 
-      if ($key eq 'id') {
+      if ($key eq 'PlanetId') {
+	my $spob  = $planetID[$value];
+	my $sbVal = $sbvData{$spob.'Recovery'};
+	# The "science" is all or nothing, means we don't need all the values,
+	# except of course we're just makin' up the datascale FIXME TODO
+	my $dataValue = ['resourceScan', $spob, 'InSpaceHigh', 'Global', 10, 1, $sbVal, $sbVal * 10, $sbVal * 10, 0, 100];
+	my $dataKey   = 'resourceScan'.$spob.'InSpaceHigh'.'Global';
+	$dataMatrix{$dataKey} = $dataValue;
+	next;
+      } elsif ($key eq 'id') {
 	$value =~ s/Sun/Kerbol/g;
 	# Replace recovery and SCANsat data here, why not?
 	if ($value =~ /^$recovery/) {
@@ -936,6 +971,8 @@ sub readPers {
 	  # file) FIXME TODO
 	  next if !$dataMatrix{$dataKey};
 
+	  # Should note what and why this is here, I think to insert right biome
+	  # FIXME TODO
 	  splice $dataValue->@*, 3, 0, $biome[-1];
 	  $dataMatrix{$dataKey} = $dataValue;
 	}
