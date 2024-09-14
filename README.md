@@ -104,7 +104,7 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
   - Everything after `$ticker == 1` is slow, like cleaning spaces, etc.
   - Don't understand `buildData` (and likewise `buildScienceData`)
   - Consider `use builtin 'trim'`
-- Include stock in `processData`, probably by having another wrapper sub
+- Include stock in `processData`, probably by having another wrapper sub, or just doing after the sort?  Annoying since need hash and then there's the splice.
 - Detect comet/asteroid science in pers?
 - Breaking Ground Expansion:
 	- Detect presence of Breaking Ground data, notify if present and not turned on
@@ -120,6 +120,7 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
   - Are caps different?
   - Swap experiment and condition?  Or just high?  Or no condition?
   - Make parallel with other experiments (sits not names, etc.)
+  - Wait, is SCANsat resource science scanning the same as the resource scan?  Christ, that's annoying.  It uses InSpaceHigh, not Recovery (see Kerbin value), so maybe different?  Need to test with different games....
 - sbv values for recovery (partially done?) seem weird.  Maybe double check the math throughout?  The go up and down...
 - Put global biome first?  Last?
 - Option to not include finished experiments

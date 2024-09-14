@@ -497,9 +497,9 @@ foreach my $planet (@planets) {
   my $sbVal = $sbvData{$planet.'Recovery'};
   my $cleft = $sbVal * 10;
 
-  # Invented datascale, but should actually figure it out... It's the size of
-  # what is transmitted, which isn't shown... FIXME TODO
-  $dataMatrix{'resourceScan'.$planet.'InSpaceHigh'.'Global'} = ['resourceScan', $planet, 'InSpaceHigh', 'Global', 10, '1', $sbVal, '0', $cleft, $cleft, '0'];
+  # Copied datascale from SCANsat science, but maybe that's not right?  It's the
+  # size of what is transmitted, which isn't shown... FIXME TODO
+  $dataMatrix{'resourceScan'.$planet.'InSpaceHigh'.'Global'} = ['resourceScan', $planet, 'InSpaceHigh', 'Global', 2, 0, $sbVal, '0', $cleft, $cleft, '0'];
 }
 
 # This is awkwardly saddled between the above and below, but it keeps everyone
@@ -879,8 +879,9 @@ sub readPers {
 	my $spob  = $planetID[$value];
 	my $sbVal = $sbvData{$spob.'Recovery'};
 	# The "science" is all or nothing, means we don't need all the values,
-	# except of course we're just makin' up the datascale FIXME TODO
-	my $dataValue = ['resourceScan', $spob, 'InSpaceHigh', 'Global', 10, 1, $sbVal, $sbVal * 10, $sbVal * 10, 0, 100];
+	# except of course we're just copying the datascale from SCANsat
+	# regardless or whether it's the same or not FIXME TODO
+	my $dataValue = ['resourceScan', $spob, 'InSpaceHigh', 'Global', 2, 0, $sbVal, $sbVal * 10, $sbVal * 10, 0, 100];
 	my $dataKey   = 'resourceScan'.$spob.'InSpaceHigh'.'Global';
 	$dataMatrix{$dataKey} = $dataValue;
 	next;
