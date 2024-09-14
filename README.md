@@ -60,7 +60,7 @@ The commandline options here will always override any settings in your `.parsesc
 e negation options (-ATBSPIJKMCNEORUG) take precedence.
 
 ````shell
-Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
+Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
        parseScience.pl [-g <game_location> -u <savefile_name>]
 
        parseScience.pl [-ATBSPIJKMCNEOR -G -U] -> Turn off a given option
@@ -76,7 +76,9 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
 
       -i Include data from SCANsat
       -j Ignore and don't consider asteroids or comets.
+      -d Include science from the Breaking Ground expansion.
       -k List data from KSC biomes as being from Kerbin (same Excel worksheet)
+      -l Ignore science for KSC biomes entirely
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
       -c Output data to csv file as well
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
@@ -119,7 +121,6 @@ Usage: parseScience.pl [-atbspijkmcneor -h -f path/to/dotfile ]
   - Swap experiment and condition?  Or just high?  Or no condition?
   - Make parallel with other experiments (sits not names, etc.)
 - sbv values for recovery (partially done?) seem weird.  Maybe double check the math throughout?  The go up and down...
-- Option to ignore KSC science entirely
 - Put global biome first?  Last?
 - Option to not include finished experiments
 - Possible to sort by more than one thing??

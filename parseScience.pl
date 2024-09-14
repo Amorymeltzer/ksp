@@ -39,7 +39,7 @@ use Getopt::Std;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTbBsSpPiIjJdDkKmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
+getopts('aAtTbBsSpPiIjJdDkKlLmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -58,6 +58,7 @@ my %lookup = (g => 'gamelocation',
 	      j => 'ignoreasteroids',
 	      d => 'breakingground',
 	      k => 'ksckerbin',
+	      l => 'noksc',
 	      m => 'moredata',
 	      c => 'csv',
 	      n => 'noformat',
@@ -415,6 +416,9 @@ foreach my $i (0 .. $#testdef) {
     $testdef[$i] = $rocName;
   } else {
     @tempPlanets = @planets;
+    if ($opt{noksc}) {
+      splice @tempPlanets, 1, 1;
+    }
   }
 
   # Array of binary values, only need to do once per test
@@ -499,8 +503,8 @@ foreach my $planet (@planets) {
 }
 
 # This is awkwardly saddled between the above and below, but it keeps everyone
-# running smoothly in the case of -k
-if ($opt{ksckerbin}) {
+# running smoothly in the case of -k or -l
+if ($opt{ksckerbin} || $opt{noksc}) {
   splice @planets, 1, 1;
 }
 
@@ -938,6 +942,7 @@ sub readPers {
 	} else {
 
 	  if ($kscLookup{$biome[-1]}) {
+	    next if $opt{noksc};
 	    # KSC biomes *should* be SrfLanded-only, this ensures that we skip any
 	    # anomalous data in persistent.sfs.  This complements the test below
 	    # but saves some work given the KSC/Kerbin potential with the -k flag
@@ -1232,7 +1237,7 @@ sub printReportTable {
 # Final line must be unindented?
 sub usage {
   print <<"USAGE";
-Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
+Usage: $PROGRAM_NAME [-atbspijdklmcneor -h -f path/to/dotfile ]
        $PROGRAM_NAME [-g <game_location> -u <savefile_name>]
 
        $PROGRAM_NAME [-ATBSPIJKMCNEOR -G -U] -> Turn off a given option
@@ -1250,6 +1255,7 @@ Usage: $PROGRAM_NAME [-atbspijkmcneor -h -f path/to/dotfile ]
       -j Ignore and don't consider asteroids or comets.
       -d Include science from the Breaking Ground expansion.
       -k List data from KSC biomes as being from Kerbin (in the same Excel worksheet)
+      -l Ignore science for KSC biomes entirely
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
       -c Output data to csv file as well
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
