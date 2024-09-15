@@ -352,6 +352,8 @@ my %sit_order_map = map {$stockSits[$_] => $_} 0 .. $#stockSits;
 # SciencesDefs.cfg has some weird characters, so we have to use a regex rather
 # than matching the line exactly, which slows us down quite a bit.
 my $SCI_RE = '^EXPERIMENT_DEFINITION';
+# Regex for finding Breaking Ground spob-specific rover science
+my $ROC_RE = '^ROCScience_';
 
 # Reverse-engineered caps for recovery missions.  The values for SubOrbited
 # and Orbited are inverted on Kerbin, handled later.
@@ -410,8 +412,8 @@ foreach my $i (0 .. $#testdef) {
 
   # Deal with planet-specific science from Breaking Ground, and avoid replacing
   # the official planet list
-  if ($testdef[$i] =~ /^ROCScience/) {
-    ($rocSpob, $rocName) = $testdef[$i] =~ /^ROCScience_($SPOB_RE)(.+)/;
+  if ($testdef[$i] =~ /$ROC_RE/) {
+    ($rocSpob, $rocName) = $testdef[$i] =~ /$ROC_RE($SPOB_RE)(.+)/;
     @tempPlanets = ($rocSpob);
     # Give it a good name
     $testdef[$i] = $rocName;
@@ -922,8 +924,8 @@ sub readPers {
 
 	# Rename Breaking Ground planet-specific tests, as done previously when
 	# building the dataMatrix from ScienceDefs.cfg
-	if ($test[-1] =~ /ROCS/) {
-	  $test[-1] =~ s/^ROCScience_(?:$SPOB_RE)(.+)$/$1/;
+	if ($test[-1] =~ /$ROC_RE/) {
+	  $test[-1] =~ s/$ROC_RE(?:$SPOB_RE)(.+)$/$1/;
 	}
 
 	# Build data matrix for each piece.  recovery and SCANsat get their own
