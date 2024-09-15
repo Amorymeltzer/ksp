@@ -119,7 +119,7 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
 - SCANsat:
   - Are caps different?
   - Swap experiment and condition?  Or just high?  Or no condition?
-  - Make parallel with other experiments (sits not names, etc.)
+  - Make parallel with other experiments (sits not names, etc.).  Have to redo scanSits, blah, but maybe more sense with sciDefs...  Probably also affects sorting, which, yeah, okay, makes the status quo make sense, but still, it should be changed, right?
   - Wait, is SCANsat resource science scanning the same as the resource scan?  Christ, that's annoying.  It uses InSpaceHigh, not Recovery (see Kerbin value), so maybe different?  Need to test with different games....
 - sbv values for recovery (partially done?) seem weird.  Maybe double check the math throughout?  The go up and down...
 - Put global biome first?  Last?
