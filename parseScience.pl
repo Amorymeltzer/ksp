@@ -790,20 +790,15 @@ sub readSciDefs {
       s/^\t//i;
 
       my ($key, $value) = split /=/;
-      # Just process the key for now, we're gonna skip a few, so save the value
-      # processing for later.  The whitespace could be moved up, but doesn't
-      # really save time.  Should probably just skip everything that *isn't* one
-      # of the keys we want. FIXME TODO
-      for ($key) {
-	s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
-	s/\/\/.*//g;    # Remove any comments, currently only magnetometer sitmask
-      }
+      # Just process the key for now, as we're gonna skip a few, so we can save
+      # processing the value for later.  The whitespace could be moved up, but
+      # doesn't really save time.  Should probably just skip everything that
+      # *isn't* one of the keys we want. FIXME TODO
+      $key =~ s/\s+//g;    # Clean spaces and fix default spacing in ScienceDefs.cfg
 
       # Unnecessary, unused.  baseValue is NOT the same as sbv later, but seems
-      # like it should be!
-      next if ($key eq 'title' || $key eq 'baseValue');
-      # Just surface sample
-      next if $key eq 'requiredExperimentLevel';
+      # like it should be!  requiredExperimentLevel is just for surface sample
+      next if ($key eq 'title' || $key eq 'baseValue' || $key eq 'requiredExperimentLevel');
 
       for ($value) {
 	s/\s+//g;       # Clean spaces and fix default spacing in ScienceDefs.cfg
