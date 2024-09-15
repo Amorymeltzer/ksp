@@ -97,8 +97,7 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
 
 - Better regex, cleanup, etc.
   - More tidying of sorting
-	- Sorting: maps and regexes out of subs
-	  - New sorting (-f?) for `sit_order_map` first?  Useful.  Put global first.
+	- New sorting (-f?) for `sit_order_map` first?  Useful.  Put global first.
   - Better regex for blank lines
   - Don't need to remove the leading tabs?
   - Everything after `$ticker == 1` is slow, like cleaning spaces, etc.
@@ -109,7 +108,7 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
 - Breaking Ground Expansion:
 	- Detect presence of Breaking Ground data, notify if present and not turned on
 	- Clean up handling of `ROCScience_`, etc.; lots of redundancy atm
-  - Check data (like dV, etc.)
+- Check data (like dV, etc.)
 - Other "KSC" biomes:
   - Confirm glacier lake, cove, mahi mahi, crater
   - Making History: Woomerang Launch Site, Dessert Launch Site, Dessert Airfield

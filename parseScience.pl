@@ -338,7 +338,10 @@ my %atmosphereLookup = makeMap([$universe{KSC}->@*, qw (Kerbin Eve Duna Jool Lay
 # Help speed up sorting
 my %memoized_situation = ();
 my %memoized_spob      = ();
-# Common regex used in specialSort
+
+# Common regexes used in specialSort
+my $SPOB_RE        = join q{|}, @planets;
+my %spec_order_map = map {$planets[$_] => $_} 0 .. $#planets;
 my @condOrder      = (@recoSits, @scanSits);
 my %cond_order_map = map {$condOrder[$_] => $_} 0 .. $#condOrder;
 my $COND_RE        = join q{|}, @condOrder;
@@ -398,8 +401,6 @@ if ($opt{breakingground}) {
 }
 
 
-# DON'T RECREATE SPOB_RE FIXME TODO
-my $SPOB_RE = join q{|}, @planets;
 my ($rocSpob, $rocName);
 my @tempPlanets;
 ## Iterate and decide on conditions, build matrix, gogogo
@@ -504,6 +505,7 @@ foreach my $planet (@planets) {
 
 # This is awkwardly saddled between the above and below, but it keeps everyone
 # running smoothly in the case of -k or -l
+# CAN THIS BE MOVED TO JUST ABOVE PERS FIXME TODO
 if ($opt{ksckerbin} || $opt{noksc}) {
   splice @planets, 1, 1;
 }
@@ -845,9 +847,6 @@ sub binary {
 sub readPers {
   my $fh = shift;
 
-  # DON'T RECREATE SPOB_RE FIXME TODO
-  my $SPOB_RE = join q{|}, @planets;
-
   while (<$fh>) {
     chomp;
 
@@ -1052,10 +1051,6 @@ sub specialSort {
     return ${$specRef}{$b}[8] <=> ${$specRef}{$a}[8] || $a cmp $b || $cond_order_map{$v} <=> $cond_order_map{$w};
   }
   ## x/y: spob
-  # Can't be pulled out yet without reworking the ksckerbin option, which
-  # rewrites @planets FIXME TODO
-  my %spec_order_map = map {$planets[$_] => $_} 0 .. $#planets;
-  my $SPOB_RE        = join q{|}, @planets;
   # As above
   $memoized_spob{$a} //= $a =~ /^($SPOB_RE)/ ? $1 : undef;
   $memoized_spob{$b} //= $b =~ /^($SPOB_RE)/ ? $1 : undef;
