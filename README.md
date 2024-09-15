@@ -95,14 +95,15 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
 
 ### Todo
 
-- Better regex, cleanup, etc.
-  - More tidying of sorting
-	- New sorting (-f?) for `sit_order_map` first?  Useful.  Put global first.
-  - Better regex for blank lines
-  - Don't need to remove the leading tabs?
-  - Everything after `$ticker == 1` is slow, like cleaning spaces, etc.
-  - Don't understand `buildData` (and likewise `buildScienceData`)
-  - Consider `use builtin 'trim'`
+- Put global biome first?  Last?
+- New sorting (-f?) for `sit_order_map` first?  Useful.  Put global first.
+- Possible to sort by more than one thing??
+- More tidying of sorting
+- Option to not include finished experiments
+- Better regex for blank lines
+- Don't need to remove the leading tabs?
+- Everything after `$ticker == 1` is slow, like cleaning spaces, etc.
+- Consider `use builtin 'trim'`
 - Include stock in `processData`, probably by having another wrapper sub, or just doing after the sort?  Annoying since need hash and then there's the splice.
 - Detect comet/asteroid science in pers?
 - Breaking Ground Expansion:
@@ -120,12 +121,9 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
   - Swap experiment and condition?  Or just high?  Or no condition?
   - Make parallel with other experiments (sits not names, etc.).  Have to redo scanSits, blah, but maybe more sense with sciDefs...  Probably also affects sorting, which, yeah, okay, makes the status quo make sense, but still, it should be changed, right?
   - Wait, is SCANsat resource science scanning the same as the resource scan?  Christ, that's annoying.  It uses InSpaceHigh, not Recovery (see Kerbin value), so maybe different?  Need to test with different games....
-- sbv values for recovery (partially done?) seem weird.  Maybe double check the math throughout?  The go up and down...
-- Put global biome first?  Last?
-- Option to not include finished experiments
-- Possible to sort by more than one thing??
+- sbv values for recovery (partially done?) seem weird.  Maybe double check the math throughout?  They go up and down...
+- Don't understand `buildData` (and likewise `buildScienceData`)
 - Probably make some of the `if`/`else` chains hash lookups to call specific subs depending on the line
-- Check `cmp` usage?
 - Avg/exp in average table is for all experiments, not just those to be completed.  Should it be?
 - Check via <https://github.com/bigorangemachine/ksp_js_career_sci_list>
 - More Windows/Mac/Linux-appropriate paths to Gamedata, .parsesciencerc
