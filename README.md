@@ -60,10 +60,10 @@ The commandline options here will always override any settings in your `.parsesc
 e negation options (-ATBSPIJKMCNEORUG) take precedence.
 
 ````shell
-Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
+Usage: parseScience.pl [-atbspijdklmzcneor -h -f path/to/dotfile ]
        parseScience.pl [-g <game_location> -u <savefile_name>]
 
-       parseScience.pl [-ATBSPIJKMCNEOR -G -U] -> Turn off a given option
+       parseScience.pl [-ATBSPIJDKLMZCNEOR -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
@@ -80,6 +80,7 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
       -k List data from KSC biomes as being from Kerbin (same Excel worksheet)
       -l Ignore science for KSC biomes entirely
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
+      -z Don't include finished experiments, only those with science remaining
       -c Output data to csv file as well
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
@@ -99,7 +100,7 @@ Usage: parseScience.pl [-atbspijdklmcneor -h -f path/to/dotfile ]
 - New sorting (-f?) for `sit_order_map` first?  Useful.  Put global first.
 - Possible to sort by more than one thing??
 - More tidying of sorting
-- Option to not include finished experiments
+- Option to ONLY include finished experiments
 - Better regex for blank lines
 - Don't need to remove the leading tabs?
 - Everything after `$ticker == 1` is slow, like cleaning spaces, etc.

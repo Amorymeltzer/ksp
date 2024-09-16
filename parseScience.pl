@@ -39,7 +39,7 @@ use Getopt::Std;
 
 # Parse command line options
 my %opts = ();
-getopts('aAtTbBsSpPiIjJdDkKlLmMcCnNeEoOrRg:Gu:Uf:h', \%opts);
+getopts('aAtTbBsSpPiIjJdDkKlLmMzZcCnNeEoOrRg:Gu:Uf:h', \%opts);
 
 if ($opts{h}) {
   usage();
@@ -60,6 +60,7 @@ my %lookup = (g => 'gamelocation',
 	      k => 'ksckerbin',
 	      l => 'noksc',
 	      m => 'moredata',
+	      z => 'unfinishedonly',
 	      c => 'csv',
 	      n => 'noformat',
 	      e => 'excludeexcel',
@@ -643,7 +644,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
   # Splice out planet name so it's not repetitive
   my $planet = splice @{$dataMatrix{$key}}, 1, 1;
   dataSplice(\@{$dataMatrix{$key}})                                if !$opt{moredata};
-  writeToExcel($planet, \@{$dataMatrix{$key}}, $key, \%dataMatrix) if !$opt{excludeexcel};
+  writeToExcel($planet, \@{$dataMatrix{$key}}, $key, \%dataMatrix) if (!$opt{excludeexcel} && (!$opt{unfinishedonly} || $dataMatrix{$key}[-1] ne '100.00'));
 
   if ($opt{tests}) {
     buildScienceData($key, $dataMatrix{$key}[0], \%testData, \%dataMatrix);
@@ -659,8 +660,7 @@ foreach my $key (sort sitSort keys %dataMatrix) {
 
   # Add in spob name to csv, only necessary for stock science
   $dataMatrix{$key}[1] .= "\@$planet";
-  writeToCSV(\@{$dataMatrix{$key}}) if $opt{csv};
-
+  writeToCSV(\@{$dataMatrix{$key}}) if ($opt{csv} && (!$opt{unfinishedonly} || $dataMatrix{$key}[-1] ne '100.00'));
 }
 # Recovery
 processData(\%reco, $recov, $recovery);
@@ -874,10 +874,10 @@ sub readPers {
       if ($key eq 'PlanetId') {
 	my $spob  = $planetID[$value];
 	my $sbVal = $sbvData{$spob.'Recovery'};
-	# The "science" is all or nothing, means we don't need all the values,
-	# except of course we're just copying the datascale from SCANsat
+	# The "science" is all or nothing, which means we don't need all the
+	# values, except of course we're just copying the datascale from SCANsat
 	# regardless or whether it's the same or not FIXME TODO
-	my $dataValue = ['resourceScan', $spob, 'InSpaceHigh', 'Global', 2, 0, $sbVal, $sbVal * 10, $sbVal * 10, 0, 100];
+	my $dataValue = ['resourceScan', $spob, 'InSpaceHigh', 'Global', 2, 0, $sbVal, $sbVal * 10, $sbVal * 10, 0, '100.00'];
 	my $dataKey   = 'resourceScan'.$spob.'InSpaceHigh'.'Global';
 	$dataMatrix{$dataKey} = $dataValue;
 	next;
@@ -1004,8 +1004,8 @@ sub processData {
 
   foreach my $key (sort {specialSort($a, $b, $dataRef)} keys $dataRef->%*) {
     dataSplice($dataRef->{$key})                               if !$opt{moredata};
-    writeToExcel($shortName, $dataRef->{$key}, $key, $dataRef) if !$opt{excludeexcel};
-    writeToCSV($dataRef->{$key})                               if $opt{csv};
+    writeToExcel($shortName, $dataRef->{$key}, $key, $dataRef) if (!$opt{excludeexcel} && (!$opt{unfinishedonly} || $dataRef->{$key}[-1] ne '100.00'));
+    writeToCSV($dataRef->{$key})                               if ($opt{csv} && (!$opt{unfinishedonly} || $dataRef->{$key}[-1] ne '100.00'));
 
     if ($opt{tests}) {
       # Neater spacing in test averages output
@@ -1230,10 +1230,10 @@ sub printReportTable {
 # Final line must be unindented?
 sub usage {
   print <<"USAGE";
-Usage: $PROGRAM_NAME [-atbspijdklmcneor -h -f path/to/dotfile ]
+Usage: $PROGRAM_NAME [-atbspijdklmzcneor -h -f path/to/dotfile ]
        $PROGRAM_NAME [-g <game_location> -u <savefile_name>]
 
-       $PROGRAM_NAME [-ATBSPIJKMCNEOR -G -U] -> Turn off a given option
+       $PROGRAM_NAME [-ATBSPIJDKLMZCNEOR -G -U] -> Turn off a given option
 
       -a Display average science left for each planet
       -t Display average science left for each experiment type.  Supersedes -a.
@@ -1250,6 +1250,7 @@ Usage: $PROGRAM_NAME [-atbspijdklmcneor -h -f path/to/dotfile ]
       -k List data from KSC biomes as being from Kerbin (in the same Excel worksheet)
       -l Ignore science for KSC biomes entirely
       -m Add some largely boring data to the output (i.e., dsc, sbv, scv)
+      -z Don't include finished experiments, only those with science remaining
       -c Output data to csv file as well
       -n Turn off formatted printing in Excel (i.e., colors and bolding)
       -e Don't output the Excel file
